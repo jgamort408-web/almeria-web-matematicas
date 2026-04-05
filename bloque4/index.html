@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloque 4 · Producto final</title>
+    
+    <style>
+        /* Paleta y variables base - Enfoque Arena/Dorado */
+        :root {
+            --dorado-principal: #DEAC3B;
+            --dorado-claro: #FDF7E7;
+            --dorado-medio: #EAC46B;
+            --dorado-oscuro: #A67C00;
+            --gris-pizarra: #5A6B7C;
+            --azul-mar: #005A8C;
+            --terracota: #D36E5A;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos optimizados para Google Sites */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--dorado-principal);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(222, 172, 59, 0.2);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+            color: var(--blanco);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #FFF9EE;
+            margin: 0 auto;
+            max-width: 800px;
+            font-weight: 500;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--dorado-principal);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--dorado-claro);
+            color: var(--dorado-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #f7e8b6;
+        }
+
+        .btn-primario {
+            background-color: var(--dorado-oscuro);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: #8c6800;
+            color: var(--blanco);
+        }
+
+        /* ================= INTRODUCCIÓN Y OBJETIVOS ================= */
+        .seccion-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 5px solid var(--dorado-principal);
+        }
+
+        .info-bloque h2 {
+            color: var(--dorado-oscuro);
+            font-size: 1.6rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--dorado-claro);
+            padding-bottom: 10px;
+        }
+
+        .lista-objetivos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-objetivos li {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-left: 3px solid var(--dorado-medio);
+        }
+
+        /* ================= TARJETAS DE SESIÓN ================= */
+        .titulo-seccion {
+            color: var(--dorado-oscuro);
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .grid-sesiones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-sesion {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--dorado-claro);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .tarjeta-sesion:hover {
+            transform: translateY(-4px);
+            border-color: var(--dorado-principal);
+        }
+
+        .sesion-cabecera {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #e2e2e2;
+            padding-bottom: 10px;
+        }
+
+        .sesion-num {
+            background-color: var(--dorado-principal);
+            color: var(--blanco);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .tarjeta-sesion h3 {
+            margin: 0;
+            color: var(--dorado-oscuro);
+            font-size: 1.25rem;
+        }
+
+        .sesion-contenido {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sesion-bloque {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .sesion-bloque strong {
+            display: block;
+            color: var(--dorado-oscuro);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .btn-acceder {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+            background-color: var(--blanco);
+            color: var(--dorado-oscuro);
+            border: 2px solid var(--dorado-principal);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-acceder:hover {
+            background-color: var(--dorado-principal);
+            color: var(--blanco);
+            border-color: var(--dorado-principal);
+        }
+
+        /* ================= SECCIONES INFERIORES ================= */
+        .seccion-inferior {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .caja-checklist {
+            border-top: 4px solid var(--azul-mar);
+        }
+
+        .caja-consejos {
+            border-top: 4px solid var(--dorado-principal);
+            background-color: var(--dorado-claro);
+        }
+
+        .caja-info h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.4rem;
+        }
+
+        .caja-checklist h3 { color: var(--azul-mar); }
+        .caja-consejos h3 { color: var(--dorado-oscuro); }
+
+        /* Checklist Visual */
+        .lista-checklist {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-checklist li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: var(--fondo-cuerpo);
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 500;
+            color: var(--gris-pizarra);
+            border: 1px solid #eaeaea;
+        }
+
+        .lista-checklist li::before {
+            content: "✅";
+            font-size: 1.2rem;
+        }
+
+        /* Lista de Consejos */
+        .lista-consejos {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .lista-consejos li {
+            font-size: 1.05rem;
+            color: var(--texto-principal);
+        }
+
+        .lista-consejos li strong {
+            color: var(--dorado-oscuro);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-info, .seccion-inferior { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación del bloque">
+            <a href="{{URL_BLOQUE3}}" class="btn-texto">⬅️ Anterior: Bloque 3</a>
+            <a href="{{URL_INICIO}}" class="btn-texto">🏠 Inicio</a>
+            <a href="{{URL_EVALUACION}}" class="btn-texto btn-primario">Evaluación Final ➡️</a>
+        </nav>
+
+        <header>
+            <h1>Bloque 4 · Producto final</h1>
+            <p>Integrar, diseñar y comunicar nuestra guía de Almería</p>
+        </header>
+
+        <section class="seccion-info">
+            <div class="info-bloque">
+                <h2>🏆 ¡Llegamos a la meta!</h2>
+                <p>Es el momento de recopilar todo el trabajo de los bloques anteriores y darle forma definitiva a nuestra Guía Turística Matemática.</p>
+                <p>Durante estas últimas cuatro sesiones tomaremos decisiones en equipo, maquetaremos nuestro dossier o presentación, ensayaremos cómo explicar nuestro análisis matemático y, finalmente, expondremos con orgullo nuestro trabajo ante la clase.</p>
+            </div>
+            <div class="info-bloque">
+                <h2>🎯 Objetivos del bloque</h2>
+                <ul class="lista-objetivos">
+                    <li><span>1️⃣</span> Seleccionar la información matemática más relevante del proyecto.</li>
+                    <li><span>2️⃣</span> Construir la guía turística asegurando orden y claridad visual.</li>
+                    <li><span>3️⃣</span> Ensayar la presentación oral con los compañeros para ganar seguridad.</li>
+                    <li><span>4️⃣</span> Exponer el proyecto final utilizando vocabulario matemático preciso.</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="titulo-seccion">Sesiones de Trabajo</h2>
+
+        <div class="grid-sesiones">
+            
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 17</span>
+                    <h3>Selección de información</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Decidir junto a tu equipo qué cálculos, mapas y gráficas de las sesiones anteriores son los mejores para incluir en la guía.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Guion esquema del producto final.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_17}}" class="btn-acceder">Abrir Sesión 17</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 18</span>
+                    <h3>Construcción de la guía</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Montar el mapa, las fichas geométricas y los gráficos comentados en la plantilla elegida, cuidando la presentación.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Borrador completo maquetado.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_18}}" class="btn-acceder">Abrir Sesión 18</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 19</span>
+                    <h3>Ensayo y coevaluación</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Practicar vuestra exposición (de 2 minutos) frente a otro equipo y escuchar sus consejos de mejora antes del día final.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Lista de cotejo del ensayo oral.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_19}}" class="btn-acceder">Abrir Sesión 19</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 20</span>
+                    <h3>Exposición final</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Presentar oficialmente la guía matemática a la clase, defender vuestras decisiones y realizar la autoevaluación final.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Guía final y Autoevaluación.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_20}}" class="btn-acceder">Abrir Sesión 20</a>
+            </article>
+
+        </div>
+
+        <div class="seccion-inferior">
+            <section class="caja-info caja-checklist">
+                <h3>📋 Qué debe tener tu guía final</h3>
+                <p>Asegúrate de que no falte ninguno de estos ingredientes:</p>
+                <ul class="lista-checklist">
+                    <li>Mapa por cuadrantes etiquetado y claro.</li>
+                    <li>Fichas geométricas completas de 3-4 zonas.</li>
+                    <li>2 o 3 gráficas comentadas e interpretadas.</li>
+                    <li>Una ruta turística justificada matemáticamente.</li>
+                    <li>Una breve conclusión final sobre la ciudad.</li>
+                </ul>
+            </section>
+
+            <section class="caja-info caja-consejos">
+                <h3>🗣️ Consejos para explicar bien</h3>
+                <ul class="lista-consejos">
+                    <li>👀 <strong>Mira al público:</strong> Evita darle la espalda a tus compañeros o al profesor.</li>
+                    <li>📖 <strong>No lo leas todo:</strong> Usa las diapositivas o murales como apoyo, explícalo con tus palabras.</li>
+                    <li>🔢 <strong>Habla con precisión:</strong> Usa bien términos como <em>coordenada</em>, <em>perímetro</em>, o <em>variable</em>.</li>
+                    <li>⏱️ <strong>Ve al grano:</strong> Como el tiempo es limitado (2 minutos), destaca el dato más sorprendente.</li>
+                    <li>🤝 <strong>Apóyate en tu equipo:</strong> Repartid los turnos de manera justa y equilibrada.</li>
+                </ul>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 7 - Perímetro de zonas urbanas</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Enfoque Terracota */
+        :root {
+            --terracota: #D36E5A;
+            --terracota-oscuro: #A54B3A;
+            --terracota-claro: #FCECE9;
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Patrón de líneas sutiles simulando cinta de medir */
+            background-image: repeating-linear-gradient(0deg, transparent, transparent 19px, rgba(211, 110, 90, 0.1) 19px, rgba(211, 110, 90, 0.1) 20px);
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-bottom: 4px solid var(--terracota);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--terracota-claro);
+            color: var(--terracota-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #f7dcd7;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--terracota-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(211, 110, 90, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 15px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--blanco);
+            color: var(--terracota);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= PASO A PASO ================= */
+        .paso-a-paso {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px dashed var(--terracota);
+        }
+
+        .paso-a-paso h2 {
+            color: var(--terracota);
+            margin-top: 0;
+            text-align: center;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .grid-pasos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .tarjeta-paso {
+            background-color: var(--terracota-claro);
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 1 1 250px;
+            border-left: 5px solid var(--terracota);
+        }
+
+        .numero-paso {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .texto-paso {
+            font-weight: bold;
+            color: var(--terracota-oscuro);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--azul-mar);
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--azul-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px dashed var(--azul-mar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--azul-mar);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--azul-mar);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--terracota);
+            background-color: var(--terracota-claro);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--gris-pizarra);
+            background-color: #F0F2F5;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--terracota-oscuro); }
+        .caja-error h3 { color: var(--gris-pizarra); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            color: var(--texto-principal);
+        }
+
+        /* Gráfico visual del error */
+        .error-visual {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed var(--gris-pizarra);
+            margin-top: auto;
+        }
+
+        .error-visual div {
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        .correcto { color: var(--terracota); }
+        .incorrecto { color: #D32F2F; text-decoration: line-through; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_6}}" class="btn-texto">⬅️ Sesión 6</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_8}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 7 de 20</span>
+            <h1>Perímetro de zonas urbanas</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Calcular el perímetro de diferentes barrios y parques de Almería, modelizados como polígonos simples.</span>
+            </div>
+        </header>
+
+        <section class="paso-a-paso">
+            <h2>📏 Cómo medir un contorno: Paso a Paso</h2>
+            <div class="grid-pasos">
+                <div class="tarjeta-paso">
+                    <div class="numero-paso">1</div>
+                    <div class="texto-paso">Identifica todos los lados exteriores.</div>
+                </div>
+                <div class="tarjeta-paso">
+                    <div class="numero-paso">2</div>
+                    <div class="texto-paso">Asegúrate de que todas las medidas están en la misma unidad (ej. metros).</div>
+                </div>
+                <div class="tarjeta-paso">
+                    <div class="numero-paso">3</div>
+                    <div class="texto-paso">Súmalas todas con cuidado.</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Ve este vídeo para repasar qué es el perímetro y la regla de oro para no equivocarse al sumar lados.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Cálculo de Perímetros</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Apunta en tu cuaderno la definición de "Perímetro".</li>
+                    <li><strong>Piensa:</strong> Si das una vuelta completa andando alrededor de tu instituto, ¿qué estás midiendo?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>¡A calcular! Trabajaremos en parejas con la ficha de la ciudad.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Ficha de zonas:</strong> Recibiréis 3 zonas de Almería modelizadas (un parque triangular, un barrio rectangular y una plaza con forma de trapecio).</li>
+                    <li><strong>2. Búsqueda de datos:</strong> Usando la leyenda del mapa, descubrid cuánto miden los lados de cada zona.</li>
+                    <li><strong>3. Cálculo:</strong> Realizad las sumas para hallar el perímetro total de cada una de las 3 zonas.</li>
+                    <li><strong>4. Comparación:</strong> Decidid qué zona tiene el borde más largo.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Consolida lo aprendido preparando el terreno para la próxima sesión.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Ficha de refuerzo:</strong> Completa la pequeña ficha "Perímetro frente a Área" que te entregará el profesor.</li>
+                    <li>Recuerda: El perímetro es la <em>valla</em>, el área es el <em>césped</em>. Hoy solo hemos medido vallas.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📋 Tu evidencia del día</h3>
+                <p>Al finalizar, vuestro equipo debe entregar la <strong>Ficha de Perímetros</strong> completada.</p>
+                <p>Aseguraos de incluir las operaciones matemáticas (la suma de los lados), no solo el resultado final. ¡El profesor quiere ver cómo pensáis!</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Olvidar sumar lados o usar unidades cuadradas.</strong></p>
+                <p>En polígonos complejos, es fácil saltarse un lado pequeño. Y al dar el resultado, recuerda que estamos midiendo una <em>distancia</em> en línea recta.</p>
+                
+                <div class="error-visual">
+                    <div class="correcto">✅ ¡Correcto!<br> Perímetro = $200 \text{ metros}$</div>
+                    <div class="incorrecto" style="margin-top: 10px;">❌ ¡Error!<br> Perímetro = $200 \text{ metros cuadrados } (m^2)$</div>
+                    <div style="font-size: 0.85rem; margin-top: 5px; font-weight: normal;">Los metros cuadrados son para el ÁREA, no para el borde.</div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

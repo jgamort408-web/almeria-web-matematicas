@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 12 - De enunciado a tabla</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Estética Limpia y Académica */
+        :root {
+            --azul-marino: #1A365D;
+            --azul-acero: #2B6CB0;
+            --azul-claro: #EBF8FF;
+            --gris-fondo: #F7FAFC;
+            --gris-borde: #E2E8F0;
+            --gris-texto: #4A5568;
+            --rojo-alerta: #C53030;
+            --rojo-claro: #FED7D7;
+            --verde-ok: #2F855A;
+            --verde-claro: #C6F6D5;
+            --blanco: #FFFFFF;
+            --texto-principal: #2D3748;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--gris-fondo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 12px 20px;
+            border-radius: 6px;
+            border: 1px solid var(--gris-borde);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--gris-fondo);
+            color: var(--azul-marino);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+            border: 1px solid var(--gris-borde);
+        }
+
+        .btn-texto:hover {
+            background-color: var(--azul-claro);
+            border-color: var(--azul-acero);
+        }
+
+        .btn-siguiente {
+            background-color: var(--azul-marino);
+            color: var(--blanco);
+            border-color: var(--azul-marino);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--azul-acero);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 8px;
+            text-align: center;
+            border-top: 6px solid var(--azul-marino);
+            border-bottom: 1px solid var(--gris-borde);
+            border-left: 1px solid var(--gris-borde);
+            border-right: 1px solid var(--gris-borde);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--azul-acero);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--azul-marino);
+            margin: 0 0 15px 0;
+            font-weight: 300;
+        }
+
+        .objetivo-caja {
+            background-color: var(--azul-claro);
+            color: var(--azul-marino);
+            padding: 15px 25px;
+            border-radius: 6px;
+            max-width: 750px;
+            margin: 20px auto 0 auto;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-left: 4px solid var(--azul-acero);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 6px;
+            padding: 30px 25px;
+            border: 1px solid var(--gris-borde);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-marino);
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--gris-borde);
+            padding-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .fase-tarjeta p {
+            color: var(--gris-texto);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--gris-fondo);
+            border-radius: 4px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 1px solid var(--gris-borde);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--gris-texto);
+            font-size: 0.9rem;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--texto-principal);
+        }
+
+        .lista-tareas li::before {
+            content: "•";
+            color: var(--azul-acero);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -6px;
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 6px;
+            padding: 30px;
+            border: 1px solid var(--gris-borde);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--gris-borde);
+        }
+
+        .caja-evidencia h3 { color: var(--azul-marino); }
+        .caja-error h3 { color: var(--rojo-alerta); }
+
+        .caja-destacada p {
+            font-size: 1rem;
+            margin-bottom: 15px;
+            color: var(--gris-texto);
+        }
+
+        /* Tablas Comparativas (Académicas) */
+        .tabla-academica {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            background-color: var(--blanco);
+        }
+
+        .tabla-academica caption {
+            font-weight: 600;
+            color: var(--azul-marino);
+            padding-bottom: 8px;
+            text-align: left;
+        }
+
+        .tabla-academica th, .tabla-academica td {
+            border: 1px solid var(--gris-borde);
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .tabla-academica th {
+            background-color: var(--gris-fondo);
+            color: var(--texto-principal);
+            font-weight: 600;
+        }
+
+        /* Estilo para tabla incorrecta */
+        .tabla-incorrecta {
+            border: 2px dashed var(--rojo-alerta);
+        }
+        .tabla-incorrecta td { border: 1px dotted var(--gris-borde); color: var(--gris-texto); }
+
+        /* Estilo para tabla correcta */
+        .tabla-correcta {
+            border: 2px solid var(--verde-ok);
+        }
+        .tabla-correcta th { background-color: var(--verde-claro); color: var(--verde-ok); }
+
+        .etiqueta-estado {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .etiqueta-error { background-color: var(--rojo-claro); color: var(--rojo-alerta); }
+        .etiqueta-ok { background-color: var(--verde-claro); color: var(--verde-ok); }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_11}}" class="btn-texto">← Sesión 11</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_13}}" class="btn-texto btn-siguiente">Siguiente Sesión →</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 12</span>
+            <h1>De enunciado a tabla</h1>
+            
+            <div class="objetivo-caja">
+                <strong>Objetivo de la sesión:</strong> Transformar información escrita en un texto o noticia en una tabla de datos matemáticamente estructurada y organizada.
+            </div>
+        </header>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <h2><span>📖</span> Preparación previa</h2>
+                <p>Las tablas son la base de cualquier estudio estadístico. Observa este recurso sobre cómo extraer datos.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span>▶ Vídeo: Organización de datos</span><br>
+                        <em>({{VIDEO_URL}})</em>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Anota en tu cuaderno los tres elementos obligatorios que debe tener cualquier tabla.</li>
+                    <li>Reflexiona: ¿Por qué es más fácil leer una tabla que un párrafo de texto?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <h2><span>🏫</span> Trabajo en el aula</h2>
+                <p>Analizaremos textos didactizados sobre la ciudad de Almería para estructurar su información.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Lectura atenta:</strong> Recibiréis un breve informe sobre la evolución de la población o las temperaturas en un barrio almeriense.</li>
+                    <li><strong>2. Extracción:</strong> Subrayad con dos colores diferentes la variable independiente (ej. años) y la dependiente (ej. habitantes).</li>
+                    <li><strong>3. Construcción:</strong> Dibujad la estructura de la tabla con regla, colocando la variable independiente en la primera columna o fila.</li>
+                    <li><strong>4. Vaciado:</strong> Pasad los números del texto a la tabla de forma ordenada.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <h2><span>✍️</span> Práctica autónoma</h2>
+                <p>Consolida tu capacidad de síntesis con un ejercicio de conversión real.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Reto opcional:</strong> Busca una noticia breve en un periódico local digital que contenga datos numéricos a lo largo del tiempo.</li>
+                    <li>Convierte ese párrafo en una tabla en tu cuaderno.</li>
+                    <li>Redacta un título formal que explique exactamente qué datos contiene la tabla.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📋 Evidencia de aprendizaje</h3>
+                <p>Deberéis entregar la <strong>Tabla Completa</strong> generada a partir del texto proporcionado en clase. El profesorado evaluará el rigor académico de la misma, revisando que contenga un título descriptivo y que las unidades de medida estén claramente especificadas en las cabeceras.</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ Error metodológico frecuente</h3>
+                <p>La creación de "tablas fantasma". Este error ocurre cuando se extraen los números pero se omite el contexto (título), las variables (cabeceras) o las unidades (medida).</p>
+                
+                <div style="margin-top: 20px;">
+                    <span class="etiqueta-estado etiqueta-error">INCORRECTO (Tabla fantasma)</span>
+                    <table class="tabla-academica tabla-incorrecta">
+                        <tr><td>2021</td><td>15</td></tr>
+                        <tr><td>2022</td><td>18</td></tr>
+                    </table>
+                </div>
+
+                <div style="margin-top: 20px;">
+                    <span class="etiqueta-estado etiqueta-ok">CORRECTO (Tabla estructurada)</span>
+                    <table class="tabla-academica tabla-correcta">
+                        <caption>Evolución de visitantes mensuales en verano</caption>
+                        <tr>
+                            <th>Año</th>
+                            <th>Visitantes (en miles)</th>
+                        </tr>
+                        <tr><td>2021</td><td>15</td></tr>
+                        <tr><td>2022</td><td>18</td></tr>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 5 - Rectas, segmentos y ángulos en la ciudad</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Estética Geométrica (Terracota y Azul) */
+        :root {
+            --terracota: #D36E5A;
+            --terracota-oscuro: #A54B3A;
+            --terracota-claro: #FCECE9;
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --fondo-cuerpo: #FAFAFA;
+            --cuadricula: #E5E5E5;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            /* Fondo de papel milimetrado/geométrico */
+            background-image: 
+                linear-gradient(var(--cuadricula) 1px, transparent 1px),
+                linear-gradient(90deg, var(--cuadricula) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border: 2px solid var(--azul-mar);
+            box-shadow: 4px 4px 0px var(--azul-mar);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-mar);
+            text-decoration: none;
+            padding: 10px 18px;
+            border: 2px solid transparent;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            border-color: var(--azul-mar);
+            background-color: var(--blanco);
+        }
+
+        .btn-siguiente {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--blanco);
+            color: var(--terracota);
+            border-color: var(--terracota);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            text-align: center;
+            border: 3px solid var(--terracota);
+            box-shadow: 6px 6px 0px var(--terracota);
+            position: relative;
+        }
+
+        /* Detalles geométricos en la cabecera */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 20px;
+            height: 20px;
+            border-top: 3px solid var(--terracota);
+            border-left: 3px solid var(--terracota);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 3px solid var(--terracota);
+            border-right: 3px solid var(--terracota);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--terracota-oscuro);
+            margin: 15px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .objetivo-caja {
+            background-color: var(--terracota-claro);
+            border: 2px solid var(--terracota);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            padding: 25px;
+            border: 2px solid var(--texto-principal);
+            box-shadow: 5px 5px 0px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            border-bottom: 2px dashed var(--azul-mar);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Video Placeholder */
+        .video-container {
+            width: 100%;
+            background-color: var(--terracota-claro);
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px solid var(--terracota);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--terracota-oscuro);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--terracota);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .lista-tareas li::before {
+            content: "📐";
+            flex-shrink: 0;
+        }
+
+        /* Ejemplos y No Ejemplos */
+        .grid-ejemplos {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .ejemplo-caja {
+            padding: 10px;
+            border: 1px solid var(--texto-principal);
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .es-ejemplo { background-color: #E8F5E9; border-top: 4px solid #4CAF50; }
+        .no-ejemplo { background-color: #FFEBEE; border-top: 4px solid #F44336; }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            padding: 30px;
+            border: 2px solid var(--texto-principal);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            box-shadow: 6px 6px 0px var(--azul-mar);
+        }
+
+        .caja-error {
+            box-shadow: 6px 6px 0px var(--terracota);
+            background-color: var(--terracota-claro);
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-transform: uppercase;
+        }
+
+        .caja-evidencia h3 { color: var(--azul-mar); }
+        .caja-error h3 { color: var(--terracota-oscuro); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        /* Visualización CSS para el error frecuente */
+        .grafico-error {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: var(--blanco);
+            border: 2px solid var(--terracota);
+            padding: 20px;
+            margin-top: auto;
+        }
+
+        .linea-infinita {
+            width: 80px;
+            height: 4px;
+            background-color: var(--texto-principal);
+            position: relative;
+        }
+        .linea-infinita::before, .linea-infinita::after {
+            content: '▶';
+            position: absolute;
+            top: -9px;
+            font-size: 14px;
+            color: var(--texto-principal);
+        }
+        .linea-infinita::before { left: -10px; transform: scaleX(-1); }
+        .linea-infinita::after { right: -10px; }
+
+        .segmento {
+            width: 80px;
+            height: 4px;
+            background-color: var(--azul-mar);
+            position: relative;
+        }
+        .segmento::before, .segmento::after {
+            content: '';
+            position: absolute;
+            top: -4px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--azul-mar);
+            border-radius: 50%;
+        }
+        .segmento::before { left: -6px; }
+        .segmento::after { right: -6px; }
+
+        .rotulo-grafico {
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_4}}" class="btn-texto">⬅️ Sesión 4</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_6}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 5 de 20</span>
+            <h1>Rectas, segmentos y ángulos</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Identificar elementos geométricos básicos (rectas, segmentos, calles paralelas y perpendiculares) utilizando un plano urbano de la ciudad.</span>
+            </div>
+        </header>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Repasa los conceptos básicos de geometría plana con este breve vídeo antes de salir a "cazar" formas en la ciudad.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Vídeo: Geometría plana</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Dibuja en tu cuaderno una recta y un segmento.</li>
+                    <li>Busca en tu habitación dos líneas perpendiculares (¡mira las esquinas!).</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>¡Safari geométrico! Trabajaremos sobre un plano simplificado del centro de Almería.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Calles Paralelas:</strong> Localiza y marca de color azul dos calles que nunca se crucen (ej. tramos del Paseo).</li>
+                    <li><strong>2. Calles Perpendiculares:</strong> Marca de rojo una intersección que forme 4 ángulos rectos (90º). Usa la escuadra para comprobarlo.</li>
+                    <li><strong>3. Segmentos:</strong> Dibuja de verde el segmento que une la Puerta de Purchena con la Plaza Circular.</li>
+                    <li><strong>4. Ángulos:</strong> Encuentra un cruce de calles que forme un ángulo agudo (menor de 90º) y otro obtuso (mayor de 90º).</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Revisemos lo aprendido distinguiendo ejemplos matemáticos correctos de los incorrectos en el mundo real.</p>
+                
+                <div class="grid-ejemplos">
+                    <div class="ejemplo-caja es-ejemplo">
+                        <strong>✅ Ejemplo</strong><br>
+                        "El tramo de la Avenida Mediterráneo desde la rotonda A a la rotonda B es un <strong>segmento</strong>."
+                    </div>
+                    <div class="ejemplo-caja no-ejemplo">
+                        <strong>❌ No ejemplo</strong><br>
+                        "La Avenida Mediterráneo es una <strong>recta</strong> infinita." (Falso, tiene principio y fin).
+                    </div>
+                    <div class="ejemplo-caja es-ejemplo">
+                        <strong>✅ Ejemplo</strong><br>
+                        "La esquina de la plaza forma un ángulo <strong>perpendicular</strong> (90º)."
+                    </div>
+                    <div class="ejemplo-caja no-ejemplo">
+                        <strong>❌ No ejemplo</strong><br>
+                        "Cualquier calle que se cruza es perpendicular." (Falso, pueden formar ángulos agudos).
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>🗺️ Tu evidencia del día</h3>
+                <p>Al final de la clase debéis entregar el <strong>Plano simplificado anotado</strong>.</p>
+                <p>Revisaremos que hayáis usado regla para trazar las líneas y que la leyenda de colores coincida con las calles marcadas (paralelas en azul, perpendiculares en rojo, segmentos en verde).</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Llamar "recta" a un "segmento".</strong></p>
+                <p>En el lenguaje de la calle decimos "sigue todo recto", pero en matemáticas una recta no tiene ni principio ni fin (es infinita).</p>
+                <p>Las calles de una ciudad <strong>siempre son segmentos</strong>, porque empiezan en un cruce y terminan en otro.</p>
+                
+                <div class="grafico-error">
+                    <div>
+                        <div class="linea-infinita"></div>
+                        <div class="rotulo-grafico">Recta<br>(Infinita)</div>
+                    </div>
+                    <div>
+                        <div class="segmento"></div>
+                        <div class="rotulo-grafico" style="color: var(--azul-mar);">Segmento<br>(Tiene límites)</div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

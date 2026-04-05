@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 9 - Perímetro y área: no son lo mismo</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --terracota: #D36E5A;
+            --terracota-claro: #FCECE9;
+            --verde-med: #4A7C59;
+            --verde-claro: #EAF2EC;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--gris-pizarra);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-mar);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #d1e3ec;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: #455361;
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border-top: 6px solid var(--gris-pizarra);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--gris-pizarra);
+            margin: 15px 0 10px 0;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: #F0F2F5;
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            border-left: 4px solid var(--gris-pizarra);
+        }
+
+        /* ================= BLOQUES COMPARATIVOS ================= */
+        .seccion-comparativa {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .bloque-concepto {
+            flex: 1 1 300px;
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bloque-perimetro {
+            border: 2px solid var(--terracota);
+        }
+        .bloque-perimetro h2 { color: var(--terracota); }
+        .bloque-perimetro .icono-fondo { color: var(--terracota-claro); }
+
+        .bloque-area {
+            border: 2px solid var(--verde-med);
+        }
+        .bloque-area h2 { color: var(--verde-med); }
+        .bloque-area .icono-fondo { color: var(--verde-claro); }
+
+        .icono-fondo {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .bloque-concepto h2 {
+            margin-top: 0;
+            font-size: 1.8rem;
+            position: relative;
+            z-index: 1;
+            border-bottom: 2px dashed #eaeaea;
+            padding-bottom: 10px;
+        }
+
+        .tabla-visual {
+            width: 100%;
+            margin-top: 15px;
+            position: relative;
+            z-index: 1;
+            border-collapse: collapse;
+        }
+
+        .tabla-visual td {
+            padding: 10px;
+            border-bottom: 1px solid #eaeaea;
+            font-size: 1.05rem;
+        }
+
+        .tabla-visual tr:last-child td { border-bottom: none; }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid var(--azul-mar);
+        }
+
+        .fase-icono { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .video-container {
+            width: 100%; background-color: var(--azul-claro); border-radius: 8px;
+            position: relative; padding-bottom: 56.25%; margin-bottom: 15px;
+            border: 2px dashed var(--azul-mar); display: flex; justify-content: center; align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            text-align: center; color: var(--azul-mar); width: 100%;
+        }
+
+        .lista-tareas { list-style: none; padding: 0; margin: 0; flex-grow: 1; }
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo); margin-bottom: 10px; padding: 12px 15px;
+            border-radius: 6px; font-size: 0.95rem; border-left: 3px solid var(--gris-pizarra);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco); border-radius: 12px; padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06); display: flex; flex-direction: column;
+        }
+
+        .caja-evidencia { border-top: 5px solid var(--azul-mar); background-color: var(--azul-claro); }
+        .caja-error { border-top: 5px solid var(--terracota); background-color: var(--terracota-claro); }
+
+        .caja-destacada h3 { margin-top: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .caja-evidencia h3 { color: var(--azul-mar); }
+        .caja-error h3 { color: var(--terracota); }
+        .caja-destacada p { font-size: 1.05rem; margin-bottom: 15px; }
+
+        .ejemplo-paradoja {
+            background-color: var(--blanco); padding: 15px; border-radius: 8px;
+            border: 2px dashed var(--terracota); text-align: center; margin-top: auto;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) { .seccion-doble { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_8}}" class="btn-texto">⬅️ Sesión 8</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_10}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 9 de 20</span>
+            <h1>Perímetro y área: no son lo mismo</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Comparar el perímetro y el área, analizando casos reales para no confundir ambas medidas y tomar decisiones turísticas basadas en datos matemáticos.</span>
+            </div>
+        </header>
+
+        <section class="seccion-comparativa">
+            <div class="bloque-concepto bloque-perimetro">
+                <div class="icono-fondo">📏</div>
+                <h2>Perímetro</h2>
+                <table class="tabla-visual">
+                    <tr><td><strong>¿Qué es?</strong></td><td>El contorno o borde.</td></tr>
+                    <tr><td><strong>Unidades</strong></td><td>Metros ($m$), Kilómetros ($km$)</td></tr>
+                    <tr><td><strong>Metáfora</strong></td><td>La valla del parque.</td></tr>
+                    <tr><td><strong>Ejemplo urbano</strong></td><td>Organizar una carrera o maratón.</td></tr>
+                </table>
+            </div>
+
+            <div class="bloque-concepto bloque-area">
+                <div class="icono-fondo">🟩</div>
+                <h2>Área</h2>
+                <table class="tabla-visual">
+                    <tr><td><strong>¿Qué es?</strong></td><td>La superficie interior.</td></tr>
+                    <tr><td><strong>Unidades</strong></td><td>Metros cuadrados ($m^2$).</td></tr>
+                    <tr><td><strong>Metáfora</strong></td><td>El césped del parque.</td></tr>
+                    <tr><td><strong>Ejemplo urbano</strong></td><td>Aforo para un concierto.</td></tr>
+                </table>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Observa este breve vídeo donde se compara una zona larga y estrecha con otra cuadrada.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Paradojas del Perímetro</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Piensa y anota: ¿Puede haber una figura muy, muy larga con poco espacio dentro?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>Analizaremos dos zonas para organizar eventos en nuestra Guía Turística.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. El problema:</strong> El ayuntamiento quiere hacer una carrera de relevos y un concierto al aire libre. Nos da a elegir entre la <em>Zona A</em> (rectángulo largo y estrecho) y la <em>Zona B</em> (cuadrada).</li>
+                    <li><strong>2. Cálculos:</strong> Calcula el perímetro y el área de ambas zonas en tu ficha.</li>
+                    <li><strong>3. Decisión:</strong> ¿Qué zona es mejor para la carrera? ¿Cuál para el concierto? Justifica usando las matemáticas.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Acepta el reto del contraejemplo matemático.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>El Reto:</strong> Dibuja en papel cuadriculado un rectángulo que tenga un Perímetro de 20 unidades, pero que su Área sea más pequeña que la de un cuadrado de Perímetro 16.</li>
+                    <li><em>Pista: Juega con rectángulos muy estirados (ej. base 9 y altura 1).</em></li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📝 Tu evidencia del día</h3>
+                <p>Entrega la <strong>Justificación Escrita</strong> de tu decisión urbana.</p>
+                <p>No basta con decir "Elegimos la Zona A". Debes escribir una frase como: <em>"Elegimos la Zona A para la carrera porque tiene un perímetro de X metros, lo cual permite un recorrido más largo, aunque su área sea menor."</em></p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Creer que si el perímetro aumenta, el área también tiene que aumentar obligatoriamente.</strong></p>
+                <p>¡Esto es un mito matemático! Mira este ejemplo:</p>
+                
+                <div class="ejemplo-paradoja">
+                    <p style="margin:0 0 10px 0; text-align: left;"><strong>Rectángulo estrecho ($10 \times 1$):</strong><br>
+                    Perímetro = $22 \text{ m}$ | Área = $10 \text{ m}^2$</p>
+                    <hr style="border: 0; border-top: 1px solid #ccc; margin: 10px 0;">
+                    <p style="margin:0; text-align: left; color: var(--terracota); font-weight: bold;"><strong>Cuadrado ($4 \times 4$):</strong><br>
+                    Perímetro = $16 \text{ m}$ (¡Es menor!) | Área = $16 \text{ m}^2$ (¡Pero tiene más espacio!)</p>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

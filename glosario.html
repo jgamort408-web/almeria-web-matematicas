@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glosario y Herramientas - Almería en Cifras y Formas</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta inspirada en Almería */
+        :root {
+            --azul-mar: #005A8C;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --verde-med: #4A7C59;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--arena-clara);
+            margin: 0;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--arena-clara);
+            color: var(--texto-principal);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #e5d8b5;
+        }
+
+        .btn-primario {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: #00456c;
+            color: var(--blanco);
+        }
+
+        /* ================= BUSCADOR ================= */
+        .seccion-buscador {
+            background-color: var(--blanco);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            border-top: 4px solid var(--terracota);
+        }
+
+        .seccion-buscador label {
+            display: block;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--terracota);
+            margin-bottom: 15px;
+        }
+
+        #buscador {
+            width: 100%;
+            max-width: 600px;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid #ccc;
+            border-radius: 30px;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        #buscador:focus {
+            border-color: var(--terracota);
+            box-shadow: 0 0 8px rgba(211, 110, 90, 0.3);
+        }
+
+        /* ================= GLOSARIO (TARJETAS) ================= */
+        .grid-glosario {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-palabra {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--azul-mar);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.2s;
+        }
+
+        .tarjeta-palabra:hover {
+            transform: translateY(-3px);
+        }
+
+        .palabra-titulo {
+            font-size: 1.3rem;
+            color: var(--azul-mar);
+            margin: 0;
+            font-weight: bold;
+        }
+
+        .palabra-def {
+            margin: 0;
+            font-size: 1rem;
+            color: #555;
+        }
+
+        .mensaje-vacio {
+            display: none;
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 30px;
+            background-color: #fcece9;
+            color: var(--terracota);
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* ================= HERRAMIENTAS Y FRASES ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .caja-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .caja-herramientas {
+            border-top: 4px solid var(--verde-med);
+        }
+
+        .caja-frases {
+            border-top: 4px solid var(--gris-pizarra);
+            background-color: var(--arena-clara);
+        }
+
+        .caja-info h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-herramientas h2 { color: var(--verde-med); }
+        .caja-frases h2 { color: var(--gris-pizarra); }
+
+        .lista-visual {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+
+        .lista-visual li {
+            background-color: var(--fondo-cuerpo);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--texto-principal);
+            border: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .lista-visual li span {
+            font-size: 1.8rem;
+        }
+
+        .lista-frases {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-frases li {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            color: var(--texto-principal);
+            border-left: 3px solid var(--gris-pizarra);
+        }
+
+        .lista-frases li strong {
+            font-style: normal;
+            color: var(--azul-mar);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación del glosario">
+            <a href="{{URL_INICIO}}" class="btn-texto">🏠 Inicio</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_EVALUACION}}" class="btn-texto btn-primario">Evaluación ➡️</a>
+        </nav>
+
+        <header>
+            <h1>Glosario y Herramientas</h1>
+            <p>Tu diccionario matemático y kit de supervivencia para el proyecto</p>
+        </header>
+
+        <section class="seccion-buscador">
+            <label for="buscador">🔍 Encuentra rápidamente cualquier palabra:</label>
+            <input type="text" id="buscador" placeholder="Escribe aquí (ej. perímetro, eje, gráfica...)" aria-label="Buscar palabra">
+        </section>
+
+        <section class="grid-glosario" id="contenedor-glosario">
+            <div class="mensaje-vacio" id="mensaje-vacio">No se han encontrado palabras que coincidan con tu búsqueda.</div>
+            
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Ángulo</h3>
+                <p class="palabra-def">Abertura entre dos líneas rectas que se cruzan o se unen en un punto llamado vértice.</p>
+            </article>
+            
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Área</h3>
+                <p class="palabra-def">La cantidad de espacio interior o superficie que ocupa una figura plana. Se mide en cuadrados (ej. $m^2$).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Coordenada</h3>
+                <p class="palabra-def">Par de números $(x, y)$ que sirven para localizar un punto exacto en un plano cuadriculado.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Crecimiento</h3>
+                <p class="palabra-def">En una gráfica, ocurre cuando al avanzar hacia la derecha, la línea sube (los valores aumentan).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Cuadrante</h3>
+                <p class="palabra-def">Cada una de las cuatro partes en las que los dos ejes principales dividen un plano.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Decrecimiento</h3>
+                <p class="palabra-def">En una gráfica, ocurre cuando al avanzar hacia la derecha, la línea baja (los valores disminuyen).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Eje</h3>
+                <p class="palabra-def">Línea recta de referencia. En un plano usamos el eje horizontal ($X$) y el vertical ($Y$).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Escala</h3>
+                <p class="palabra-def">Relación matemática entre la medida de un objeto en un dibujo o mapa y su medida real en la vida.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Función</h3>
+                <p class="palabra-def">Relación entre dos variables donde a cada valor de la primera le corresponde un único valor de la segunda.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Gráfica</h3>
+                <p class="palabra-def">Dibujo que representa los números de una tabla de datos para poder verlos y entenderlos de forma visual.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Máximo</h3>
+                <p class="palabra-def">El valor más alto, o el punto que está más elevado en el dibujo de una gráfica.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Mínimo</h3>
+                <p class="palabra-def">El valor más bajo, o el punto que está menos elevado en el dibujo de una gráfica.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Paralela</h3>
+                <p class="palabra-def">Líneas rectas que mantienen siempre la misma distancia entre ellas y nunca llegan a cruzarse.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Perpendicular</h3>
+                <p class="palabra-def">Líneas rectas que se cruzan formando un ángulo recto exacto (90 grados, como la esquina de un folio).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Perímetro</h3>
+                <p class="palabra-def">La longitud total del borde de una figura. Se calcula sumando lo que miden todos sus lados exteriores.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Polígono</h3>
+                <p class="palabra-def">Figura plana cerrada formada completamente por segmentos rectos (por ejemplo: triángulos, cuadrados).</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Proporcionalidad</h3>
+                <p class="palabra-def">Relación constante. Si es directa, significa que si una cantidad aumenta el doble, la otra también.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Punto</h3>
+                <p class="palabra-def">Posición exacta en el espacio. No tiene tamaño ni forma, solo indica un lugar con coordenadas.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Segmento</h3>
+                <p class="palabra-def">Trozo de una línea recta que tiene un principio y un final marcados.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Tabla</h3>
+                <p class="palabra-def">Forma estructurada de organizar y presentar números y datos utilizando filas y columnas.</p>
+            </article>
+
+            <article class="tarjeta-palabra">
+                <h3 class="palabra-titulo">Variable</h3>
+                <p class="palabra-def">Característica o dato que puede cambiar o tomar distintos valores, como la temperatura o la población.</p>
+            </article>
+        </section>
+
+        <section class="seccion-doble">
+            <div class="caja-info caja-herramientas">
+                <h2>🎒 Herramientas que usaremos</h2>
+                <p>Tu kit básico de trabajo diario:</p>
+                <ul class="lista-visual">
+                    <li><span>📏</span> Regla transparente</li>
+                    <li><span>✏️</span> Lápiz y goma</li>
+                    <li><span>📝</span> Papel cuadriculado</li>
+                    <li><span>🔢</span> Calculadora sencilla</li>
+                    <li><span>📂</span> Plantillas de trabajo</li>
+                </ul>
+            </div>
+
+            <div class="caja-info caja-frases">
+                <h2>🗣️ Frases útiles para explicar matemáticas</h2>
+                <p>Úsalas cuando tengas que presentar o escribir en tus fichas:</p>
+                <ul class="lista-frases">
+                    <li>"Para resolver este problema, <strong>primero he calculado...</strong>"</li>
+                    <li>"He hallado el perímetro <strong>sumando la longitud de...</strong>"</li>
+                    <li>"En el eje horizontal he colocado <strong>la variable independiente...</strong>"</li>
+                    <li>"La gráfica nos muestra que el <strong>valor máximo se alcanza en...</strong>"</li>
+                    <li>"Hemos aproximado la forma de este barrio <strong>usando un polígono...</strong>"</li>
+                    <li>"La distancia entre estos dos puntos es de <strong>tantas unidades porque...</strong>"</li>
+                </ul>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const buscador = document.getElementById('buscador');
+            const tarjetas = document.querySelectorAll('.tarjeta-palabra');
+            const mensajeVacio = document.getElementById('mensaje-vacio');
+
+            buscador.addEventListener('keyup', function(e) {
+                const termino = e.target.value.toLowerCase().trim();
+                let hayResultados = false;
+
+                // Si está vacío, quita todos los acentos y convierte a minúsculas
+                const quitarAcentos = (str) => {
+                    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+                };
+                
+                const terminoNormalizado = quitarAcentos(termino);
+
+                tarjetas.forEach(function(tarjeta) {
+                    const titulo = quitarAcentos(tarjeta.querySelector('.palabra-titulo').textContent.toLowerCase());
+                    const definicion = quitarAcentos(tarjeta.querySelector('.palabra-def').textContent.toLowerCase());
+
+                    if (titulo.includes(terminoNormalizado) || definicion.includes(terminoNormalizado)) {
+                        tarjeta.style.display = 'flex';
+                        hayResultados = true;
+                    } else {
+                        tarjeta.style.display = 'none';
+                    }
+                });
+
+                if (hayResultados) {
+                    mensajeVacio.style.display = 'none';
+                } else {
+                    mensajeVacio.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

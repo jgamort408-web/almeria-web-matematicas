@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloque 1 · Mapa y coordenadas</title>
+    <style>
+        /* Paleta y variables base */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --azul-medio: #337AAB;
+            --azul-oscuro: #003F63;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --terracota: #D36E5A;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 90, 140, 0.2);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--azul-claro);
+            margin: 0;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-medio);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #d1e3ec;
+        }
+
+        .btn-primario {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= INTRODUCCIÓN Y OBJETIVOS ================= */
+        .seccion-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 5px solid var(--azul-mar);
+        }
+
+        .info-bloque h2 {
+            color: var(--azul-mar);
+            font-size: 1.6rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .lista-objetivos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-objetivos li {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-left: 3px solid var(--azul-medio);
+        }
+
+        /* ================= TARJETAS DE SESIÓN ================= */
+        .titulo-seccion {
+            color: var(--azul-oscuro);
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .grid-sesiones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-sesion {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--azul-claro);
+            transition: transform 0.2s ease;
+        }
+
+        .tarjeta-sesion:hover {
+            transform: translateY(-4px);
+            border-color: var(--azul-medio);
+        }
+
+        .sesion-cabecera {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+
+        .sesion-num {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tarjeta-sesion h3 {
+            margin: 0;
+            color: var(--azul-oscuro);
+            font-size: 1.2rem;
+        }
+
+        .sesion-contenido {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sesion-bloque {
+            background-color: var(--fondo-cuerpo);
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .sesion-bloque strong {
+            display: block;
+            color: var(--azul-medio);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .btn-acceder {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+            background-color: var(--blanco);
+            color: var(--azul-mar);
+            border: 2px solid var(--azul-mar);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-acceder:hover {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        /* ================= AVISOS Y MATERIALES ================= */
+        .seccion-inferior {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-info {
+            background-color: var(--blanco);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .caja-materiales {
+            border-top: 4px solid var(--gris-pizarra);
+        }
+
+        .caja-errores {
+            border-top: 4px solid var(--terracota);
+            background-color: #FEF8F7;
+        }
+
+        .caja-info h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .caja-materiales h3 { color: var(--gris-pizarra); }
+        .caja-errores h3 { color: var(--terracota); }
+
+        .lista-sencilla {
+            padding-left: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .lista-sencilla li::marker {
+            color: var(--azul-mar);
+        }
+
+        .caja-errores .lista-sencilla li::marker {
+            color: var(--terracota);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-info { grid-template-columns: 1fr; }
+            .seccion-inferior { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación del bloque">
+            <a href="{{URL_INICIO}}" class="btn-texto">🏠 Inicio</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ver Ruta Completa</a>
+            <a href="{{URL_BLOQUE2}}" class="btn-texto btn-primario">Siguiente: Bloque 2 ➡️</a>
+        </nav>
+
+        <header>
+            <h1>Bloque 1 · Mapa y coordenadas</h1>
+            <p>Conociendo la ciudad y dibujando nuestro tablero de juego</p>
+        </header>
+
+        <section class="seccion-info">
+            <div class="info-bloque">
+                <h2>📍 ¿De qué trata este bloque?</h2>
+                <p>¡Bienvenidos al primer paso del proyecto! Antes de analizar formas o calcular rutas, necesitamos construir nuestra herramienta base: el mapa.</p>
+                <p>En estas cuatro primeras sesiones entenderemos el reto final, pensaremos qué cosas se pueden medir en una ciudad y transformaremos un plano de Almería en un sistema de coordenadas matemáticas que nos permitirá localizar cualquier punto con precisión.</p>
+            </div>
+            <div class="info-bloque">
+                <h2>🎯 Objetivos del bloque</h2>
+                <ul class="lista-objetivos">
+                    <li><span>1️⃣</span> Entender el reto final de la guía turística matemática.</li>
+                    <li><span>2️⃣</span> Reconocer qué elementos de una ciudad son datos medibles.</li>
+                    <li><span>3️⃣</span> Comprender y construir un plano dividido por cuadrantes.</li>
+                    <li><span>4️⃣</span> Localizar y escribir puntos de interés usando coordenadas (x,y).</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="titulo-seccion">Sesiones de Trabajo</h2>
+
+        <div class="grid-sesiones">
+            
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">S1</span>
+                    <h3>Presentación del reto</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Analizar una guía turística real para descubrir qué tipo de información le falta desde un punto de vista matemático.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Lista de ideas iniciales con tu equipo.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_1}}" class="btn-acceder">Abrir Sesión 1</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">S2</span>
+                    <h3>Magnitudes urbanas</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Detectar qué elementos se pueden medir (distancia, áreas, población, temperaturas) en un entorno urbano.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Tabla de elementos clasificados.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_2}}" class="btn-acceder">Abrir Sesión 2</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">S3</span>
+                    <h3>Plano por cuadrantes</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Preparar el mapa base de Almería, trazar los ejes cartesianos (X e Y) y nombrar los sectores o cuadrantes.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Primer croquis coordenado.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_3}}" class="btn-acceder">Abrir Sesión 3</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">S4</span>
+                    <h3>Coordenadas</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Leer y ubicar lugares importantes de Almería en tu mapa utilizando pares de coordenadas (x,y).
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia rápida:</strong>
+                        Mapa base completado con puntos de interés.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_4}}" class="btn-acceder">Abrir Sesión 4</a>
+            </article>
+
+        </div>
+
+        <div class="seccion-inferior">
+            <section class="caja-info caja-materiales">
+                <h3>🎒 Necesitarás</h3>
+                <p>Para este bloque, asegúrate de tener a mano:</p>
+                <ul class="lista-sencilla">
+                    <li>El mapa base mudo de Almería proporcionado en clase.</li>
+                    <li>Lápiz, goma de borrar y una regla transparente.</li>
+                    <li>Colores (rojo y azul) para destacar los ejes cartesianos.</li>
+                    <li>Ficha de trabajo del equipo.</li>
+                </ul>
+            </section>
+
+            <section class="caja-info caja-errores">
+                <h3>⚠️ Errores frecuentes</h3>
+                <p>¡Cuidado con estos despistes clásicos!</p>
+                <ul class="lista-sencilla">
+                    <li><strong>Confundir el orden:</strong> Recuerda que una coordenada es (X, Y). Primero caminamos en horizontal y luego subimos o bajamos en vertical.</li>
+                    <li><strong>Olvidar los negativos:</strong> Revisa siempre en qué cuadrante estás para saber si la X o la Y llevan signo menos.</li>
+                    <li><strong>Ejes intercambiados:</strong> El eje horizontal es la X (abscisas) y el vertical es la Y (ordenadas).</li>
+                </ul>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

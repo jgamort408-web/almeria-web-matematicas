@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 20 - Exposición y cierre</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta de Logro y Celebración */
+        :root {
+            --azul-noche: #002D4A;
+            --dorado: #D4AF37;
+            --dorado-suave: #F9F1D7;
+            --verde-exito: #2D6A4F;
+            --verde-claro: #D8F3DC;
+            --arena: #F4EBD0;
+            --blanco: #FFFFFF;
+            --texto: #333333;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #F0F4F8;
+            color: var(--texto);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Navegación Final */
+        .nav-final {
+            display: flex;
+            justify-content: space-between;
+            background: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-nav {
+            text-decoration: none;
+            color: var(--azul-noche);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Cabecera de Celebración */
+        header {
+            background: linear-gradient(135deg, var(--azul-noche) 0%, #005A8C 100%);
+            color: var(--blanco);
+            padding: 50px 30px;
+            border-radius: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        header::before {
+            content: '✨';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 2rem;
+            opacity: 0.5;
+        }
+
+        header h1 { font-size: 2.8rem; margin: 0; letter-spacing: 1px; }
+        header p { font-size: 1.3rem; color: var(--arena); margin-top: 10px; }
+
+        .objetivo-caja {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 25px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Tarjeta de Repaso */
+        .tarjeta-repaso {
+            background-color: var(--dorado-suave);
+            border: 2px solid var(--dorado);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .tarjeta-repaso h2 { color: var(--azul-noche); margin-top: 0; }
+
+        .grid-repaso {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .item-repaso {
+            background: var(--blanco);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* Sección Clase */
+        .seccion-clase {
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-left: 10px solid var(--verde-exito);
+        }
+
+        .seccion-clase h2 { color: var(--verde-exito); font-size: 2rem; margin-top: 0; }
+
+        .timeline-cierre {
+            list-style: none;
+            padding: 0;
+            margin-top: 25px;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            border-left: 3px solid var(--verde-claro);
+            position: relative;
+            margin-left: 20px;
+        }
+
+        .timeline-item::before {
+            content: '🏆';
+            position: absolute;
+            left: -18px;
+            top: 22px;
+            background: var(--blanco);
+            padding: 5px;
+        }
+
+        /* Autoevaluación */
+        .seccion-auto {
+            background: var(--azul-noche);
+            color: var(--blanco);
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .lista-auto {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .lista-auto li {
+            background: rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid var(--dorado);
+        }
+
+        /* Footer Grid */
+        .grid-final {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .caja-footer {
+            padding: 30px;
+            border-radius: 15px;
+            background: var(--blanco);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .evidencia-titulo { color: var(--azul-noche); border-bottom: 2px solid var(--arena); padding-bottom: 10px; }
+        .error-titulo { color: #C53030; border-bottom: 2px solid #FED7D7; padding-bottom: 10px; }
+
+        @media (max-width: 768px) {
+            .grid-final { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="nav-final">
+            <a href="{{URL_SESION_19}}" class="btn-nav">⬅️ Volver al Ensayo</a>
+            <a href="{{URL_INICIO}}" class="btn-nav">🏠 Ir al Inicio</a>
+        </nav>
+
+        <header>
+            <h1>Sesión 20: Exposición y cierre</h1>
+            <p>¡Misión cumplida! Almería explicada a través de las matemáticas.</p>
+            <div class="objetivo-caja">
+                🎯 <strong>Objetivo:</strong> Presentar el producto final a la comunidad educativa y realizar una reflexión crítica sobre los logros alcanzados durante todo el proyecto.
+            </div>
+        </header>
+
+        <section class="tarjeta-repaso">
+            <h2>📦 ¿Qué llevamos en nuestra mochila?</h2>
+            <p>Antes de salir al escenario, recordad todo lo que habéis dominado:</p>
+            <div class="grid-repaso">
+                <div class="item-repaso"><strong>📍 Localización</strong><br>Ejes, cuadrantes y coordenadas exactas.</div>
+                <div class="item-repaso"><strong>📐 Geometría</strong><br>Perímetros, áreas y formas urbanas.</div>
+                <div class="item-repaso"><strong>📊 Estadística</strong><br>Variables, tablas y gráficas de datos.</div>
+                <div class="item-repaso"><strong>🚶 Rutas</strong><br>Escalas y trayectos eficientes.</div>
+            </div>
+        </section>
+
+        <main class="seccion-clase">
+            <h2>📢 El Gran Día: La Exposición</h2>
+            <div class="timeline-cierre">
+                <div class="timeline-item">
+                    <strong>La Presentación (2 min):</strong> Cada equipo defiende su Guía Turística. Explicad vuestras decisiones matemáticas con orgullo.
+                </div>
+                <div class="timeline-item">
+                    <strong>Galería de Guías:</strong> Paseo por la clase para ver los trabajos de otros equipos y dejar comentarios positivos.
+                </div>
+                <div class="timeline-item">
+                    <strong>Cierre del Proyecto:</strong> Reflexión final en gran grupo sobre los obstáculos superados y lo que más os ha sorprendido de Almería.
+                </div>
+            </div>
+        </main>
+
+        <section class="seccion-auto">
+            <h2>🧠 Autoevaluación Final</h2>
+            <p>Tómate un momento para pensar en tu camino personal en este proyecto:</p>
+            <ul class="lista-auto">
+                <li>1. ¿Cuál ha sido el concepto matemático que más me ha costado entender y cómo lo logré?</li>
+                <li>2. ¿Qué parte de nuestra Guía Turística creo que es la más profesional?</li>
+                <li>3. ¿Cómo ha ayudado mi trabajo individual a que el equipo tuviera éxito?</li>
+                <li>4. ¿He descubierto algo de mi ciudad que no sabía gracias a los datos?</li>
+                <li>5. Si tuviera que empezar de nuevo, ¿qué cambiaría en nuestra forma de trabajar?</li>
+            </ul>
+        </section>
+
+        <div class="grid-final">
+            <article class="caja-footer">
+                <h3 class="evidencia-titulo">📄 Evidencia Final</h3>
+                <p>Para cerrar vuestro expediente del proyecto, debéis subir:</p>
+                <ul>
+                    <li><strong>Guía Turística Final:</strong> El documento maquetado y corregido (PDF o físico).</li>
+                    <li><strong>Reflexión Individual:</strong> Un breve texto respondiendo a las preguntas de autoevaluación.</li>
+                </ul>
+            </article>
+
+            <article class="caja-footer" style="background-color: #FFF5F5;">
+                <h3 class="error-titulo">⚠️ Último Error a evitar</h3>
+                <p><strong>"El discurso vacío de matemáticas".</strong></p>
+                <p>No os limitéis a decir que la Alcazaba es "muy grande". Recordad que sois expertos matemáticos: mencionad su <strong>perímetro</strong>, su <strong>posición</strong> en el mapa o los <strong>datos de visitas</strong> que habéis analizado.</p>
+                <p><em>¡Vuestro valor añadido son los números y las formas!</em></p>
+            </article>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px;">
+             <span style="font-size: 3rem;">🎓🎉🌟</span>
+             <p><strong>¡Felicidades a todos los cartógrafos y matemáticos de 1º de ESO!</strong></p>
+        </div>
+
+    </div>
+
+</body>
+</html>

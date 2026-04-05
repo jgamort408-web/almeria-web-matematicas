@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 19 - Ensayo y mejora</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'es', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <style>
+        /* Paleta inspirada en Almería */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --verde-med: #4A7C59;
+            --verde-claro: #EAF2EC;
+            --gris-pizarra: #5A6B7C;
+            --fondo-sereno: #F8F9FA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Estilos Base */
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-sereno);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* Controles Superiores */
+        .controles-superiores {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 12px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .breadcrumb { font-size: 0.9rem; color: var(--gris-pizarra); }
+        .breadcrumb span { color: var(--azul-mar); font-weight: bold; }
+
+        /* Cabecera */
+        header {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            padding: 35px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0 0 10px 0; font-size: 2.2rem; }
+        header p { margin: 0; font-size: 1.1rem; color: var(--arena-clara); }
+
+        /* Navegación */
+        .botones-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: var(--verde-med);
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover { background-color: #3d664a; transform: translateY(-2px); }
+        .btn-secundario { background-color: var(--azul-mar); }
+
+        /* Sección Objetivo */
+        .objetivo-box {
+            background-color: var(--blanco);
+            border-left: 6px solid var(--azul-mar);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 1.1rem;
+        }
+
+        /* Fases */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-fase {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--gris-pizarra);
+        }
+
+        .tarjeta-fase h2 { color: var(--azul-mar); margin-top: 0; font-size: 1.4rem; }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background-color: #eee;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 15px 0;
+            border: 2px dashed #ccc;
+        }
+
+        /* Lista de cotejo */
+        .cotejo-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .cotejo-list li {
+            background-color: var(--verde-claro);
+            margin-bottom: 10px;
+            padding: 12px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .check-box {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--verde-med);
+            border-radius: 4px;
+            background: white;
+            flex-shrink: 0;
+        }
+
+        /* Evidencia y Error */
+        .info-final {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-evidencia {
+            background-color: var(--azul-claro);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--azul-mar);
+        }
+
+        .caja-error {
+            background-color: #FFF4F2;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--terracota);
+        }
+
+        .caja-error h3 { color: var(--terracota); margin-top: 0; }
+        .caja-evidencia h3 { color: var(--azul-mar); margin-top: 0; }
+
+        footer {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            text-align: center;
+            padding: 20px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .info-final { grid-template-columns: 1fr; }
+            header h1 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <div class="controles-superiores">
+            <div class="breadcrumb">Estás en: Bloque 4 > <span>Sesión 19 · Ensayo y mejora</span></div>
+            <div id="google_translate_element"></div>
+        </div>
+
+        <header>
+            <h1>Ensayo y mejora</h1>
+            <p>Pulir la guía y practicar la voz del equipo</p>
+        </header>
+
+        <nav class="botones-nav">
+            <a href="{{URL_SESION_18}}" class="btn btn-secundario">⬅️ Construcción</a>
+            <a href="{{URL_RUTA}}" class="btn">🗺️ Ver Ruta</a>
+            <a href="{{URL_SESION_20}}" class="btn">Siguiente: Exposición ➡️</a>
+        </nav>
+
+        <div class="objetivo-box">
+            <strong>🎯 Objetivo de la sesión:</strong> Ensayar la exposición oral para ajustarla al tiempo permitido y aplicar mejoras finales a la guía turística tras recibir el feedback de otros compañeros.
+        </div>
+
+        <main class="fases-grid">
+            <section class="tarjeta-fase">
+                <h2>🏠 Antes de clase</h2>
+                <p>¿Cómo contar 20 sesiones de trabajo en solo 2 minutos? El secreto es la síntesis.</p>
+                <div class="video-placeholder">
+                    <span>Espacio para vídeo: <b>Cómo explicar en 2 min</b></span>
+                </div>
+                <p><small>Mira el vídeo y anota las 3 ideas clave que no pueden faltar en vuestra charla.</small></p>
+            </section>
+
+            <section class="tarjeta-fase" style="border-top-color: var(--terracota);">
+                <h2>🏫 Durante la clase</h2>
+                <p>Hoy haremos un <b>ensayo cruzado</b>. El Equipo A expone ante el Equipo B y viceversa.</p>
+                <ul class="cotejo-list">
+                    <li><span class="check-box"></span> ¿Se ajustan al tiempo (máx. 2 min)?</li>
+                    <li><span class="check-box"></span> ¿Mencionan coordenadas y áreas?</li>
+                    <li><span class="check-box"></span> ¿Se reparten el habla entre todos?</li>
+                    <li><span class="check-box"></span> ¿La guía se lee bien a distancia?</li>
+                </ul>
+                <p><b>Feedback:</b> Anotad un consejo de mejora para vuestros compañeros.</p>
+            </section>
+
+            <section class="tarjeta-fase" style="border-top-color: var(--verde-med);">
+                <h2>🧠 Después de clase</h2>
+                <p>Es el momento de los <b>últimos retoques</b>. Con los consejos recibidos, ajustad vuestro producto final.</p>
+                <p>Revisad si algún número no se entiende o si falta alguna unidad ($m$, $km$, $m^2$) antes de la entrega definitiva de mañana.</p>
+            </section>
+        </main>
+
+        <div class="info-final">
+            <section class="caja-evidencia">
+                <h3>📄 Evidencia del día</h3>
+                <p>Para considerar superada esta sesión, debéis tener:</p>
+                <ul style="padding-left: 20px;">
+                    <li>La <b>lista de cotejo</b> rellena tras evaluar a otro equipo.</li>
+                    <li>Al menos <b>una mejora aplicada</b> en vuestra guía (borrón corregido, título más grande, dato aclarado, etc.).</li>
+                </ul>
+            </section>
+
+            <section class="caja-error">
+                <h3>⚠️ Errores a evitar</h3>
+                <p><b>1. Leer el papel:</b> No leáis vuestra guía como si fuera un libro. ¡Mirad a vuestros compañeros y explicad!</p>
+                <p><b>2. Olvidar la matemática:</b> No digáis solo "Almería es bonita". Decid "Almería tiene esta forma, estas coordenadas y esta evolución de datos".</p>
+            </section>
+        </div>
+
+        <footer>
+            <strong>Almería en cifras y formas</strong> · Proyecto Educativo 1º ESO
+        </footer>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 10 - Rutas y distancias por Almería</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Estilo Mapa Turístico */
+        :root {
+            --verde-mapa: #689F38;
+            --verde-claro: #F1F8E9;
+            --azul-ruta: #1976D2;
+            --azul-claro: #E3F2FD;
+            --rojo-pin: #D32F2F;
+            --fondo-pergamino: #FDFBF7;
+            --gris-calle: #757575;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fondo-pergamino);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fondo sutil tipo cuadrícula de mapa antiguo */
+            background-image: 
+                linear-gradient(rgba(104, 159, 56, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(104, 159, 56, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            background-color: rgba(253, 251, 247, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-ruta);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--verde-claro);
+            color: var(--verde-mapa);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+
+        .btn-texto:hover {
+            background-color: var(--blanco);
+            border-color: var(--verde-mapa);
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--azul-ruta);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: #115293;
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA TIPO ITINERARIO ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px dashed var(--gris-calle);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        header::before {
+            content: '🧭';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 3rem;
+            opacity: 0.2;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--texto-principal);
+            margin: 15px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--rojo-pin);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            box-shadow: 0 2px 4px rgba(211, 47, 47, 0.3);
+        }
+
+        .objetivo-caja {
+            background-color: var(--azul-claro);
+            border-left: 5px solid var(--azul-ruta);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--verde-mapa);
+            position: relative;
+        }
+
+        /* Línea punteada decorativa de ruta */
+        .fase-tarjeta::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-top: 3px dashed var(--azul-ruta);
+            border-right: 3px dashed var(--azul-ruta);
+            border-radius: 0 20px 0 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--verde-mapa);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--verde-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--gris-calle);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--verde-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px solid var(--verde-mapa);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--verde-mapa);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-pergamino);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--azul-ruta);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .lista-tareas li::before {
+            content: "📍";
+            flex-shrink: 0;
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--azul-ruta);
+            background-image: radial-gradient(var(--azul-claro) 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--rojo-pin);
+            background-color: #FFEBEE;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--azul-ruta); background-color: rgba(255,255,255,0.8); display: inline-block; padding-right: 10px; }
+        .caja-error h3 { color: var(--rojo-pin); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+            background-color: rgba(255,255,255,0.8);
+            padding: 5px;
+            border-radius: 4px;
+        }
+
+        /* Gráfico visual del error */
+        .error-visual {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px dashed var(--rojo-pin);
+            margin-top: auto;
+        }
+
+        .dialogo-error {
+            font-style: italic;
+            color: var(--gris-calle);
+            margin-bottom: 10px;
+            border-left: 3px solid var(--rojo-pin);
+            padding-left: 10px;
+        }
+
+        .correccion-matematica {
+            font-weight: bold;
+            color: var(--verde-mapa);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_9}}" class="btn-texto">⬅️ Sesión 9</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_BLOQUE3}}" class="btn-texto btn-siguiente">Siguiente: Bloque 3 ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 10 de 20</span>
+            <h1>Rutas y distancias por Almería</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Medir distancias en el plano aplicando una escala matemática para comparar y elegir la ruta turística más eficiente.</span>
+            </div>
+        </header>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Descubre cómo transformar los centímetros del papel en kilómetros reales de la ciudad.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Distancia en plano y Escala</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Anota en tu cuaderno: Si la escala es <strong>1:10.000</strong>, ¿cuántos metros reales es 1 cm en el mapa?</li>
+                    <li><em>Pista: Recuerda dividir entre 100 para pasar de cm a metros.</em></li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>¡Hora de trazar itinerarios! Diseñaremos el recorrido oficial de nuestra guía.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Marcar puntos:</strong> Localiza en tu mapa base los 4 puntos de interés turístico que acordamos visitar.</li>
+                    <li><strong>2. Diseñar rutas:</strong> Dibuja la <em>Ruta A</em> (color azul) y la <em>Ruta B</em> (color verde) pasando por esos 4 puntos en distinto orden.</li>
+                    <li><strong>3. Medir en papel:</strong> Mide con la regla los centímetros de cada tramo y súmalos.</li>
+                    <li><strong>4. Escala:</strong> Multiplica por la escala para obtener la distancia real en metros. ¿Cuál es más corta?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">⏳</span>
+                <h2>Después de clase</h2>
+                <p>Demuestra que tu ruta no solo es corta, sino que entra en los planes del turista.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Reto opcional:</strong> Imagina que un turista camina a una velocidad media de <strong>5 km/h</strong>.</li>
+                    <li>Sabiendo la distancia real de tu ruta ganadora, calcula cuánto tiempo tardará en hacer el recorrido sin pararse.</li>
+                    <li>¿Le da tiempo a hacerla antes de que anochezca?</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📝 Tu evidencia del día</h3>
+                <p>Al final de esta sesión debéis guardar en vuestro dossier el <strong>Croquis de la ruta</strong> (el mapa pintado) y la <strong>Justificación matemática</strong>.</p>
+                <p>Debéis escribir un párrafo explicando por qué habéis elegido ese camino. <em>Ejemplo: "Elegimos la Ruta B porque, tras aplicar la escala, comprobamos que mide 250m menos que la Ruta A, ahorrando tiempo al turista."</em></p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Elegir una ruta sin usar ningún criterio matemático.</strong></p>
+                <p>En este proyecto somos matemáticos haciendo una guía, no solo turistas paseando.</p>
+                
+                <div class="error-visual">
+                    <div class="dialogo-error">
+                        ❌ "Elegimos esta ruta porque pasa por una calle muy bonita y me gusta más."
+                    </div>
+                    <div class="correccion-matematica">
+                        ✅ "Elegimos esta ruta porque, al medirla (12 cm en plano), la distancia real es de 1.200 m, siendo un 15% más corta que la otra opción."
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

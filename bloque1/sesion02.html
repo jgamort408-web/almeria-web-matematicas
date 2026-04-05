@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 2 - ¿Qué se puede medir y representar en una ciudad?</title>
+    <style>
+        /* Paleta y variables base - Enfoque Azul y Arena */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-oscuro: #003F63;
+            --azul-claro: #E6F0F5;
+            --arena-clara: #F4EBD0;
+            --arena-media: #E5D8B5;
+            --arena-oscura: #C2B280;
+            --terracota: #D36E5A;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-mar);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--arena-clara);
+            color: var(--texto-principal);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-texto:hover {
+            background-color: var(--arena-media);
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background: linear-gradient(135deg, var(--azul-mar) 0%, var(--azul-oscuro) 100%);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 90, 140, 0.2);
+        }
+
+        header h1 {
+            font-size: 2.3rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--arena-clara);
+            color: var(--azul-oscuro);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .objetivo-caja {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 750px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= TARJETAS COMPARATIVAS ================= */
+        .seccion-conceptos {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .seccion-conceptos h2 {
+            color: var(--azul-mar);
+            margin-top: 0;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .grid-comparativo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-concepto {
+            background-color: var(--arena-clara);
+            border-radius: 10px;
+            padding: 25px 20px;
+            border-top: 5px solid var(--azul-mar);
+            transition: transform 0.2s;
+        }
+
+        .tarjeta-concepto:hover {
+            transform: translateY(-5px);
+        }
+
+        .concepto-icono {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .tarjeta-concepto h3 {
+            margin: 0 0 10px 0;
+            color: var(--azul-oscuro);
+            font-size: 1.3rem;
+        }
+
+        .tarjeta-concepto p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
+            border: 1px solid var(--azul-claro);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .fase-icono {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: inline-block;
+            background-color: var(--arena-clara);
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 50%;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-oscuro);
+            font-size: 1.3rem;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Video Placeholder */
+        .video-container {
+            width: 100%;
+            background-color: var(--azul-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin-bottom: 15px;
+            border: 2px dashed var(--azul-mar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--azul-oscuro);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 8px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--arena-oscura);
+        }
+
+        .lista-tareas li strong {
+            color: var(--azul-mar);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--azul-mar);
+            background-color: var(--azul-claro);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--terracota);
+            background-color: #FEF8F7;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--azul-oscuro); }
+        .caja-error h3 { color: var(--terracota); }
+
+        .evidencia-tabla {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background-color: var(--blanco);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .evidencia-tabla th {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 10px;
+            text-align: left;
+        }
+
+        .evidencia-tabla td {
+            padding: 10px;
+            border-bottom: 1px solid var(--azul-claro);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_1}}" class="btn-texto">⬅️ Sesión 1</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_3}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 2 de 20</span>
+            <h1>¿Qué se puede medir y representar en una ciudad?</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Distinguir entre ubicación, medida y dato para organizar correctamente la información de Almería.</span>
+            </div>
+        </header>
+
+        <section class="seccion-conceptos">
+            <h2>Aprende a diferenciar la información</h2>
+            <div class="grid-comparativo">
+                <article class="tarjeta-concepto">
+                    <span class="concepto-icono">📍</span>
+                    <h3>Ubicación</h3>
+                    <p>Nos dice <strong>dónde</strong> está algo en el espacio. Usamos coordenadas o referencias espaciales.<br><em>Ej: La Alcazaba está en las coordenadas (x,y).</em></p>
+                </article>
+                <article class="tarjeta-concepto">
+                    <span class="concepto-icono">📏</span>
+                    <h3>Medida</h3>
+                    <p>Es una magnitud física del lugar que calculamos con geometría (distancia, área, perímetro).<br><em>Ej: El parque ocupa 25.000 metros cuadrados.</em></p>
+                </article>
+                <article class="tarjeta-concepto">
+                    <span class="concepto-icono">📊</span>
+                    <h3>Dato</h3>
+                    <p>Información numérica que cambia o recogemos estadísticamente (temperatura, población).<br><em>Ej: En agosto hubo 35ºC de media.</em></p>
+                </article>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <div>
+                    <span class="fase-icono">🏠</span>
+                    <h2>Antes de clase</h2>
+                </div>
+                <p>Ve este microvídeo sobre las magnitudes urbanas y resuelve la pequeña tarea de clasificación.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Vídeo: Magnitudes y mapas</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li><strong>Tarea:</strong> Clasifica en tu cuaderno estos 6 ejemplos como "Dato", "Medida" o "Ubicación".</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <div>
+                    <span class="fase-icono">🏫</span>
+                    <h2>Durante la clase</h2>
+                </div>
+                <p>Trabajaremos en parejas con tarjetas de información real sobre la ciudad.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Clasificación:</strong> Os daremos tarjetas con información sobre un barrio, la población, distancias, temperatura, turismo y lugares históricos de Almería.</li>
+                    <li><strong>2. Debate:</strong> Tendréis que poneros de acuerdo sobre si esa tarjeta representa un lugar, una medida o un dato variable.</li>
+                    <li><strong>3. Puesta en común:</strong> Resolveremos las dudas entre toda la clase.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <div>
+                    <span class="fase-icono">🧠</span>
+                    <h2>Después de clase</h2>
+                </div>
+                <p>Pequeña ampliación para consolidar lo que hemos trabajado hoy.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Busca ejemplos:</strong> Piensa en tu propio barrio o calle. Escribe en tu cuaderno 1 ejemplo de ubicación, 1 ejemplo de medida (algo que podrías medir con una cinta gigante) y 1 ejemplo de dato (algo que cambia, como el número de coches aparcados).</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>🏆 Tu evidencia del día</h3>
+                <p>Al terminar la clase, entregaréis la <strong>Tabla Clasificada</strong> correctamente organizada. Debe quedar estructurada así:</p>
+                <table class="evidencia-tabla">
+                    <thead>
+                        <tr>
+                            <th>Concepto</th>
+                            <th>Ejemplo de Almería</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Ubicación</strong></td>
+                            <td>Calle de tu instituto</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Medida</strong></td>
+                            <td>Distancia de la playa al centro</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dato</strong></td>
+                            <td>Visitantes en verano</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Confundir un DATO con una MEDIDA.</strong></p>
+                <p>Es muy común mezclarlos porque ambos usan números. Recuerda la regla de oro:</p>
+                <ul>
+                    <li>Si necesitas una regla, una cinta métrica o fórmulas de geometría para saberlo (como el tamaño de una plaza), es una <strong>Medida</strong>.</li>
+                    <li>Si necesitas contar personas, mirar el termómetro o consultar un registro del ayuntamiento (como los habitantes), es un <strong>Dato</strong>.</li>
+                </ul>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

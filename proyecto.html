@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El Proyecto - Almería en Cifras y Formas</title>
+    <style>
+        /* Paleta de colores inspirada en Almería */
+        :root {
+            --azul-mar: #005A8C;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --verde-med: #4A7C59;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Reset y ajustes básicos para Google Sites */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor principal fluido */
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--arena-clara);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* ================= SECCIONES COMUNES ================= */
+        section {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--azul-mar);
+        }
+
+        h2 {
+            color: var(--azul-mar);
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ================= RETO Y PREGUNTA GUÍA ================= */
+        .seccion-reto {
+            border-top-color: var(--terracota);
+        }
+
+        .pregunta-guia {
+            background-color: var(--arena-clara);
+            color: var(--azul-mar);
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--terracota);
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        /* ================= PRODUCTOS (TARJETAS) ================= */
+        .seccion-productos {
+            border-top-color: var(--verde-med);
+        }
+
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .tarjeta-producto {
+            background-color: var(--fondo-cuerpo);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-color: var(--verde-med);
+        }
+
+        .emoji-grande {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .tarjeta-producto h3 {
+            margin: 0 0 10px 0;
+            color: var(--gris-pizarra);
+            font-size: 1.1rem;
+        }
+
+        /* ================= MATERIAS CONECTADAS ================= */
+        .seccion-materias {
+            border-top-color: var(--gris-pizarra);
+        }
+
+        .materias-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .chip-materia {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* ================= QUÉ APRENDERÁS (LISTA) ================= */
+        .lista-objetivos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .lista-objetivos li {
+            background-color: var(--fondo-cuerpo);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05rem;
+        }
+
+        .lista-objetivos li::before {
+            content: "✅";
+            flex-shrink: 0;
+        }
+
+        /* ================= BLOQUE 20 SESIONES ================= */
+        .bloque-tiempo {
+            background: linear-gradient(135deg, var(--verde-med) 0%, #3a6347 100%);
+            color: var(--blanco);
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bloque-tiempo .numero-gigante {
+            font-size: 5rem;
+            font-weight: bold;
+            line-height: 1;
+            margin-bottom: 10px;
+            color: var(--arena-clara);
+        }
+
+        .bloque-tiempo p {
+            font-size: 1.3rem;
+            margin: 0;
+            max-width: 600px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .botones-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            display: inline-block;
+        }
+
+        .btn:hover, .btn:focus {
+            background-color: #ba5d4a;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            outline: 3px solid var(--azul-mar);
+            outline-offset: 2px;
+        }
+
+        .btn-secundario {
+            background-color: var(--azul-mar);
+        }
+
+        .btn-secundario:hover {
+            background-color: #00456c;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .btn { width: 100%; }
+            .pregunta-guia { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <header>
+            <h1>El Proyecto</h1>
+            <p>Conoce de qué trata la situación de aprendizaje "Almería en cifras y formas" y prepárate para el reto.</p>
+        </header>
+
+        <section class="seccion-reto">
+            <h2>🎯 El Reto</h2>
+            <p>Tu misión y la de tu equipo es crear una <strong>Guía turística matemática de Almería</strong>. Las guías habituales ofrecen mucha información histórica, pero nuestra ciudad también está llena de formas geométricas, distancias sorprendentes y datos que cambian con el tiempo.</p>
+            <p>Trabajaremos paso a paso para analizar nuestra ciudad con los "ojos" de las matemáticas.</p>
+            
+            <div class="pregunta-guia">
+                ¿Cómo podemos explicar la ciudad de Almería con ayuda de la geometría y las funciones?
+            </div>
+        </section>
+
+        <section class="seccion-productos">
+            <h2>📦 Qué productos vamos a crear</h2>
+            <p>Al final del proyecto, tu equipo entregará una guía completa compuesta por las siguientes piezas:</p>
+            <div class="grid-productos">
+                <div class="tarjeta-producto">
+                    <span class="emoji-grande">🗺️</span>
+                    <h3>Mapa por cuadrantes</h3>
+                    <p>La ciudad dividida en coordenadas.</p>
+                </div>
+                <div class="tarjeta-producto">
+                    <span class="emoji-grande">📐</span>
+                    <h3>Fichas geométricas</h3>
+                    <p>Estudio de perímetros y áreas de nuestros barrios.</p>
+                </div>
+                <div class="tarjeta-producto">
+                    <span class="emoji-grande">📊</span>
+                    <h3>Gráficas comentadas</h3>
+                    <p>Análisis visual de datos como población o turismo.</p>
+                </div>
+                <div class="tarjeta-producto">
+                    <span class="emoji-grande">🚶</span>
+                    <h3>Ruta turística</h3>
+                    <p>Un recorrido por la ciudad justificado matemáticamente.</p>
+                </div>
+                <div class="tarjeta-producto">
+                    <span class="emoji-grande">🎤</span>
+                    <h3>Presentación final</h3>
+                    <p>Exposición y defensa de vuestra guía ante la clase.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="seccion-materias">
+            <h2>🔗 Qué materias se conectan</h2>
+            <p>Este proyecto no es solo de matemáticas. Para entender Almería necesitamos sumar conocimientos de distintas asignaturas:</p>
+            <div class="materias-flex">
+                <span class="chip-materia">🧮 Matemáticas</span>
+                <span class="chip-materia">🌍 Geografía e Historia</span>
+                <span class="chip-materia">🌱 Biología y Geología</span>
+                <span class="chip-materia">📝 Lengua</span>
+                <span class="chip-materia">💻 Digitalización</span>
+            </div>
+        </section>
+
+        <section>
+            <h2>🧠 Qué aprenderás</h2>
+            <ul class="lista-objetivos">
+                <li>Localizar lugares y calcular distancias en un plano usando el sistema de coordenadas cartesianas.</li>
+                <li>Identificar polígonos, calcular perímetros y áreas de diferentes zonas de la ciudad.</li>
+                <li>Organizar datos de la ciudad (como temperaturas o visitantes) en tablas claras.</li>
+                <li>Representar e interpretar gráficas estadísticas para entender cómo cambia nuestro entorno.</li>
+                <li>Reconocer variables y relaciones de proporcionalidad en la vida cotidiana.</li>
+                <li>Trabajar en equipo, justificando tus decisiones y comunicando ideas matemáticas con precisión.</li>
+            </ul>
+        </section>
+
+        <div class="bloque-tiempo">
+            <div class="numero-gigante">20</div>
+            <p><strong>Sesiones de trabajo por delante.</strong> Organizaremos el tiempo en 4 bloques para que aprendas, practiques y crees sin agobios. ¡Cada paso cuenta!</p>
+        </div>
+
+        <nav class="botones-nav" aria-label="Navegación del proyecto">
+            <a href="{{URL_INICIO}}" class="btn btn-secundario">🏠 Volver al Inicio</a>
+            <a href="{{URL_RUTA}}" class="btn btn-secundario">🗺️ Ver la Ruta de Aprendizaje</a>
+            <a href="{{URL_BLOQUE1}}" class="btn">🚀 ¡Empezar el Bloque 1!</a>
+        </nav>
+
+    </div>
+
+</body>
+</html>

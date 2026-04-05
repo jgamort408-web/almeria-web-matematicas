@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloque 2 · Geometría urbana</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Enfoque Terracota */
+        :root {
+            --terracota: #D36E5A;
+            --terracota-claro: #FCECE9;
+            --terracota-medio: #E58D7C;
+            --terracota-oscuro: #A54B3A;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --azul-mar: #005A8C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(211, 110, 90, 0.2);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--terracota-claro);
+            margin: 0;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--terracota-medio);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--terracota-claro);
+            color: var(--terracota-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #f7dcd7;
+        }
+
+        .btn-primario {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: var(--terracota-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= INTRODUCCIÓN Y OBJETIVOS ================= */
+        .seccion-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 5px solid var(--terracota);
+        }
+
+        .info-bloque h2 {
+            color: var(--terracota);
+            font-size: 1.6rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--terracota-claro);
+            padding-bottom: 10px;
+        }
+
+        .lista-objetivos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-objetivos li {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-left: 3px solid var(--terracota-medio);
+        }
+
+        /* ================= TARJETAS DE SESIÓN ================= */
+        .titulo-seccion {
+            color: var(--terracota-oscuro);
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .grid-sesiones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-sesion {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--terracota-claro);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .tarjeta-sesion:hover {
+            transform: translateY(-4px);
+            border-color: var(--terracota-medio);
+        }
+
+        .sesion-cabecera {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+
+        .sesion-num {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tarjeta-sesion h3 {
+            margin: 0;
+            color: var(--terracota-oscuro);
+            font-size: 1.3rem;
+        }
+
+        .sesion-contenido {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sesion-bloque {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .sesion-bloque strong {
+            display: block;
+            color: var(--terracota-medio);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .btn-acceder {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+            background-color: var(--blanco);
+            color: var(--terracota);
+            border: 2px solid var(--terracota);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-acceder:hover {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        /* ================= HERRAMIENTAS Y PREGUNTAS ================= */
+        .seccion-inferior {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .caja-herramientas {
+            border-top: 4px solid var(--gris-pizarra);
+        }
+
+        .caja-preguntas {
+            border-top: 4px solid var(--azul-mar);
+            background-color: var(--azul-claro);
+        }
+
+        .caja-info h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.4rem;
+        }
+
+        .caja-herramientas h3 { color: var(--gris-pizarra); }
+        .caja-preguntas h3 { color: var(--azul-mar); }
+
+        /* Lista visual de herramientas */
+        .grid-herramientas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .item-herramienta {
+            background-color: var(--fondo-cuerpo);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--gris-pizarra);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            border: 1px solid #eaeaea;
+        }
+        
+        .item-herramienta span {
+            font-size: 1.8rem;
+        }
+
+        /* Lista de preguntas guía */
+        .lista-preguntas {
+            padding-left: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-preguntas li {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: var(--azul-oscuro);
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .lista-preguntas li::before {
+            content: "🤔";
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-info, .seccion-inferior { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .grid-herramientas { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación del bloque">
+            <a href="{{URL_BLOQUE1}}" class="btn-texto">⬅️ Anterior: Bloque 1</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ver Ruta Completa</a>
+            <a href="{{URL_BLOQUE3}}" class="btn-texto btn-primario">Siguiente: Bloque 3 ➡️</a>
+        </nav>
+
+        <header>
+            <h1>Bloque 2 · Geometría urbana</h1>
+            <p>Descubriendo las formas, medidas y rutas de nuestra ciudad</p>
+        </header>
+
+        <section class="seccion-info">
+            <div class="info-bloque">
+                <h2>🏙️ ¿De qué trata este bloque?</h2>
+                <p>Pasamos del mapa abstracto a las formas reales. En este bloque descubriremos que las calles, plazas, parques e invernaderos de Almería esconden un montón de geometría.</p>
+                <p>Durante estas seis sesiones aprenderemos a transformar zonas de la ciudad en polígonos matemáticos, mediremos su contorno, calcularemos su superficie y diseñaremos la ruta más eficiente para nuestra guía turística.</p>
+            </div>
+            <div class="info-bloque">
+                <h2>🎯 Objetivos del bloque</h2>
+                <ul class="lista-objetivos">
+                    <li><span>1️⃣</span> Identificar elementos geométricos básicos en el entorno urbano.</li>
+                    <li><span>2️⃣</span> Clasificar figuras planas y usar propiedades geométricas.</li>
+                    <li><span>3️⃣</span> Calcular el <strong>perímetro</strong> de diferentes zonas de la ciudad.</li>
+                    <li><span>4️⃣</span> Calcular el <strong>área</strong> aproximada de barrios y parques.</li>
+                    <li><span>5️⃣</span> Diferenciar sin errores entre medir bordes y medir superficies.</li>
+                    <li><span>6️⃣</span> Diseñar rutas turísticas comparando distancias reales.</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="titulo-seccion">Sesiones de Trabajo</h2>
+
+        <div class="grid-sesiones">
+            
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 5</span>
+                    <h3>Elementos del plano</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Realizar un safari geométrico buscando rectas, paralelas, perpendiculares y ángulos en el mapa.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Tabla de identificación geométrica.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_5}}" class="btn-acceder">Abrir Sesión 5</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 6</span>
+                    <h3>Figuras en la ciudad</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Aproximar barrios y zonas de interés utilizando polígonos conocidos y circunferencias.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Ficha de modelización de 3 zonas.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_6}}" class="btn-acceder">Abrir Sesión 6</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 7</span>
+                    <h3>Cálculo de perímetros</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Responder a la pregunta "¿Qué zona tiene más borde?" calculando el contorno de varios espacios.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Ficha de perímetros ordenada.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_7}}" class="btn-acceder">Abrir Sesión 7</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 8</span>
+                    <h3>Cálculo de áreas</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Descomponer figuras complejas en rectángulos y triángulos para saber qué zona ocupa más espacio.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Ficha de áreas con decisión argumentada.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_8}}" class="btn-acceder">Abrir Sesión 8</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 9</span>
+                    <h3>Perímetro vs Área</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Analizar zonas con el mismo perímetro pero distinta área (o viceversa) para no volver a confundir los conceptos.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Justificación escrita de errores frecuentes.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_9}}" class="btn-acceder">Abrir Sesión 9</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 10</span>
+                    <h3>Rutas y distancias</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Medir distancias reales en el mapa para diseñar y elegir el itinerario turístico más eficiente.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Croquis de ruta y justificación breve.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_10}}" class="btn-acceder">Abrir Sesión 10</a>
+            </article>
+
+        </div>
+
+        <div class="seccion-inferior">
+            <section class="caja-info caja-herramientas">
+                <h3>🎒 Herramientas matemáticas</h3>
+                <p>Para no perderte en este bloque necesitarás:</p>
+                <div class="grid-herramientas">
+                    <div class="item-herramienta">
+                        <span>📏</span> Regla
+                    </div>
+                    <div class="item-herramienta">
+                        <span>🧭</span> Compás
+                    </div>
+                    <div class="item-herramienta">
+                        <span>📝</span> Cuadrícula
+                    </div>
+                    <div class="item-herramienta">
+                        <span>$$A=b \cdot h$$</span> Fórmulas
+                    </div>
+                </div>
+            </section>
+
+            <section class="caja-info caja-preguntas">
+                <h3>💡 Piensa antes de calcular</h3>
+                <p>Acostúmbrate a hacerte estas 4 preguntas antes de tocar la calculadora:</p>
+                <ul class="lista-preguntas">
+                    <li>¿Qué me piden medir: el borde exterior o el espacio interior?</li>
+                    <li>¿En qué unidades debo expresar el resultado ($m$, $km$, $m^2$, $km^2$)?</li>
+                    <li>¿Puedo dividir esta forma rara en figuras simples que ya conozco?</li>
+                    <li>¿Tiene sentido el número que me ha salido en el contexto de una ciudad?</li>
+                </ul>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

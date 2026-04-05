@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 6 - Figuras planas en la ciudad</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Enfoque Verde Geometría y Arena */
+        :root {
+            --verde-med: #4A7C59;
+            --verde-oscuro: #2D4C36;
+            --verde-claro: #EAF2EC;
+            --arena-clara: #F4EBD0;
+            --azul-mar: #005A8C;
+            --terracota: #D36E5A;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fondo sutil de puntos para dar toque técnico/geométrico */
+            background-image: radial-gradient(var(--verde-claro) 2px, transparent 2px);
+            background-size: 20px 20px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            background-color: rgba(255, 255, 255, 0.8); /* Ligera transparencia para el fondo */
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--verde-med);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--verde-claro);
+            color: var(--verde-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+        }
+
+        .btn-texto:hover {
+            border-color: var(--verde-med);
+            background-color: var(--blanco);
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--verde-med);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--verde-oscuro);
+            color: var(--blanco);
+            border-color: var(--verde-oscuro);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(74, 124, 89, 0.1);
+            border: 2px solid var(--verde-claro);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 8px;
+            background: linear-gradient(90deg, var(--verde-med), var(--azul-mar));
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--verde-oscuro);
+            margin: 15px 0 10px 0;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--verde-med);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: var(--arena-clara);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--verde-med);
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= TARJETAS VISUALES DE CLASIFICACIÓN ================= */
+        .seccion-figuras {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .seccion-figuras h2 {
+            text-align: center;
+            color: var(--verde-oscuro);
+            margin-top: 0;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        .grid-figuras {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-figura {
+            background-color: var(--verde-claro);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #d3e2d6;
+            transition: transform 0.2s;
+        }
+
+        .tarjeta-figura:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(74, 124, 89, 0.15);
+        }
+
+        .figura-visual {
+            font-size: 3.5rem;
+            line-height: 1;
+            margin-bottom: 15px;
+            color: var(--verde-med);
+        }
+
+        .tarjeta-figura h3 {
+            margin: 0 0 10px 0;
+            color: var(--verde-oscuro);
+            font-size: 1.3rem;
+        }
+
+        .tarjeta-figura p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--texto-secundario);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid var(--azul-mar);
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--azul-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px dashed var(--azul-mar);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--azul-mar);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--azul-mar);
+        }
+
+        .lista-tareas li strong {
+            color: var(--texto-principal);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--verde-med);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--terracota);
+            background-color: #FEF8F7;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--verde-oscuro); }
+        .caja-error h3 { color: var(--terracota); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        /* Representación visual del error */
+        .grafico-error {
+            background-color: var(--blanco);
+            border: 2px dashed var(--terracota);
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .forma-error {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .cuadrado-girado {
+            width: 40px;
+            height: 40px;
+            background-color: var(--terracota);
+            transform: rotate(45deg);
+            margin-bottom: 10px;
+        }
+
+        .etiqueta-error {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: var(--texto-secundario);
+            text-align: center;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_5}}" class="btn-texto">⬅️ Sesión 5</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_7}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 6 de 20</span>
+            <h1>Figuras planas en la ciudad</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Clasificar triángulos, cuadriláteros y circunferencias en los modelos urbanos de nuestra ciudad a partir de sus propiedades matemáticas.</span>
+            </div>
+        </header>
+
+        <section class="seccion-figuras">
+            <h2>Familias de figuras que buscaremos</h2>
+            <div class="grid-figuras">
+                <article class="tarjeta-figura">
+                    <div class="figura-visual">🔺</div>
+                    <h3>Triángulos</h3>
+                    <p>Polígonos de 3 lados. Los clasificaremos según sus lados (equilátero, isósceles, escaleno) y sus ángulos.</p>
+                </article>
+                <article class="tarjeta-figura">
+                    <div class="figura-visual">🟦</div>
+                    <h3>Cuadriláteros</h3>
+                    <p>Polígonos de 4 lados. Buscaremos paralelogramos (cuadrados, rectángulos, rombos, romboides) y no paralelogramos (trapecios).</p>
+                </article>
+                <article class="tarjeta-figura">
+                    <div class="figura-visual">⭕</div>
+                    <h3>Circunferencias</h3>
+                    <p>Líneas curvas cerradas cuyos puntos están a la misma distancia del centro (radio). ¡Perfectas en rotondas y plazas!</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Refresca la memoria sobre los nombres y familias de las figuras planas con este vídeo corto.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Clasificación de figuras</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Apunta en tu cuaderno la diferencia entre un cuadrado y un rectángulo.</li>
+                    <li>Apunta la diferencia entre un círculo y una circunferencia.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>Nos dividiremos en 3 "Estaciones de Aprendizaje" por la clase. Cada equipo rotará por todas.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Estación 1:</strong> Fotos aéreas de tejados y señales de tráfico de Almería. ¿Qué tipos de triángulos encuentras?</li>
+                    <li><strong>Estación 2:</strong> Mapas de manzanas de casas (bloques) del barrio. Identifica rectángulos, cuadrados y trapecios.</li>
+                    <li><strong>Estación 3:</strong> La Plaza de Toros, el Parque Nicolás Salmerón y las rotondas. ¿Dónde ves circunferencias?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Usa la imaginación para diseñar parte de una ciudad del futuro basándote en la geometría.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Reto de diseño:</strong> Inventa un parque o una plaza para tu ciudad.</li>
+                    <li>Debe tener una forma geométrica clara (ej. un parque con forma de <em>trapecio rectángulo</em>).</li>
+                    <li><strong>Justifica:</strong> Escribe 2 líneas explicando por qué pertenece a esa categoría (ej. "Es un trapecio porque tiene dos lados paralelos y dos que no lo son").</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📋 Tu evidencia del día</h3>
+                <p>Al terminar la rotación de estaciones, tu equipo debe entregar la <strong>Tabla de Clasificación</strong> rellenada.</p>
+                <p>Esta tabla debe incluir el nombre de la figura encontrada, el lugar real de Almería donde está, y un pequeño dibujo o croquis indicando por qué pertenece a esa categoría (marcando ángulos rectos o lados iguales).</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Clasificar solo por "la pinta que tiene" (apariencia visual).</strong></p>
+                <p>En matemáticas no vale decir "parece un rombo". Hay que usar las <strong>propiedades</strong> (medir lados y mirar ángulos).</p>
+                
+                <div class="grafico-error">
+                    <div class="forma-error">
+                        <div style="width: 40px; height: 40px; background-color: var(--azul-mar);"></div>
+                        <span class="etiqueta-error">Cuadrado</span>
+                    </div>
+                    <div class="forma-error" style="font-size: 1.5rem;">➡️</div>
+                    <div class="forma-error">
+                        <div class="cuadrado-girado"></div>
+                        <span class="etiqueta-error">¡Sigue siendo<br>un cuadrado!</span>
+                    </div>
+                </div>
+                <p style="font-size: 0.9rem; margin-top: 10px; color: var(--texto-secundario); text-align: center;">
+                    <em>(Mucha gente le llama "rombo" solo porque está girado, pero si tiene 4 lados iguales y 4 ángulos rectos... ¡es un cuadrado!)</em>
+                </p>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

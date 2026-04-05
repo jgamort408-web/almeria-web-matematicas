@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 14 - Leer e interpretar gráficas</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        :root {
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --terracota: #D36E5A;
+            --terracota-claro: #FCECE9;
+            --verde-med: #4A7C59;
+            --verde-claro: #EAF2EC;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-mar);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-mar);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #d1e3ec;
+            transform: translateY(-2px);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0, 90, 140, 0.2);
+        }
+
+        header h1 { font-size: 2.4rem; margin: 15px 0 10px 0; }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--terracota);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* ================= SECCIÓN MIRAR PRIMERO ================= */
+        .mirar-primero {
+            background-color: var(--arena-clara);
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 8px solid var(--terracota);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .mirar-primero h2 { color: var(--terracota); margin-top: 0; font-size: 1.5rem; }
+
+        .pasos-mirar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .paso-check {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: bold;
+            color: var(--gris-pizarra);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--verde-med);
+        }
+
+        .fase-icono { font-size: 2.2rem; margin-bottom: 10px; display: block; }
+        .fase-tarjeta h2 { margin: 0 0 15px 0; color: var(--verde-med); font-size: 1.4rem; }
+
+        .video-placeholder {
+            width: 100%; height: 180px; background-color: var(--verde-claro);
+            border: 2px dashed var(--verde-med); border-radius: 8px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            margin-bottom: 15px; color: var(--verde-med);
+        }
+
+        /* ================= TARJETAS DE PREGUNTAS ================= */
+        .seccion-preguntas { margin-top: 10px; }
+        .seccion-preguntas h2 { color: var(--azul-mar); text-align: center; margin-bottom: 20px; }
+
+        .grid-preguntas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .tarjeta-pregunta {
+            background-color: var(--blanco);
+            border: 2px solid var(--azul-claro);
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tarjeta-pregunta:hover {
+            border-color: var(--azul-mar);
+            background-color: var(--azul-claro);
+            transform: scale(1.02);
+        }
+
+        .tarjeta-pregunta strong { color: var(--azul-mar); display: block; margin-bottom: 8px; font-size: 1.1rem; }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .caja-evidencia { border-top: 5px solid var(--azul-mar); }
+        .caja-error { border-top: 5px solid var(--terracota); background-color: var(--terracota-claro); }
+
+        .caja-destacada h3 { margin-top: 0; font-size: 1.4rem; display: flex; align-items: center; gap: 10px; }
+        .caja-evidencia h3 { color: var(--azul-mar); }
+        .caja-error h3 { color: var(--terracota); }
+
+        .lista-check li { margin-bottom: 8px; display: flex; gap: 8px; align-items: flex-start; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) { .seccion-doble { grid-template-columns: 1fr; } }
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav">
+            <a href="{{URL_SESION_13}}" class="btn-texto">⬅️ Sesión 13</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_15}}" class="btn-texto" style="background-color: var(--verde-med); color: white;">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 14 de 20</span>
+            <h1>Leer e interpretar gráficas</h1>
+            <div class="objetivo-caja">
+                🎯 <strong>Objetivo de hoy:</strong> Aprender a identificar puntos clave (máximos y mínimos) y tendencias (crecimiento y decrecimiento) para explicar qué está pasando en nuestra ciudad.
+            </div>
+        </header>
+
+        <section class="mirar-primero">
+            <h2>👀 Qué debo mirar primero</h2>
+            <p>Antes de analizar los puntos, asegúrate de entender el contexto de la gráfica:</p>
+            <div class="pasos-mirar">
+                <div class="paso-check"><span>🏷️</span> El Título</div>
+                <div class="paso-check"><span>📏</span> Los Ejes ($X$ e $Y$)</div>
+                <div class="paso-check"><span>🔢</span> La Escala</div>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>¿Sabes identificar cuándo una gráfica "sube" o "baja" matemáticamente? Mira este vídeo.</p>
+                <div class="video-placeholder">
+                    <span>▶️ Vídeo Tutorial</span>
+                    <small>{{VIDEO_URL}}</small>
+                </div>
+                <p><strong>Tarea:</strong> Busca en el vídeo qué significa que una gráfica sea "constante".</p>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>Analizaremos datos reales de Almería. Trabajaremos con dos gráficas impresas.</p>
+                <ul style="padding-left: 20px; font-size: 0.9rem;">
+                    <li><strong>Gráfica A:</strong> Temperaturas medias mensuales (clima).</li>
+                    <li><strong>Gráfica B:</strong> Evolución de la población en los últimos 20 años.</li>
+                    <li><strong>Misión:</strong> Localizar los "picos" y los "valles" y explicar qué mes o año representan.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Consolida tu aprendizaje redactando conclusiones claras.</p>
+                <p><strong>Reto opcional:</strong> Escribe 3 conclusiones sobre la gráfica de población de Almería. Usa frases como:</p>
+                <ul style="padding-left: 20px; font-size: 0.85rem; font-style: italic;">
+                    <li>"El máximo se alcanzó en el año..."</li>
+                    <li>"Se observa un crecimiento constante entre..."</li>
+                    <li>"El punto mínimo de temperatura es..."</li>
+                </ul>
+            </article>
+        </div>
+
+        <section class="seccion-preguntas">
+            <h2>❓ Preguntas para tu análisis</h2>
+            <div class="grid-preguntas">
+                <div class="tarjeta-pregunta">
+                    <strong>¿Dónde está el máximo?</strong>
+                    Es el valor más alto del eje Y. Indica el momento de mayor actividad.
+                </div>
+                <div class="tarjeta-pregunta">
+                    <strong>¿Hay tramos de decrecimiento?</strong>
+                    Ocurre cuando la línea baja al avanzar hacia la derecha.
+                </div>
+                <div class="tarjeta-pregunta">
+                    <strong>¿Qué pasó en el mínimo?</strong>
+                    Es el valor más bajo. ¿A qué año o mes del eje X corresponde?
+                </div>
+                <div class="tarjeta-pregunta">
+                    <strong>¿Es un crecimiento rápido?</strong>
+                    Si la pendiente es muy inclinada, el cambio ha sido muy brusco.
+                </div>
+            </div>
+        </section>
+
+        <div class="seccion-doble">
+            <section class="caja-destacada caja-evidencia">
+                <h3>🏆 Tu evidencia del día</h3>
+                <p>Entregarás el <strong>Comentario Guiado de la Gráfica</strong>. No basta con poner números, debes usar el vocabulario aprendido:</p>
+                <ul class="lista-check" style="list-style: none; padding: 0; font-size: 0.95rem;">
+                    <li>✅ Identifica el título y las variables.</li>
+                    <li>✅ Localiza con precisión el máximo y el mínimo.</li>
+                    <li>✅ Describe las etapas de crecimiento y decrecimiento.</li>
+                </ul>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Leer la gráfica como si fuera un dibujo físico.</strong></p>
+                <p>A veces vemos una "montaña" en la gráfica y pensamos que representa una montaña real de la ciudad. ¡Error!</p>
+                <p>La gráfica representa una <strong>relación de datos</strong>. Si la línea sube en la gráfica de temperaturas, no es que estemos subiendo una colina, ¡es que hace más calor!</p>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

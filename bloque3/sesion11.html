@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 11 - Variables urbanas</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Enfoque Verde Azulado (Teal) */
+        :root {
+            --teal-principal: #14817D;
+            --teal-oscuro: #0B5A57;
+            --teal-medio: #4CB5AE;
+            --teal-claro: #E0F2F1;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fondo sutil tipo cuadrícula de datos */
+            background-image: 
+                linear-gradient(rgba(20, 129, 125, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(20, 129, 125, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--teal-principal);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--teal-claro);
+            color: var(--teal-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #cce8e6;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--teal-principal);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--teal-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--teal-principal);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(20, 129, 125, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 15px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--blanco);
+            color: var(--teal-oscuro);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= CONCEPTOS CLAVE ================= */
+        .seccion-conceptos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-concepto {
+            background-color: var(--blanco);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid var(--teal-claro);
+            position: relative;
+        }
+
+        .independiente { border-top: 5px solid var(--teal-medio); }
+        .dependiente { border-top: 5px solid var(--terracota); }
+
+        .tarjeta-concepto h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .independiente h3 { color: var(--teal-oscuro); }
+        .dependiente h3 { color: var(--terracota); }
+
+        .tarjeta-concepto p {
+            font-size: 1.05rem;
+            color: var(--texto-secundario);
+        }
+
+        .eje-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+
+        .independiente .eje-badge { background-color: var(--teal-claro); color: var(--teal-oscuro); }
+        .dependiente .eje-badge { background-color: #FCECE9; color: var(--terracota); }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-left: 4px solid var(--teal-principal);
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--teal-oscuro);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--teal-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--teal-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px dashed var(--teal-principal);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--teal-oscuro);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--arena-clara);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--teal-medio);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--terracota);
+            background-color: #FEF8F7;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--teal-oscuro); }
+        .caja-error h3 { color: var(--terracota); }
+
+        .tabla-variables {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .tabla-variables th {
+            background-color: var(--teal-claro);
+            color: var(--teal-oscuro);
+            padding: 10px;
+            text-align: left;
+            border-bottom: 2px solid var(--teal-principal);
+        }
+
+        .tabla-variables td {
+            padding: 10px;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .error-visual {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px dashed var(--terracota);
+            margin-top: 15px;
+        }
+
+        .error-visual strong {
+            color: var(--terracota);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_10}}" class="btn-texto">⬅️ Sesión 10</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_12}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 11 de 20</span>
+            <h1>Variables urbanas</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Identificar y diferenciar la variable independiente de la dependiente analizando datos reales de nuestra ciudad.</span>
+            </div>
+        </header>
+
+        <section class="seccion-conceptos">
+            <div class="tarjeta-concepto independiente">
+                <h3>Elige su camino (La causa)</h3>
+                <p>La <strong>Variable Independiente</strong> es la que "manda". Avanza sola y no depende de nadie más. Casi siempre que hablamos del tiempo (meses, años, horas) estamos ante una variable independiente.</p>
+                <div class="eje-badge">Va en el Eje X (Horizontal)</div>
+            </div>
+            <div class="tarjeta-concepto dependiente">
+                <h3>Sigue al líder (El efecto)</h3>
+                <p>La <strong>Variable Dependiente</strong> es la que "obedece". Su valor cambia según lo que haga la otra variable. Por ejemplo, los visitantes cambian <em>dependiendo</em> de la hora del día.</p>
+                <div class="eje-badge">Va en el Eje Y (Vertical)</div>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>¿Quién depende de quién? Descúbrelo con estos ejemplos cotidianos.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Variables y Funciones</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Piensa en esta frase: <em>"La nota del examen depende de las horas de estudio."</em></li>
+                    <li>¿Cuál es la variable independiente y cuál la dependiente?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>Vamos a clasificar información real que utilizaremos en las gráficas de nuestra guía turística.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Parejas de datos:</strong> Recibiréis tarjetas con pares de datos mezclados (ej. <em>Población y Año</em>, <em>Temperatura y Mes</em>, <em>Visitantes y Hora</em>, <em>Distancia y Tiempo</em>).</li>
+                    <li><strong>2. El debate:</strong> Formulad la pregunta clave: <em>"¿El (A) depende del (B), o el (B) depende del (A)?"</em></li>
+                    <li><strong>3. Clasificación:</strong> Ordenad las tarjetas indicando cuál será la $X$ y cuál será la $Y$.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Demuestra que has entendido el concepto buscando nueva información urbana.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Ampliación:</strong> Propón en tu cuaderno <strong>una pareja nueva de variables</strong> que tenga sentido medir en una ciudad.</li>
+                    <li><em>Ejemplo: Nivel de ruido (dependiente) y Zona de la ciudad (independiente).</em></li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📋 Tu evidencia del día</h3>
+                <p>Debéis entregar la <strong>Tabla de Variables Urbanas</strong> correctamente ordenada. Será fundamental para no dibujar mal las gráficas de la próxima sesión.</p>
+                
+                <table class="tabla-variables">
+                    <thead>
+                        <tr>
+                            <th>Estudio</th>
+                            <th>Independiente ($X$)</th>
+                            <th>Dependiente ($Y$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Evolución demográfica</td>
+                            <td>Año</td>
+                            <td>Población</td>
+                        </tr>
+                        <tr>
+                            <td>Clima anual</td>
+                            <td>Mes del año</td>
+                            <td>Temperatura (ºC)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Confundir la "Magnitud" con el "Valor concreto".</strong></p>
+                <p>Cuando nos preguntan por la variable, a veces respondemos con un número. ¡Recuerda que una variable es la <em>palabra</em> que da nombre a lo que mides!</p>
+                
+                <div class="error-visual">
+                    <strong>❌ Error:</strong><br> "La variable dependiente es 35ºC."<br><br>
+                    <strong>✅ Correcto:</strong><br> "La variable dependiente es <em>la Temperatura</em> (y uno de sus valores hoy es 35ºC)."
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

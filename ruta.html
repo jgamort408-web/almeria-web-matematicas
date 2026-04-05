@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruta de Aprendizaje - Almería en Cifras y Formas</title>
+    <style>
+        /* Paleta inspirada en Almería */
+        :root {
+            --azul-mar: #005A8C;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --verde-med: #4A7C59;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos optimizados para Google Sites */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* Cabecera */
+        header {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 35px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            font-size: 1.15rem;
+            color: var(--arena-clara);
+            margin: 0;
+        }
+
+        /* Navegación y Controles */
+        .nav-principal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .btn {
+            background-color: var(--gris-pizarra);
+            color: var(--blanco);
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: transform 0.2s, background-color 0.2s;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover, .btn:focus {
+            transform: translateY(-2px);
+            outline: 2px solid var(--terracota);
+            outline-offset: 2px;
+        }
+
+        .btn-inicio { background-color: var(--terracota); }
+        .btn-inicio:hover { background-color: #ba5d4a; }
+        .btn-b1 { background-color: var(--azul-mar); }
+        .btn-b2 { background-color: var(--terracota); }
+        .btn-b3 { background-color: var(--verde-med); }
+        .btn-b4 { background-color: var(--gris-pizarra); }
+
+        /* Leyenda */
+        .leyenda {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            font-size: 0.95rem;
+            font-weight: bold;
+        }
+
+        .item-leyenda {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .punto-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        .c-b1 { background-color: var(--azul-mar); }
+        .c-b2 { background-color: var(--terracota); }
+        .c-b3 { background-color: var(--verde-med); }
+        .c-b4 { background-color: var(--gris-pizarra); }
+
+        /* Estructura del Roadmap */
+        .roadmap {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        /* Línea vertical central/lateral */
+        .roadmap::before {
+            content: '';
+            position: absolute;
+            left: 36px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background-color: #e0e0e0;
+            border-radius: 2px;
+            z-index: 0;
+        }
+
+        /* Bloques */
+        .bloque {
+            position: relative;
+            z-index: 1;
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 25px 25px 25px 50px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            border-left: 8px solid;
+        }
+
+        .bloque-1 { border-left-color: var(--azul-mar); }
+        .bloque-2 { border-left-color: var(--terracota); }
+        .bloque-3 { border-left-color: var(--verde-med); }
+        .bloque-4 { border-left-color: var(--gris-pizarra); }
+
+        /* Indicador de bloque en la línea de tiempo */
+        .indicador-bloque {
+            position: absolute;
+            left: -24px;
+            top: 25px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--blanco);
+            font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: 0 0 0 4px var(--fondo-cuerpo);
+        }
+
+        .bloque-1 .indicador-bloque { background-color: var(--azul-mar); }
+        .bloque-2 .indicador-bloque { background-color: var(--terracota); }
+        .bloque-3 .indicador-bloque { background-color: var(--verde-med); }
+        .bloque-4 .indicador-bloque { background-color: var(--gris-pizarra); }
+
+        .bloque-header {
+            margin-bottom: 20px;
+        }
+
+        .bloque-header h2 {
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .bloque-1 h2 { color: var(--azul-mar); }
+        .bloque-2 h2 { color: var(--terracota); }
+        .bloque-3 h2 { color: var(--verde-med); }
+        .bloque-4 h2 { color: var(--gris-pizarra); }
+
+        .bloque-header p {
+            margin: 5px 0 0 0;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* Tarjetas de Sesión */
+        .grid-sesiones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .tarjeta-sesion {
+            background-color: var(--fondo-cuerpo);
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tarjeta-sesion:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+        }
+
+        .sesion-num {
+            font-size: 0.85rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            align-self: flex-start;
+            color: var(--blanco);
+        }
+
+        .bloque-1 .sesion-num { background-color: var(--azul-mar); }
+        .bloque-2 .sesion-num { background-color: var(--terracota); }
+        .bloque-3 .sesion-num { background-color: var(--verde-med); }
+        .bloque-4 .sesion-num { background-color: var(--gris-pizarra); }
+
+        .sesion-titulo {
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .btn-sesion {
+            display: block;
+            text-align: center;
+            background-color: var(--blanco);
+            border: 2px solid;
+            padding: 8px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .bloque-1 .btn-sesion { color: var(--azul-mar); border-color: var(--azul-mar); }
+        .bloque-1 .btn-sesion:hover { background-color: var(--azul-mar); color: var(--blanco); }
+        
+        .bloque-2 .btn-sesion { color: var(--terracota); border-color: var(--terracota); }
+        .bloque-2 .btn-sesion:hover { background-color: var(--terracota); color: var(--blanco); }
+        
+        .bloque-3 .btn-sesion { color: var(--verde-med); border-color: var(--verde-med); }
+        .bloque-3 .btn-sesion:hover { background-color: var(--verde-med); color: var(--blanco); }
+        
+        .bloque-4 .btn-sesion { color: var(--gris-pizarra); border-color: var(--gris-pizarra); }
+        .bloque-4 .btn-sesion:hover { background-color: var(--gris-pizarra); color: var(--blanco); }
+
+        /* Consejos */
+        .consejos {
+            background-color: var(--arena-clara);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px dashed var(--terracota);
+            text-align: center;
+        }
+
+        .consejos h3 {
+            color: var(--terracota);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .consejos p {
+            margin: 5px 0;
+            font-size: 1.05rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .roadmap::before { left: 16px; }
+            .roadmap { padding-left: 0; }
+            .bloque { padding: 20px 15px 20px 40px; }
+            .indicador-bloque { left: -24px; width: 32px; height: 32px; font-size: 1rem; }
+            header h1 { font-size: 2rem; }
+            .btn { flex: 1 1 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <header>
+            <h1>Ruta de Aprendizaje</h1>
+            <p>20 sesiones para descubrir Almería paso a paso</p>
+        </header>
+
+        <nav class="nav-principal" aria-label="Navegación de ruta">
+            <a href="{{URL_INICIO}}" class="btn btn-inicio">🏠 Inicio</a>
+            <a href="{{URL_BLOQUE1}}" class="btn btn-b1">Bloque 1</a>
+            <a href="{{URL_BLOQUE2}}" class="btn btn-b2">Bloque 2</a>
+            <a href="{{URL_BLOQUE3}}" class="btn btn-b3">Bloque 3</a>
+            <a href="{{URL_BLOQUE4}}" class="btn btn-b4">Bloque 4</a>
+        </nav>
+
+        <div class="leyenda">
+            <div class="item-leyenda"><div class="punto-color c-b1"></div> Mapa y coordenadas</div>
+            <div class="item-leyenda"><div class="punto-color c-b2"></div> Geometría urbana</div>
+            <div class="item-leyenda"><div class="punto-color c-b3"></div> Datos y gráficas</div>
+            <div class="item-leyenda"><div class="punto-color c-b4"></div> Producto final</div>
+        </div>
+
+        <div class="roadmap">
+            
+            <section class="bloque bloque-1">
+                <div class="indicador-bloque">B1</div>
+                <div class="bloque-header">
+                    <h2>Mapa y coordenadas</h2>
+                    <p>Modelizando la ciudad en un plano. (Sesiones 1 a 4)</p>
+                </div>
+                <div class="grid-sesiones">
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 1</span>
+                        <h3 class="sesion-titulo">Presentación del reto</h3>
+                        <a href="{{URL_SESION_1}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 2</span>
+                        <h3 class="sesion-titulo">Magnitudes y mapas</h3>
+                        <a href="{{URL_SESION_2}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 3</span>
+                        <h3 class="sesion-titulo">Plano por cuadrantes</h3>
+                        <a href="{{URL_SESION_3}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 4</span>
+                        <h3 class="sesion-titulo">Coordenadas y localización</h3>
+                        <a href="{{URL_SESION_4}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="bloque bloque-2">
+                <div class="indicador-bloque">B2</div>
+                <div class="bloque-header">
+                    <h2>Geometría urbana</h2>
+                    <p>Formas, perímetros, áreas y rutas. (Sesiones 5 a 10)</p>
+                </div>
+                <div class="grid-sesiones">
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 5</span>
+                        <h3 class="sesion-titulo">Elementos del plano</h3>
+                        <a href="{{URL_SESION_5}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 6</span>
+                        <h3 class="sesion-titulo">Figuras en la ciudad</h3>
+                        <a href="{{URL_SESION_6}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 7</span>
+                        <h3 class="sesion-titulo">Cálculo de perímetros</h3>
+                        <a href="{{URL_SESION_7}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 8</span>
+                        <h3 class="sesion-titulo">Cálculo de áreas</h3>
+                        <a href="{{URL_SESION_8}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 9</span>
+                        <h3 class="sesion-titulo">Perímetro vs Área</h3>
+                        <a href="{{URL_SESION_9}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 10</span>
+                        <h3 class="sesion-titulo">Rutas y distancias</h3>
+                        <a href="{{URL_SESION_10}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="bloque bloque-3">
+                <div class="indicador-bloque">B3</div>
+                <div class="bloque-header">
+                    <h2>Datos, funciones y gráficas</h2>
+                    <p>Interpretando la información de Almería. (Sesiones 11 a 16)</p>
+                </div>
+                <div class="grid-sesiones">
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 11</span>
+                        <h3 class="sesion-titulo">Variables y datos</h3>
+                        <a href="{{URL_SESION_11}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 12</span>
+                        <h3 class="sesion-titulo">De enunciado a tabla</h3>
+                        <a href="{{URL_SESION_12}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 13</span>
+                        <h3 class="sesion-titulo">De tabla a gráfica</h3>
+                        <a href="{{URL_SESION_13}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 14</span>
+                        <h3 class="sesion-titulo">Lectura de gráficas</h3>
+                        <a href="{{URL_SESION_14}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 15</span>
+                        <h3 class="sesion-titulo">Comparar gráficas</h3>
+                        <a href="{{URL_SESION_15}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 16</span>
+                        <h3 class="sesion-titulo">Relaciones y proporción</h3>
+                        <a href="{{URL_SESION_16}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                </div>
+            </section>
+
+            <section class="bloque bloque-4">
+                <div class="indicador-bloque">B4</div>
+                <div class="bloque-header">
+                    <h2>Producto final</h2>
+                    <p>Integración y comunicación. (Sesiones 17 a 20)</p>
+                </div>
+                <div class="grid-sesiones">
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 17</span>
+                        <h3 class="sesion-titulo">Selección de información</h3>
+                        <a href="{{URL_SESION_17}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 18</span>
+                        <h3 class="sesion-titulo">Construcción de la guía</h3>
+                        <a href="{{URL_SESION_18}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 19</span>
+                        <h3 class="sesion-titulo">Ensayo y coevaluación</h3>
+                        <a href="{{URL_SESION_19}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                    <article class="tarjeta-sesion">
+                        <span class="sesion-num">Sesión 20</span>
+                        <h3 class="sesion-titulo">Exposición final</h3>
+                        <a href="{{URL_SESION_20}}" class="btn-sesion">Abrir sesión ➡️</a>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+
+        <section class="consejos">
+            <h3>💡 Consejo para avanzar</h3>
+            <p>Trabaja sesión a sesión y asegúrate de guardar las <strong>evidencias</strong> (fichas, tablas y gráficas) de cada bloque. ¡Las necesitarás para crear tu guía final en el Bloque 4!</p>
+        </section>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bloque 3 · Datos, funciones y gráficas</title>
+    
+    <style>
+        /* Paleta y variables base - Enfoque Verde Azulado (Teal) */
+        :root {
+            --verde-azulado: #14817D;
+            --teal-claro: #E0F2F1;
+            --teal-medio: #4CB5AE;
+            --teal-oscuro: #0B5A57;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --naranja-acento: #D36E5A;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos optimizados para Google Sites */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--verde-azulado);
+            color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(20, 129, 125, 0.2);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--teal-claro);
+            margin: 0 auto;
+            max-width: 800px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--teal-medio);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--teal-claro);
+            color: var(--teal-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #cce8e6;
+        }
+
+        .btn-primario {
+            background-color: var(--verde-azulado);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: var(--teal-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= INTRODUCCIÓN Y OBJETIVOS ================= */
+        .seccion-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            border-top: 5px solid var(--verde-azulado);
+        }
+
+        .info-bloque h2 {
+            color: var(--verde-azulado);
+            font-size: 1.6rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--teal-claro);
+            padding-bottom: 10px;
+        }
+
+        .lista-objetivos {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-objetivos li {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px 15px;
+            border-radius: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            border-left: 3px solid var(--teal-medio);
+        }
+
+        /* ================= TARJETAS DE SESIÓN ================= */
+        .titulo-seccion {
+            color: var(--teal-oscuro);
+            font-size: 1.8rem;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .grid-sesiones {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .tarjeta-sesion {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border: 1px solid var(--teal-claro);
+            transition: transform 0.2s ease, border-color 0.2s;
+        }
+
+        .tarjeta-sesion:hover {
+            transform: translateY(-4px);
+            border-color: var(--teal-medio);
+        }
+
+        .sesion-cabecera {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #ccc;
+            padding-bottom: 10px;
+        }
+
+        .sesion-num {
+            background-color: var(--verde-azulado);
+            color: var(--blanco);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .tarjeta-sesion h3 {
+            margin: 0;
+            color: var(--teal-oscuro);
+            font-size: 1.3rem;
+        }
+
+        .sesion-contenido {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .sesion-bloque {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .sesion-bloque strong {
+            display: block;
+            color: var(--teal-medio);
+            margin-bottom: 4px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .btn-acceder {
+            margin-top: 15px;
+            display: block;
+            text-align: center;
+            background-color: var(--blanco);
+            color: var(--verde-azulado);
+            border: 2px solid var(--verde-azulado);
+            padding: 10px;
+            border-radius: 6px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-acceder:hover {
+            background-color: var(--verde-azulado);
+            color: var(--blanco);
+        }
+
+        /* ================= SECCIONES INFERIORES ================= */
+        .seccion-inferior {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-info {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+        .caja-claves {
+            border-top: 4px solid var(--naranja-acento);
+        }
+
+        .caja-palabras {
+            border-top: 4px solid var(--gris-pizarra);
+            background-color: var(--teal-claro);
+        }
+
+        .caja-info h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1.4rem;
+        }
+
+        .caja-claves h3 { color: var(--naranja-acento); }
+        .caja-palabras h3 { color: var(--teal-oscuro); }
+
+        /* Lista de Claves */
+        .lista-claves {
+            padding: 0;
+            list-style: none;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            counter-reset: clave-contador;
+        }
+
+        .lista-claves li {
+            position: relative;
+            padding-left: 45px;
+            font-size: 1.05rem;
+        }
+
+        .lista-claves li::before {
+            counter-increment: clave-contador;
+            content: counter(clave-contador);
+            position: absolute;
+            left: 0;
+            top: -2px;
+            width: 30px;
+            height: 30px;
+            background-color: var(--naranja-acento);
+            color: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        /* Chips de Palabras */
+        .grid-palabras {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .chip-palabra {
+            background-color: var(--blanco);
+            color: var(--verde-azulado);
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-weight: bold;
+            border: 2px solid var(--teal-medio);
+            font-size: 0.95rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-info, .seccion-inferior { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación del bloque">
+            <a href="{{URL_BLOQUE2}}" class="btn-texto">⬅️ Anterior: Bloque 2</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ver Ruta Completa</a>
+            <a href="{{URL_BLOQUE4}}" class="btn-texto btn-primario">Siguiente: Bloque 4 ➡️</a>
+        </nav>
+
+        <header>
+            <h1>Bloque 3 · Datos, funciones y gráficas</h1>
+            <p>Aprendiendo a leer la información que nos cuenta nuestra ciudad</p>
+        </header>
+
+        <section class="seccion-info">
+            <div class="info-bloque">
+                <h2>📈 ¿De qué trata este bloque?</h2>
+                <p>Las ciudades no son solo calles y edificios; también son información viva. ¿Cómo cambia la temperatura a lo largo del año? ¿Cuántas personas visitan la Alcazaba cada mes?</p>
+                <p>En este bloque vamos a organizar todos esos datos, los transformaremos en tablas y los dibujaremos en gráficas para que nuestra guía turística no solo sea bonita, sino también matemáticamente útil y precisa.</p>
+            </div>
+            <div class="info-bloque">
+                <h2>🎯 Objetivos del bloque</h2>
+                <ul class="lista-objetivos">
+                    <li><span>1️⃣</span> Reconocer qué son las variables y aprender a recoger datos.</li>
+                    <li><span>2️⃣</span> Organizar la información y pasar de un texto a una tabla.</li>
+                    <li><span>3️⃣</span> Pasar los datos de una tabla a una gráfica usando escalas.</li>
+                    <li><span>4️⃣</span> Interpretar y leer lo que nos cuenta una gráfica.</li>
+                    <li><span>5️⃣</span> Comparar diferentes variables para extraer conclusiones.</li>
+                    <li><span>6️⃣</span> Estudiar relaciones funcionales y de proporcionalidad directa.</li>
+                </ul>
+            </div>
+        </section>
+
+        <h2 class="titulo-seccion">Sesiones de Trabajo</h2>
+
+        <div class="grid-sesiones">
+            
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 11</span>
+                    <h3>Variables y recogida de datos</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Identificar la variable independiente y dependiente en diferentes fenómenos de Almería (como la población o el clima).
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Tabla de variables posibles.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_11}}" class="btn-acceder">Abrir Sesión 11</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 12</span>
+                    <h3>De enunciado a tabla</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Leer un texto periodístico con información de la ciudad y ordenar todos sus números en una tabla clara.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Tabla de datos organizada.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_12}}" class="btn-acceder">Abrir Sesión 12</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 13</span>
+                    <h3>De tabla a gráfica</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Dibujar los ejes, elegir la escala adecuada y representar los datos de tu tabla en papel cuadriculado.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Primera gráfica completa.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_13}}" class="btn-acceder">Abrir Sesión 13</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 14</span>
+                    <h3>Interpretación de gráficas</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Analizar gráficas ya dibujadas para encontrar máximos, mínimos y entender qué nos está contando la línea.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Comentario guiado de gráfica.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_14}}" class="btn-acceder">Abrir Sesión 14</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 15</span>
+                    <h3>Comparar gráficas</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Poner dos gráficas frente a frente (ej: turismo vs temperatura) para ver si existe relación entre ellas.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Comparación argumentada.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_15}}" class="btn-acceder">Abrir Sesión 15</a>
+            </article>
+
+            <article class="tarjeta-sesion">
+                <div class="sesion-cabecera">
+                    <span class="sesion-num">Sesión 16</span>
+                    <h3>Función y proporcionalidad</h3>
+                </div>
+                <div class="sesion-contenido">
+                    <div class="sesion-bloque">
+                        <strong>Qué vas a hacer:</strong>
+                        Estudiar relaciones funcionales cotidianas (como el precio por grupo de entradas a un monumento) y comprobar si son proporcionales.
+                    </div>
+                    <div class="sesion-bloque">
+                        <strong>Evidencia:</strong>
+                        Tabla y gráfica funcional.
+                    </div>
+                </div>
+                <a href="{{URL_SESION_16}}" class="btn-acceder">Abrir Sesión 16</a>
+            </article>
+
+        </div>
+
+        <div class="seccion-inferior">
+            <section class="caja-info caja-claves">
+                <h3>🔍 Cómo leer una gráfica</h3>
+                <ol class="lista-claves">
+                    <li><strong>Mira el título:</strong> Te dirá exactamente qué información estás a punto de ver.</li>
+                    <li><strong>Revisa los ejes:</strong> Fíjate qué se mide en el eje horizontal (X) y en el vertical (Y).</li>
+                    <li><strong>Entiende la escala:</strong> Observa de cuánto en cuánto avanzan los números para no cometer errores.</li>
+                    <li><strong>Busca los picos:</strong> Localiza rápidamente el punto más alto (máximo) y el más bajo (mínimo).</li>
+                    <li><strong>Sigue la tendencia:</strong> Fíjate si la línea sube, baja o se mantiene igual en un tramo concreto.</li>
+                </ol>
+            </section>
+
+            <section class="caja-info caja-palabras">
+                <h3>📚 Palabras importantes</h3>
+                <p>Asegúrate de entender y utilizar este vocabulario durante las sesiones:</p>
+                <div class="grid-palabras">
+                    <span class="chip-palabra">Variable</span>
+                    <span class="chip-palabra">Eje</span>
+                    <span class="chip-palabra">Escala</span>
+                    <span class="chip-palabra">Máximo</span>
+                    <span class="chip-palabra">Mínimo</span>
+                    <span class="chip-palabra">Crecimiento</span>
+                    <span class="chip-palabra">Decrecimiento</span>
+                    <span class="chip-palabra">Proporcionalidad</span>
+                </div>
+            </section>
+        </div>
+
+    </div>
+
+</body>
+</html>

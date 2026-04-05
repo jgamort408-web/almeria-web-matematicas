@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto Final y Evaluación - Almería en Cifras y Formas</title>
+    <style>
+        /* Paleta inspirada en Almería */
+        :root {
+            --azul-mar: #005A8C;
+            --arena-clara: #F4EBD0;
+            --terracota: #D36E5A;
+            --verde-med: #4A7C59;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        /* Ajustes básicos optimizados para incrustar */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--arena-clara);
+            margin: 0;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--verde-med);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--arena-clara);
+            color: var(--texto-principal);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #e5d8b5;
+        }
+
+        .btn-primario {
+            background-color: var(--verde-med);
+            color: var(--blanco);
+        }
+
+        .btn-primario:hover {
+            background-color: #386044;
+            color: var(--blanco);
+        }
+
+        /* ================= SECCIONES COMUNES ================= */
+        section {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid var(--arena-clara);
+            padding-bottom: 10px;
+        }
+
+        .titulo-azul { color: var(--azul-mar); border-bottom-color: var(--azul-mar); }
+        .titulo-terracota { color: var(--terracota); border-bottom-color: var(--terracota); }
+        .titulo-verde { color: var(--verde-med); border-bottom-color: var(--verde-med); }
+        .titulo-gris { color: var(--gris-pizarra); border-bottom-color: var(--gris-pizarra); }
+
+        /* ================= PRODUCTO FINAL (TARJETAS) ================= */
+        .grid-productos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tarjeta-producto {
+            background-color: var(--fondo-cuerpo);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #eaeaea;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tarjeta-producto:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+            border-color: var(--azul-mar);
+        }
+
+        .tarjeta-producto span.emoji {
+            font-size: 2.5rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .tarjeta-producto h3 {
+            margin: 0 0 8px 0;
+            color: var(--azul-mar);
+            font-size: 1.1rem;
+        }
+
+        .tarjeta-producto p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: #666;
+        }
+
+        /* ================= QUÉ SE VA A VALORAR ================= */
+        .grid-criterios {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .criterio {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            background-color: var(--arena-clara);
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .criterio-num {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .criterio-texto h3 {
+            margin: 0 0 5px 0;
+            color: var(--texto-principal);
+            font-size: 1.1rem;
+        }
+
+        .criterio-texto p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ================= MINI RÚBRICA VISUAL ================= */
+        .rubrica-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .nivel-rubrica {
+            padding: 20px;
+            border-radius: 10px;
+            color: var(--blanco);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .nivel-1 { background-color: var(--gris-pizarra); opacity: 0.8; }
+        .nivel-2 { background-color: var(--terracota); opacity: 0.9; }
+        .nivel-3 { background-color: var(--verde-med); }
+        .nivel-4 { background-color: var(--azul-mar); }
+
+        .nivel-rubrica h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 5px;
+        }
+
+        .nivel-rubrica p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ================= AUTOEVALUACIÓN Y CHECKLIST ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            background-color: transparent;
+            padding: 0;
+            box-shadow: none;
+        }
+
+        .caja-mitad {
+            background-color: var(--blanco);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .lista-preguntas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .lista-preguntas li {
+            background-color: var(--fondo-cuerpo);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-style: italic;
+            border-left: 4px solid var(--azul-mar);
+        }
+
+        .checklist-final {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .checklist-final label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 1.05rem;
+            background-color: var(--arena-clara);
+            padding: 15px;
+            border-radius: 8px;
+            transition: background-color 0.2s;
+        }
+
+        .checklist-final label:hover {
+            background-color: #e5d8b5;
+        }
+
+        .checklist-final input[type="checkbox"] {
+            width: 22px;
+            height: 22px;
+            accent-color: var(--verde-med);
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+
+        <nav class="controles-nav" aria-label="Navegación final">
+            <a href="{{URL_INICIO}}" class="btn-texto">🏠 Inicio</a>
+            <a href="{{URL_GLOSARIO}}" class="btn-texto">📖 Glosario</a>
+            <a href="{{URL_BLOQUE4}}" class="btn-texto btn-primario">⬅️ Volver al Bloque 4</a>
+        </nav>
+
+        <header>
+            <h1>Producto Final y Evaluación</h1>
+            <p>Todo lo que necesitas saber para entregar una guía turística excelente y entender cómo se valorará tu trabajo.</p>
+        </header>
+
+        <section>
+            <h2 class="titulo-azul">📦 ¿Qué se entrega exactamente?</h2>
+            <p>La guía turística matemática de tu equipo debe estar compuesta por estas 5 piezas fundamentales, todas montadas en vuestro dossier o presentación final:</p>
+            
+            <div class="grid-productos">
+                <article class="tarjeta-producto">
+                    <span class="emoji">🗺️</span>
+                    <h3>Mapa por cuadrantes</h3>
+                    <p>El plano base con los ejes cartesianos y todos los puntos de interés localizados.</p>
+                </article>
+                <article class="tarjeta-producto">
+                    <span class="emoji">📐</span>
+                    <h3>Fichas geométricas</h3>
+                    <p>Cálculos de perímetros y áreas de los barrios o zonas seleccionadas.</p>
+                </article>
+                <article class="tarjeta-producto">
+                    <span class="emoji">📊</span>
+                    <h3>Tablas y gráficas</h3>
+                    <p>Datos reales de Almería organizados y representados visualmente con su análisis.</p>
+                </article>
+                <article class="tarjeta-producto">
+                    <span class="emoji">🚶‍♀️</span>
+                    <h3>Ruta recomendada</h3>
+                    <p>El itinerario turístico diseñado por vosotros con las distancias estimadas.</p>
+                </article>
+                <article class="tarjeta-producto">
+                    <span class="emoji">🎤</span>
+                    <h3>Explicación final</h3>
+                    <p>La presentación oral ante los compañeros donde defendéis vuestras decisiones.</p>
+                </article>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="titulo-terracota">🎯 Qué se va a valorar</h2>
+            <p>El profesorado se fijará en estos 6 aspectos para calificar vuestro proyecto:</p>
+            
+            <div class="grid-criterios">
+                <div class="criterio">
+                    <div class="criterio-num">1</div>
+                    <div class="criterio-texto">
+                        <h3>Precisión matemática</h3>
+                        <p>Las coordenadas, cálculos de áreas y escalas no tienen errores graves y usan las unidades correctas.</p>
+                    </div>
+                </div>
+                <div class="criterio">
+                    <div class="criterio-num">2</div>
+                    <div class="criterio-texto">
+                        <h3>Lenguaje y vocabulario</h3>
+                        <p>Usáis palabras como "eje", "perímetro", "variable" o "polígono" de forma correcta al explicar.</p>
+                    </div>
+                </div>
+                <div class="criterio">
+                    <div class="criterio-num">3</div>
+                    <div class="criterio-texto">
+                        <h3>Claridad visual</h3>
+                        <p>Los mapas y gráficas están limpios, usan reglas y colores, y la información se lee fácilmente.</p>
+                    </div>
+                </div>
+                <div class="criterio">
+                    <div class="criterio-num">4</div>
+                    <div class="criterio-texto">
+                        <h3>Interpretación</h3>
+                        <p>Sabéis explicar qué significan las gráficas y no os limitáis solo a dibujarlas.</p>
+                    </div>
+                </div>
+                <div class="criterio">
+                    <div class="criterio-num">5</div>
+                    <div class="criterio-texto">
+                        <h3>Justificación</h3>
+                        <p>Explicáis claramente el <em>por qué</em> de vuestra ruta y el <em>por qué</em> de las figuras elegidas.</p>
+                    </div>
+                </div>
+                <div class="criterio">
+                    <div class="criterio-num">6</div>
+                    <div class="criterio-texto">
+                        <h3>Trabajo en equipo</h3>
+                        <p>Todos habéis participado por igual y habéis resuelto los problemas colaborando.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="titulo-verde">📈 Mini Rúbrica Visual</h2>
+            <p>Así es cómo se decide la nota global de vuestra guía. ¡Apuntad siempre al color verde o azul!</p>
+            
+            <div class="rubrica-container">
+                <div class="nivel-rubrica nivel-1">
+                    <h3>1. Inicial</h3>
+                    <p>Hay bastantes errores en los cálculos, falta información clave y no se entiende bien la guía.</p>
+                </div>
+                <div class="nivel-rubrica nivel-2">
+                    <h3>2. En proceso</h3>
+                    <p>El trabajo está completo a medias. Hay ideas buenas, pero con desorden o varios errores importantes.</p>
+                </div>
+                <div class="nivel-rubrica nivel-3">
+                    <h3>3. Adecuado</h3>
+                    <p>Todo lo básico está correcto. La guía es limpia, los cálculos tienen sentido y se ha trabajado bien.</p>
+                </div>
+                <div class="nivel-rubrica nivel-4">
+                    <h3>4. Avanzado</h3>
+                    <p>¡Excelente! La guía no tiene errores, es muy original, está muy bien explicada y vais más allá de lo pedido.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="seccion-doble">
+            <div class="caja-mitad">
+                <h2 class="titulo-azul">🤔 Autoevaluación</h2>
+                <p>Hazte estas preguntas antes del día de la presentación final:</p>
+                <ul class="lista-preguntas">
+                    <li>"¿He entendido bien qué se pedía en cada tarea del proyecto?"</li>
+                    <li>"¿He revisado mis cálculos matemáticos antes de pasarlos a limpio?"</li>
+                    <li>"¿He sido cuidadoso usando reglas y colores para que el trabajo quede visual?"</li>
+                    <li>"¿He ayudado a mis compañeros de equipo cuando se atascaban en un problema?"</li>
+                    <li>"¿Soy capaz de explicar una gráfica o cálculo sin tener que leerlo del papel?"</li>
+                </ul>
+            </div>
+
+            <div class="caja-mitad">
+                <h2 class="titulo-gris">✅ Antes de entregar</h2>
+                <p>Comprueba con tu equipo que cumplís todos los requisitos:</p>
+                <div class="checklist-final">
+                    <label>
+                        <input type="checkbox">
+                        Están los nombres de todos los miembros del equipo.
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        El mapa tiene los ejes y los puntos claros.
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Los cálculos indican las unidades correctas (m, m²).
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Las gráficas tienen título y se entienden bien los ejes.
+                    </label>
+                    <label>
+                        <input type="checkbox">
+                        Hemos ensayado la presentación al menos una vez.
+                    </label>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

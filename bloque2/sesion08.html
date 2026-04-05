@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 8 - Área de zonas urbanas</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Enfoque Azul Vibrante y Naranja Cálido */
+        :root {
+            --azul-vibrante: #0277BD;
+            --azul-claro: #E1F5FE;
+            --azul-oscuro: #01579B;
+            --naranja-calido: #FF8F00;
+            --naranja-claro: #FFF8E1;
+            --gris-pizarra: #5A6B7C;
+            --fondo-cuerpo: #FAFAFA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            /* Fondo sutil cuadriculado ligero */
+            background-image: 
+                linear-gradient(rgba(2, 119, 189, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 119, 189, 0.03) 1px, transparent 1px);
+            background-size: 25px 25px;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-vibrante);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-oscuro);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #b3e5fc;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--azul-vibrante);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--azul-oscuro);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid var(--azul-vibrante);
+            border-top: 8px solid var(--azul-vibrante);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--azul-oscuro);
+            margin: 15px 0 10px 0;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--naranja-calido);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: var(--azul-claro);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= FÓRMULAS VISUALES ================= */
+        .seccion-formulas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .tarjeta-formula {
+            background-color: var(--blanco);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            flex: 1 1 300px;
+            border: 1px solid #eaeaea;
+        }
+
+        .tarjeta-formula h3 {
+            margin: 0 0 10px 0;
+            color: var(--azul-vibrante);
+            font-size: 1.3rem;
+        }
+
+        .formula-math {
+            font-size: 1.2rem;
+            background-color: var(--naranja-claro);
+            padding: 10px;
+            border-radius: 8px;
+            display: inline-block;
+            color: var(--azul-oscuro);
+            border: 1px dashed var(--naranja-calido);
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 4px solid var(--azul-vibrante);
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-oscuro);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .video-container {
+            width: 100%;
+            background-color: var(--azul-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px dashed var(--azul-vibrante);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--azul-oscuro);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 3px solid var(--naranja-calido);
+        }
+
+        .lista-tareas li strong {
+            color: var(--texto-principal);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--naranja-calido);
+            background-color: var(--naranja-claro);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--gris-pizarra);
+            background-color: #F4F6F8;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--naranja-calido); }
+        .caja-error h3 { color: var(--gris-pizarra); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        /* Gráfico visual del error */
+        .error-visual {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 2px dashed var(--gris-pizarra);
+            margin-top: auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .concepto-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .c-borde {
+            width: 40px; height: 40px;
+            border: 4px solid var(--azul-oscuro);
+            background-color: transparent;
+        }
+
+        .c-superficie {
+            width: 40px; height: 40px;
+            background-color: var(--naranja-calido);
+        }
+
+        .etiqueta { font-size: 0.85rem; font-weight: bold; }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_7}}" class="btn-texto">⬅️ Sesión 7</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_9}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 8 de 20</span>
+            <h1>Área de zonas urbanas</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Calcular el área de figuras simples y compuestas para saber exactamente cuánto espacio interior ocupan los barrios y parques de la ciudad.</span>
+            </div>
+        </header>
+
+        <section class="seccion-formulas">
+            <div class="tarjeta-formula">
+                <h3>Área del Rectángulo / Cuadrado</h3>
+                <div class="formula-math">$$A = base \times altura$$</div>
+            </div>
+            <div class="tarjeta-formula">
+                <h3>Área del Triángulo</h3>
+                <div class="formula-math">$$A = \frac{base \times altura}{2}$$</div>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Repasa cómo calcular la superficie de las figuras básicas y aprende el "truco de la descomposición" con este vídeo.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Área y descomposición</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Copia en tu cuaderno las dos fórmulas principales de arriba.</li>
+                    <li><strong>Piensa:</strong> Si una figura tiene forma de "L", ¿cómo la dividirías para calcular su área?</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>Trabajaremos sobre el plano cuadriculado para medir espacios reales de Almería.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Ficha de Áreas:</strong> Recibiréis las mismas 3 zonas de la clase anterior, pero ahora mediremos su interior.</li>
+                    <li><strong>2. Cuadrícula mágica:</strong> Usaremos la cuadrícula del plano para contar los cuadrados interiores o medir la base y la altura.</li>
+                    <li><strong>3. Descomposición:</strong> En la plaza con forma compleja, divididla primero en un rectángulo y un triángulo. Calculad el área de ambos y sumadlas.</li>
+                    <li><strong>4. Comparación:</strong> Decidid qué zona ocupa más espacio en la ciudad.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Pon a prueba tus habilidades de arquitecto con estas dos tareas opcionales de ampliación.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Ejercicio 1:</strong> Mide la base y la altura de tu habitación (a pasos o con metro) y calcula cuántos metros cuadrados ($m^2$) tiene.</li>
+                    <li><strong>Ejercicio 2:</strong> Dibuja en papel cuadriculado una figura compuesta por un cuadrado y un triángulo. Calcula su área total.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📋 Tu evidencia del día</h3>
+                <p>Al final de la clase debéis entregar la <strong>Ficha de Áreas</strong> completada.</p>
+                <p>El profesor valorará mucho que dejéis indicado en el papel <strong>cómo habéis dividido las figuras compuestas</strong> (dibujando una línea de puntos) y las multiplicaciones que habéis hecho paso a paso.</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Confundir Superficie con Borde.</strong></p>
+                <p>A veces nos piden el área y calculamos el perímetro por costumbre. Piensa siempre antes de empezar:</p>
+                
+                <div class="error-visual">
+                    <div class="concepto-box">
+                        <div class="c-borde"></div>
+                        <span class="etiqueta">PERÍMETRO<br>(La Valla / El Borde)</span>
+                    </div>
+                    <div style="font-size: 1.5rem; color: var(--gris-pizarra);">VS</div>
+                    <div class="concepto-box">
+                        <div class="c-superficie"></div>
+                        <span class="etiqueta" style="color: var(--naranja-calido);">ÁREA<br>(El Césped / Superficie)</span>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

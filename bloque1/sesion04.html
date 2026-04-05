@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 4 - Coordenadas y localización</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-medio: #337AAB;
+            --azul-claro: #E6F0F5;
+            --terracota: #D36E5A;
+            --terracota-claro: #FCECE9;
+            --verde-med: #4A7C59;
+            --arena-clara: #F4EBD0;
+            --gris-pizarra: #5A6B7C;
+            --texto-principal: #333333;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--blanco);
+            /* Fondo de cuadrícula matemática */
+            background-image: 
+                linear-gradient(rgba(0, 90, 140, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 90, 140, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            border-left: 5px solid var(--terracota);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-mar);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #d1e3ec;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: #b85c4a;
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 2px solid var(--azul-mar);
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: var(--azul-mar);
+            margin: 15px 0 10px 0;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--terracota);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: var(--azul-claro);
+            border-left: 4px solid var(--azul-mar);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 800px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= TARJETAS DE PUNTOS VISUALES ================= */
+        .seccion-puntos {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .seccion-puntos h2 {
+            margin-top: 0;
+            font-size: 1.5rem;
+            color: var(--arena-clara);
+        }
+
+        .grid-puntos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .tarjeta-punto {
+            background-color: var(--blanco);
+            color: var(--azul-mar);
+            border-radius: 8px;
+            padding: 10px 20px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 0 var(--terracota);
+            transform: translateY(0);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .tarjeta-punto:hover {
+            transform: translateY(4px);
+            box-shadow: 0 0 0 var(--terracota);
+        }
+
+        .punto-letra {
+            background-color: var(--terracota);
+            color: var(--blanco);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 1rem;
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--azul-medio);
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        /* Mini Quiz Estilo */
+        .mini-quiz {
+            background-color: var(--arena-clara);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #dcd1af;
+            margin-bottom: 15px;
+        }
+
+        .quiz-pregunta {
+            font-weight: bold;
+            margin-bottom: 8px;
+            display: block;
+            color: var(--texto-principal);
+        }
+
+        .quiz-opciones {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .quiz-btn {
+            background-color: var(--blanco);
+            border: 1px solid var(--gris-pizarra);
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .quiz-btn:hover { background-color: var(--azul-claro); }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .lista-tareas li {
+            background-color: var(--fondo-cuerpo);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--azul-medio);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--verde-med);
+            background-color: #F2F8F4;
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--terracota);
+            background-color: var(--terracota-claro);
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--verde-med); }
+        .caja-error h3 { color: var(--terracota); }
+
+        .caja-destacada p {
+            font-size: 1.05rem;
+            margin-bottom: 10px;
+        }
+
+        .alerta-visual {
+            background-color: var(--blanco);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--terracota);
+            border: 2px dashed var(--terracota);
+            margin-top: 15px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_3}}" class="btn-texto">⬅️ Sesión 3</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_5}}" class="btn-texto btn-siguiente">Siguiente: Bloque 2 ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 4 de 20</span>
+            <h1>Coordenadas y localización</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Leer, escribir y localizar lugares exactos en nuestro mapa utilizando pares de coordenadas matemáticas $(x, y)$.</span>
+            </div>
+        </header>
+
+        <section class="seccion-puntos">
+            <h2>Puntos de control turísticos</h2>
+            <div class="grid-puntos">
+                <div class="tarjeta-punto"><span class="punto-letra">A</span> ( 3 , 2 )</div>
+                <div class="tarjeta-punto"><span class="punto-letra">B</span> ( -4 , 1 )</div>
+                <div class="tarjeta-punto"><span class="punto-letra">C</span> ( -2 , -3 )</div>
+                <div class="tarjeta-punto"><span class="punto-letra">D</span> ( 5 , -1 )</div>
+                <div class="tarjeta-punto"><span class="punto-letra">E</span> ( 0 , 4 )</div>
+            </div>
+        </section>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Comprueba si recuerdas cómo funcionan las coordenadas con este mini quiz rápido.</p>
+                
+                <div class="mini-quiz">
+                    <span class="quiz-pregunta">1. En la coordenada $(3, -2)$, ¿qué número corresponde al eje horizontal (X)?</span>
+                    <div class="quiz-opciones">
+                        <button class="quiz-btn">El 3</button>
+                        <button class="quiz-btn">El -2</button>
+                    </div>
+                </div>
+                <div class="mini-quiz">
+                    <span class="quiz-pregunta">2. El punto $(0, 0)$ se llama...</span>
+                    <div class="quiz-opciones">
+                        <button class="quiz-btn">Centro polar</button>
+                        <button class="quiz-btn">Origen de coordenadas</button>
+                    </div>
+                </div>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>¡Día de juegos en el mapa! Usaremos la cuadrícula que preparamos el día anterior.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. Bingo de Coordenadas:</strong> El profesor cantará coordenadas. El primer equipo en localizar 3 puntos en línea grita ¡BINGO!.</li>
+                    <li><strong>2. Ruta turística oculta:</strong> Recibiréis una lista de coordenadas secretas. Al marcarlas en el mapa de Almería, descubriréis qué monumentos vamos a visitar en el proyecto.</li>
+                    <li><strong>3. Registro:</strong> Anotad los nombres de los lugares descubiertos junto a sus coordenadas en vuestra ficha de equipo.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Practica tu puntería matemática creando tus propios acertijos espaciales.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Reto opcional:</strong> Inventa 4 coordenadas que caigan exactamente en lugares que te gusten de la ciudad (tu colegio, la playa, un parque...).</li>
+                    <li>Llévalas anotadas mañana y reta a un compañero a adivinar qué lugares son trazándolas en su mapa.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>📝 Tu evidencia del día</h3>
+                <p>Hoy debéis entregar al profesor vuestra <strong>Ficha de Coordenadas o el Cartón de Bingo resuelto</strong>.</p>
+                <p>Comprobad que los puntos están marcados con precisión en las intersecciones de la cuadrícula, no flotando en medio de los cuadrados.</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Intercambiar el eje horizontal con el vertical.</strong></p>
+                <p>Es muy fácil equivocarse y leer el eje $Y$ primero. Recuerda siempre este truco visual para la coordenada $(X, Y)$:</p>
+                <div class="alerta-visual">
+                    🚶 Primero caminamos por la calle (Eje Horizontal X)<br>
+                    ⬇️<br>
+                    🛗 Luego tomamos el ascensor hacia arriba o abajo (Eje Vertical Y)
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sesión 3 - Plano por cuadrantes</title>
+    
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$'], ['\\[', '\\]']], processEscapes: true },
+            options: { skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre'] }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+    <style>
+        /* Paleta y variables base - Estética de mapa escolar */
+        :root {
+            --azul-mar: #005A8C;
+            --azul-claro: #E6F0F5;
+            --azul-medio: #4A90E2;
+            --rojo-marcador: #D34A4A;
+            --verde-mapa: #7BBD71;
+            --arena-clara: #FDFBF7;
+            --gris-pizarra: #5A6B7C;
+            --gris-claro: #EAEAEA;
+            --texto-principal: #333333;
+            --texto-secundario: #555555;
+            --blanco: #FFFFFF;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Fondo de papel cuadriculado escolar muy suave */
+            background-color: #FAFAFA;
+            background-image: 
+                linear-gradient(#e4eef5 1px, transparent 1px),
+                linear-gradient(90deg, #e4eef5 1px, transparent 1px);
+            background-size: 20px 20px;
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            display: flex;
+            justify-content: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .contenedor {
+            width: 100%;
+            max-width: 1100px;
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            /* Fondo blanco semitransparente para que la cuadrícula no moleste al leer si el contenedor fuera transparente, pero usaremos tarjetas sólidas */
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        .controles-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            background-color: var(--blanco);
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 5px solid var(--azul-medio);
+        }
+
+        .btn-texto {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--azul-claro);
+            color: var(--azul-mar);
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .btn-texto:hover {
+            background-color: #d2e4f0;
+            transform: translateY(-2px);
+        }
+
+        .btn-siguiente {
+            background-color: var(--azul-medio);
+            color: var(--blanco);
+        }
+
+        .btn-siguiente:hover {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        /* ================= CABECERA ================= */
+        header {
+            background-color: var(--blanco);
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+            border: 2px solid var(--azul-claro);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Elemento decorativo en la cabecera simulando una regla */
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background-image: repeating-linear-gradient(
+                90deg,
+                var(--texto-principal),
+                var(--texto-principal) 2px,
+                transparent 2px,
+                transparent 10px
+            );
+            opacity: 0.2;
+        }
+
+        header h1 {
+            font-size: 2.4rem;
+            color: var(--azul-mar);
+            margin: 15px 0 10px 0;
+            letter-spacing: 0.5px;
+        }
+
+        .etiqueta-sesion {
+            display: inline-block;
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .objetivo-caja {
+            background-color: var(--arena-clara);
+            border: 2px dashed var(--azul-medio);
+            color: var(--texto-principal);
+            padding: 15px 20px;
+            border-radius: 8px;
+            max-width: 750px;
+            margin: 20px auto 0 auto;
+            font-size: 1.15rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* ================= FASES DE LA SESIÓN ================= */
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .fase-tarjeta {
+            background-color: var(--blanco);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        /* Cinta adhesiva decorativa */
+        .fase-tarjeta::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%) rotate(-2deg);
+            width: 80px;
+            height: 25px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            z-index: 1;
+            opacity: 0.8;
+        }
+
+        .fase-icono {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+            display: block;
+        }
+
+        .fase-tarjeta h2 {
+            margin: 0 0 15px 0;
+            color: var(--azul-mar);
+            font-size: 1.4rem;
+            text-align: center;
+            border-bottom: 2px solid var(--azul-claro);
+            padding-bottom: 10px;
+        }
+
+        .fase-tarjeta p {
+            color: var(--texto-secundario);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+
+        /* Video Placeholder */
+        .video-container {
+            width: 100%;
+            background-color: var(--gris-claro);
+            border-radius: 8px;
+            position: relative;
+            padding-bottom: 56.25%;
+            margin-bottom: 15px;
+            border: 2px solid var(--azul-medio);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .video-placeholder-texto {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--azul-mar);
+            width: 100%;
+        }
+
+        .lista-tareas {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .lista-tareas li {
+            background-color: var(--arena-clara);
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--verde-mapa);
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .lista-tareas li::before {
+            content: "📍";
+            flex-shrink: 0;
+        }
+
+        .lista-tareas li strong {
+            color: var(--texto-principal);
+        }
+
+        /* ================= EVIDENCIA Y ERROR ================= */
+        .seccion-doble {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .caja-destacada {
+            background-color: var(--blanco);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .caja-evidencia {
+            border-top: 5px solid var(--verde-mapa);
+        }
+
+        .caja-error {
+            border-top: 5px solid var(--rojo-marcador);
+            background-color: #FFF9F9;
+        }
+
+        .caja-destacada h3 {
+            margin-top: 0;
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .caja-evidencia h3 { color: var(--verde-mapa); }
+        .caja-error h3 { color: var(--rojo-marcador); }
+
+        .caja-evidencia p {
+            font-size: 1.05rem;
+            color: var(--texto-secundario);
+        }
+
+        .caja-error p {
+            font-size: 1.05rem;
+            color: var(--texto-principal);
+            margin-bottom: 15px;
+        }
+
+        .error-ejemplo {
+            background-color: var(--blanco);
+            border: 2px dashed var(--rojo-marcador);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            color: var(--texto-secundario);
+        }
+
+        /* ================= RESPONSIVE ================= */
+        @media (max-width: 800px) {
+            .seccion-doble { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .controles-nav { flex-direction: column; align-items: stretch; }
+            .btn-texto { justify-content: center; }
+            .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        
+        <nav class="controles-nav" aria-label="Navegación de sesión">
+            <a href="{{URL_SESION_2}}" class="btn-texto">⬅️ Sesión 2</a>
+            <a href="{{URL_RUTA}}" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
+            <a href="{{URL_SESION_4}}" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+        </nav>
+
+        <header>
+            <span class="etiqueta-sesion">Sesión 3 de 20</span>
+            <h1>Plano por cuadrantes</h1>
+            
+            <div class="objetivo-caja">
+                <span>🎯</span>
+                <span><strong>Objetivo de hoy:</strong> Aprender a interpretar un plano cuadriculado de nuestra ciudad usando ejes y cuadrantes matemáticos.</span>
+            </div>
+        </header>
+
+        <div class="fases-grid">
+            
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏠</span>
+                <h2>Antes de clase</h2>
+                <p>Visualiza este breve vídeo para entender cómo funcionan los ejes cartesianos sobre una cuadrícula.</p>
+                
+                <div class="video-container">
+                    <div class="video-placeholder-texto">
+                        <span style="font-size: 2rem;">▶️</span>
+                        <p><strong>Vídeo: Ejes y cuadrícula</strong><br><em>({{VIDEO_URL}})</em></p>
+                    </div>
+                </div>
+
+                <ul class="lista-tareas">
+                    <li>Visualiza el vídeo con atención.</li>
+                    <li>Apunta en tu cuaderno qué es el eje X y qué es el eje Y.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🏫</span>
+                <h2>Durante la clase</h2>
+                <p>¡Construiremos nuestro tablero de juego! Trabajaremos sobre el plano impreso de Almería.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>1. El mapa:</strong> Recibe de tu profesor el mapa base cuadriculado de Almería.</li>
+                    <li><strong>2. Trazar ejes:</strong> Dibuja con regla y color el eje horizontal (X) y el eje vertical (Y) en el centro.</li>
+                    <li><strong>3. Cuadrantes:</strong> Identifica y nombra los 4 sectores o cuadrantes del mapa (I, II, III, IV).</li>
+                    <li><strong>4. Primeros puntos:</strong> Sitúa los 3 primeros lugares de referencia que indique el profesor.</li>
+                </ul>
+            </article>
+
+            <article class="fase-tarjeta">
+                <span class="fase-icono">🧠</span>
+                <h2>Después de clase</h2>
+                <p>Práctica extra para asegurarte de que dominas la localización en el mapa.</p>
+                
+                <ul class="lista-tareas">
+                    <li><strong>Práctica guiada:</strong> Localiza y marca 6 puntos extra de forma opcional (puedes usar el plano interactivo del aula virtual o tu cuaderno).</li>
+                    <li>Revisa si has escrito correctamente los signos positivos y negativos según el cuadrante.</li>
+                </ul>
+            </article>
+
+        </div>
+
+        <div class="seccion-doble">
+            
+            <section class="caja-destacada caja-evidencia">
+                <h3>🗺️ Tu evidencia del día</h3>
+                <p>Al final de la sesión, tu equipo debe tener listo el <strong>Mapa base de Almería completado</strong>.</p>
+                <p>Este mapa será vuestra herramienta principal para el resto del proyecto. Debe tener las líneas rectas, limpias y los ejes bien nombrados. ¡Guardadlo como oro en paño!</p>
+            </section>
+
+            <section class="caja-destacada caja-error">
+                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <p><strong>Leer las coordenadas en el orden incorrecto.</strong></p>
+                <p>Es el fallo más común. Recuerda que una coordenada siempre se escribe y se lee así: $(X, Y)$</p>
+                <div class="error-ejemplo">
+                    Primero caminamos en horizontal (Eje X) ↔️<br>
+                    Y después subimos o bajamos en vertical (Eje Y) ↕️<br>
+                    <em>"Es como entrar al portal y luego subir en el ascensor."</em>
+                </div>
+            </section>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
