@@ -1,0 +1,42 @@
+<!-- ============================================================
+     footer.html — Pie de página compartido
+     "Almería en cifras y formas" · Matemáticas 1.º ESO
+     Cargado dinámicamente por script.js en todas las páginas
+     ============================================================ -->
+
+<footer class="footer-sitio" role="contentinfo">
+    <div class="footer-contenido">
+
+        <!-- Bloque autor / centro -->
+        <div class="footer-autor">
+            <span class="footer-nombre">Juan María Gámez Ortiz</span>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro">
+                I.E.S. Al-Ándalus
+            </a>
+        </div>
+
+        <!-- Selector de idioma -->
+        <nav class="footer-idiomas" aria-label="Selector de idioma">
+            <span class="footer-idiomas-label">🌐 Idioma:</span>
+            <button class="btn-idioma activo" data-lang="es" aria-label="Español"    title="Español">🇪🇸 ES</button>
+            <button class="btn-idioma"        data-lang="en" aria-label="English"    title="English">🇬🇧 EN</button>
+            <button class="btn-idioma"        data-lang="ar" aria-label="العربية"    title="العربية">🇸🇦 AR</button>
+            <button class="btn-idioma"        data-lang="pl" aria-label="Polski"     title="Polski">🇵🇱 PL</button>
+            <button class="btn-idioma"        data-lang="ru" aria-label="Русский"    title="Русский">🇷🇺 RU</button>
+            <button class="btn-idioma"        data-lang="nl" aria-label="Nederlands" title="Nederlands">🇳🇱 NL</button>
+            <button class="btn-idioma"        data-lang="de" aria-label="Deutsch"    title="Deutsch">🇩🇪 DE</button>
+        </nav>
+
+        <!-- Copyright -->
+        <div class="footer-copy">
+            <span>© <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería</span>
+        </div>
+
+    </div>
+</footer>
+
+<!-- Toast de idioma -->
+<div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+
+<!-- Botón volver arriba -->
+<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
