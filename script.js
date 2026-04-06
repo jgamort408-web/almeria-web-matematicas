@@ -254,58 +254,74 @@
         _toastTimer = setTimeout(function () { el.classList.remove('visible'); }, 3000);
     }
 
-    /* Espera a que GT inyecte .goog-te-combo y ejecuta el callback.
-       Polling cada 100 ms, máximo 8 segundos. */
-    function esperarGTCombo(cb) {
-        var intentos = 0;
-        var id = setInterval(function () {
-            var sel = document.querySelector('.goog-te-combo');
-            if (sel) { clearInterval(id); cb(sel); }
-            else if (++intentos > 80) {
-                clearInterval(id);
-                mostrarToast('\u26a0\ufe0f Traductor no disponible. Comprueba la conexi\u00f3n.');
-            }
-        }, 100);
+    /* ----------------------------------------------------------------
+       GOOGLE TRANSLATE — Enfoque por cookie + recarga
+       GT lee la cookie "googtrans" al cargar la página.
+       Formato: "/idioma_origen/idioma_destino"  → "/es/en"
+       Para volver al original: borrar la cookie y recargar.
+       Este método funciona en todos los contextos (GitHub Pages,
+       Google Sites, servidor local con HTTP).
+    ---------------------------------------------------------------- */
+
+    /** Lee el idioma activo desde la cookie googtrans */
+    function leerIdiomaActivo() {
+        var m = document.cookie.match(/(?:^|;)\s*googtrans=\/es\/([a-z]{2})/);
+        return m ? m[1] : 'es';
     }
 
-    function aplicarIdioma(lang, btnPulsado) {
-        esperarGTCombo(function (sel) {
-            sel.value = lang;
-            sel.dispatchEvent(new Event('change', { bubbles: true }));
-            document.querySelectorAll('.btn-idioma').forEach(function (b) { b.classList.remove('activo'); });
-            btnPulsado.classList.add('activo');
-        });
-    }
-
-    /* Restaurar español: borrar cookie googtrans y recargar la página */
-    function restaurarEspanol() {
-        /* La cookie googtrans controla qué idioma muestra GT.
-           Borrarla en / y en el path actual garantiza que GT no traduzca. */
-        var dominios = [location.hostname, '.' + location.hostname, ''];
-        var paths     = ['/', location.pathname];
-        dominios.forEach(function (d) {
-            paths.forEach(function (p) {
-                document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p +
-                    (d ? '; domain=' + d : '') + ';';
+    /** Escribe la cookie googtrans en todos los paths/dominios necesarios */
+    function setCookieGT(valor) {
+        var paths   = ['/', location.pathname];
+        var dominios = [location.hostname, '.' + location.hostname];
+        paths.forEach(function (p) {
+            /* Sin dominio (funciona en file:// y en cualquier host) */
+            document.cookie = 'googtrans=' + valor + '; path=' + p + ';';
+            dominios.forEach(function (d) {
+                document.cookie = 'googtrans=' + valor + '; path=' + p + '; domain=' + d + ';';
             });
         });
-        location.reload();
+    }
+
+    /** Borra la cookie googtrans en todos los paths/dominios */
+    function borrarCookieGT() {
+        var exp     = '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+        var paths   = ['/', location.pathname];
+        var dominios = [location.hostname, '.' + location.hostname];
+        paths.forEach(function (p) {
+            document.cookie = 'googtrans=' + exp + '; path=' + p + ';';
+            dominios.forEach(function (d) {
+                document.cookie = 'googtrans=' + exp + '; path=' + p + '; domain=' + d + ';';
+            });
+        });
+    }
+
+    /** Marca el botón del idioma activo al cargar la página */
+    function marcarIdiomaActivo() {
+        var activo = leerIdiomaActivo();
+        document.querySelectorAll('.btn-idioma').forEach(function (b) {
+            b.classList.toggle('activo', b.dataset.lang === activo);
+        });
     }
 
     function activarSelectorIdioma() {
+        marcarIdiomaActivo();
+
         document.querySelectorAll('.btn-idioma').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var lang = this.dataset.lang;
-                var self = this;
+                if (lang === leerIdiomaActivo()) return; /* ya activo, no hacer nada */
+
                 if (lang === 'es') {
-                    restaurarEspanol();
+                    borrarCookieGT();
                 } else {
-                    aplicarIdioma(lang, self);
+                    setCookieGT('/es/' + lang);
                 }
+                location.reload();
             });
         });
     }
 
+    /** Carga el script de GT para que aplique la cookie al renderizar */
     function inyectarGoogleTranslate() {
         if (document.getElementById('gt-script')) return;
         window.googleTranslateElementInit = function () {
