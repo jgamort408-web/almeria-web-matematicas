@@ -1,26 +1,29 @@
 <style>
-    /* 1. FORZAR STICKY FOOTER (Se inyecta en la página principal) */
-    html, body {
-        height: 100% !important;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
+    /* 1. FORZAR STICKY FOOTER SIN CORTAR LA PÁGINA */
+    html {
+        height: auto; /* Permitir que el scroll funcione siempre */
     }
 
-    /* El contenedor donde cargues el footer debe tener margin-top: auto */
-    #common-footer-placeholder, 
-    #site-footer {
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh !important; /* Mínimo el alto de la pantalla */
+        margin: 0;
+    }
+
+    /* El placeholder se empuja al fondo */
+    #site-footer, #common-footer-placeholder {
         margin-top: auto !important;
         width: 100%;
     }
 
-    /* 2. ESTILOS DEL FOOTER */
+    /* 2. ESTILOS VISUALES */
     .footer-sitio {
-        background-color: #5A6B7C; /* Gris Pizarra */
+        background-color: #5A6B7C;
         color: #FFFFFF;
         padding: 25px 15px;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        border-top: 4px solid #D36E5A; /* Terracota */
+        font-family: sans-serif;
+        border-top: 4px solid #D36E5A;
     }
 
     .footer-contenido {
@@ -33,28 +36,11 @@
         text-align: center;
     }
 
-    .footer-autor .footer-nombre {
-        font-weight: bold;
-        display: block;
-        font-size: 1.1rem;
-    }
-
-    .footer-centro {
-        color: #F4EBD0;
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: opacity 0.2s;
-    }
-
-    .footer-centro:hover { opacity: 0.8; }
-
-    /* 3. BOTONES DE IDIOMA */
     .footer-idiomas {
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         gap: 8px;
-        margin: 10px 0;
     }
 
     .btn-idioma {
@@ -64,73 +50,59 @@
         padding: 6px 12px;
         border-radius: 20px;
         cursor: pointer;
-        font-size: 0.85rem;
         transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 5px;
     }
 
-    .btn-idioma:hover {
-        background-color: #D36E5A;
-        border-color: #D36E5A;
-    }
+    .btn-idioma:hover { background-color: #D36E5A; }
+    .btn-idioma.activo { background-color: #005A8C; border-color: #fff; }
 
-    .btn-idioma.activo {
-        background-color: #005A8C;
-        border-color: #005A8C;
-        font-weight: bold;
-    }
-
-    /* Ocultar el widget original de Google para que no estorbe */
-    #google_translate_element {
-        display: none;
-    }
+    /* Ocultar basurilla de Google Translate */
+    #google_translate_element { display: none !important; }
     .goog-te-banner-frame.skiptranslate { display: none !important; }
     body { top: 0px !important; }
 </style>
 
 <footer class="footer-sitio">
     <div class="footer-contenido">
-        
         <div class="footer-autor">
             <span class="footer-nombre">Juan María Gámez Ortiz</span>
-            <a href="https://iesalandalus.org/joomla/" class="footer-centro" target="_blank">I.E.S. Al-Ándalus</a>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro" target="_blank" style="color: #F4EBD0; text-decoration: none;">I.E.S. Al-Ándalus</a>
         </div>
 
-        <nav class="footer-idiomas" aria-label="Traductor">
-            <button class="btn-idioma" onclick="cambiarIdioma('es')">🇪🇸 ES</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('en')">🇬🇧 EN</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('fr')">🇫🇷 FR</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('de')">🇩🇪 DE</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('nl')">🇳🇱 NL</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('pl')">🇵🇱 PL</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('ru')">🇷🇺 RU</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('uk')">🇺🇦 UK</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('ar')">🇸🇦 AR</button>
+        <nav class="footer-idiomas">
+            <button class="btn-idioma" onclick="cambiarIdioma('es', this)">🇪🇸 ES</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('en', this)">🇬🇧 EN</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('fr', this)">🇫🇷 FR</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('de', this)">🇩🇪 DE</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('nl', this)">🇳🇱 NL</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('pl', this)">🇵🇱 PL</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('ru', this)">🇷🇺 RU</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('uk', this)">🇺🇦 UK</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('ar', this)">🇸🇦 AR</button>
         </nav>
 
         <div id="google_translate_element"></div>
 
-        <div class="footer-copy">
-            <span>© <span id="footer-year"></span> · Matemáticas 1.º ESO · Almería</span>
+        <div class="footer-copy" style="font-size: 0.85rem; opacity: 0.8;">
+            © <span id="footer-year"></span> · Matemáticas 1.º ESO · Almería
         </div>
     </div>
 </footer>
 
 <script>
-    // 1. Poner el año actual
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-    // 2. Función para disparar el cambio de idioma de Google
-    function cambiarIdioma(codigo) {
+    function cambiarIdioma(codigo, elemento) {
         const selectGoogle = document.querySelector('.goog-te-combo');
         if (selectGoogle) {
             selectGoogle.value = codigo;
-            // Disparamos el evento de cambio para que Google se entere
             selectGoogle.dispatchEvent(new Event('change'));
+            
+            // Marcar botón como activo
+            document.querySelectorAll('.btn-idioma').forEach(b => b.classList.remove('activo'));
+            elemento.classList.add('activo');
         } else {
-            console.error("El traductor de Google aún no se ha cargado.");
+            alert("El traductor todavía se está cargando. Espera un segundo...");
         }
     }
 </script>
