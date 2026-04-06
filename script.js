@@ -39,7 +39,7 @@
         '}',
 
         /* Estilos visuales del footer */
-        '.footer-sitio { background: #5A6B7C; color: #fff; border-top: 4px solid #D36E5A; padding: 25px 0; font-family: sans-serif; width: 100%; }',
+        '.footer-sitio { margin-top: 50px; background: #5A6B7C; color: #fff; border-top: 4px solid #D36E5A; padding: 25px 0; font-family: sans-serif; width: 100%; }',
         '.footer-contenido { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap; gap: 15px; }',
         '.footer-autor { display: flex; flex-direction: column; }',
         '.footer-nombre { font-weight: bold; }',
