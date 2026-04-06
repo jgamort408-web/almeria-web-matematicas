@@ -14,7 +14,13 @@
        /* --- Añade esto al inicio del array CSS_FOOTER --- */
     'html, body { height: 100% !important; margin: 0; }',
     'body { display: flex !important; flex-direction: column !important; min-height: 100vh !important; }',
-    '#site-footer { margin-top: auto !important; width: 100%; }',
+    /* Asegúrate de que estas líneas estén así en tu variable CSS_FOOTER */
+    '#site-footer {',
+    '    display: block !important;',
+    '    width: 100% !important;',
+    '    min-height: 100px !important;', /* Altura mínima para que no desaparezca */
+    '    background: #5A6B7C !important;', /* Color de respaldo */
+    '}',
     /* Ocultar elementos de Google Translate */
     '#google_translate_element { display: none !important; }',
     '.goog-te-banner-frame.skiptranslate { display: none !important; }',
