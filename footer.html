@@ -1,42 +1,136 @@
-<!-- ============================================================
-     footer.html — Pie de página compartido
-     "Almería en cifras y formas" · Matemáticas 1.º ESO
-     Cargado dinámicamente por script.js en todas las páginas
-     ============================================================ -->
+<style>
+    /* 1. FORZAR STICKY FOOTER (Se inyecta en la página principal) */
+    html, body {
+        height: 100% !important;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
 
-<footer class="footer-sitio" role="contentinfo">
+    /* El contenedor donde cargues el footer debe tener margin-top: auto */
+    #common-footer-placeholder, 
+    #site-footer {
+        margin-top: auto !important;
+        width: 100%;
+    }
+
+    /* 2. ESTILOS DEL FOOTER */
+    .footer-sitio {
+        background-color: #5A6B7C; /* Gris Pizarra */
+        color: #FFFFFF;
+        padding: 25px 15px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        border-top: 4px solid #D36E5A; /* Terracota */
+    }
+
+    .footer-contenido {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .footer-autor .footer-nombre {
+        font-weight: bold;
+        display: block;
+        font-size: 1.1rem;
+    }
+
+    .footer-centro {
+        color: #F4EBD0;
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: opacity 0.2s;
+    }
+
+    .footer-centro:hover { opacity: 0.8; }
+
+    /* 3. BOTONES DE IDIOMA */
+    .footer-idiomas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin: 10px 0;
+    }
+
+    .btn-idioma {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .btn-idioma:hover {
+        background-color: #D36E5A;
+        border-color: #D36E5A;
+    }
+
+    .btn-idioma.activo {
+        background-color: #005A8C;
+        border-color: #005A8C;
+        font-weight: bold;
+    }
+
+    /* Ocultar el widget original de Google para que no estorbe */
+    #google_translate_element {
+        display: none;
+    }
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+</style>
+
+<footer class="footer-sitio">
     <div class="footer-contenido">
-
-        <!-- Bloque autor / centro -->
+        
         <div class="footer-autor">
             <span class="footer-nombre">Juan María Gámez Ortiz</span>
-            <a href="https://iesalandalus.org/joomla/" class="footer-centro">
-                I.E.S. Al-Ándalus
-            </a>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro" target="_blank">I.E.S. Al-Ándalus</a>
         </div>
 
-        <!-- Selector de idioma -->
-        <nav class="footer-idiomas" aria-label="Selector de idioma">
-            <span class="footer-idiomas-label">🌐 Idioma:</span>
-            <button class="btn-idioma activo" data-lang="es" aria-label="Español"    title="Español">🇪🇸 ES</button>
-            <button class="btn-idioma"        data-lang="en" aria-label="English"    title="English">🇬🇧 EN</button>
-            <button class="btn-idioma"        data-lang="ar" aria-label="العربية"    title="العربية">🇸🇦 AR</button>
-            <button class="btn-idioma"        data-lang="pl" aria-label="Polski"     title="Polski">🇵🇱 PL</button>
-            <button class="btn-idioma"        data-lang="ru" aria-label="Русский"    title="Русский">🇷🇺 RU</button>
-            <button class="btn-idioma"        data-lang="nl" aria-label="Nederlands" title="Nederlands">🇳🇱 NL</button>
-            <button class="btn-idioma"        data-lang="de" aria-label="Deutsch"    title="Deutsch">🇩🇪 DE</button>
+        <nav class="footer-idiomas" aria-label="Traductor">
+            <button class="btn-idioma" onclick="cambiarIdioma('es')">🇪🇸 ES</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('en')">🇬🇧 EN</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('fr')">🇫🇷 FR</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('de')">🇩🇪 DE</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('nl')">🇳🇱 NL</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('pl')">🇵🇱 PL</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('ru')">🇷🇺 RU</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('uk')">🇺🇦 UK</button>
+            <button class="btn-idioma" onclick="cambiarIdioma('ar')">🇸🇦 AR</button>
         </nav>
 
-        <!-- Copyright -->
-        <div class="footer-copy">
-            <span>© <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería</span>
-        </div>
+        <div id="google_translate_element"></div>
 
+        <div class="footer-copy">
+            <span>© <span id="footer-year"></span> · Matemáticas 1.º ESO · Almería</span>
+        </div>
     </div>
 </footer>
 
-<!-- Toast de idioma -->
-<div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+<script>
+    // 1. Poner el año actual
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
 
-<!-- Botón volver arriba -->
-<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
+    // 2. Función para disparar el cambio de idioma de Google
+    function cambiarIdioma(codigo) {
+        const selectGoogle = document.querySelector('.goog-te-combo');
+        if (selectGoogle) {
+            selectGoogle.value = codigo;
+            // Disparamos el evento de cambio para que Google se entere
+            selectGoogle.dispatchEvent(new Event('change'));
+        } else {
+            console.error("El traductor de Google aún no se ha cargado.");
+        }
+    }
+</script>
