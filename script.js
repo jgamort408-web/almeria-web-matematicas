@@ -9,20 +9,37 @@
     /* ----------------------------------------------------------------
        1. ESTILOS DEL FOOTER Y REPARACIÓN DEL LAYOUT
     ---------------------------------------------------------------- */
+  /* ----------------------------------------------------------------
+       1. ESTILOS DEL FOOTER Y REPARACIÓN DEL LAYOUT
+    ---------------------------------------------------------------- */
     var CSS_FOOTER = [
-        /* Arreglamos el conflicto de tu Body original con el Sticky Footer */
+        /* Forzar Sticky Footer y arreglar el body */
         'html { height: 100%; }',
         'body {',
-        '    flex-direction: column !important;', /* Lo hace vertical */
-        '    justify-content: flex-start !important;', /* Lo pega arriba */
-        '    align-items: center !important;', /* Recupera tu centrado horizontal */
+        '    display: flex !important;',
+        '    flex-direction: column !important;',
         '    min-height: 100vh !important;',
+        '    margin: 0;',
+        /* ESTA LÍNEA ES LA CLAVE: Evita que el body centre los elementos aplastándolos */
+        '    align-items: stretch !important;', 
         '}',
-        '.contenedor { flex: 1 0 auto !important; width: 100%; }', /* Empuja el footer hacia abajo */
-        '#site-footer { width: 100%; flex-shrink: 0; }',
+        
+        /* El contenedor principal crece para empujar el footer */
+        '.contenedor {',
+        '    flex: 1 0 auto !important;',
+        '    width: 100%;',
+        '    max-width: 1150px;',
+        '    margin: 0 auto;', /* Centra el contenedor horizontalmente */
+        '}',
+        
+        /* El contenedor del footer DEBE ocupar todo el ancho */
+        '#site-footer {',
+        '    flex-shrink: 0;',
+        '    width: 100% !important;', /* Fuerza el 100% del ancho */
+        '}',
 
         /* Estilos visuales del footer */
-        '.footer-sitio { background: #5A6B7C; color: #fff; border-top: 4px solid #D36E5A; padding: 25px 0; font-family: sans-serif; }',
+        '.footer-sitio { background: #5A6B7C; color: #fff; border-top: 4px solid #D36E5A; padding: 25px 0; font-family: sans-serif; width: 100%; }',
         '.footer-contenido { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; flex-wrap: wrap; gap: 15px; }',
         '.footer-autor { display: flex; flex-direction: column; }',
         '.footer-nombre { font-weight: bold; }',
