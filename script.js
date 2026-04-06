@@ -11,6 +11,14 @@
           compatibilidad, independientemente de cómo se cargue el HTML)
     ---------------------------------------------------------------- */
     var CSS_FOOTER = [
+       /* --- Añade esto al inicio del array CSS_FOOTER --- */
+    'html, body { height: 100% !important; margin: 0; }',
+    'body { display: flex !important; flex-direction: column !important; min-height: 100vh !important; }',
+    '#site-footer { margin-top: auto !important; width: 100%; }',
+    /* Ocultar elementos de Google Translate */
+    '#google_translate_element { display: none !important; }',
+    '.goog-te-banner-frame.skiptranslate { display: none !important; }',
+    'body { top: 0px !important; }',
         '/* ====== FOOTER SITIO ====== */',
         '.footer-sitio {',
         '    background: linear-gradient(135deg, #002f4b 0%, #005A8C 100%);',
@@ -88,7 +96,7 @@
         '    transform: none;',
         '}',
         '.footer-copy {',
-        '    font-size: 0.78rem;',
+        '    font-size: 0.78rem;',l
         '    color: rgba(255,255,255,0.55);',
         '    white-space: nowrap;',
         '}',
@@ -167,6 +175,15 @@
         de: '\uD83C\uDDE9\uD83C\uDDEA Deutsche Version bald verf\u00FCgbar!'
     };
 
+   /* --- Nueva función para el traductor --- */
+    window.googleTranslateElementInit = function() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'es',
+            includedLanguages: 'en,fr,de,ar,nl,es,ru,uk,pl',
+            autoDisplay: false
+        }, 'google_translate_element');
+    };
+
     /* ----------------------------------------------------------------
        3. INYECTAR CSS DEL FOOTER EN <head>
     ---------------------------------------------------------------- */
@@ -205,6 +222,10 @@
                 placeholder.innerHTML = html;
                 activarFooter();
                 activarBotonTop();
+               /* --- AÑADE ESTO AQUÍ: Carga el motor de traducción --- */
+                var script = document.createElement('script');
+                script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+                document.body.appendChild(script);
             })
             .catch(function (err) {
                 console.warn('[Almeria web] footer.html no disponible:', err);
@@ -227,14 +248,21 @@
         var spanAno = document.getElementById('footer-año');
         if (spanAno) spanAno.textContent = new Date().getFullYear();
 
-        // Selector de idioma
-        var toast = document.getElementById('toast-idioma');
+        // Selector de idioma (TRADUCCIÓN REAL)
         document.querySelectorAll('.btn-idioma').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var lang = this.dataset.lang;
-                if (lang === 'es') return;
-                var msg = MENSAJES_IDIOMA[lang] || 'Versi\u00F3n pr\u00F3ximamente disponible';
-                if (toast) mostrarToast(toast, msg);
+                
+                // Cambiar clase activa visualmente
+                document.querySelectorAll('.btn-idioma').forEach(b => b.classList.remove('activo'));
+                this.classList.add('activo');
+
+                // Ejecutar traducción de Google
+                var selectGoogle = document.querySelector('.goog-te-combo');
+                if (selectGoogle) {
+                    selectGoogle.value = lang;
+                    selectGoogle.dispatchEvent(new Event('change'));
+                }
             });
         });
     }
