@@ -1,108 +1,28 @@
-<style>
-    /* 1. FORZAR STICKY FOOTER SIN CORTAR LA PÁGINA */
-    html {
-        height: auto; /* Permitir que el scroll funcione siempre */
-    }
-
-    body {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh !important; /* Mínimo el alto de la pantalla */
-        margin: 0;
-    }
-
-    /* El placeholder se empuja al fondo */
-    #site-footer, #common-footer-placeholder {
-        margin-top: auto !important;
-        width: 100%;
-    }
-
-    /* 2. ESTILOS VISUALES */
-    .footer-sitio {
-        background-color: #5A6B7C;
-        color: #FFFFFF;
-        padding: 25px 15px;
-        font-family: sans-serif;
-        border-top: 4px solid #D36E5A;
-    }
-
-    .footer-contenido {
-        max-width: 1100px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
-        text-align: center;
-    }
-
-    .footer-idiomas {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 8px;
-    }
-
-    .btn-idioma {
-        background-color: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        color: white;
-        padding: 6px 12px;
-        border-radius: 20px;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .btn-idioma:hover { background-color: #D36E5A; }
-    .btn-idioma.activo { background-color: #005A8C; border-color: #fff; }
-
-    /* Ocultar basurilla de Google Translate */
-    #google_translate_element { display: none !important; }
-    .goog-te-banner-frame.skiptranslate { display: none !important; }
-    body { top: 0px !important; }
-</style>
-
 <footer class="footer-sitio">
     <div class="footer-contenido">
+        
         <div class="footer-autor">
             <span class="footer-nombre">Juan María Gámez Ortiz</span>
-            <a href="https://iesalandalus.org/joomla/" class="footer-centro" target="_blank" style="color: #F4EBD0; text-decoration: none;">I.E.S. Al-Ándalus</a>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro" target="_blank">I.E.S. Al-Ándalus</a>
         </div>
 
-        <nav class="footer-idiomas">
-            <button class="btn-idioma" onclick="cambiarIdioma('es', this)">🇪🇸 ES</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('en', this)">🇬🇧 EN</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('fr', this)">🇫🇷 FR</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('de', this)">🇩🇪 DE</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('nl', this)">🇳🇱 NL</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('pl', this)">🇵🇱 PL</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('ru', this)">🇷🇺 RU</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('uk', this)">🇺🇦 UK</button>
-            <button class="btn-idioma" onclick="cambiarIdioma('ar', this)">🇸🇦 AR</button>
+        <nav class="footer-idiomas" aria-label="Traductor">
+            <button class="btn-idioma" data-lang="es">🇪🇸 ES</button>
+            <button class="btn-idioma" data-lang="en">🇬🇧 EN</button>
+            <button class="btn-idioma" data-lang="fr">🇫🇷 FR</button>
+            <button class="btn-idioma" data-lang="de">🇩🇪 DE</button>
+            <button class="btn-idioma" data-lang="nl">🇳🇱 NL</button>
+            <button class="btn-idioma" data-lang="pl">🇵🇱 PL</button>
+            <button class="btn-idioma" data-lang="ru">🇷🇺 RU</button>
+            <button class="btn-idioma" data-lang="uk">🇺🇦 UK</button>
+            <button class="btn-idioma" data-lang="ar">🇸🇦 AR</button>
         </nav>
 
         <div id="google_translate_element"></div>
 
-        <div class="footer-copy" style="font-size: 0.85rem; opacity: 0.8;">
-            © <span id="footer-year"></span> · Matemáticas 1.º ESO · Almería
+        <div class="footer-copy">
+            <span>© <span id="footer-año"></span> · Matemáticas 1.º ESO · Almería</span>
         </div>
+        
     </div>
 </footer>
-
-<script>
-    document.getElementById('footer-year').textContent = new Date().getFullYear();
-
-    function cambiarIdioma(codigo, elemento) {
-        const selectGoogle = document.querySelector('.goog-te-combo');
-        if (selectGoogle) {
-            selectGoogle.value = codigo;
-            selectGoogle.dispatchEvent(new Event('change'));
-            
-            // Marcar botón como activo
-            document.querySelectorAll('.btn-idioma').forEach(b => b.classList.remove('activo'));
-            elemento.classList.add('activo');
-        } else {
-            alert("El traductor todavía se está cargando. Espera un segundo...");
-        }
-    }
-</script>
