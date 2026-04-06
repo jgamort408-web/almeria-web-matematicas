@@ -277,20 +277,28 @@
         });
     }
 
+    /* Restaurar español: borrar cookie googtrans y recargar la página */
+    function restaurarEspanol() {
+        /* La cookie googtrans controla qué idioma muestra GT.
+           Borrarla en / y en el path actual garantiza que GT no traduzca. */
+        var dominios = [location.hostname, '.' + location.hostname, ''];
+        var paths     = ['/', location.pathname];
+        dominios.forEach(function (d) {
+            paths.forEach(function (p) {
+                document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=' + p +
+                    (d ? '; domain=' + d : '') + ';';
+            });
+        });
+        location.reload();
+    }
+
     function activarSelectorIdioma() {
         document.querySelectorAll('.btn-idioma').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var lang = this.dataset.lang;
                 var self = this;
                 if (lang === 'es') {
-                    /* Restaurar español via GT */
-                    var sel = document.querySelector('.goog-te-combo');
-                    if (sel) {
-                        sel.value = '';
-                        sel.dispatchEvent(new Event('change', { bubbles: true }));
-                    }
-                    document.querySelectorAll('.btn-idioma').forEach(function (b) { b.classList.remove('activo'); });
-                    self.classList.add('activo');
+                    restaurarEspanol();
                 } else {
                     aplicarIdioma(lang, self);
                 }
