@@ -77,37 +77,28 @@
        5. CARGAR footer.html E INYECTAR EN #site-footer
     ---------------------------------------------------------------- */
     function cargarFooter() {
-        var placeholder = document.getElementById('site-footer');
-        if (!placeholder) return;
+    const placeholder = document.getElementById('site-footer'); // o 'common-footer-placeholder'
+    if (!placeholder) return;
 
-        var footerPath = getRutaRaiz() + 'footer.html';
+    fetch('footer.html') // Asegúrate de que la ruta sea correcta
+        .then(response => response.text())
+        .then(data => {
+            placeholder.innerHTML = data;
 
-        fetch(footerPath)
-            .then(function (r) {
-                if (!r.ok) throw new Error('HTTP ' + r.status);
-                return r.text();
-            })
-            .then(function (html) {
-                placeholder.innerHTML = html;
-                activarFooter();
-                activarBotonTop();
-               /* --- AÑADE ESTO AQUÍ: Carga el motor de traducción --- */
-                var script = document.createElement('script');
-                script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-                document.body.appendChild(script);
-            })
-            .catch(function (err) {
-                console.warn('[Almeria web] footer.html no disponible:', err);
-                // Fallback mínimo (útil en file:// o en caso de error)
-                placeholder.innerHTML =
-                    '<footer style="background:#003F63;color:#fff;text-align:center;' +
-                    'padding:18px;margin-top:30px;font-family:Arial,sans-serif;font-size:0.9rem;">' +
-                    '<strong>Juan Mar\u00EDa G\u00E1mez Ortiz</strong> &nbsp;&bull;&nbsp; ' +
-                    '<a href="https://iesalandalus.org/joomla/" style="color:#F4EBD0;text-decoration:none;">' +
-                    'I.E.S. Al-\u00C1ndalus</a>' +
-                    '</footer>';
-            });
-    }
+            // CARGAR GOOGLE TRANSLATE JUSTO AHORA
+            window.googleTranslateElementInit = function() {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'es',
+                    includedLanguages: 'en,fr,de,ar,nl,es,ru,uk,pl',
+                    autoDisplay: false
+                }, 'google_translate_element');
+            };
+
+            const script = document.createElement('script');
+            script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+            document.body.appendChild(script);
+        });
+}
 
     /* ----------------------------------------------------------------
        6. LÓGICA INTERNA DEL FOOTER
