@@ -161,8 +161,16 @@
         '.btn-top:hover { background: #003F63; transform: translateY(-2px); }',
         '.btn-top:focus { outline: 2px solid #F4EBD0; outline-offset: 3px; }',
 
-        /* --- Ocultar barra de Google Translate --- */
-        '.goog-te-banner-frame, .skiptranslate { display: none !important; }',
+        /* --- Ocultar barra y widget de Google Translate (visualmente, no con display:none) --- */
+        /* El div contenedor no puede ser display:none o GT no inyecta el <select> */
+        '#google_translate_element {',
+        '  position: absolute !important;',
+        '  left: -9999px !important;',
+        '  width: 1px !important; height: 1px !important;',
+        '  overflow: hidden !important;',
+        '}',
+        '.goog-te-banner-frame { display: none !important; }',
+        '.skiptranslate { display: none !important; }',
         'body { top: 0 !important; }'
 
     ].join('\n');
@@ -246,28 +254,45 @@
         _toastTimer = setTimeout(function () { el.classList.remove('visible'); }, 3000);
     }
 
+    /* Espera a que GT inyecte .goog-te-combo y ejecuta el callback.
+       Polling cada 100 ms, máximo 8 segundos. */
+    function esperarGTCombo(cb) {
+        var intentos = 0;
+        var id = setInterval(function () {
+            var sel = document.querySelector('.goog-te-combo');
+            if (sel) { clearInterval(id); cb(sel); }
+            else if (++intentos > 80) {
+                clearInterval(id);
+                mostrarToast('\u26a0\ufe0f Traductor no disponible. Comprueba la conexi\u00f3n.');
+            }
+        }, 100);
+    }
+
+    function aplicarIdioma(lang, btnPulsado) {
+        esperarGTCombo(function (sel) {
+            sel.value = lang;
+            sel.dispatchEvent(new Event('change', { bubbles: true }));
+            document.querySelectorAll('.btn-idioma').forEach(function (b) { b.classList.remove('activo'); });
+            btnPulsado.classList.add('activo');
+        });
+    }
+
     function activarSelectorIdioma() {
         document.querySelectorAll('.btn-idioma').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 var lang = this.dataset.lang;
-                var select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    select.value = lang;
-                    select.dispatchEvent(new Event('change', { bubbles: true }));
-                    document.querySelectorAll('.btn-idioma').forEach(function (b) {
-                        b.classList.remove('activo');
-                    });
-                    this.classList.add('activo');
+                var self = this;
+                if (lang === 'es') {
+                    /* Restaurar español via GT */
+                    var sel = document.querySelector('.goog-te-combo');
+                    if (sel) {
+                        sel.value = '';
+                        sel.dispatchEvent(new Event('change', { bubbles: true }));
+                    }
+                    document.querySelectorAll('.btn-idioma').forEach(function (b) { b.classList.remove('activo'); });
+                    self.classList.add('activo');
                 } else {
-                    var avisos = {
-                        en: '🇬🇧 Activando inglés…',
-                        ar: '🇸🇦 تفعيل العربية…',
-                        pl: '🇵🇱 Aktywowanie polskiego…',
-                        ru: '🇷🇺 Активация русского…',
-                        nl: '🇳🇱 Nederlands activeren…',
-                        de: '🇩🇪 Deutsch wird aktiviert…'
-                    };
-                    mostrarToast(avisos[lang] || 'Cargando traductor…');
+                    aplicarIdioma(lang, self);
                 }
             });
         });
@@ -286,7 +311,7 @@
         };
         var s = document.createElement('script');
         s.id = 'gt-script';
-        s.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+        s.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
         document.body.appendChild(s);
     }
 
