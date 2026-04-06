@@ -17,17 +17,19 @@
     <style>
         /* Paleta y variables base - Enfoque Terracota */
         :root {
-            --terracota: #D36E5A;
-            --terracota-oscuro: #A54B3A;
-            --terracota-claro: #FCECE9;
-            --azul-mar: #005A8C;
-            --azul-claro: #E6F0F5;
-            --arena-clara: #F4EBD0;
-            --gris-pizarra: #5A6B7C;
-            --fondo-cuerpo: #FAFAFA;
-            --texto-principal: #333333;
-            --texto-secundario: #555555;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         *, *::before, *::after {
@@ -78,7 +80,7 @@
             align-items: center;
             gap: 8px;
             background-color: var(--terracota-claro);
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             text-decoration: none;
             padding: 10px 18px;
             border-radius: 6px;
@@ -98,7 +100,7 @@
         }
 
         .btn-siguiente:hover {
-            background-color: var(--terracota-oscuro);
+            background-color: var(--terracota);
             color: var(--blanco);
         }
 
@@ -195,7 +197,7 @@
 
         .texto-paso {
             font-weight: bold;
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
         }
 
         /* ================= FASES DE LA SESIÓN ================= */
@@ -307,7 +309,7 @@
             gap: 10px;
         }
 
-        .caja-evidencia h3 { color: var(--terracota-oscuro); }
+        .caja-evidencia h3 { color: var(--terracota); }
         .caja-error h3 { color: var(--gris-pizarra); }
 
         .caja-destacada p {
@@ -348,6 +350,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         

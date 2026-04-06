@@ -7,18 +7,21 @@
     <title>Bloque 4 · Producto final</title>
     
     <style>
-        /* Paleta y variables base - Enfoque Arena/Dorado */
+        /* Paleta unificada del proyecto */
         :root {
-            --dorado-principal: #DEAC3B;
-            --dorado-claro: #FDF7E7;
-            --dorado-medio: #EAC46B;
-            --dorado-oscuro: #A67C00;
-            --gris-pizarra: #5A6B7C;
-            --azul-mar: #005A8C;
-            --terracota: #D36E5A;
-            --fondo-cuerpo: #FAFAFA;
-            --texto-principal: #333333;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         /* Ajustes básicos optimizados para Google Sites */
@@ -48,7 +51,7 @@
 
         /* ================= CABECERA ================= */
         header {
-            background-color: var(--dorado-principal);
+            background-color: var(--terracota);
             color: var(--blanco);
             padding: 40px 30px;
             border-radius: 12px;
@@ -84,15 +87,15 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--dorado-principal);
+            border-left: 5px solid var(--terracota);
         }
 
         .btn-texto {
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: var(--dorado-claro);
-            color: var(--dorado-oscuro);
+            background-color: var(--terracota-claro);
+            color: var(--terracota);
             text-decoration: none;
             padding: 10px 18px;
             border-radius: 6px;
@@ -106,7 +109,7 @@
         }
 
         .btn-primario {
-            background-color: var(--dorado-oscuro);
+            background-color: var(--terracota);
             color: var(--blanco);
         }
 
@@ -124,17 +127,17 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 30px;
-            border-top: 5px solid var(--dorado-principal);
+            border-top: 5px solid var(--terracota);
         }
 
         .info-bloque h2 {
-            color: var(--dorado-oscuro);
+            color: var(--terracota);
             font-size: 1.6rem;
             margin-top: 0;
             display: flex;
             align-items: center;
             gap: 10px;
-            border-bottom: 2px solid var(--dorado-claro);
+            border-bottom: 2px solid var(--terracota-claro);
             padding-bottom: 10px;
         }
 
@@ -154,12 +157,12 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            border-left: 3px solid var(--dorado-medio);
+            border-left: 3px solid var(--terracota);
         }
 
         /* ================= TARJETAS DE SESIÓN ================= */
         .titulo-seccion {
-            color: var(--dorado-oscuro);
+            color: var(--terracota);
             font-size: 1.8rem;
             text-align: center;
             margin: 10px 0;
@@ -178,13 +181,13 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
             display: flex;
             flex-direction: column;
-            border: 1px solid var(--dorado-claro);
+            border: 1px solid var(--terracota-claro);
             transition: transform 0.2s ease, border-color 0.2s;
         }
 
         .tarjeta-sesion:hover {
             transform: translateY(-4px);
-            border-color: var(--dorado-principal);
+            border-color: var(--terracota);
         }
 
         .sesion-cabecera {
@@ -197,7 +200,7 @@
         }
 
         .sesion-num {
-            background-color: var(--dorado-principal);
+            background-color: var(--terracota);
             color: var(--blanco);
             padding: 6px 12px;
             border-radius: 20px;
@@ -208,7 +211,7 @@
 
         .tarjeta-sesion h3 {
             margin: 0;
-            color: var(--dorado-oscuro);
+            color: var(--terracota);
             font-size: 1.25rem;
         }
 
@@ -228,7 +231,7 @@
 
         .sesion-bloque strong {
             display: block;
-            color: var(--dorado-oscuro);
+            color: var(--terracota);
             margin-bottom: 4px;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -239,8 +242,8 @@
             display: block;
             text-align: center;
             background-color: var(--blanco);
-            color: var(--dorado-oscuro);
-            border: 2px solid var(--dorado-principal);
+            color: var(--terracota);
+            border: 2px solid var(--terracota);
             padding: 10px;
             border-radius: 6px;
             font-weight: bold;
@@ -249,9 +252,9 @@
         }
 
         .btn-acceder:hover {
-            background-color: var(--dorado-principal);
+            background-color: var(--terracota);
             color: var(--blanco);
-            border-color: var(--dorado-principal);
+            border-color: var(--terracota);
         }
 
         /* ================= SECCIONES INFERIORES ================= */
@@ -273,8 +276,8 @@
         }
 
         .caja-consejos {
-            border-top: 4px solid var(--dorado-principal);
-            background-color: var(--dorado-claro);
+            border-top: 4px solid var(--terracota);
+            background-color: var(--terracota-claro);
         }
 
         .caja-info h3 {
@@ -286,7 +289,7 @@
         }
 
         .caja-checklist h3 { color: var(--azul-mar); }
-        .caja-consejos h3 { color: var(--dorado-oscuro); }
+        .caja-consejos h3 { color: var(--terracota); }
 
         /* Checklist Visual */
         .lista-checklist {
@@ -331,7 +334,7 @@
         }
 
         .lista-consejos li strong {
-            color: var(--dorado-oscuro);
+            color: var(--terracota);
         }
 
         /* ================= RESPONSIVE ================= */
@@ -347,6 +350,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         

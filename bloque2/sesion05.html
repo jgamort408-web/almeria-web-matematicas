@@ -17,16 +17,19 @@
     <style>
         /* Paleta y variables base - Estética Geométrica (Terracota y Azul) */
         :root {
-            --terracota: #D36E5A;
-            --terracota-oscuro: #A54B3A;
-            --terracota-claro: #FCECE9;
-            --azul-mar: #005A8C;
-            --azul-claro: #E6F0F5;
-            --fondo-cuerpo: #FAFAFA;
-            --cuadricula: #E5E5E5;
-            --texto-principal: #333333;
-            --texto-secundario: #555555;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         *, *::before, *::after {
@@ -38,8 +41,8 @@
             background-color: var(--fondo-cuerpo);
             /* Fondo de papel milimetrado/geométrico */
             background-image: 
-                linear-gradient(var(--cuadricula) 1px, transparent 1px),
-                linear-gradient(90deg, var(--cuadricula) 1px, transparent 1px);
+                linear-gradient(#E0E0E0 1px, transparent 1px),
+                linear-gradient(90deg, #E0E0E0 1px, transparent 1px);
             background-size: 20px 20px;
             color: var(--texto-principal);
             margin: 0;
@@ -136,7 +139,7 @@
 
         header h1 {
             font-size: 2.5rem;
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             margin: 15px 0 10px 0;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -224,7 +227,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             width: 100%;
         }
 
@@ -303,7 +306,7 @@
         }
 
         .caja-evidencia h3 { color: var(--azul-mar); }
-        .caja-error h3 { color: var(--terracota-oscuro); }
+        .caja-error h3 { color: var(--terracota); }
 
         .caja-destacada p {
             font-size: 1.05rem;
@@ -376,6 +379,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         

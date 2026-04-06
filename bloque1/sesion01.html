@@ -8,17 +8,19 @@
     <style>
         /* Paleta de colores — coherente con el resto del proyecto */
         :root {
-            --azul-principal: #005A8C;
-            --azul-claro: #E6F0F5;
-            --azul-medio: #7BAFC9;
-            --azul-oscuro: #003F63;
-            --acento-naranja: #D36E5A;
-            --acento-rojo-claro: #FEF3F1;
-            --acento-rojo: #C0442E;
-            --fondo-cuerpo: #FAFAFA;
-            --texto-principal: #333333;
-            --texto-secundario: #555555;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         /* Ajustes básicos optimizados para incrustar */
@@ -57,7 +59,7 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--azul-principal);
+            border-left: 5px solid var(--azul-mar);
         }
 
         .btn-texto {
@@ -75,13 +77,13 @@
         }
 
         .btn-texto:hover {
-            background-color: var(--azul-medio);
+            background-color: var(--azul-claro);
             transform: translateY(-2px);
         }
 
         /* ================= CABECERA ================= */
         header {
-            background: linear-gradient(135deg, var(--azul-principal) 0%, var(--azul-oscuro) 100%);
+            background: linear-gradient(135deg, var(--azul-mar) 0%, var(--azul-oscuro) 100%);
             color: var(--blanco);
             padding: 40px 30px;
             border-radius: 12px;
@@ -134,7 +136,7 @@
             border-radius: 10px;
             padding: 25px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            border-top: 5px solid var(--azul-medio);
+            border-top: 5px solid var(--azul-claro);
             display: flex;
             flex-direction: column;
             position: relative;
@@ -145,8 +147,8 @@
             transform: translateY(-5px);
         }
 
-        .fase-tarjeta:nth-child(1) { border-top-color: var(--azul-medio); }
-        .fase-tarjeta:nth-child(2) { border-top-color: var(--azul-principal); }
+        .fase-tarjeta:nth-child(1) { border-top-color: var(--azul-claro); }
+        .fase-tarjeta:nth-child(2) { border-top-color: var(--azul-mar); }
         .fase-tarjeta:nth-child(3) { border-top-color: var(--azul-oscuro); }
 
         .fase-icono {
@@ -204,7 +206,7 @@
             color: var(--azul-oscuro);
             text-align: center;
             padding: 20px;
-            border: 2px dashed var(--azul-medio);
+            border: 2px dashed var(--azul-claro);
             border-radius: 8px;
         }
 
@@ -219,7 +221,7 @@
             margin-bottom: 8px;
             padding: 10px 15px;
             border-radius: 6px;
-            border-left: 3px solid var(--azul-principal);
+            border-left: 3px solid var(--azul-mar);
             font-size: 0.95rem;
         }
 
@@ -303,12 +305,14 @@
 </head>
 <body>
 
+    <div id="site-header"></div>
+
     <div class="contenedor">
         
         <nav class="controles-nav" aria-label="Navegación de sesión">
             <a href="index.html" class="btn-texto">⬅️ Volver al Bloque 1</a>
             <a href="../ruta.html" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
-            <a href="sesion02.html" class="btn-texto" style="background-color: var(--azul-principal); color: white;">Siguiente Sesión ➡️</a>
+            <a href="sesion02.html" class="btn-texto" style="background-color: var(--azul-mar); color: white;">Siguiente Sesión ➡️</a>
         </nav>
 
         <header>

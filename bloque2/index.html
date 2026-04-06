@@ -17,16 +17,19 @@
     <style>
         /* Paleta y variables base - Enfoque Terracota */
         :root {
-            --terracota: #D36E5A;
-            --terracota-claro: #FCECE9;
-            --terracota-medio: #E58D7C;
-            --terracota-oscuro: #A54B3A;
-            --arena-clara: #F4EBD0;
-            --gris-pizarra: #5A6B7C;
-            --azul-mar: #005A8C;
-            --fondo-cuerpo: #FAFAFA;
-            --texto-principal: #333333;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         /* Ajustes básicos */
@@ -96,7 +99,7 @@
             align-items: center;
             gap: 8px;
             background-color: var(--terracota-claro);
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             text-decoration: none;
             padding: 10px 18px;
             border-radius: 6px;
@@ -115,7 +118,7 @@
         }
 
         .btn-primario:hover {
-            background-color: var(--terracota-oscuro);
+            background-color: var(--terracota);
             color: var(--blanco);
         }
 
@@ -163,7 +166,7 @@
 
         /* ================= TARJETAS DE SESIÓN ================= */
         .titulo-seccion {
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             font-size: 1.8rem;
             text-align: center;
             margin: 10px 0;
@@ -211,7 +214,7 @@
 
         .tarjeta-sesion h3 {
             margin: 0;
-            color: var(--terracota-oscuro);
+            color: var(--terracota);
             font-size: 1.3rem;
         }
 
@@ -357,6 +360,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         

@@ -8,16 +8,19 @@
     <style>
         /* Paleta y variables base */
         :root {
-            --azul-mar: #005A8C;
-            --azul-claro: #E6F0F5;
-            --azul-medio: #337AAB;
-            --azul-oscuro: #003F63;
-            --arena-clara: #F4EBD0;
-            --gris-pizarra: #5A6B7C;
-            --terracota: #D36E5A;
-            --fondo-cuerpo: #FAFAFA;
-            --texto-principal: #333333;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         /* Ajustes básicos */
@@ -79,7 +82,7 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--azul-medio);
+            border-left: 5px solid var(--azul-claro);
         }
 
         .btn-texto {
@@ -149,7 +152,7 @@
             display: flex;
             align-items: flex-start;
             gap: 10px;
-            border-left: 3px solid var(--azul-medio);
+            border-left: 3px solid var(--azul-claro);
         }
 
         /* ================= TARJETAS DE SESIÓN ================= */
@@ -179,7 +182,7 @@
 
         .tarjeta-sesion:hover {
             transform: translateY(-4px);
-            border-color: var(--azul-medio);
+            border-color: var(--azul-claro);
         }
 
         .sesion-cabecera {
@@ -222,7 +225,7 @@
 
         .sesion-bloque strong {
             display: block;
-            color: var(--azul-medio);
+            color: var(--azul-claro);
             margin-bottom: 4px;
             font-size: 0.85rem;
             text-transform: uppercase;
@@ -310,6 +313,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         

@@ -17,17 +17,19 @@
     <style>
         /* Paleta y variables base - Estética de mapa escolar */
         :root {
-            --azul-mar: #005A8C;
-            --azul-claro: #E6F0F5;
-            --azul-medio: #4A90E2;
-            --rojo-marcador: #D34A4A;
-            --verde-mapa: #7BBD71;
-            --arena-clara: #FDFBF7;
-            --gris-pizarra: #5A6B7C;
-            --gris-claro: #EAEAEA;
-            --texto-principal: #333333;
-            --texto-secundario: #555555;
-            --blanco: #FFFFFF;
+            --azul-mar:       #005A8C;
+            --azul-oscuro:    #003F63;
+            --azul-claro:     #E6F0F5;
+            --arena-clara:    #F4EBD0;
+            --terracota:      #D36E5A;
+            --terracota-claro:#FEF3F1;
+            --verde-med:      #4A7C59;
+            --verde-claro:    #EAF2EC;
+            --gris-pizarra:   #5A6B7C;
+            --fondo-cuerpo:   #FAFAFA;
+            --texto-principal:#333333;
+            --texto-secundario:#555555;
+            --blanco:         #FFFFFF;
         }
 
         *, *::before, *::after {
@@ -71,7 +73,7 @@
             padding: 15px 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 5px solid var(--azul-medio);
+            border-left: 5px solid var(--azul-claro);
         }
 
         .btn-texto {
@@ -94,7 +96,7 @@
         }
 
         .btn-siguiente {
-            background-color: var(--azul-medio);
+            background-color: var(--azul-claro);
             color: var(--blanco);
         }
 
@@ -152,7 +154,7 @@
 
         .objetivo-caja {
             background-color: var(--arena-clara);
-            border: 2px dashed var(--azul-medio);
+            border: 2px dashed var(--azul-claro);
             color: var(--texto-principal);
             padding: 15px 20px;
             border-radius: 8px;
@@ -230,7 +232,7 @@
             position: relative;
             padding-bottom: 56.25%;
             margin-bottom: 15px;
-            border: 2px solid var(--azul-medio);
+            border: 2px solid var(--azul-claro);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -346,6 +348,8 @@
     </style>
 </head>
 <body>
+
+    <div id="site-header"></div>
 
     <div class="contenedor">
         
