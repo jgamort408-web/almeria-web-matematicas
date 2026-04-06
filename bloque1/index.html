@@ -314,7 +314,27 @@
 </head>
 <body>
 
-    <div id="site-header"></div>
+    <header class="site-header" role="banner">
+    <div class="header-inner">
+        <a href="../index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
+            <span class="header-logo-icon" aria-hidden="true">📐</span>
+            <span class="header-logo-texto">
+                <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
+            </span>
+        </a>
+        <button class="header-hamburger" id="hamburger-btn"
+                aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span><span></span><span></span>
+        </button>
+        <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
+            <a href="../index.html"      class="header-link">🏠 Inicio</a>
+            <a href="../proyecto.html"   class="header-link">📌 Proyecto</a>
+            <a href="../ruta.html"       class="header-link">🗺️ Ruta</a>
+            <a href="../glosario.html"   class="header-link">📖 Glosario</a>
+            <a href="../evaluacion.html" class="header-link">✅ Evaluacion</a>
+        </nav>
+    </div>
+</header>
 
     <div class="contenedor">
         
@@ -450,7 +470,30 @@
     </div>
 
 
-    <div id="site-footer"></div>
+    <footer class="footer-sitio" role="contentinfo">
+    <div class="footer-contenido">
+        <div class="footer-autor">
+            <span class="footer-nombre">Juan María Gámez Ortiz</span>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
+        </div>
+        <nav class="footer-idiomas" aria-label="Selector de idioma">
+            <span class="footer-idiomas-label">🌐 Idioma:</span>
+            <button class="btn-idioma activo" data-lang="es">🇪🇸 ES</button>
+            <button class="btn-idioma" data-lang="en">🇬🇧 EN</button>
+            <button class="btn-idioma" data-lang="ar">🇸🇦 AR</button>
+            <button class="btn-idioma" data-lang="pl">🇵🇱 PL</button>
+            <button class="btn-idioma" data-lang="ru">🇷🇺 RU</button>
+            <button class="btn-idioma" data-lang="nl">🇳🇱 NL</button>
+            <button class="btn-idioma" data-lang="de">🇩🇪 DE</button>
+        </nav>
+        <div id="google_translate_element" style="display:none;" aria-hidden="true"></div>
+        <div class="footer-copy">
+            © <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería
+        </div>
+    </div>
+</footer>
+<div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
     <script src="../script.js" defer></script>
 </body>
 </html>
