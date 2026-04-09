@@ -6,7 +6,9 @@
       "Bash(python -c \":*)",
       "Bash(python -c \"from pypdf import PdfReader; print\\(''pypdf ok''\\)\")",
       "Bash(pip install:*)",
-      "Bash(python add_procesos.py)"
+      "Bash(python add_procesos.py)",
+      "Bash(python unify_css.py)",
+      "Bash(python fix_link.py)"
     ]
   }
 }
