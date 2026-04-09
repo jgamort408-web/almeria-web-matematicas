@@ -315,6 +315,8 @@
 </head>
 <body>
 
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
     <header class="site-header" role="banner">
     <div class="header-inner">
         <a href="../index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
@@ -328,21 +330,21 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
-            <a href="../index.html"      class="header-link">🏠 Inicio</a>
-            <a href="../proyecto.html"   class="header-link">📌 Proyecto</a>
-            <a href="../ruta.html"       class="header-link">🗺️ Ruta</a>
-            <a href="../glosario.html"   class="header-link">📖 Glosario</a>
-            <a href="../evaluacion.html" class="header-link">✅ Evaluacion</a>
+            <a href="../index.html"      class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="../proyecto.html"   class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+            <a href="../ruta.html"       class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+            <a href="../glosario.html"   class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="../evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
         </nav>
     </div>
 </header>
 
-    <div class="contenedor">
+    <div class="contenedor" id="contenido-principal" tabindex="-1">
         
         <nav class="controles-nav" aria-label="Navegación de sesión">
             <a href="sesion01.html" class="btn-texto">⬅️ Sesión 1</a>
-            <a href="../ruta.html" class="btn-texto">🗺️ Ruta de Aprendizaje</a>
-            <a href="sesion03.html" class="btn-texto btn-siguiente">Siguiente Sesión ➡️</a>
+            <a href="../ruta.html" class="btn-texto"><span aria-hidden="true">🗺️</span> Ruta de Aprendizaje</a>
+            <a href="sesion03.html" class="btn-texto btn-siguiente">Siguiente Sesión <span aria-hidden="true">➡️</span></a>
         </nav>
 
         <header>
@@ -350,7 +352,7 @@
             <h1>¿Qué se puede medir y representar en una ciudad?</h1>
             
             <div class="objetivo-caja">
-                <span>🎯</span>
+                <span aria-hidden="true">🎯</span>
                 <span><strong>Objetivo de hoy:</strong> Distinguir entre ubicación, medida y dato para organizar correctamente la información de Almería.</span>
             </div>
         </header>
@@ -359,17 +361,17 @@
             <h2>Aprende a diferenciar la información</h2>
             <div class="grid-comparativo">
                 <article class="tarjeta-concepto">
-                    <span class="concepto-icono">📍</span>
+                    <span class="concepto-icono" aria-hidden="true">📍</span>
                     <h3>Ubicación</h3>
                     <p>Nos dice <strong>dónde</strong> está algo en el espacio. Usamos coordenadas o referencias espaciales.<br><em>Ej: La Alcazaba está en las coordenadas (x,y).</em></p>
                 </article>
                 <article class="tarjeta-concepto">
-                    <span class="concepto-icono">📏</span>
+                    <span class="concepto-icono" aria-hidden="true">📏</span>
                     <h3>Medida</h3>
                     <p>Es una magnitud física del lugar que calculamos con geometría (distancia, área, perímetro).<br><em>Ej: El parque ocupa 25.000 metros cuadrados.</em></p>
                 </article>
                 <article class="tarjeta-concepto">
-                    <span class="concepto-icono">📊</span>
+                    <span class="concepto-icono" aria-hidden="true">📊</span>
                     <h3>Dato</h3>
                     <p>Información numérica que cambia o recogemos estadísticamente (temperatura, población).<br><em>Ej: En agosto hubo 35ºC de media.</em></p>
                 </article>
@@ -380,7 +382,7 @@
             
             <article class="fase-tarjeta">
                 <div>
-                    <span class="fase-icono">🏠</span>
+                    <span class="fase-icono" aria-hidden="true">🏠</span>
                     <h2>Antes de clase</h2>
                 </div>
                 <p>Ve este microvídeo sobre las magnitudes urbanas y resuelve la pequeña tarea de clasificación.</p>
@@ -396,7 +398,7 @@
 
             <article class="fase-tarjeta">
                 <div>
-                    <span class="fase-icono">🏫</span>
+                    <span class="fase-icono" aria-hidden="true">🏫</span>
                     <h2>Durante la clase</h2>
                 </div>
                 <p>Trabajaremos en parejas con tarjetas de información real sobre la ciudad.</p>
@@ -410,7 +412,7 @@
 
             <article class="fase-tarjeta">
                 <div>
-                    <span class="fase-icono">🧠</span>
+                    <span class="fase-icono" aria-hidden="true">🧠</span>
                     <h2>Después de clase</h2>
                 </div>
                 <p>Pequeña ampliación para consolidar lo que hemos trabajado hoy.</p>
@@ -425,7 +427,7 @@
         <div class="seccion-doble">
             
             <section class="caja-destacada caja-evidencia">
-                <h3>🏆 Tu evidencia del día</h3>
+                <h3><span aria-hidden="true">🏆</span> Tu evidencia del día</h3>
                 <p>Al terminar la clase, entregaréis la <strong>Tabla Clasificada</strong> correctamente organizada. Debe quedar estructurada así:</p>
                 <table class="evidencia-tabla">
                     <thead>
@@ -452,7 +454,7 @@
             </section>
 
             <section class="caja-destacada caja-error">
-                <h3>⚠️ ¡Cuidado con este error!</h3>
+                <h3><span aria-hidden="true">⚠️</span> ¡Cuidado con este error!</h3>
                 <p><strong>Confundir un DATO con una MEDIDA.</strong></p>
                 <p>Es muy común mezclarlos porque ambos usan números. Recuerda la regla de oro:</p>
                 <ul>
@@ -466,7 +468,7 @@
 
         <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
         <section class="procesos-section">
-            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <h2 class="procesos-titulo"><span aria-hidden="true">🧩</span> Tareas Multinivel</h2>
             <p class="procesos-dim">Dimensión del conocimiento: <strong>Hechos</strong></p>
             <div class="procesos-grid">
         <div class="proceso-tarjeta" style="background-color:#FFF5F5;">

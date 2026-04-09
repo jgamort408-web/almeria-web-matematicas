@@ -258,6 +258,8 @@
 </head>
 <body>
 
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
     <header class="site-header" role="banner">
     <div class="header-inner">
         <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
@@ -271,16 +273,16 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
-            <a href="index.html"      class="header-link">🏠 Inicio</a>
-            <a href="proyecto.html"   class="header-link">📌 Proyecto</a>
-            <a href="ruta.html"       class="header-link">🗺️ Ruta</a>
-            <a href="glosario.html"   class="header-link">📖 Glosario</a>
-            <a href="evaluacion.html" class="header-link">✅ Evaluacion</a>
+            <a href="index.html"      class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+            <a href="ruta.html"       class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+            <a href="glosario.html"   class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
         </nav>
     </div>
 </header>
 
-    <div class="contenedor">
+    <div class="contenedor" id="contenido-principal" tabindex="-1">
 
         <header class="hero">
             <h1>Almería en cifras y formas</h1>
@@ -292,30 +294,30 @@
             <a href="proyecto.html" class="btn btn-destacado">📌 El Proyecto</a>
             <a href="bloque1/index.html" class="btn">🚀 Empezar Bloque 1</a>
             <a href="ruta.html" class="btn btn-secundario">🗺️ Rutas</a>
-            <a href="glosario.html" class="btn btn-secundario">📖 Glosario</a>
-            <a href="evaluacion.html" class="btn btn-secundario">✅ Evaluación</a>
+            <a href="glosario.html" class="btn btn-secundario"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="evaluacion.html" class="btn btn-secundario"><span aria-hidden="true">✅</span> Evaluación</a>
         </nav>
 
         <section>
             <h2 class="seccion-titulo">Bloques de Trabajo</h2>
             <div class="grid-tarjetas">
                 <article class="tarjeta t-color-1">
-                    <div class="tarjeta-icono">🗺️</div>
+                    <div class="tarjeta-icono" aria-hidden="true">🗺️</div>
                     <h3>Mapa y coordenadas</h3>
                     <p>Interpreta el plano simplificado de Almería y localiza puntos de interés usando ejes y coordenadas cartesianas.</p>
                 </article>
                 <article class="tarjeta t-color-2">
-                    <div class="tarjeta-icono">🏛️</div>
+                    <div class="tarjeta-icono" aria-hidden="true">🏛️</div>
                     <h3>Geometría urbana</h3>
                     <p>Identifica figuras planas en los barrios y calcula perímetros y áreas para comparar zonas de la ciudad.</p>
                 </article>
                 <article class="tarjeta t-color-3">
-                    <div class="tarjeta-icono">📊</div>
+                    <div class="tarjeta-icono" aria-hidden="true">📊</div>
                     <h3>Datos y gráficas</h3>
                     <p>Organiza datos de población, temperatura o turismo en tablas e interpreta gráficas en contextos reales.</p>
                 </article>
                 <article class="tarjeta t-color-4">
-                    <div class="tarjeta-icono">🚀</div>
+                    <div class="tarjeta-icono" aria-hidden="true">🚀</div>
                     <h3>Producto final</h3>
                     <p>Integra toda la información matemática y visual para diseñar y presentar en equipo tu propia guía turística.</p>
                 </article>
@@ -326,22 +328,22 @@
             <h2 class="seccion-titulo">¿Qué vas a aprender?</h2>
             <div class="grid-mini">
                 <div class="mini-tarjeta">
-                    <span class="emoji">📍</span> Coordenadas
+                    <span class="emoji" aria-hidden="true">📍</span> Coordenadas
                 </div>
                 <div class="mini-tarjeta">
-                    <span class="emoji">🔺</span> Figuras planas
+                    <span class="emoji" aria-hidden="true">🔺</span> Figuras planas
                 </div>
                 <div class="mini-tarjeta">
-                    <span class="emoji">📏</span> Perímetro
+                    <span class="emoji" aria-hidden="true">📏</span> Perímetro
                 </div>
                 <div class="mini-tarjeta">
-                    <span class="emoji">🟩</span> Área
+                    <span class="emoji" aria-hidden="true">🟩</span> Área
                 </div>
                 <div class="mini-tarjeta">
-                    <span class="emoji">📈</span> Gráficas
+                    <span class="emoji" aria-hidden="true">📈</span> Gráficas
                 </div>
                 <div class="mini-tarjeta">
-                    <span class="emoji">🔄</span> Funciones
+                    <span class="emoji" aria-hidden="true">🔄</span> Funciones
                 </div>
             </div>
         </section>

@@ -291,6 +291,8 @@
 </head>
 <body>
 
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
     <header class="site-header" role="banner">
     <div class="header-inner">
         <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
@@ -304,16 +306,16 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
-            <a href="index.html"      class="header-link">🏠 Inicio</a>
-            <a href="proyecto.html"   class="header-link">📌 Proyecto</a>
-            <a href="ruta.html"       class="header-link">🗺️ Ruta</a>
-            <a href="glosario.html"   class="header-link">📖 Glosario</a>
-            <a href="evaluacion.html" class="header-link">✅ Evaluacion</a>
+            <a href="index.html"      class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+            <a href="ruta.html"       class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+            <a href="glosario.html"   class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
         </nav>
     </div>
 </header>
 
-    <div class="contenedor">
+    <div class="contenedor" id="contenido-principal" tabindex="-1">
         
         <header>
             <h1>Ruta de Aprendizaje</h1>
@@ -321,7 +323,7 @@
         </header>
 
         <nav class="nav-principal" aria-label="Navegación de ruta">
-            <a href="index.html" class="btn btn-inicio">🏠 Inicio</a>
+            <a href="index.html" class="btn btn-inicio"><span aria-hidden="true">🏠</span> Inicio</a>
             <a href="bloque1/index.html" class="btn btn-b1">Bloque 1</a>
             <a href="bloque2/index.html" class="btn btn-b2">Bloque 2</a>
             <a href="bloque3/index.html" class="btn btn-b3">Bloque 3</a>
@@ -480,7 +482,7 @@
         </div>
 
         <section class="consejos">
-            <h3>💡 Consejo para avanzar</h3>
+            <h3><span aria-hidden="true">💡</span> Consejo para avanzar</h3>
             <p>Trabaja sesión a sesión y asegúrate de guardar las <strong>evidencias</strong> (fichas, tablas y gráficas) de cada bloque. ¡Las necesitarás para crear tu guía final en el Bloque 4!</p>
         </section>
 

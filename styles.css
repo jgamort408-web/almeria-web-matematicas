@@ -4,6 +4,33 @@
    Cargado via <link> en cada HTML antes del <style> local.
    ============================================================ */
 
+/* ===== 0. ACCESIBILIDAD — SKIP LINK ===== */
+/*
+   Visible SOLO cuando recibe el foco (navegacion por teclado).
+   Permanece fuera de pantalla el resto del tiempo.
+*/
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: var(--azul-oscuro, #003F63);
+    color: #fff;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 0 0 8px 0;
+    z-index: 10000;
+    transition: top 0.15s ease;
+    /* Evitar que ocupe espacio cuando no es visible */
+    white-space: nowrap;
+}
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--arena-clara, #F4EBD0);
+    outline-offset: 2px;
+}
+
 /* ===== 1. VARIABLES DE COLOR Y ALIAS ===== */
 :root {
     /* Paleta principal */
