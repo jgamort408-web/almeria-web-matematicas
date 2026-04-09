@@ -1,7 +1,12 @@
 {
   "permissions": {
     "allow": [
-      "Bash(py -c \":*)"
+      "Bash(py -c \":*)",
+      "Read(//c/Users/Medion PC/Downloads/**)",
+      "Bash(python -c \":*)",
+      "Bash(python -c \"from pypdf import PdfReader; print\\(''pypdf ok''\\)\")",
+      "Bash(pip install:*)",
+      "Bash(python add_procesos.py)"
     ]
   }
 }
