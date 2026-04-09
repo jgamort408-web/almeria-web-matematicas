@@ -204,6 +204,90 @@
             .seccion-comparativa { grid-template-columns: 1fr; }
             .seccion-final { grid-template-columns: 1fr; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -317,6 +401,63 @@
                 <p><span class="badge-ojo">OJO</span> Mira siempre las unidades del eje Y antes de decir que un dato es mayor que otro.</p>
             </section>
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Conceptual</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Comparar dos gráficas sobre el mismo fenómeno</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                Comparar gráficas significa buscar similitudes y diferencias entre dos o más representaciones. Para hacerlo bien: (1) Verifica que las escalas son comparables. (2) Identifica variables y período. (3) Observa tendencias comunes y divergentes. (4) Busca correlaciones.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                Temperatura mensual de Almería vs. visitantes turísticos: ambas tienen máximos en verano y mínimos en invierno → correlación positiva. Pero en septiembre los turistas bajan más rápido que la temperatura → los turistas prefieren el verano escolar.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Compara las gráficas de precipitaciones de Almería y Madrid para el mismo año: (a) ¿en qué meses llueve más en cada ciudad?, (b) ¿hay algún mes similar?, (c) ¿qué diferencias climáticas revela la comparación?
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Juzgar cuál representación es más adecuada</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                Evaluar la adecuación de una gráfica implica juzgar si el tipo elegido, la escala y la organización facilitan o dificultan la comprensión. Una buena gráfica maximiza la información transmitida con el mínimo esfuerzo de lectura.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                Para mostrar la evolución del turismo 2010-2024: gráfica de líneas (mejor tendencia temporal). Para distribución por meses de un año: barras (compara categorías discretas). Para cuota por país: sectores.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Se presentan 3 gráficas de los mismos datos turísticos de Almería (barras, líneas y sectores). Evalúa cuál es más adecuada para: (a) mostrar la evolución anual, (b) comparar cuota por país de origen, (c) comparar turismo por meses. Justifica con argumentos matemáticos.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Proponer una representación mejorada</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Crear una representación mejorada implica diseñar una gráfica más efectiva que las existentes: mejor tipo, escala más clara, combinación de variables en una sola visualización, o añadir una segunda serie de datos para mostrar relaciones.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Mejora: tenemos dos gráficas separadas (temperatura y turistas por mes). Propuesta: gráfica de doble eje Y (temperatura a la izquierda, turistas a la derecha, meses en el eje X). Resultado: se visualiza directamente la correlación.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Diseña una gráfica que muestre la relación entre al menos dos variables urbanas de Almería (turistas/temperatura, lluvia/temperatura, precios de alquiler/barrio...). Explica el tipo elegido, por qué lo elegiste y qué conclusión permite extraer de un vistazo.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

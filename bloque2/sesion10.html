@@ -345,6 +345,90 @@
             .btn-texto { justify-content: center; }
             .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -457,6 +541,63 @@
             </section>
 
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procedimientos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#FFFDE7;">
+            <span class="proceso-badge" style="background-color:#F57F17;">● APLICAR</span>
+            <h3 style="color:#F57F17;">Usar la escala para calcular distancias reales</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">📚 Teoría</strong>
+                La <strong>escala</strong> de un mapa indica la relación entre la distancia en el mapa y la distancia real. Una escala 1:20&nbsp;000 significa que 1&nbsp;cm en el mapa&nbsp;=&nbsp;20&nbsp;000&nbsp;cm&nbsp;=&nbsp;200&nbsp;m en la realidad. Fórmula: <strong>dist. real&nbsp;=&nbsp;dist. mapa&nbsp;×&nbsp;escala</strong>.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">💡 Ejemplo en Almería</strong>
+                En un mapa de Almería con escala 1:20&nbsp;000, medimos 3,5&nbsp;cm entre la Alcazaba y el Puerto → dist. real&nbsp;=&nbsp;3,5&nbsp;×&nbsp;20&nbsp;000&nbsp;=&nbsp;70&nbsp;000&nbsp;cm&nbsp;=&nbsp;700&nbsp;m&nbsp;≈&nbsp;9 minutos a pie.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#F9A825;">
+                <strong style="color:#F57F17;">✏️ Ejercicio propuesto</strong>
+                Con el mapa de Almería (escala 1:15&nbsp;000), mide y calcula las distancias reales entre: (a) Catedral y Alcazaba, (b) Estación de Autobuses y Puerto, (c) Parque de las Familias y Playa de El Zapillo. Expresa en m y km.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Comparar rutas con criterios múltiples</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                La 'mejor' ruta no siempre es la más corta. Analizar rutas implica considerar varios criterios: distancia, tiempo estimado, monumentos visitados, pendiente, zonas peatonales… Este análisis multicriterio es la base de la optimización de rutas.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                Alcazaba → Parque de las Familias: Ruta A (costa,&nbsp;2,8&nbsp;km)&nbsp;→ pasa por la playa. Ruta B (centro,&nbsp;2,1&nbsp;km)&nbsp;→ más corta pero sin vistas al mar. Para turista: A. Con prisa: B.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Diseña 2 rutas entre dos puntos del plano de Almería. Para cada ruta, completa: Distancia total | Tiempo estimado a pie | Monumentos en el camino | Tipo de zona | Valoración (1-5). ¿Cuál es mejor y para quién?
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Diseñar una ruta turística matemática</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Crear una ruta turística no es solo trazar un camino, sino diseñar una experiencia con criterios matemáticos: distancia controlada, secuencia lógica de visitas, tiempo realista y variedad de puntos de interés con datos matemáticos.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Ruta matemática de Almería: (1) Alcazaba (coordenadas, área), (2) Catedral (polígono, ángulos), (3) Puerto (escala, distancias), (4) Parque de las Familias (perímetro, área). Total: ≈5&nbsp;km, 3&nbsp;horas con visitas.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Diseña tu propia ruta turística matemática: mínimo 5 puntos de interés con coordenadas, distancia total calculada con escala, tiempo estimado y un dato matemático interesante de cada punto. Preséntalo en una ficha con mapa y tabla.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

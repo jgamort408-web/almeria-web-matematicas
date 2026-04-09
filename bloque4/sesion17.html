@@ -210,6 +210,90 @@
         @media (max-width: 850px) { 
             .seccion-final { grid-template-columns: 1fr; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -334,6 +418,63 @@
                 <p style="font-weight: bold; margin-top: 10px;">¡Menos es más!</p>
             </section>
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procedimientos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Revisar y organizar el material recopilado</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                Analizar el trabajo de los bloques anteriores significa revisar sistemáticamente la información recopilada, identificar qué datos son completos y fiables, qué falta y qué partes pueden mejorarse. Esta revisión crítica es el primer paso hacia un producto de calidad.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                Inventario: Bloque&nbsp;1 → plano cuadrantes, coordenadas de 8 monumentos. Bloque&nbsp;2 → fichas de perímetro/área de 4 zonas. Bloque&nbsp;3 → 3 tablas de datos con gráficas. ¿Hay zonas de la ciudad poco representadas?
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Revisa todo el material de los Bloques 1, 2 y 3. Crea un inventario en tabla: Bloque | Producto | Calidad (1-5) | ¿Listo para la guía? | ¿Qué mejorarías? Detecta al menos 2 'huecos' en tu material.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Seleccionar los datos más relevantes</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                No toda la información tiene el mismo valor para una guía turística matemática. Evaluar la relevancia implica aplicar criterios: ¿Es interesante para un turista? ¿Es matemáticamente correcto y verificable? ¿Añade algo que otras guías no tienen?
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                "El Puerto tiene 23 instalaciones" (poco relevante). "El Puerto ocupa 35&nbsp;ha&nbsp;=&nbsp;350&nbsp;000&nbsp;m²" (relevante: área). "Recibió 482&nbsp;000 pasajeros en 2023" (relevante: estadística). "Coordenadas: (36,83°N, 2,48°W)" (relevante: localización).
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Para cada uno de los 5 puntos de tu guía, selecciona los 3 datos más relevantes matemáticamente. Justifica cada elección con al menos una razón. Descarta los menos útiles y explica por qué.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Diseñar el índice de la guía matemática</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Crear el índice es un acto de síntesis y diseño: hay que decidir qué secciones incluir, en qué orden, qué tipos de contenido (mapas, tablas, gráficas, cálculos) aparecen en cada sección y cómo cuentan una historia matemática coherente sobre Almería.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Índice de muestra: 1. Mapa por cuadrantes del centro histórico. 2. Geometría urbana del barrio de La Medina. 3. Datos y gráficas: turismo 2019-2024. 4. La ruta matemática óptima (5 monumentos, 4&nbsp;km, 3&nbsp;h). 5. Curiosidades matemáticas de Almería.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Diseña el índice definitivo de tu guía: título de cada sección, tipo de contenido matemático que incluirá, y un resumen de 2-3 líneas de lo que el lector aprenderá en cada sección.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

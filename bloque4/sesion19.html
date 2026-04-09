@@ -219,6 +219,90 @@
             .info-final { grid-template-columns: 1fr; }
             header h1 { font-size: 1.8rem; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -321,6 +405,63 @@
         <footer>
             <strong>Almería en cifras y formas</strong> · Proyecto Educativo 1º ESO
         </footer>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procedimientos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Identificar puntos débiles mediante coevaluación</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                La coevaluación (evaluación entre compañeros) nos da una perspectiva externa. Para que sea efectiva, debe ser analítica: identificar exactamente qué partes funcionan y cuáles no, con argumentos concretos basados en criterios matemáticos claros.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                Rúbrica de coevaluación: Exactitud matemática (0-4), Claridad de gráficas (0-4), Coherencia entre secciones (0-4), Presentación visual (0-4), Datos verificables (0-4). Total: 0-20 puntos.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Usando la rúbrica de coevaluación, evalúa la guía del equipo compañero. Para cada criterio: anota la puntuación y escribe qué está bien y qué mejorarías. La coevaluación debe ser constructiva, específica y respetuosa.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Autoevaluar la calidad matemática de la guía</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                La autoevaluación crítica significa aplicar los mismos criterios que usarías para evaluar el trabajo de otro. Los alumnos que se autoevalúan con rigor mejoran significativamente porque identifican sus propios errores antes de que el profesor los señale.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                "Nuestros cálculos de área son correctos (revisados 3 veces). Las gráficas están bien etiquetadas. Sin embargo, las coordenadas del monumento 3 no coinciden con Google Maps → hay que corregirlas."
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Realiza una autoevaluación honesta de tu guía usando la misma rúbrica. Para cada criterio: (a) puntúate y justifica con ejemplos concretos de tu trabajo, (b) identifica el aspecto que más necesita mejora, (c) propón una acción concreta antes de la presentación final.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Revisar y mejorar la guía con el feedback recibido</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Mejorar a partir del feedback es una competencia profesional esencial. No se trata solo de corregir errores, sino de repensar cómo presentar la información de forma más efectiva, priorizando las mejoras más impactantes.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Mejoras prioritarias identificadas en el ensayo: (a) corregir cálculo de área del parque, (b) rediseñar la gráfica 3 (escala confusa), (c) añadir título y unidades al eje Y de la gráfica 1, (d) verificar coordenadas del monumento 3.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Aplica el feedback de la coevaluación y la autoevaluación. Mejora al menos 3 aspectos concretos de tu guía. Para cada mejora, documenta: (a) qué había antes, (b) qué hay ahora, (c) por qué la nueva versión es mejor matemáticamente.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

@@ -376,6 +376,90 @@
             .btn-texto { justify-content: center; }
             .objetivo-caja { font-size: 1rem; flex-direction: column; text-align: center; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -509,6 +593,63 @@
             </section>
 
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Conceptual</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#FFF5F5;">
+            <span class="proceso-badge" style="background-color:#C62828;">● RECORDAR</span>
+            <h3 style="color:#C62828;">Definiciones básicas de geometría</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#E53935;">
+                <strong style="color:#C62828;">📚 Teoría</strong>
+                Los elementos básicos de la geometría plana son: <strong>punto</strong> (posición sin dimensión), <strong>recta</strong> (línea infinita), <strong>semirrecta</strong> (mitad de una recta desde un origen), <strong>segmento</strong> (parte de una recta entre dos puntos) y <strong>ángulo</strong> (abertura entre dos semirrectas con el mismo origen, medido en grados).
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#E53935;">
+                <strong style="color:#C62828;">💡 Ejemplo en Almería</strong>
+                En el plano de Almería: un cruce es un punto, una avenida larga representa una recta, una calle que arranca de una rotonda es una semirrecta, y el tramo de la Rambla entre dos cruces es un segmento.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#E53935;">
+                <strong style="color:#C62828;">✏️ Ejercicio propuesto</strong>
+                Sin mirar el libro, escribe la definición con tus palabras de: recta, segmento y ángulo recto. Dibuja un ejemplo de cada uno y etiquétalo correctamente.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#FFF8F0;">
+            <span class="proceso-badge" style="background-color:#E65100;">● COMPRENDER</span>
+            <h3 style="color:#E65100;">Paralelas y perpendiculares en la ciudad</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">📚 Teoría</strong>
+                Dos rectas son <strong>paralelas</strong> si nunca se cortan (misma dirección y sentido), y <strong>perpendiculares</strong> si se cortan formando un ángulo de 90°. Las ciudades con trama regular tienen muchas calles paralelas y perpendiculares entre sí.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">💡 Ejemplo en Almería</strong>
+                El Paseo de Almería y la Calle Tiendas son aproximadamente paralelas. La Calle Reyes Católicos es perpendicular a varias calles del centro (las cruza formando ángulos rectos).
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#FB8C00;">
+                <strong style="color:#E65100;">✏️ Ejercicio propuesto</strong>
+                Explica con un dibujo la diferencia entre calles paralelas y perpendiculares. ¿Por qué es útil para un urbanista planificar calles perpendiculares? ¿Qué ventajas tiene para el tráfico?
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#FFFDE7;">
+            <span class="proceso-badge" style="background-color:#F57F17;">● APLICAR</span>
+            <h3 style="color:#F57F17;">Clasificar elementos geométricos en el plano urbano</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">📚 Teoría</strong>
+                Aplicar los conceptos de geometría a un plano real significa identificar y clasificar los elementos que observamos: segmentos (calles con inicio y fin), relaciones entre rectas (paralelas, perpendiculares) y ángulos de distintos tipos.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">💡 Ejemplo en Almería</strong>
+                En el plano del barrio de El Zapillo: el segmento que une el Paseo Marítimo con la Avenida del Mediterráneo, las calles norte-sur como paralelas, y la intersección diagonal como ángulo agudo.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#F9A825;">
+                <strong style="color:#F57F17;">✏️ Ejercicio propuesto</strong>
+                En el plano de Almería (que te dará el profesor), busca y marca: (a) 2 segmentos (mídelos con regla), (b) 1 par de calles paralelas (azul), (c) 1 intersección perpendicular (rojo), (d) 1 ángulo agudo y 1 obtuso.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

@@ -249,6 +249,90 @@
             .grafico-mockup { max-width: 250px; }
             .label-eje-y { left: -45px; font-size: 0.7rem; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -364,6 +448,63 @@
                 </ul>
             </section>
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procedimientos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#FFFDE7;">
+            <span class="proceso-badge" style="background-color:#F57F17;">● APLICAR</span>
+            <h3 style="color:#F57F17;">Representar datos en un diagrama de barras o líneas</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">📚 Teoría</strong>
+                Para construir una gráfica desde una tabla: (1) Elige los ejes (X: categorías; Y: valores). (2) Elige una escala adecuada. (3) Dibuja las barras o puntos. (4) Añade título, etiquetas de ejes y unidades.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">💡 Ejemplo en Almería</strong>
+                Tabla de turistas en Almería por mes → Diagrama de barras (datos discretos) o diagrama de líneas (tendencia temporal). Eje X: meses (ene-dic). Eje Y: número de turistas, escala 0-100&nbsp;000 con marcas cada 20&nbsp;000.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#F9A825;">
+                <strong style="color:#F57F17;">✏️ Ejercicio propuesto</strong>
+                Con los datos de temperatura media mensual de Almería (que te dará el profesor), construye: (a) un diagrama de barras y (b) un diagrama de líneas. Usa regla. Incluye título, etiquetas de ejes y unidades.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Elegir el tipo de gráfica según los datos</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                <strong>Diagrama de barras</strong>: comparar categorías independientes. <strong>Diagrama de líneas</strong>: mostrar evolución temporal. <strong>Diagrama de sectores</strong>: mostrar proporciones de un total. <strong>Histograma</strong>: datos continuos agrupados. Elegir mal el tipo distorsiona la información.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                (a) Temperatura media mensual → líneas (evolución). (b) % turistas por país de origen → sectores (partes del total). (c) Precio medio de alquiler por barrio → barras (comparar categorías).
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Para cada conjunto de datos, decide qué tipo de gráfica usarías y justifica: (a) hoteles por categoría en Almería, (b) evolución de la población 2000-2024, (c) distribución de empleos por sector, (d) alturas de los alumnos de la clase.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Construir una gráfica completa con todos sus elementos</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Una gráfica completa debe tener: (1) Título descriptivo. (2) Ejes etiquetados con variable y unidades. (3) Escala uniforme y bien elegida. (4) Todos los datos representados con precisión. (5) Leyenda (si hay varias series). (6) Fuente de datos.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Gráfica completa: "Precipitaciones medias mensuales en Almería (2023). Fuente: AEMET." Con eje X (meses), eje Y (mm de lluvia, escala 0-60&nbsp;mm), barras de colores, unidades en ambos ejes y nota de fuente.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Elige datos reales sobre Almería (turismo, clima, población...) de una fuente fiable. Crea una gráfica completa a mano o con hoja de cálculo. Incluye todos los elementos obligatorios. Después, escribe 3 conclusiones que se extraen de tu gráfica.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

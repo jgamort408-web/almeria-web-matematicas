@@ -233,6 +233,90 @@
             .controles-nav { flex-direction: column; align-items: stretch; }
             .btn-texto { justify-content: center; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -365,6 +449,63 @@
                 <p>La gráfica representa una <strong>relación de datos</strong>. Si la línea sube en la gráfica de temperaturas, no es que estemos subiendo una colina, ¡es que hace más calor!</p>
             </section>
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Conceptual</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#FFF8F0;">
+            <span class="proceso-badge" style="background-color:#E65100;">● COMPRENDER</span>
+            <h3 style="color:#E65100;">Identificar los elementos de una gráfica</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">📚 Teoría</strong>
+                Para leer una gráfica correctamente, primero identifica: <strong>título</strong> (¿qué muestra?), <strong>eje X</strong> (variable horizontal), <strong>eje Y</strong> (variable vertical y escala), <strong>unidades</strong> (¿en qué está medido?) y <strong>leyenda</strong> (¿qué representa cada color?).
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">💡 Ejemplo en Almería</strong>
+                "Visitantes al Museo de Almería por meses (2023)": eje X → meses (ene-dic), eje Y → número de visitantes (escala 0-3&nbsp;000), unidades → personas.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#FB8C00;">
+                <strong style="color:#E65100;">✏️ Ejercicio propuesto</strong>
+                Con la gráfica que te proporcionará el profesor, identifica y escribe: (a) variable del eje X, (b) variable del eje Y, (c) unidades de cada eje, (d) rango de valores de la escala del eje Y.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Extraer conclusiones de gráficas</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                Analizar una gráfica significa identificar: <strong>máximos</strong> (valor más alto y cuándo ocurre), <strong>mínimos</strong> (valor más bajo), <strong>tendencias</strong> (¿sube, baja, se mantiene?), <strong>comparaciones</strong> (¿qué período destaca?) y <strong>anomalías</strong> (valores inesperados).
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                En la gráfica de temperatura de Almería: máximo en agosto (≈30&nbsp;°C), mínimo en enero (≈11&nbsp;°C), tendencia creciente ene-ago y decreciente ago-dic. Anomalía: si en octubre hay un pico inesperado, puede indicar un episodio de calor tardío.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                Analiza la gráfica de temperatura media mensual de Almería. Escribe: (a) mes más cálido y temperatura, (b) mes más frío y temperatura, (c) rango térmico (máx − mín), (d) meses en que supera los 20&nbsp;°C, (e) una tendencia general que observes.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Valorar si una gráfica representa los datos honestamente</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                Algunas gráficas son manipuladoras: (a) <strong>escala truncada</strong> (el eje Y no empieza en 0, exagerando diferencias), (b) <strong>escala desproporcionada</strong>, (c) tipo de gráfica inadecuado, (d) datos incompletos. Evaluar la honestidad de una gráfica es una competencia crítica esencial.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                Una empresa muestra una gráfica con el eje Y empezando en 90&nbsp;000 (no en 0): un incremento de 95&nbsp;000 a 100&nbsp;000 parece enorme. Si el eje empezara en 0, el incremento del 5% parecería mucho más modesto.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Compara dos gráficas que representan los mismos datos (te las dará el profesor): una con eje Y desde 0 y otra truncado. Evalúa: (a) ¿qué impresión da cada una? (b) ¿cuál es más honesta? (c) ¿cuándo podría usarse la segunda de forma legítima?
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

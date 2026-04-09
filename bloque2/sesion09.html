@@ -281,6 +281,90 @@
             .controles-nav { flex-direction: column; align-items: stretch; }
             .btn-texto { justify-content: center; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -413,6 +497,63 @@
             </section>
 
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Conceptual</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Figuras con igual perímetro y distinto área</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                Un error frecuente es confundir perímetro con área. Una figura puede tener perímetro grande y área pequeña (muy alargada) o perímetro pequeño y área grande. Estas dos magnitudes son <strong>independientes</strong>: una no determina a la otra.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                Un rectángulo 1&nbsp;m&nbsp;×&nbsp;49&nbsp;m tiene P&nbsp;=&nbsp;100&nbsp;m y Área&nbsp;=&nbsp;49&nbsp;m². Un cuadrado 25&nbsp;m&nbsp;×&nbsp;25&nbsp;m también tiene P&nbsp;=&nbsp;100&nbsp;m pero Área&nbsp;=&nbsp;625&nbsp;m². ¡Mismo perímetro, áreas completamente diferentes!
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                En papel cuadriculado (1 cuadro&nbsp;=&nbsp;1&nbsp;cm), dibuja 3 figuras con exactamente 20&nbsp;cm de perímetro. Calcula el área de cada una. ¿Cuál tiene mayor área? ¿Qué forma es más 'eficiente'?
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Argumentar la independencia entre perímetro y área</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                La confusión entre perímetro y área genera errores en la vida real: un granjero que quiere maximizar la superficie de su finca con una cantidad fija de valla, un arquitecto que diseña un piso... Comprender su independencia es esencial.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                Una habitación 10&nbsp;m&nbsp;×&nbsp;2&nbsp;m tiene Área&nbsp;=&nbsp;20&nbsp;m² y P&nbsp;=&nbsp;24&nbsp;m. Una de 5&nbsp;m&nbsp;×&nbsp;4&nbsp;m también tiene Área&nbsp;=&nbsp;20&nbsp;m² pero P&nbsp;=&nbsp;18&nbsp;m. La segunda parece más grande visualmente.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Un alcalde quiere un parque con P&nbsp;=&nbsp;200&nbsp;m. Evalúa: (a) rectángulo 80&nbsp;×&nbsp;20&nbsp;m, (b) cuadrado 50&nbsp;×&nbsp;50&nbsp;m, (c) hexágono regular con lado&nbsp;≈&nbsp;33&nbsp;m. ¿Cuál maximiza el área? Justifica con cálculos.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Diseñar figuras con el mismo perímetro y distintas áreas</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Crear implica combinar conocimientos para producir algo nuevo. Usando perímetro y área, podemos diseñar figuras originales que demuestren cómo, con la misma cantidad de 'borde', se pueden encerrar superficies muy distintas.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Un circuito de atletismo tiene exactamente 400&nbsp;m de perímetro. Diseñado como rectángulo 180&nbsp;×&nbsp;20&nbsp;m: Área&nbsp;=&nbsp;3&nbsp;600&nbsp;m². Como cuadrado 100&nbsp;×&nbsp;100&nbsp;m: Área&nbsp;=&nbsp;10&nbsp;000&nbsp;m².
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Diseña en papel cuadriculado un 'plano de barrio' con: (a) plaza cuadrada con P&nbsp;=&nbsp;40&nbsp;m, (b) parque rectangular con mismo P pero mayor área, (c) solar triangular con P&nbsp;≈&nbsp;40&nbsp;m. Calcula y compara las áreas. Añade una leyenda.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

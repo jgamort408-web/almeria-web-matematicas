@@ -208,6 +208,90 @@
             .grid-final { grid-template-columns: 1fr; }
             header h1 { font-size: 2rem; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -312,6 +396,63 @@
              <span style="font-size: 3rem;">🎓🎉🌟</span>
              <p><strong>¡Felicidades a todos los cartógrafos y matemáticos de 1º de ESO!</strong></p>
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procesos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#E3F2FD;">
+            <span class="proceso-badge" style="background-color:#1565C0;">● EVALUAR</span>
+            <h3 style="color:#1565C0;">Valorar el trabajo propio y ajeno con criterios matemáticos</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">📚 Teoría</strong>
+                La evaluación final contempla aspectos formales (corrección de cálculos, calidad de gráficas) y comunicativos (claridad de la presentación oral, respuesta a preguntas). Una exposición matemática exitosa integra ambas dimensiones.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#1E88E5;">
+                <strong style="color:#1565C0;">💡 Ejemplo en Almería</strong>
+                Rúbrica de exposición: Corrección matemática (0-4), Claridad de explicación (0-4), Vocabulario matemático (0-4), Respuesta a preguntas (0-4), Calidad visual de la guía (0-4). Total: 0-20 puntos.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#1E88E5;">
+                <strong style="color:#1565C0;">✏️ Ejercicio propuesto</strong>
+                Durante las exposiciones, evalúa al menos 2 presentaciones con la rúbrica. Después, en gran grupo: ¿estabais de acuerdo entre evaluadores? ¿En qué criterios hubo más discrepancias? Reflexiona sobre qué significa 'evaluar objetivamente'.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F3E5F5;">
+            <span class="proceso-badge" style="background-color:#6A1B9A;">● CREAR</span>
+            <h3 style="color:#6A1B9A;">Presentar la guía matemática de Almería</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">📚 Teoría</strong>
+                Una presentación oral matemática eficaz combina el rigor de los datos con la claridad comunicativa: explica el proceso (cómo llegaste al resultado), conecta los conceptos (por qué este cálculo es relevante para el turista) y demuestra comprensión respondiendo preguntas.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">💡 Ejemplo en Almería</strong>
+                Estructura de 8 minutos: (1) Dato matemático sorprendente de Almería (1&nbsp;min), (2) Mapa de cuadrantes y 2 coordenadas (2&nbsp;min), (3) Cálculo de área/perímetro (2&nbsp;min), (4) Gráfica comentada con conclusiones (2&nbsp;min), (5) Cierre con curiosidad matemática (1&nbsp;min).
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#8E24AA;">
+                <strong style="color:#6A1B9A;">✏️ Ejercicio propuesto</strong>
+                Prepara y ensaya tu presentación de 8 minutos siguiendo la estructura del ejemplo. Asegúrate de que cada miembro del equipo tiene un rol claro. Cronometrad el ensayo y ajustad el tiempo. Preparad 3 posibles preguntas del público y sus respuestas.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#FFF5F5;">
+            <span class="proceso-badge" style="background-color:#C62828;">● RECORDAR</span>
+            <h3 style="color:#C62828;">Sintetizar los aprendizajes del proyecto</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#E53935;">
+                <strong style="color:#C62828;">📚 Teoría</strong>
+                Al finalizar un proyecto, es fundamental hacer una síntesis de lo aprendido: qué conceptos eran nuevos, cuáles comprendemos ahora mejor y cómo se conectan entre sí formando una visión matemática coherente de la ciudad.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#E53935;">
+                <strong style="color:#C62828;">💡 Ejemplo en Almería</strong>
+                Mapa conceptual del proyecto: Coordenadas y cuadrantes → localizar puntos. Perímetro y área → describir tamaño y extensión. Tablas y gráficas → mostrar cómo cambian los datos. Todo junto → 'describir matemáticamente' una ciudad.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#E53935;">
+                <strong style="color:#C62828;">✏️ Ejercicio propuesto</strong>
+                Crea individualmente un mapa conceptual con los conceptos más importantes del proyecto (mínimo 10 conceptos), añadiendo un ejemplo de Almería para cada uno. Compara tu mapa con el de un compañero e identifica 3 conexiones que ninguno había representado por separado.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 

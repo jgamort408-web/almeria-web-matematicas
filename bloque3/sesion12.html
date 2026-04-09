@@ -320,6 +320,90 @@
             .controles-nav { flex-direction: column; align-items: stretch; }
             .btn-texto { justify-content: center; }
         }
+
+        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
+        .procesos-section {
+            border-radius: 12px;
+            padding: 35px 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            background-color: var(--blanco);
+        }
+        .procesos-titulo {
+            text-align: center;
+            font-size: 1.55rem;
+            color: var(--azul-oscuro);
+            margin: 0 0 4px 0;
+        }
+        .procesos-dim {
+            text-align: center;
+            font-size: 0.92rem;
+            color: var(--gris-pizarra);
+            margin: 0 0 24px 0;
+        }
+        .procesos-dim strong { color: var(--azul-oscuro); }
+        .procesos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .proceso-tarjeta {
+            border-radius: 10px;
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: transform 0.2s;
+        }
+        .proceso-tarjeta:hover { transform: translateY(-4px); }
+        .proceso-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 13px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            width: fit-content;
+            color: #fff;
+        }
+        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
+        .proceso-bloque {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border-left: 4px solid;
+        }
+        .proceso-bloque strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        .proceso-ejercicio {
+            border-radius: 8px;
+            padding: 10px 13px;
+            font-size: 0.87rem;
+            line-height: 1.5;
+            border: 2px dashed;
+        }
+        .proceso-ejercicio strong {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 0.76rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 700;
+        }
+        @media (max-width: 640px) {
+            .procesos-grid { grid-template-columns: 1fr; }
+            .procesos-titulo { font-size: 1.25rem; }
+        }
     </style>
 </head>
 <body>
@@ -438,6 +522,63 @@
             </section>
 
         </div>
+
+
+        <!-- TAREAS MULTINIVEL — PROCESOS COGNITIVOS -->
+        <section class="procesos-section">
+            <h2 class="procesos-titulo">🧩 Tareas Multinivel</h2>
+            <p class="procesos-dim">Dimensión del conocimiento: <strong>Procedimientos</strong></p>
+            <div class="procesos-grid">
+        <div class="proceso-tarjeta" style="background-color:#FFF8F0;">
+            <span class="proceso-badge" style="background-color:#E65100;">● COMPRENDER</span>
+            <h3 style="color:#E65100;">Estructura de una tabla de datos</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">📚 Teoría</strong>
+                Una <strong>tabla de datos</strong> organiza la información de forma sistemática. Sus elementos son: <strong>cabecera</strong> (nombres de las variables), <strong>filas</strong> (individuos o categorías), <strong>columnas</strong> (variables) y <strong>celdas</strong> (cada valor individual).
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#FB8C00;">
+                <strong style="color:#E65100;">💡 Ejemplo en Almería</strong>
+                Tabla de visitantes a monumentos de Almería: Monumento | Visitantes | Precio | Tiempo visita → Alcazaba: 8&nbsp;500, 1,50&nbsp;€, 90&nbsp;min / Catedral: 3&nbsp;200, 5&nbsp;€, 45&nbsp;min.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#FB8C00;">
+                <strong style="color:#E65100;">✏️ Ejercicio propuesto</strong>
+                Observa la tabla del ejemplo y responde: (a) ¿Cuántas variables tiene y de qué tipo es cada una? (b) ¿Cuál es el monumento más visitado? (c) ¿Cuál tiene el precio por minuto de visita más bajo? Muestra los cálculos.
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#FFFDE7;">
+            <span class="proceso-badge" style="background-color:#F57F17;">● APLICAR</span>
+            <h3 style="color:#F57F17;">Organizar datos de un enunciado en una tabla</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">📚 Teoría</strong>
+                Para transformar un enunciado en tabla: (1) Identificar las variables (columnas). (2) Identificar los individuos o categorías (filas). (3) Extraer cada valor del texto y colocarlo en la celda correcta. (4) Añadir cabecera clara.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#F9A825;">
+                <strong style="color:#F57F17;">💡 Ejemplo en Almería</strong>
+                Enunciado: "En enero llovió 23&nbsp;mm y la temperatura fue 11&nbsp;°C; en febrero 18&nbsp;mm y 12&nbsp;°C; en marzo 31&nbsp;mm y 15&nbsp;°C." → Tabla: Mes | Precipitación (mm) | Temperatura (°C).
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#F9A825;">
+                <strong style="color:#F57F17;">✏️ Ejercicio propuesto</strong>
+                Transforma este texto en tabla: "El hotel Almería Beach tuvo 320 huéspedes en junio, 480 en julio y 510 en agosto. La estancia media fue de 4, 6 y 7 días. El gasto medio diario fue 85&nbsp;€, 95&nbsp;€ y 90&nbsp;€."
+            </div>
+        </div>
+        <div class="proceso-tarjeta" style="background-color:#F1F8E9;">
+            <span class="proceso-badge" style="background-color:#2E7D32;">● ANALIZAR</span>
+            <h3 style="color:#2E7D32;">Detectar errores y valores atípicos en tablas</h3>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">📚 Teoría</strong>
+                Analizar una tabla no solo significa leerla, sino detectar <strong>errores</strong> (datos imposibles) y <strong>valores atípicos</strong> (muy diferentes del resto, que indican un error o un caso excepcional). Esta habilidad es esencial al trabajar con datos reales.
+            </div>
+            <div class="proceso-bloque" style="background:rgba(255,255,255,0.65);border-left-color:#43A047;">
+                <strong style="color:#2E7D32;">💡 Ejemplo en Almería</strong>
+                En una tabla de temperaturas mensuales de Almería aparece: 'Agosto: &minus;3&nbsp;°C'. Es claramente un error (debería ser ≈&nbsp;28&nbsp;°C). Si todos los meses tienen entre 10 y 30 visitantes y uno tiene 10&nbsp;000, probablemente es un evento especial o un error tipográfico.
+            </div>
+            <div class="proceso-ejercicio" style="background:rgba(255,255,255,0.8);border-color:#43A047;">
+                <strong style="color:#2E7D32;">✏️ Ejercicio propuesto</strong>
+                La siguiente tabla tiene 3 errores o valores atípicos intencionados. Encuéntralos, explica por qué son errores y propón el valor correcto: Enero&nbsp;12°C / Feb&nbsp;150°C / Mar&nbsp;14°C / Lluvia Mar&nbsp;−5&nbsp;mm / Turistas Abr&nbsp;8&nbsp;000&nbsp;000.
+            </div>
+        </div>
+            </div>
+        </section>
 
     </div>
 
