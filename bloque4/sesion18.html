@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+    <link rel="stylesheet" href="../styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sesión 18 - Construimos la guía - Almería en Cifras y Formas</title>
     
@@ -15,23 +16,6 @@
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <style>
-                :root {
-            --azul-mar:       #005A8C;
-            --azul-oscuro:    #003F63;
-            --azul-claro:     #E6F0F5;
-            --arena-clara:    #F4EBD0;
-            --terracota:      #D36E5A;
-            --terracota-claro:#FEF3F1;
-            --verde-med:      #4A7C59;
-            --verde-claro:    #EAF2EC;
-            --gris-pizarra:   #5A6B7C;
-            --fondo-cuerpo:   #FAFAFA;
-            --texto-principal:#333333;
-            --texto-secundario:#555555;
-            --blanco:         #FFFFFF;
-        }
-
-        *, *::before, *::after { box-sizing: border-box; }
 
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -42,14 +26,6 @@
             display: flex;
             justify-content: center;
             line-height: 1.6;
-        }
-
-        .contenedor {
-            width: 100%;
-            max-width: 1100px;
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
         }
 
         /* Estética de Taller / Mesa de trabajo */
@@ -227,92 +203,7 @@
         @media (max-width: 768px) {
             .inferior-grid { grid-template-columns: 1fr; }
             header h1 { font-size: 1.8rem; }
-        }
-
-        /* ===== PROCESOS COGNITIVOS — TAREAS MULTINIVEL ===== */
-        .procesos-section {
-            border-radius: 12px;
-            padding: 35px 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-            background-color: var(--blanco);
-        }
-        .procesos-titulo {
-            text-align: center;
-            font-size: 1.55rem;
-            color: var(--azul-oscuro);
-            margin: 0 0 4px 0;
-        }
-        .procesos-dim {
-            text-align: center;
-            font-size: 0.92rem;
-            color: var(--gris-pizarra);
-            margin: 0 0 24px 0;
-        }
-        .procesos-dim strong { color: var(--azul-oscuro); }
-        .procesos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .proceso-tarjeta {
-            border-radius: 10px;
-            padding: 22px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
-            transition: transform 0.2s;
-        }
-        .proceso-tarjeta:hover { transform: translateY(-4px); }
-        .proceso-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 4px 13px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 0.78rem;
-            letter-spacing: 0.8px;
-            text-transform: uppercase;
-            width: fit-content;
-            color: #fff;
-        }
-        .proceso-tarjeta h3 { margin: 0; font-size: 1.02rem; font-weight: 700; }
-        .proceso-bloque {
-            border-radius: 8px;
-            padding: 10px 13px;
-            font-size: 0.87rem;
-            line-height: 1.5;
-            border-left: 4px solid;
-        }
-        .proceso-bloque strong {
-            display: block;
-            margin-bottom: 3px;
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-        }
-        .proceso-ejercicio {
-            border-radius: 8px;
-            padding: 10px 13px;
-            font-size: 0.87rem;
-            line-height: 1.5;
-            border: 2px dashed;
-        }
-        .proceso-ejercicio strong {
-            display: block;
-            margin-bottom: 3px;
-            font-size: 0.76rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: 700;
-        }
-        @media (max-width: 640px) {
-            .procesos-grid { grid-template-columns: 1fr; }
-            .procesos-titulo { font-size: 1.25rem; }
-        }
-    </style>
+        }</style>
 </head>
 <body>
 
