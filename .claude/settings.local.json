@@ -9,7 +9,8 @@
       "Bash(python add_procesos.py)",
       "Bash(python unify_css.py)",
       "Bash(python fix_link.py)",
-      "Bash(python a11y.py)"
+      "Bash(python a11y.py)",
+      "Bash(python -:*)"
     ]
   }
 }

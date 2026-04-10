@@ -128,7 +128,7 @@
         '.btn-idioma:focus { outline: 2px solid #F4EBD0; outline-offset: 2px; }',
         '.btn-idioma.activo { background: #005A8C; border-color: #fff; cursor: default; }',
         '.footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.55); }',
-        '@media (max-width: 640px) {',
+        '@media (max-width: 680px) {',
         '  .footer-contenido { flex-direction: column; align-items: center; text-align: center; padding: 0 16px; }',
         '  .footer-idiomas { justify-content: center; }',
         '}',

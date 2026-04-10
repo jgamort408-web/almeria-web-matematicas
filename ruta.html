@@ -190,7 +190,7 @@
         /* Tarjetas de Sesión */
         .grid-sesiones {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
             gap: 15px;
         }
 
@@ -279,12 +279,13 @@
         }
 
         /* Responsive */
-        @media (max-width: 600px) {
-            .roadmap::before { left: 16px; }
-            .roadmap { padding-left: 0; }
-            .bloque { padding: 20px 15px 20px 40px; }
-            .indicador-bloque { left: -24px; width: 32px; height: 32px; font-size: 1rem; }
-            header h1 { font-size: 2rem; }
+        @media (max-width: 680px) {
+            /* padding-left >= |left del indicador| para evitar desbordamiento horizontal */
+            .roadmap { padding-left: 30px; }
+            /* La línea vertical se centra sobre el indicador: 30 - 22 + 16 ≈ 24px desde el borde */
+            .roadmap::before { left: 20px; }
+            .bloque { padding: 20px 15px 20px 38px; }
+            .indicador-bloque { left: -22px; width: 32px; height: 32px; font-size: 1rem; }
             .btn { flex: 1 1 100%; }
         }
     </style>

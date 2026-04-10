@@ -155,9 +155,21 @@
 }
 
 /* ===== 5. RESPONSIVE COMPARTIDO ===== */
-@media (max-width: 640px) {
+@media (max-width: 680px) {
     .procesos-grid { grid-template-columns: 1fr; }
     .procesos-titulo { font-size: 1.25rem; }
+}
+
+/* ===== 5b. TIPOGRAFÍA FLUIDA — TÍTULOS HERO ===== */
+/*
+   Escala suavemente desde 1.5 rem (375 px) hasta 2.8 rem (≥1100 px).
+   !important para anular los valores fijos declarados en cada <style> local.
+   Cubre los patrones usados en el proyecto: header h1, .hero h1.
+*/
+header h1,
+.hero h1 {
+    font-size: clamp(1.5rem, 3vw + 1rem, 2.8rem) !important;
+    line-height: 1.2;
 }
 
 /* ===== 6. MIGAS DE PAN (BREADCRUMBS) ===== */
