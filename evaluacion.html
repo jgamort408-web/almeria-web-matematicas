@@ -500,8 +500,23 @@
             <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
         </div>
         <nav class="footer-idiomas" aria-label="Selector de idioma">
-            <span class="footer-idiomas-label">🌐 Idioma:</span>
-            <button class="btn-idioma activo" data-lang="es">🇪🇸 ES</button>
+            <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
+            <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">🇪🇸</span> ES</button>
+            <button class="btn-idioma" data-lang="en"><span aria-hidden="true">🇬🇧</span> EN</button>
+            <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">🇸🇦</span> AR</button>
+            <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">🇵🇱</span> PL</button>
+            <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">🇷🇺</span> RU</button>
+            <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">🇳🇱</span> NL</button>
+            <button class="btn-idioma" data-lang="de"><span aria-hidden="true">🇩🇪</span> DE</button>
+        </nav>
+        <div id="google_translate_element" aria-hidden="true"></div>
+        <div class="footer-copy">
+            © <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería
+        </div>
+    </div>
+</footer>
+<div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
             <button class="btn-idioma" data-lang="en">🇬🇧 EN</button>
             <button class="btn-idioma" data-lang="ar">🇸🇦 AR</button>
             <button class="btn-idioma" data-lang="pl">🇵🇱 PL</button>

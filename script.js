@@ -340,6 +340,67 @@
     }
 
     /* ----------------------------------------------------------------
+       MIGAS DE PAN (BREADCRUMBS)
+       Detecta la ruta y construye la navegación contextual:
+         • sesion → Inicio › Bloque N: Título › Sesión N
+         • bloque/index → Inicio › Bloque N: Título
+         • páginas raíz → sin migas
+    ---------------------------------------------------------------- */
+    var BLOQUES = {
+        'bloque1': 'Mapa y coordenadas',
+        'bloque2': 'Geometría urbana',
+        'bloque3': 'Datos, funciones y gráficas',
+        'bloque4': 'Producto final'
+    };
+
+    function inyectarMigaja() {
+        var path  = window.location.pathname.replace(/\\/g, '/');
+        var parts = path.split('/').filter(Boolean);
+
+        /* Encontrar el segmento bloque* */
+        var bloqueIdx = -1;
+        for (var i = 0; i < parts.length; i++) {
+            if (/^bloque\d$/.test(parts[i])) { bloqueIdx = i; break; }
+        }
+        if (bloqueIdx === -1) return; /* página raíz: sin migas */
+
+        var bloqueId   = parts[bloqueIdx];
+        var bloqueNum  = bloqueId.replace('bloque', '');
+        var bloqueTxt  = 'Bloque ' + bloqueNum + ': ' + (BLOQUES[bloqueId] || '');
+        var fichero    = parts[bloqueIdx + 1] || '';
+        var sesionMatch = fichero.match(/^sesion(\d+)\.html$/);
+
+        /* Ruta relativa a la raíz (una carpeta de profundidad) */
+        var raiz = '../';
+
+        var items = [
+            '<a class="migaja-link" href="' + raiz + 'index.html">Inicio</a>',
+            '<span class="migaja-sep" aria-hidden="true">›</span>'
+        ];
+
+        if (sesionMatch) {
+            var sesNum = parseInt(sesionMatch[1], 10);
+            items.push('<a class="migaja-link" href="' + raiz + bloqueId + '/index.html">' + bloqueTxt + '</a>');
+            items.push('<span class="migaja-sep" aria-hidden="true">›</span>');
+            items.push('<span class="migaja-actual" aria-current="page">Sesión ' + sesNum + '</span>');
+        } else {
+            /* bloque/index.html */
+            items.push('<span class="migaja-actual" aria-current="page">' + bloqueTxt + '</span>');
+        }
+
+        var nav = document.createElement('nav');
+        nav.className = 'migaja-nav';
+        nav.setAttribute('aria-label', 'Ruta de navegación');
+        nav.innerHTML = items.join('');
+
+        /* Insertar justo antes del .contenedor principal */
+        var contenedor = document.querySelector('.contenedor');
+        if (contenedor && contenedor.parentNode) {
+            contenedor.parentNode.insertBefore(nav, contenedor);
+        }
+    }
+
+    /* ----------------------------------------------------------------
        INIT
     ---------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', function () {
@@ -350,7 +411,10 @@
         actualizarAnio();
         activarBotonTop();
         activarSelectorIdioma();
-        inyectarGoogleTranslate();
+        inyectarMigaja();
     });
+
+    /* Google Translate se carga tras el evento load para no bloquear el renderizado */
+    window.addEventListener('load', inyectarGoogleTranslate);
 
 })();
