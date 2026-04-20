@@ -13,7 +13,8 @@
       "Bash(python -:*)",
       "mcp__Claude_Preview__preview_start",
       "Bash(head -20 grep -n \"nav-sesion\\\\|btn-nav\\\\|barra-nav\\\\|class=\"\"btn\" \"C:\\\\Users\\\\Medion PC\\\\Desktop\\\\almeria-web-matematicas\\\\bloque1\\\\sesion01.html\")",
-      "Bash(python -c \"import os; print\\(os.path.getsize\\(r''C:\\\\Users\\\\Medion PC\\\\Desktop\\\\almeria-web-matematicas\\\\styles.css''\\)\\)\")"
+      "Bash(python -c \"import os; print\\(os.path.getsize\\(r''C:\\\\Users\\\\Medion PC\\\\Desktop\\\\almeria-web-matematicas\\\\styles.css''\\)\\)\")",
+      "Bash(head -10 grep -rn \"proceso-tarjeta\\\\|procesos-section\\\\|Tareas Multinivel\" \"C:\\\\Users\\\\Medion PC\\\\Desktop\\\\almeria-web-matematicas\\\\bloque3\\\\sesion15.html\")"
     ]
   }
 }
