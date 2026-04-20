@@ -301,3 +301,226 @@ header h1,
     .caja-evidencia,
     .caja-error { padding: 14px 16px; }
 }
+
+/* ===== 9. HERO FULL-BLEED ===== */
+/*
+   JS mueve el hero fuera de .contenedor justo antes de pintar la página.
+   Al ser hijo directo de <body> (flex column, 100 % del viewport),
+   basta con width: 100 % y sin border-radius.
+   El padding responsivo centra el texto igual que el contenedor.
+   overflow-x: clip evita scrollbar horizontal sin romper position: sticky.
+*/
+html { overflow-x: clip; }
+:root { --container-padding-x: 10px; }
+
+/* Hero después de ser movido por JS antes de .contenedor */
+body > .hero,
+body > header.hero-pagina {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 0 !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    /* Texto centrado dentro de ~1060 px — igual que el contenedor */
+    padding-left:  max(20px, calc((100% - 1060px) / 2 + 20px)) !important;
+    padding-right: max(20px, calc((100% - 1060px) / 2 + 20px)) !important;
+}
+
+/* ===== 10. BARRA DE NAVEGACIÓN DE SESIÓN — STICKY ===== */
+/*
+   La barra de controles (Volver / Ruta / Siguiente) queda fija
+   justo debajo del site-header (58 px) mientras el usuario hace scroll.
+   backdrop-filter crea el efecto cristal esmerilado.
+*/
+.controles-nav {
+    position: sticky !important;
+    top: 58px !important;
+    z-index: 500 !important;
+    background: rgba(250, 250, 250, 0.92) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07) !important;
+    /* Extender hasta los bordes del contenedor */
+    margin-left:  calc(-1 * var(--container-padding-x)) !important;
+    margin-right: calc(-1 * var(--container-padding-x)) !important;
+    padding: 10px 18px !important;
+    width: calc(100% + 2 * var(--container-padding-x)) !important;
+}
+
+/* ===== 11. BARRA DE PROGRESO DE SESIÓN ===== */
+.progreso-sesion {
+    height: 4px;
+    width: min(280px, 70%);
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 2px;
+    margin: 10px auto 0;
+    position: relative;
+    overflow: hidden;
+}
+.progreso-sesion::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; height: 100%;
+    width: var(--pct, 0%);
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 2px;
+    transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ===== 12. HOVER EN TARJETAS ===== */
+.tarjeta,
+.tarjeta-sesion,
+.tarjeta-palabra,
+.fase-tarjeta {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+.tarjeta:hover,
+.tarjeta-sesion:hover,
+.tarjeta-palabra:hover,
+.fase-tarjeta:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 14px 30px rgba(0, 63, 99, 0.15) !important;
+}
+
+/* ===== 13. MODO OSCURO ===== */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --fondo-cuerpo:    #0d1117;
+        --blanco:          #1c2433;
+        --texto-principal: #e2e8f0;
+        --texto-secundario:#94a3b8;
+        --azul-claro:      #1a3350;
+        --arena-clara:     #1e2c3d;
+        --verde-claro:     #162b20;
+        --terracota-claro: #2d1e1a;
+        --gris-pizarra:    #8899aa;
+        --arena-oscura:    #2a3444;
+        --arena-media:     #1e2a38;
+        --arena:           #1e2c3d;
+    }
+    /* Degradado del site-header más oscuro en dark mode */
+    .site-header {
+        background: linear-gradient(135deg, #001020 0%, #002040 100%) !important;
+    }
+    /* Barra de controles sticky */
+    .controles-nav {
+        background: rgba(13, 17, 23, 0.92) !important;
+        border-bottom-color: rgba(255, 255, 255, 0.08) !important;
+    }
+    .controles-nav a,
+    .btn-texto {
+        background: rgba(255, 255, 255, 0.07) !important;
+        color: #c9d8ea !important;
+        border-color: rgba(255, 255, 255, 0.15) !important;
+    }
+    .btn-texto:hover {
+        background: rgba(255, 255, 255, 0.14) !important;
+    }
+    /* Tarjetas de proceso y fase: atenuar ligeramente los colores vivos */
+    .proceso-tarjeta,
+    .fase-tarjeta,
+    .caja-info {
+        filter: brightness(0.82) saturate(0.88);
+    }
+    /* Bordes y separadores */
+    .tarjeta-sesion {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+    /* Footer */
+    .footer-sitio {
+        background: #060c14 !important;
+    }
+    /* Checkbox en evaluación */
+    input[type="checkbox"] {
+        accent-color: var(--azul-mar);
+    }
+}
+
+/* ===== 14. ESTILOS DE IMPRESIÓN ===== */
+@media print {
+    /* Ocultar elementos de UI */
+    .site-header,
+    .controles-nav,
+    .btn-top,
+    .footer-sitio,
+    .skip-link,
+    .migaja-nav,
+    .toast-idioma,
+    #google_translate_element { display: none !important; }
+
+    body {
+        font-size: 11pt !important;
+        color: #000 !important;
+        background: #fff !important;
+        line-height: 1.4 !important;
+    }
+    .contenedor {
+        max-width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+    /* Héroes simplificados para impresión */
+    .contenedor > header,
+    .contenedor > .hero {
+        background: none !important;
+        color: #000 !important;
+        border-bottom: 2pt solid #333 !important;
+        padding: 12pt 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        box-shadow: none !important;
+    }
+    /* No cortar tarjetas entre páginas */
+    .tarjeta,
+    .proceso-tarjeta,
+    .fase-tarjeta,
+    .caja-destacada,
+    .caja-evidencia,
+    .caja-error {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1pt solid #ccc !important;
+    }
+    a[href]::after { content: none !important; }
+    table { break-inside: avoid; }
+    h1, h2, h3 { color: #000 !important; break-after: avoid; }
+    /* La sección de Tareas Multinivel inicia nueva página */
+    .procesos-section { break-before: page; }
+}
+
+/* ===== 15. SESIONES VISITADAS (ruta.html) ===== */
+/*
+   La clase .visitada se añade por JS mediante localStorage.
+   Un indicador de check en la esquina superior derecha confirma la visita.
+*/
+.tarjeta-sesion {
+    position: relative; /* necesario para el ::after absoluto */
+}
+.tarjeta-sesion.visitada {
+    border-color: var(--verde-med, #4A7C59) !important;
+}
+.tarjeta-sesion.visitada::after {
+    content: '✓';
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    color: var(--verde-med, #4A7C59);
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1;
+}
+
+/* ===== 17. RESPETA PREFERS-REDUCED-MOTION ===== */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration:        0.01ms !important;
+        animation-iteration-count: 1      !important;
+        transition-duration:       0.01ms !important;
+        scroll-behavior:           auto   !important;
+    }
+    .progreso-sesion::after { transition: none !important; }
+}

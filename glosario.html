@@ -161,15 +161,24 @@
         }
 
         .mensaje-vacio {
-            display: none;
+            display: none;           /* flex cuando activo */
             grid-column: 1 / -1;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
             text-align: center;
-            padding: 30px;
-            background-color: #fcece9;
-            color: var(--terracota);
-            border-radius: 8px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            padding: 40px 24px;
+            background-color: #fdf1ee;
+            border: 2px dashed var(--terracota);
+            border-radius: 12px;
+            color: var(--texto-principal);
+        }
+        .mensaje-vacio-icono { font-size: 2.4rem; line-height: 1; }
+        .mensaje-vacio-texto { margin: 0; font-size: 1.05rem; }
+        .mensaje-vacio-sugerencia {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--gris-pizarra);
         }
 
         /* ================= HERRAMIENTAS Y FRASES ================= */
@@ -312,7 +321,13 @@
         </section>
 
         <section class="grid-glosario" id="contenedor-glosario">
-            <div class="mensaje-vacio" id="mensaje-vacio">No se han encontrado palabras que coincidan con tu búsqueda.</div>
+            <div class="mensaje-vacio" id="mensaje-vacio" role="status" aria-live="polite">
+                <span class="mensaje-vacio-icono" aria-hidden="true">🔍</span>
+                <p class="mensaje-vacio-texto">
+                    No se encontró «<strong id="termino-buscado"></strong>» en el glosario.
+                </p>
+                <p class="mensaje-vacio-sugerencia">Prueba con otra palabra o comprueba la ortografía.</p>
+            </div>
             
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Ángulo</h3>
@@ -478,10 +493,12 @@
                     }
                 });
 
-                if (hayResultados) {
+                var terminoBuscadoEl = document.getElementById('termino-buscado');
+                if (hayResultados || termino === '') {
                     mensajeVacio.style.display = 'none';
                 } else {
-                    mensajeVacio.style.display = 'block';
+                    if (terminoBuscadoEl) terminoBuscadoEl.textContent = e.target.value.trim();
+                    mensajeVacio.style.display = 'flex';
                 }
             });
         });

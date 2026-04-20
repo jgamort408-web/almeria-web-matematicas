@@ -314,6 +314,9 @@
                 if (lang === 'es') {
                     borrarCookieGT();
                 } else {
+                    /* Cargar GT antes de establecer la cookie y recargar,
+                       para que esté disponible en la siguiente página */
+                    inyectarGoogleTranslate();
                     setCookieGT('/es/' + lang);
                 }
                 location.reload();
@@ -401,10 +404,137 @@
     }
 
     /* ----------------------------------------------------------------
+       HERO FULL-BLEED
+       Mueve el hero fuera del .contenedor (que tiene max-width: 1100 px)
+       para que sea hijo directo de <body> y ocupe el 100 % del viewport.
+       Se ejecuta al principio del DOMContentLoaded, antes de que el
+       navegador haya pintado el layout, minimizando el CLS.
+    ---------------------------------------------------------------- */
+    function moverHeroFueraDelContenedor() {
+        var contenedor = document.querySelector('.contenedor');
+        if (!contenedor) return;
+
+        /* Para index.html: el hero es un <div class="hero"> */
+        var hero = contenedor.querySelector(':scope > .hero');
+
+        /* Para el resto de páginas: el hero es el primer <header> dentro del contenedor */
+        if (!hero) {
+            hero = contenedor.querySelector(':scope > header');
+        }
+        if (!hero) return;
+
+        /* Añadir clase para el selector CSS body > header.hero-pagina */
+        if (hero.tagName === 'HEADER') {
+            hero.classList.add('hero-pagina');
+        }
+
+        /* Insertar justo antes del .contenedor (permanece en el flujo normal de <body>) */
+        contenedor.parentNode.insertBefore(hero, contenedor);
+    }
+
+    /* ----------------------------------------------------------------
+       BARRA DE PROGRESO DE SESIÓN
+       Detecta el número de sesión en la URL (sesion01.html … sesion20.html)
+       e inyecta una barra de progreso debajo de .etiqueta-sesion.
+    ---------------------------------------------------------------- */
+    function inyectarProgreso() {
+        var path = window.location.pathname.replace(/\\/g, '/');
+        var m = path.match(/sesion(\d+)\.html$/);
+        if (!m) return;
+
+        var numSesion = parseInt(m[1], 10);
+        var pct = Math.round((numSesion / 20) * 100);
+
+        var etiqueta = document.querySelector('.etiqueta-sesion');
+        if (!etiqueta) return;
+
+        var barra = document.createElement('div');
+        barra.className = 'progreso-sesion';
+        barra.setAttribute('role', 'progressbar');
+        barra.setAttribute('aria-valuenow', String(numSesion));
+        barra.setAttribute('aria-valuemin', '1');
+        barra.setAttribute('aria-valuemax', '20');
+        barra.setAttribute('aria-label', 'Sesión ' + numSesion + ' de 20');
+        barra.style.setProperty('--pct', '0%');   /* empieza en 0; anima hasta pct */
+
+        etiqueta.parentNode.insertBefore(barra, etiqueta.nextSibling);
+
+        /* Animar tras un frame para que la transición CSS sea visible */
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                barra.style.setProperty('--pct', pct + '%');
+            });
+        });
+    }
+
+    /* ----------------------------------------------------------------
+       SESIONES VISITADAS
+       • registrarSesionVisitada(): guarda el fichero de la sesión actual
+         en localStorage al visitar cualquier sesion*.html.
+       • marcarSesionesVisitadas(): en ruta.html, añade .visitada a cada
+         tarjeta-sesion cuyo enlace aparezca en el historial guardado.
+    ---------------------------------------------------------------- */
+    var STORAGE_SESIONES = 'almeria_sesiones_visitadas';
+
+    function registrarSesionVisitada() {
+        var path = window.location.pathname.replace(/\\/g, '/');
+        var m = path.match(/sesion(\d+)\.html$/);
+        if (!m) return;
+
+        var fichero = 'sesion' + ('0' + m[1]).slice(-2) + '.html'; /* sesion01.html … */
+        try {
+            var visitadas = JSON.parse(localStorage.getItem(STORAGE_SESIONES) || '[]');
+            if (visitadas.indexOf(fichero) === -1) {
+                visitadas.push(fichero);
+                localStorage.setItem(STORAGE_SESIONES, JSON.stringify(visitadas));
+            }
+        } catch (e) { /* localStorage puede estar bloqueado (modo privado estricto) */ }
+    }
+
+    function marcarSesionesVisitadas() {
+        var tarjetas = document.querySelectorAll('.tarjeta-sesion');
+        if (!tarjetas.length) return;
+
+        var visitadas;
+        try {
+            visitadas = JSON.parse(localStorage.getItem(STORAGE_SESIONES) || '[]');
+        } catch (e) { visitadas = []; }
+
+        tarjetas.forEach(function (tarjeta) {
+            var link = tarjeta.querySelector('.btn-sesion');
+            if (!link) return;
+            var href = link.getAttribute('href') || '';
+            var mh = href.match(/sesion\d+\.html$/);
+            if (mh && visitadas.indexOf(mh[0]) !== -1) {
+                tarjeta.classList.add('visitada');
+            }
+        });
+    }
+
+    /* ----------------------------------------------------------------
+       GOOGLE TRANSLATE — CARGA PEREZOSA (LAZY)
+       GT solo se carga si:
+         a) Ya hay una cookie googtrans activa (para aplicar la traducción), O
+         b) El usuario pulsa un botón de idioma no-español por primera vez.
+       Esto evita cargar ~50 KB de JS externo a quienes no cambian de idioma.
+    ---------------------------------------------------------------- */
+    function configurarGoogleTranslateLazy() {
+        var tieneTraduccion = /googtrans=\/es\/[a-z]{2}/.test(document.cookie);
+
+        if (tieneTraduccion) {
+            /* Traducción activa: cargar GT al finalizar la carga de la página */
+            window.addEventListener('load', inyectarGoogleTranslate);
+        }
+        /* Si no hay traducción activa, GT se cargará en activarSelectorIdioma()
+           solo cuando el usuario haga clic en un idioma distinto al español. */
+    }
+
+    /* ----------------------------------------------------------------
        INIT
     ---------------------------------------------------------------- */
     document.addEventListener('DOMContentLoaded', function () {
         inyectarCSS();
+        moverHeroFueraDelContenedor(); /* ← primero para minimizar CLS */
         document.documentElement.style.scrollBehavior = 'smooth';
         activarHamburguesa();
         marcarNavActiva();
@@ -412,9 +542,10 @@
         activarBotonTop();
         activarSelectorIdioma();
         inyectarMigaja();
+        inyectarProgreso();
+        registrarSesionVisitada();
+        marcarSesionesVisitadas();
+        configurarGoogleTranslateLazy();
     });
-
-    /* Google Translate se carga tras el evento load para no bloquear el renderizado */
-    window.addEventListener('load', inyectarGoogleTranslate);
 
 })();
