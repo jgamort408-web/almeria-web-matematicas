@@ -1,0 +1,404 @@
+% ================================================================
+%  sesion19.tex  —  Sesión 19 de 20
+%  Ensayo y mejora
+%  Bloque 4: Producto final · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{19}
+\renewcommand{\SessionTitle}{Ensayo y mejora}
+\renewcommand{\SessionName}{Sesión 19}
+\renewcommand{\SessionObjective}{%
+  Revisar y mejorar la guía turística matemática mediante
+  autoevaluación y coevaluación estructurada, identificando
+  errores conceptuales y de presentación.}
+\renewcommand{\BlockName}{Bloque 4: Producto final}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item ¿Por qué revisar?
+        \item Tipos de errores a buscar
+        \item Rúbrica de autoevaluación
+        \item Protocolo de coevaluación
+        \item Errores más comunes del proyecto
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item El ciclo de mejora
+        \item Ejercicios: evaluar y corregir
+        \item Evidencia del día
+        \item Error de actitud
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. ¿Por qué revisar?}
+% ---------------------------------------------------------------
+
+\begin{frame}{La revisión es parte del proceso matemático}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        Ningún trabajo matemático se entrega sin revisión.
+        Los matemáticos, ingenieros y científicos revisan
+        sus trabajos \textbf{varias veces} antes de publicarlos.\\[6pt]
+        El primer borrador \textbf{siempre} contiene:
+        \begin{itemize}
+          \item Errores de cálculo
+          \item Unidades incorrectas
+          \item Gráficas incompletas
+          \item Datos sin verificar
+          \item Explicaciones poco claras
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tikzpicture}[
+        nodo/.style={
+          rounded corners=5pt,
+          draw=AlmAzulM, fill=AlmFondo,
+          font=\small\bfseries,
+          text width=2.2cm, align=center,
+          inner sep=5pt
+        },
+        flecha/.style={->, AlmAmbar, line width=1.5pt, shorten >=2pt}
+      ]
+        \node[nodo, fill=BCrear!15] (c) at (0,3.5) {Crear};
+        \node[nodo] (r) at (2.5,2)   {Revisar};
+        \node[nodo] (i) at (2.5,0)   {Identificar\\error};
+        \node[nodo] (co)at (0,-1.2)  {Corregir};
+        \node[nodo] (v) at (-2.5,0)  {Verificar};
+        \node[nodo, fill=AlmVerde!15] (p) at (-2.5,2) {Presentar};
+        \draw[flecha] (c)  -- (r);
+        \draw[flecha] (r)  -- (i);
+        \draw[flecha] (i)  -- (co);
+        \draw[flecha] (co) -- (v);
+        \draw[flecha] (v)  -- (p);
+        \draw[flecha, dashed] (r) to[bend left=20] (c)
+          node[midway, above right, font=\tiny, color=AlmGris]
+          {¿Todo bien?};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Tipos de errores}
+% ---------------------------------------------------------------
+
+\begin{frame}{Cuatro tipos de errores a buscar}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[enhanced, colback=BRecordar!8,
+        colframe=BRecordar, fonttitle=\bfseries\small\color{AlmBlanco},
+        title={\faCalculator\enskip Errores matemáticos},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=BRecordar, arc=3pt},
+        arc=4pt, leftrule=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item Fórmula incorrecta ($A = b + h$ en vez de $b \times h$)
+          \item Operación aritmética errónea
+          \item Unidad equivocada (m² en un perímetro)
+          \item Raíz cuadrada olvidada en Pitágoras
+          \item Coordenadas invertidas $(y,x)$ en vez de $(x,y)$
+        \end{itemize}
+      \end{tcolorbox}
+      \vspace{6pt}
+      \begin{tcolorbox}[enhanced, colback=BAnalizar!8,
+        colframe=BAnalizar, fonttitle=\bfseries\small\color{AlmBlanco},
+        title={\faDatabase\enskip Errores de datos},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=BAnalizar, arc=3pt},
+        arc=4pt, leftrule=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item Dato inventado sin fuente
+          \item Dato obsoleto (más de 5 años)
+          \item Dato sin unidades
+          \item Valor implausible (Alcazaba 430\,m²)
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[enhanced, colback=BComprender!8,
+        colframe=BComprender, fonttitle=\bfseries\small\color{AlmBlanco},
+        title={\faChartBar\enskip Errores de representación},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=BComprender, arc=3pt},
+        arc=4pt, leftrule=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item Ejes sin etiqueta o sin unidades
+          \item Escala no regular (saltos irregulares)
+          \item Eje $y$ no empieza en 0 sin justificación
+          \item Tipo de gráfica inadecuado
+          \item Tabla no ordenada por $x$
+        \end{itemize}
+      \end{tcolorbox}
+      \vspace{6pt}
+      \begin{tcolorbox}[enhanced, colback=BEvaluar!8,
+        colframe=BEvaluar, fonttitle=\bfseries\small\color{AlmBlanco},
+        title={\faCommentAlt\enskip Errores de comunicación},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=BEvaluar, arc=3pt},
+        arc=4pt, leftrule=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item Descripción sin datos numéricos
+          \item Cálculo sin explicación de los pasos
+          \item Conclusión vaga («hay muchos turistas»)
+          \item Vocabulario matemático incorrecto
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Rúbrica de autoevaluación}
+% ---------------------------------------------------------------
+
+\begin{frame}{Rúbrica de autoevaluación}
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{p{2.8cm} p{2.6cm} p{2.6cm} p{2.6cm} p{2.6cm}}
+    \toprule
+    \textbf{Criterio}
+      & \textbf{4 — Excelente}
+      & \textbf{3 — Bien}
+      & \textbf{2 — Regular}
+      & \textbf{1 — Mejora}\\
+    \midrule
+    Exactitud\\matemática
+      & Todos los cálculos correctos
+      & 1--2 errores menores
+      & 3--4 errores
+      & Errores graves\\[4pt]
+    Unidades
+      & Siempre correctas
+      & Casi siempre
+      & Algunas mal
+      & Frecuentemente mal\\[4pt]
+    Gráficas
+      & Completas y claras
+      & Falta 1 elemento
+      & Faltan 2 elementos
+      & Incompletas\\[4pt]
+    Selección\\de datos
+      & Verificados y relevantes
+      & Mayoría correctos
+      & Algunos irrelevantes
+      & Sin criterio\\[4pt]
+    Comunicación
+      & Clara y matemática
+      & Casi siempre clara
+      & A veces confusa
+      & Vaga o incorrecta\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    \small\textbf{Puntuación máxima: 20 puntos}\\
+    {\footnotesize 18--20: Sobresaliente · 14--17: Notable ·
+    10--13: Bien · $<$10: Necesita revisión}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Protocolo de coevaluación}
+% ---------------------------------------------------------------
+
+\begin{frame}{Coevaluación: revisión entre equipos}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{teoriabox}
+        \textbf{Protocolo «Estrella + Deseo»}\\[6pt]
+        \begin{enumerate}
+          \item \textbf{Intercambia} la guía con otro equipo.
+          \item Lee con atención \textbf{3 secciones concretas}.
+          \item Para cada sección anota:\\[4pt]
+            \fastar\ \textbf{Estrella} (1): algo que funciona muy bien\\
+            \fastar\ \textbf{Estrella} (2): otro punto positivo\\
+            \faCommentAlt\ \textbf{Deseo} (1): algo a mejorar\\
+            (sé específico: «la tabla de la pág.~3
+            no tiene unidades en la cabecera»)
+          \item Devuelve la guía con tus notas escritas.
+          \item Lee el feedback recibido y \textbf{decide}
+                qué cambios aplicar.
+        \end{enumerate}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \textbf{Normas de la coevaluación:}
+      \begin{itemize}
+        \item Sé \textbf{específico}: no «está bien» sino
+              «la gráfica de barras tiene los ejes
+              correctamente etiquetados con unidades».
+        \item Sé \textbf{constructivo}: «En la pág.~4 falta
+              la unidad del área. Añade m² al resultado
+              para que sea correcto.»
+        \item No es una crítica personal: estás
+              evaluando el \textbf{trabajo matemático},
+              no a la persona.
+        \item El receptor del feedback puede
+              \textbf{aceptar o rechazar} cada sugerencia
+              con justificación matemática.
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Errores más comunes}
+% ---------------------------------------------------------------
+
+\begin{frame}{Los 8 errores más frecuentes en este proyecto}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \item \incorrecto\ Perímetro en m²\\
+              \correcto\ Perímetro en m (lineal)
+        \vspace{4pt}
+        \item \incorrecto\ Coordenadas como $(y,x)$\\
+              \correcto\ Siempre $(x,y)$: primero horizontal
+        \vspace{4pt}
+        \item \incorrecto\ Diagrama de barras para temperatura\\
+              \correcto\ Gráfica lineal para variables continuas
+        \vspace{4pt}
+        \item \incorrecto\ Tabla desordenada\\
+              \correcto\ Ordenada por la variable $x$
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}\setcounter{enumi}{4}
+        \item \incorrecto\ $d = 3^2 + 4^2 = 25$ (falta $\sqrt{}$)\\
+              \correcto\ $d = \sqrt{3^2+4^2} = 5$
+        \vspace{4pt}
+        \item \incorrecto\ «La Alcazaba tiene 43.000»\\
+              \correcto\ «\SI{43000}{m^2}» (siempre con unidad)
+        \vspace{4pt}
+        \item \incorrecto\ Eje $y$ empieza en 2.000.000\\
+              \correcto\ Empieza en 0 (o justifica por qué no)
+        \vspace{4pt}
+        \item \incorrecto\ $A = b + h$\\
+              \correcto\ $A = b \times h$ para el rectángulo
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Ejercicios: evaluar y corregir}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios multinivel}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{evaluarbox}
+        \footnotesize\dificultad{3}\\[4pt]
+        Aplica la rúbrica de autoevaluación
+        a \textbf{tu propia guía}.\\[4pt]
+        \begin{enumerate}
+          \item Puntúa cada criterio (1--4).
+          \item Calcula la puntuación total.
+          \item Identifica tus \textbf{3 puntos más débiles}.
+          \item Escribe un plan concreto de mejora
+                para cada punto: qué cambiarás y cómo.
+        \end{enumerate}
+      \end{evaluarbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{crearbox}
+        \footnotesize\dificultad{4}\\[4pt]
+        Basándote en el \textbf{feedback del equipo revisor},
+        aplica \textbf{3 mejoras concretas} a tu guía.\\[4pt]
+        Para cada mejora documenta:
+        \begin{enumerate}
+          \item \textbf{Versión original} (copia textual)
+          \item \textbf{Problema identificado}
+                (tipo de error y criterio de la rúbrica)
+          \item \textbf{Versión corregida}
+                (con el cambio aplicado)
+        \end{enumerate}
+        Adjunta la documentación de mejoras
+        a tu guía final.
+      \end{crearbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega:
+    \begin{enumerate}
+      \item \textbf{Rúbrica de autoevaluación} completada
+            con puntuación numérica en cada criterio y
+            reflexión escrita sobre los 3 puntos más débiles.
+      \item \textbf{Guía revisada} con las correcciones
+            aplicadas marcadas claramente (usa un color diferente
+            para las correcciones).
+      \item \textbf{Hoja de mejoras} documentando las 3 correcciones
+            (versión original → problema → versión corregida).
+    \end{enumerate}
+    \vspace{4pt}
+    \textit{Una guía bien revisada vale mucho más que una
+    guía apresurada con muchos errores. La calidad matemática
+    es lo que hace profesional vuestro trabajo.}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error de actitud!}
+  \begin{errorbox}
+    \textbf{«Mi cálculo está bien porque yo lo hice»}\\[6pt]
+    \incorrecto\ Resistirse al feedback y defender los errores
+    por orgullo. La revisión crítica es debilidad.\\[8pt]
+    \correcto\ Los mejores matemáticos y científicos del mundo
+    \textbf{dan la bienvenida a las correcciones} porque les
+    permiten mejorar. En matemáticas hay una respuesta correcta
+    y es \textbf{verificable}. Si alguien señala un error, es
+    una oportunidad, no un ataque.\\[6pt]
+    «\textit{Un error descubierto hoy es mejor que
+    un error entregado mañana.}»
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 19}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item La revisión es una \textbf{parte fundamental} del proceso
+            matemático, no un extra opcional.
+      \item Hay 4 tipos de errores: \textbf{matemáticos},
+            de datos, de representación y de comunicación.
+      \item La \textbf{rúbrica} permite autoevaluar
+            objetivamente con criterios claros.
+      \item La \textbf{coevaluación} con el protocolo
+            «Estrella + Deseo» da feedback constructivo.
+      \item Cada corrección debe documentarse:
+            original → problema → versión corregida.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    \textbf{Sesión 20 (última):}
+    Exposición final y cierre del proyecto}
+  \end{center}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,416 @@
+% ================================================================
+%  sesion01.tex  —  Sesión 1 de 20
+%  ¿Qué es una guía turística matemática?
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  Compilar con:  pdflatex sesion01.tex  (dos pasadas)
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+% ---------------------------------------------------------------
+%  DATOS DE LA SESIÓN
+% ---------------------------------------------------------------
+\renewcommand{\SessionNumber}{01}
+\renewcommand{\SessionTitle}{¿Qué es una guía turística matemática?}
+\renewcommand{\SessionName}{Sesión 01}
+\renewcommand{\SessionObjective}{%
+  Identificar qué tipo de información puede tener carácter
+  matemático en una ciudad y distinguir datos descriptivos
+  de datos cuantitativos usando Almería como contexto.}
+\renewcommand{\BlockName}{Bloque 1: Mapa y coordenadas}
+
+% ================================================================
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE DE LA SESIÓN
+% ---------------------------------------------------------------
+\begin{frame}{Índice de la sesión}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item ¿Qué es una guía turística?
+        \item ¿Qué la hace \textit{matemática}?
+        \item Tipos de información: descriptiva vs.\ cuantitativa
+        \item Datos matemáticos ocultos en Almería
+        \item Ejemplo paso a paso: el Cable Inglés
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{5}
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. ¿Qué es una guía turística?}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué es una guía turística?}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{definicionbox}{Guía turística}
+        Publicación (papel o digital) que describe los
+        lugares de interés de una ciudad o región:
+        monumentos, museos, rutas, horarios, precios\ldots
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{itemize}
+        \item Cuenta \textbf{qué} hay y \textbf{cómo llegar}.
+        \item Usa palabras, fotos y mapas.
+        \item Va dirigida al \textbf{turista}.
+      \end{itemize}
+      \vspace{4pt}
+      \begin{notabox}[Ejemplos conocidos]
+        \footnotesize
+        Lonely Planet · Guía Repsol · Tripadvisor
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.9]
+          % Portada de libro estilizada
+          \fill[AlmAzul, rounded corners=4pt]
+            (0,0) rectangle (3.2,4.4);
+          \fill[AlmAmbar]
+            (0.15,3.6) rectangle (3.05,4.2);
+          \node[text=AlmBlanco, font=\tiny\bfseries] at (1.6,3.9)
+            {ALMERÍA};
+          \fill[AlmAzulC!40]
+            (0.15,2.1) rectangle (3.05,3.5);
+          \node[text=AlmAzul, font=\tiny] at (1.6,2.8)
+            {mapa de la ciudad};
+          \foreach \y in {1.2,0.85,0.5}{
+            \fill[AlmBlanco!30, rounded corners=1pt]
+              (0.3,\y) rectangle (2.8,\y+0.22);
+          }
+          \node[text=AlmAmbar, font=\tiny\bfseries] at (1.6,0.05)
+            {Guía Turística};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. ¿Qué la hace \textit{matemática}?}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué hace matemática a una guía?}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{teoriabox}
+        Una guía turística \textbf{matemática} incorpora,
+        además de texto descriptivo, datos numéricos,
+        medidas y representaciones cuantitativas que
+        permiten \textit{analizar} y \textit{comparar}
+        la realidad de la ciudad.
+      \end{teoriabox}
+      \vspace{8pt}
+      ¿Qué puede aparecer?
+      \begin{itemize}
+        \item \textbf{Coordenadas} de monumentos
+        \item \textbf{Distancias} entre puntos turísticos
+        \item \textbf{Alturas}, superficies, aforos
+        \item \textbf{Gráficas} de visitantes o temperatura
+        \item \textbf{Estadísticas} históricas
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{tikzpicture}[every node/.style={font=\scriptsize}]
+        % Diagrama Venn
+        \fill[AlmAzulC!25, opacity=0.7] (-0.6,0) ellipse (2cm and 1.4cm);
+        \fill[AlmAmbar!35, opacity=0.7] (0.6,0) ellipse (2cm and 1.4cm);
+        \node[text=AlmAzul, font=\tiny\bfseries, align=center] at (-1.4,0) {Guía\\clásica};
+        \node[text=AlmAzul, font=\tiny\bfseries] at (2.0,0) {Matemáticas};
+        \node[text=AlmNegro, font=\tiny\bfseries, align=center] at (0,0)
+          {Guía\\matemática};
+        \node[text=AlmGris, font=\tiny, align=center] at (-1.5,-0.55)
+          {fotos\\textos};
+        \node[text=AlmGris, font=\tiny, align=center] at (1.6,-0.55)
+          {cálculos\\gráficas};
+        \node[text=AlmAzul, font=\tiny, align=center] at (0,0.55)
+          {datos\\medidas};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Información descriptiva vs.\ cuantitativa}
+% ---------------------------------------------------------------
+
+\begin{frame}{Dos tipos de información}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Información descriptiva}
+        \begin{itemize}
+          \item Usa palabras, no números.
+          \item Describe \textbf{cómo es} algo.
+          \item Ejemplo: «La Alcazaba es una fortaleza árabe
+                de impresionante belleza.»
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Información cuantitativa}
+        \begin{itemize}
+          \item Usa \textbf{números y unidades}.
+          \item Dice \textbf{cuánto} o \textbf{cuántos}.
+          \item Ejemplo: «La Alcazaba ocupa
+                $43\,000\ \text{m}^2$ y
+                recibe $300\,000$ visitantes/año.»
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+  \vspace{10pt}
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      \textbf{Monumento} & \textbf{Descriptivo} & \textbf{Cuantitativo}\\
+      \midrule
+      Alcazaba   & Fortaleza islámica medieval & $43\,000\ \text{m}^2$, s.\ X\\
+      Cable Inglés & Viaducto de hierro único   & $1{,}1\ \text{km}$, 1904\\
+      Catedral   & Estilo gótico-renacentista   & 55 m altura, 1524\\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Datos matemáticos ocultos en Almería}
+% ---------------------------------------------------------------
+
+\begin{frame}{Datos matemáticos ocultos}
+  \begin{columns}[T]
+    \begin{column}{0.6\textwidth}
+      Cualquier elemento urbano esconde información
+      matemática. Hay que saber \textbf{hacer preguntas}:
+      \vspace{6pt}
+      \begin{tabular}{@{}p{2.8cm}p{5cm}@{}}
+        \toprule
+        \textbf{Lugar} & \textbf{Preguntas matemáticas}\\
+        \midrule
+        Alcazaba
+          & ¿Cuántos metros de muralla tiene?\\[2pt]
+        Puerto de Almería
+          & ¿Qué área ocupa? ¿Cuántos barcos atraca?\\[2pt]
+        Paseo Marítimo
+          & ¿Cuántos km mide de extremo a extremo?\\[2pt]
+        Catedral
+          & ¿Cuánto tarda en dar vuelta la sombra de la torre?\\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.37\textwidth}
+      \begin{notabox}[¿Sabías que\ldots?]
+        \footnotesize
+        El \textbf{Puerto de Almería} ocupa
+        \textbf{35 ha}, lo que equivale a
+        $35\times 10\,000 = 350\,000\ \text{m}^2$.
+        ¡Más de 49 campos de fútbol!
+      \end{notabox}
+      \vspace{6pt}
+      \begin{tikzpicture}[scale=0.75]
+        \fill[AlmAzulC!30, rounded corners=3pt]
+          (0,0) rectangle (3.8,2.2);
+        \fill[AlmVerde!40]
+          (0.2,0.2) rectangle (1.6,0.6);
+        \node[font=\tiny, color=AlmAzul] at (0.9,0.4)
+          {campo fútbol};
+        \node[font=\scriptsize\bfseries, color=AlmAzul] at (1.9,1.2)
+          {$35\ \text{ha}$};
+        \node[font=\tiny, color=AlmGris] at (1.9,0.7)
+          {Puerto};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Ejemplo: el Cable Inglés}
+% ---------------------------------------------------------------
+
+\begin{frame}{El Cable Inglés — Ejemplo paso a paso}
+  \framesubtitle{Longitud 1,1 km · Velocidad media de paseo 5 km/h}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \begin{ejemplobox}
+        \small
+        El Cable Inglés es un viaducto de hierro de
+        $1{,}1\ \text{km}$ de longitud que cruza la
+        desembocadura de la Rambla.\\[4pt]
+        \textbf{Pregunta:} ¿Cuánto tarda en cruzarlo
+        un peatón a $5\ \text{km/h}$?
+      \end{ejemplobox}
+      \vspace{6pt}
+      \begin{pasobox}[1]
+        \footnotesize
+        \textbf{Datos:}
+        $d = 1{,}1\ \text{km}$;\quad
+        $v = 5\ \text{km/h}$
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{pasobox}[2]
+        \footnotesize
+        \textbf{Fórmula tiempo--distancia--velocidad:}
+        \[
+          t = \frac{d}{v}
+        \]
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[3]
+        \footnotesize
+        \textbf{Sustitución:}
+        \[
+          t = \frac{1{,}1\ \text{km}}{5\ \text{km/h}}
+            = 0{,}22\ \text{h}
+        \]
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[4]
+        \footnotesize
+        \textbf{Conversión a minutos:}
+        \[
+          t = 0{,}22 \times 60 \approx \mathbf{13\ \text{min}}
+        \]
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Ejercicios multinivel — Bloom}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios multinivel}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{recordarbox}
+        \footnotesize
+        \textbf{Define} con tus palabras qué es
+        una guía turística.\par\vspace{4pt}
+        Escribe \textbf{3 monumentos} de Almería
+        y anota 2 datos matemáticos que podrías
+        buscar de cada uno.
+      \end{recordarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{comprenderbox}
+        \footnotesize
+        El Paseo de Almería mide $370\ \text{m}$
+        y se recorre a $4\ \text{km/h}$.\par\vspace{4pt}
+        \textbf{Explica} qué tipo de información es
+        cada dato y calcula cuántos minutos dura
+        el paseo.
+      \end{comprenderbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{analizarbox}
+        \footnotesize
+        Observa tres monumentos de tu elección.\par\vspace{4pt}
+        \textbf{Extrae} al menos 2 preguntas
+        matemáticas que podrían incluirse en
+        una guía turística para cada uno.\par\vspace{4pt}
+        ¿Qué tipo de matemáticas necesitarías
+        para responderlas?
+      \end{analizarbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  EVIDENCIA
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \begin{itemize}
+      \item Entrega tu \textbf{tarjeta de trabajo} con
+            al menos \textbf{5 elementos} que incluirás
+            en vuestra guía turística matemática.
+      \item Para cada elemento indica:
+            \begin{enumerate}
+              \item Nombre del monumento o lugar
+              \item Un dato \textit{descriptivo} y uno \textit{cuantitativo}
+              \item Una pregunta matemática que se podría resolver
+            \end{enumerate}
+      \item Incluye las operaciones intermedias, no solo el resultado.
+    \end{itemize}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ERROR FRECUENTE
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    % --- CORRECCIÓN: Uso de minipage en lugar de columns ---
+    \begin{minipage}[t]{0.48\textwidth}
+      \correcto\ \textbf{Correcto} \\[4pt]
+      Las matemáticas sirven para \textbf{describir,
+      medir y comparar} la realidad:\par
+      «La Alcazaba recibe
+      $\mathbf{300\,000}$ visitas/año
+      y tiene $\mathbf{43\,000\ \text{m}^2}$.»
+    \end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{0.48\textwidth}
+      \incorrecto\ \textbf{Error frecuente}\\[4pt]
+      Pensar que las matemáticas son
+      \textbf{solo cálculo}:\par
+      «Las matemáticas no tienen nada que ver
+      con describir ciudades.»
+    \end{minipage}
+    % -------------------------------------------------------
+  \end{errorbox}
+  \vspace{8pt}
+  \begin{notabox}[Recuerda]
+    \small
+    Todo lo que se puede \textbf{medir, contar, localizar
+    o comparar} en una ciudad es material matemático.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  RESUMEN
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 01}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item Una \textbf{guía turística matemática} combina
+            descripciones con datos numéricos, medidas y
+            representaciones cuantitativas.
+      \item Los datos pueden ser \textbf{descriptivos}
+            (palabras) o \textbf{cuantitativos} (números).
+      \item Cualquier monumento o espacio urbano esconde
+            información matemática si sabemos \textbf{hacer
+            las preguntas correctas}.
+      \item Hemos aplicado la fórmula
+            $t = \dfrac{d}{v}$ al Cable Inglés.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}
+    \faArrowCircleRight\enskip
+    \textbf{Próxima sesión:}
+    ¿Qué se puede medir y representar en una ciudad?}
+  \end{center}
+\end{frame}
+
+\end{document}

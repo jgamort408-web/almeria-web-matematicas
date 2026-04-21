@@ -1,0 +1,596 @@
+% ================================================================
+%  sesion04.tex  —  Sesión 4 de 20
+%  Coordenadas y localización
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  Compilar con:  pdflatex sesion04.tex  (dos pasadas)
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+% ---------------------------------------------------------------
+%  DATOS DE LA SESIÓN
+% ---------------------------------------------------------------
+\renewcommand{\SessionNumber}{04}
+\renewcommand{\SessionTitle}{Coordenadas y localización}
+\renewcommand{\SessionName}{Sesión 04}
+\renewcommand{\SessionObjective}{%
+  Leer, escribir y localizar lugares exactos en un mapa de Almería
+  usando pares de coordenadas cartesianas $(x, y)$.}
+\renewcommand{\BlockName}{Bloque 1: Mapa y coordenadas}
+
+% ================================================================
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE DE LA SESIÓN
+% ---------------------------------------------------------------
+\begin{frame}{Índice de la sesión}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item El sistema de coordenadas cartesianas
+        \item Leer un par $(x, y)$
+        \item Los cuatro cuadrantes y sus signos
+        \item Representar puntos en el plano
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{4}
+        \item Escala: de la cuadrícula al mapa real
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. El sistema de coordenadas cartesianas}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejes cartesianos: eje X y eje Y}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{definicionbox}{Sistema de coordenadas cartesianas}
+        Dos rectas perpendiculares que se cortan en el
+        \textbf{origen} $(0,0)$:
+        \begin{itemize}
+          \item \textbf{Eje X} (horizontal): valores positivos
+                a la derecha, negativos a la izquierda.
+          \item \textbf{Eje Y} (vertical): valores positivos
+                hacia arriba, negativos hacia abajo.
+        \end{itemize}
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{teoriabox}
+        \small
+        \textbf{Regla mnemotécnica:}\\
+        «Primero camina por la \textbf{calle} (eje X),
+        luego sube o baja en el \textbf{ascensor} (eje Y).»
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.72]
+          % Ejes
+          \draw[recto, ->] (-3.4,0) -- (3.6,0)
+            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+          \draw[recto, ->] (0,-3.4) -- (0,3.6)
+            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+          % Cuadrícula ligera
+          \foreach \i in {-3,-2,-1,1,2,3}{
+            \draw[AlmAzulC!25, line width=0.3pt]
+              (\i,-3.3) -- (\i,3.3);
+            \draw[AlmAzulC!25, line width=0.3pt]
+              (-3.3,\i) -- (3.3,\i);
+          }
+          % Marcas en los ejes
+          \foreach \i in {-3,-2,-1,1,2,3}{
+            \draw[AlmAzulM, line width=0.6pt]
+              (\i,-0.08) -- (\i,0.08);
+            \draw[AlmAzulM, line width=0.6pt]
+              (-0.08,\i) -- (0.08,\i);
+            \node[font=\tiny, color=AlmGris] at (\i,-0.28) {\i};
+            \node[font=\tiny, color=AlmGris] at (-0.28,\i) {\i};
+          }
+          % Origen
+          \node[font=\tiny, color=AlmGris] at (-0.28,-0.28) {0};
+          % Indicadores de dirección
+          \node[font=\tiny\bfseries, color=AlmTerra] at (2.2,-0.45)
+            {$+$};
+          \node[font=\tiny\bfseries, color=AlmTerra] at (-2.2,-0.45)
+            {$-$};
+          \node[font=\tiny\bfseries, color=AlmTerra] at (0.35,2.3)
+            {$+$};
+          \node[font=\tiny\bfseries, color=AlmTerra] at (0.35,-2.3)
+            {$-$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Leer un par $(x, y)$}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué significa el par $(x, y)$?}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{definicionbox}{Par de coordenadas $(x,\,y)$}
+        \begin{itemize}
+          \item \textbf{Primera coordenada} $x$:\\
+                desplazamiento \emph{horizontal}
+                desde el origen.\\
+                $(+)$ = derecha, $(-)$ = izquierda.
+          \item \textbf{Segunda coordenada} $y$:\\
+                desplazamiento \emph{vertical}
+                desde el origen.\\
+                $(+)$ = arriba, $(-)$ = abajo.
+        \end{itemize}
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{pasobox}[1]
+        \footnotesize
+        Para el punto $A(3,\,2)$:\\
+        \quad$x = 3$: muévete 3 unidades a la \textbf{derecha}.\\
+        \quad$y = 2$: muévete 2 unidades hacia \textbf{arriba}.
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.75]
+          % Ejes
+          \draw[recto, ->] (-0.5,0) -- (4.5,0)
+            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+          \draw[recto, ->] (0,-0.5) -- (0,3.5)
+            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+          % Cuadrícula
+          \foreach \i in {1,2,3,4}{
+            \draw[AlmAzulC!25, line width=0.3pt] (\i,-0.4)--(\i,3.3);
+          }
+          \foreach \j in {1,2,3}{
+            \draw[AlmAzulC!25, line width=0.3pt] (-0.4,\j)--(4.3,\j);
+          }
+          % Marcas
+          \foreach \i in {1,2,3,4}{
+            \node[font=\tiny, color=AlmGris] at (\i,-0.25) {\i};
+          }
+          \foreach \j in {1,2,3}{
+            \node[font=\tiny, color=AlmGris] at (-0.22,\j) {\j};
+          }
+          \node[font=\tiny, color=AlmGris] at (-0.22,-0.22) {0};
+          % Punto A(3,2)
+          \node[punto] (A) at (3,2) {};
+          \node[font=\small\bfseries, color=AlmAzulM, above right=1pt]
+            at (A) {$A(3,\,2)$};
+          % Flechas de desplazamiento
+          \draw[AlmTerra, ->, line width=1.2pt, dashed]
+            (0,0) -- (3,0)
+            node[midway, below, font=\tiny\bfseries, color=AlmTerra]
+            {$x=3$};
+          \draw[AlmVerde, ->, line width=1.2pt, dashed]
+            (3,0) -- (3,2)
+            node[midway, right, font=\tiny\bfseries, color=AlmVerde]
+            {$y=2$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Los cuatro cuadrantes}
+% ---------------------------------------------------------------
+
+\begin{frame}{Los cuatro cuadrantes y sus signos}
+  \begin{columns}[c]
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.80]
+          % Zonas sombreadas
+          \fill[AlmAzulC!22] (0,0) rectangle (2.8,2.8);   % I
+          \fill[AlmAmbar!22] (-2.8,0) rectangle (0,2.8);  % II
+          \fill[AlmTerra!18] (-2.8,-2.8) rectangle (0,0); % III
+          \fill[AlmVerde!18] (0,-2.8) rectangle (2.8,0);  % IV
+          % Ejes
+          \draw[recto, ->] (-3.1,0) -- (3.2,0)
+            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+          \draw[recto, ->] (0,-3.1) -- (0,3.2)
+            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+          % Etiquetas de cuadrante
+          \node[font=\normalsize\bfseries, color=AlmAzul]
+            at (1.5, 1.5)  {I};
+          \node[font=\normalsize\bfseries, color=AlmAmbar!80!black]
+            at (-1.5, 1.5) {II};
+          \node[font=\normalsize\bfseries, color=AlmTerra]
+            at (-1.5,-1.5) {III};
+          \node[font=\normalsize\bfseries, color=AlmVerde]
+            at (1.5,-1.5)  {IV};
+          % Signos en cuadrantes
+          \node[font=\tiny, color=AlmAzul]
+            at (1.5, 0.9) {$(+,+)$};
+          \node[font=\tiny, color=AlmAmbar!80!black]
+            at (-1.5, 0.9) {$(-,+)$};
+          \node[font=\tiny, color=AlmTerra]
+            at (-1.5,-0.9) {$(-,-)$};
+          \node[font=\tiny, color=AlmVerde]
+            at (1.5,-0.9)  {$(+,-)$};
+          % Origen
+          \node[font=\tiny, color=AlmGris] at (-0.22,-0.22) {O};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \vspace{4pt}
+      {\small
+      \begin{tabular}{@{}cllc@{}}
+        \toprule
+        \textbf{Cuadrante} & \textbf{Signo $x$}
+          & \textbf{Signo $y$} & \textbf{Color}\\
+        \midrule
+        \textbf{I}   & positivo $(+)$ & positivo $(+)$
+          & \textcolor{AlmAzulM}{azul}\\
+        \textbf{II}  & negativo $(-)$ & positivo $(+)$
+          & \textcolor{AlmAmbar!70!black}{ámbar}\\
+        \textbf{III} & negativo $(-)$ & negativo $(-)$
+          & \textcolor{AlmTerra}{terracota}\\
+        \textbf{IV}  & positivo $(+)$ & negativo $(-)$
+          & \textcolor{AlmVerde}{verde}\\
+        \bottomrule
+      \end{tabular}}
+      \vspace{8pt}
+      \begin{notabox}[Truco para memorizar]
+        \small
+        Empieza en el \textbf{cuadrante I} (arriba-derecha)
+        y gira en sentido \textbf{contrario a las agujas del reloj}:
+        I → II → III → IV.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Representar puntos en el plano}
+% ---------------------------------------------------------------
+
+\begin{frame}{Cinco puntos en el plano de Almería}
+  \framesubtitle{Cada punto representa un lugar de la ciudad}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.72]
+          % Cuadrícula
+          \foreach \i in {-4,-3,-2,-1,0,1,2,3,4,5}{
+            \draw[AlmAzulC!20, line width=0.3pt]
+              (\i,-4.3)--(\i,4.5);
+          }
+          \foreach \j in {-3,-2,-1,0,1,2,3,4}{
+            \draw[AlmAzulC!20, line width=0.3pt]
+              (-4.3,\j)--(5.3,\j);
+          }
+          % Ejes
+          \draw[recto, ->] (-4.5,0) -- (5.5,0)
+            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+          \draw[recto, ->] (0,-3.8) -- (0,4.8)
+            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+          % Marcas numéricas
+          \foreach \i in {-4,-3,-2,-1,1,2,3,4,5}{
+            \node[font=\tiny, color=AlmGris] at (\i,-0.3) {\i};
+          }
+          \foreach \j in {-3,-2,-1,1,2,3,4}{
+            \node[font=\tiny, color=AlmGris] at (-0.3,\j) {\j};
+          }
+          \node[font=\tiny, color=AlmGris] at (-0.28,-0.28) {0};
+          % Punto A(3,2)
+          \node[punto] (A) at (3,2) {};
+          \node[font=\scriptsize\bfseries, color=AlmAzulM,
+                above right=0pt] at (A) {$A(3,2)$};
+          % Punto B(-4,1)
+          \node[puntot] (B) at (-4,1) {};
+          \node[font=\scriptsize\bfseries, color=AlmTerra,
+                above right=0pt] at (B) {$B(-4,1)$};
+          % Punto C(-2,-3)
+          \node[puntov] (C) at (-2,-3) {};
+          \node[font=\scriptsize\bfseries, color=AlmVerde,
+                above right=0pt] at (C) {$C(-2,-3)$};
+          % Punto D(5,-1)
+          \node[circle, fill=BCrear, inner sep=2.2pt,
+                draw=AlmBlanco, line width=0.8pt] (D) at (5,-1) {};
+          \node[font=\scriptsize\bfseries, color=BCrear,
+                above left=0pt] at (D) {$D(5,-1)$};
+          % Punto E(0,4)
+          \node[circle, fill=BAplicar, inner sep=2.2pt,
+                draw=AlmBlanco, line width=0.8pt] (E) at (0,4) {};
+          \node[font=\scriptsize\bfseries, color=BAplicar!80!black,
+                right=2pt] at (E) {$E(0,4)$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \vspace{4pt}
+      {\small
+      \begin{tabular}{@{}clcc@{}}
+        \toprule
+        \textbf{Punto} & \textbf{Coordenadas}
+          & \textbf{Cuadrante} & \textbf{Color}\\
+        \midrule
+        $A$ & $(3,\;2)$    & I   & \textcolor{AlmAzulM}{azul}\\
+        $B$ & $(-4,\;1)$   & II  & \textcolor{AlmTerra}{rojo}\\
+        $C$ & $(-2,\;-3)$  & III & \textcolor{AlmVerde}{verde}\\
+        $D$ & $(5,\;-1)$   & IV  & \textcolor{BCrear}{púrpura}\\
+        $E$ & $(0,\;4)$    & eje $y$ & \textcolor{BAplicar!80!black}{ámbar}\\
+        \bottomrule
+      \end{tabular}}
+      \vspace{8pt}
+      \begin{notabox}[Punto en el eje]
+        \footnotesize
+        Si $x = 0$, el punto está \textbf{sobre el eje Y}.\\
+        Si $y = 0$, el punto está \textbf{sobre el eje X}.\\
+        No pertenece a ningún cuadrante.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Escala: de la cuadrícula al mapa real}
+% ---------------------------------------------------------------
+
+\begin{frame}{Coordenadas y escala en el mapa de Almería}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        \small
+        En nuestro \textbf{mapa de Almería},
+        asignamos la escala:
+        \[
+          1\ \text{unidad} = 100\ \text{m}
+        \]
+        Así, el punto $P(3,\,5)$ significa:
+        \begin{itemize}
+          \item $x=3$: 300 m hacia el \textbf{este}.
+          \item $y=5$: 500 m hacia el \textbf{norte}.
+        \end{itemize}
+      \end{teoriabox}
+      \vspace{6pt}
+      \begin{ejemplobox}
+        \footnotesize
+        La \textbf{Alcazaba} de Almería tiene
+        coordenadas GPS reales:\\
+        \[
+          36{,}8409°\,\text{N}, \quad 2{,}4699°\,\text{O}
+        \]
+        Estas coordenadas son \textbf{latitud/longitud},
+        un sistema diferente al $(x,y)$ cartesiano.
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.82]
+          % Mini mapa con escala
+          \fill[AlmAzulC!15, rounded corners=3pt]
+            (0,0) rectangle (4.2,3.5);
+          % Cuadrícula
+          \foreach \i in {1,2,3,4}{
+            \draw[AlmAzulC!40, line width=0.4pt] (\i,0)--(\i,3.5);
+          }
+          \foreach \j in {1,2,3}{
+            \draw[AlmAzulC!40, line width=0.4pt] (0,\j)--(4.2,\j);
+          }
+          % Ejes
+          \draw[recto, ->] (0,0)--(4.5,0)
+            node[right,font=\tiny\bfseries, color=AlmAzulM]{$x$};
+          \draw[recto, ->] (0,0)--(0,3.8)
+            node[above,font=\tiny\bfseries, color=AlmAzulM]{$y$};
+          % Marcas
+          \foreach \i in {1,2,3,4}{
+            \node[font=\tiny, color=AlmGris] at (\i,-0.22) {\i};
+          }
+          \foreach \j in {1,2,3}{
+            \node[font=\tiny, color=AlmGris] at (-0.22,\j) {\j};
+          }
+          \node[font=\tiny, color=AlmGris] at (-0.18,-0.18){0};
+          % Punto P(3,2) — Alcazaba aprox.
+          \node[puntot] (P) at (3,2) {};
+          \node[font=\tiny\bfseries, color=AlmTerra, above right=0pt]
+            at (P) {Alcazaba};
+          \node[font=\tiny, color=AlmTerra, below right=0pt]
+            at (P) {$(3,2)$};
+          % Acotación x
+          \draw[acota] (0,-0.48) -- (3,-0.48);
+          \node[font=\tiny, color=AlmAzulM] at (1.5,-0.72) {$300\ \text{m}$};
+          % Acotación y
+          \draw[acota] (3.5,0) -- (3.5,2);
+          \node[font=\tiny, color=AlmAzulM, rotate=90, anchor=south]
+            at (3.75,1) {$200\ \text{m}$};
+          % Escala
+          \node[font=\tiny, color=AlmGris, align=center]
+            at (2.1,3.3) {escala: 1 ud = 100 m};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Ejercicios multinivel — Bloom}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicio COMPRENDER}
+  \bloomtag{COMPRENDER}\quad\dificultad{2}
+  \vspace{4pt}
+  \begin{comprenderbox}
+    \small
+    Responde razonando cada respuesta:
+    \begin{enumerate}
+      \item ¿Qué significa el par $(-3,\,4)$?
+            Explica el movimiento en el plano:
+            ¿hacia dónde y cuánto nos desplazamos en cada eje?
+      \item ¿Por qué el par $(3,\,5)$ es diferente al par $(5,\,3)$?
+            Representa \textbf{ambos} en un mismo sistema de ejes
+            y comprueba que son puntos distintos.
+      \item ¿Qué pares de coordenadas $(x, y)$ con $x = y$
+            están a la misma distancia del origen
+            sobre la recta diagonal?
+            Escribe tres ejemplos.
+    \end{enumerate}
+  \end{comprenderbox}
+\end{frame}
+
+\begin{frame}{Ejercicio APLICAR}
+  \bloomtag{APLICAR}\quad\dificultad{3}
+  \vspace{4pt}
+  \begin{aplicarbox}
+    \footnotesize
+    \textbf{Parte A — Representa los puntos:}\\
+    Dibuja un sistema de ejes de $-2$ a $6$ en $x$
+    y de $0$ a $6$ en $y$. Sitúa los puntos:
+    \[
+      A(1,\,4), \quad B(3,\,2), \quad C(5,\,5), \quad D(0,\,3)
+    \]
+    Une los puntos en orden $A \to B \to C \to D \to A$.
+    ¿Qué forma geométrica se obtiene? Nómbrala.\\[6pt]
+    \textbf{Parte B — Lee coordenadas del mapa:}\\
+    Tu profesor proyectará un mapa con 4 puntos marcados.
+    Escribe las coordenadas $(x, y)$ de cada uno.
+    Compara con tus compañeros. ¿Todos obtuvisteis
+    los mismos resultados?\\[6pt]
+    \textbf{Parte C — Aplicación a Almería:}\\
+    Si el origen $(0,0)$ es la Plaza de la Catedral y
+    la escala es 1 ud = 100 m, escribe las coordenadas
+    aproximadas de un monumento que conozcas.
+  \end{aplicarbox}
+\end{frame}
+
+\begin{frame}{Ejercicio EVALUAR}
+  \bloomtag{EVALUAR}\quad\dificultad{4}
+  \vspace{4pt}
+  \begin{evaluarbox}
+    \small
+    \textbf{Debate y argumenta:}\\[6pt]
+    El Ayuntamiento de Almería quiere crear una nueva
+    guía turística digital.\\[4pt]
+    \begin{itemize}
+      \item ¿Deberían usar \textbf{coordenadas cartesianas}
+            $(x, y)$ o \textbf{coordenadas GPS} (latitud/longitud)?
+    \end{itemize}
+    \vspace{6pt}
+    Escribe un argumento de \textbf{5--6 líneas} que incluya:
+    \begin{enumerate}
+      \item Ventajas e inconvenientes de cada sistema.
+      \item Tu recomendación justificada.
+      \item Al menos un ejemplo concreto de Almería.
+    \end{enumerate}
+  \end{evaluarbox}
+  \vspace{4pt}
+  \begin{notabox}[Pista]
+    \footnotesize
+    Piensa en el público de la guía: ¿turistas con smartphone,
+    escolares con papel, o profesionales de cartografía?
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  EVIDENCIA
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega tu \textbf{Ficha de Coordenadas} con:
+    \begin{itemize}
+      \item Sistema de ejes claramente dibujado con regla,
+            etiquetado $x$ e $y$.
+      \item Al menos \textbf{6 puntos} correctamente colocados
+            en las intersecciones de la cuadrícula
+            (no entre líneas).
+      \item Cada punto identificado con su \textbf{nombre}
+            y su par $(x, y)$.
+      \item El \textbf{cuadrante} al que pertenece indicado
+            para cada punto.
+      \item Una nota explicando con tus palabras
+            la diferencia entre $(x, y)$ y GPS.
+    \end{itemize}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ERROR FRECUENTE
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{columns}[c]
+      \begin{column}{0.50\textwidth}
+        \incorrecto\ \textbf{Error frecuente}\\[6pt]
+        Confundir la coordenada $x$ con la $y$:
+        \begin{center}
+          \large
+          $B(1,\,-4) \;\neq\; B(-4,\,1)$
+        \end{center}
+        \footnotesize
+        Si marcas el punto $B(-4,\,1)$ en la posición
+        de $B(1,\,-4)$, estarás a \textbf{cientos de metros}
+        del lugar real en el mapa de Almería.
+      \end{column}
+      \begin{column}{0.46\textwidth}
+        \correcto\ \textbf{Correcto}\\[6pt]
+        \small
+        \textbf{Recuerda el orden estricto:}
+        \begin{enumerate}
+          \item \textbf{Primera} $\to$ eje $x$ (horizontal).
+          \item \textbf{Segunda} $\to$ eje $y$ (vertical).
+        \end{enumerate}
+        \vspace{4pt}
+        \footnotesize
+        $B(-4,\,1)$:\\
+        \quad$x = -4$: 4 unidades a la \textbf{izquierda}.\\
+        \quad$y = 1$: 1 unidad hacia \textbf{arriba}.
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+  \vspace{6pt}
+  \begin{notabox}[Regla de oro]
+    \small
+    «Primero la \textbf{calle} ($x$ horizontal),
+    luego el \textbf{piso} ($y$ vertical).»
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  RESUMEN
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 04}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item El sistema cartesiano tiene un \textbf{eje X}
+            (horizontal) y un \textbf{eje Y} (vertical)
+            que se cruzan en el \textbf{origen} $(0,0)$.
+      \item Un par $(x,\,y)$: primero la coordenada
+            \textbf{horizontal}, luego la \textbf{vertical}.
+      \item Los cuatro cuadrantes tienen signos:
+            I $(+,+)$, II $(-,+)$, III $(-,-)$, IV $(+,-)$.
+      \item $(3,\,5) \neq (5,\,3)$:
+            el \textbf{orden importa}.
+      \item Con escala $1\ \text{ud} = 100\ \text{m}$
+            podemos usar $(x,y)$ para el mapa de Almería.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}
+    \faArrowCircleRight\enskip
+    \textbf{Próxima sesión:}
+    Rectas, segmentos y ángulos en la ciudad.}
+  \end{center}
+\end{frame}
+
+\end{document}

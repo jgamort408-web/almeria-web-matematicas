@@ -1,0 +1,517 @@
+% ================================================================
+%  sesion15.tex  —  Sesión 15 de 20
+%  Comparar gráficas
+%  Bloque 3: Datos y gráficas · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{15}
+\renewcommand{\SessionTitle}{Comparar gráficas}
+\renewcommand{\SessionName}{Sesión 15}
+\renewcommand{\SessionObjective}{%
+  Superponer y comparar dos gráficas sobre el mismo sistema de ejes,
+  identificar correlaciones positivas y negativas, y extraer
+  conclusiones comparativas sobre datos urbanos de Almería.}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item ¿Por qué comparar gráficas?
+        \item Tipos de correlación
+        \item Temperatura vs.\ turismo en Almería
+        \item Lluvia vs.\ aforo en playas
+        \item Correlación $\neq$ causalidad
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Cómo «miente» una gráfica
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. ¿Por qué comparar gráficas?}
+% ---------------------------------------------------------------
+
+\begin{frame}{La comparación revela relaciones}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        Superponer dos gráficas en los mismos ejes permite:
+        \begin{itemize}
+          \item Detectar si dos variables
+                \textbf{suben y bajan juntas}
+                (correlación positiva).
+          \item Detectar si una \textbf{sube cuando
+                la otra baja} (correlación negativa).
+          \item Identificar \textbf{retrasos} (lag):
+                una variable responde a la otra con demora.
+          \item Descubrir períodos de
+                \textbf{comportamiento anómalo}.
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tikzpicture}[every node/.style={font=\scriptsize}]
+        \begin{axis}[
+          almeria line,
+          width=6.5cm, height=4.5cm,
+          xmin=1, xmax=6, ymin=0, ymax=11,
+          xtick={1,...,6},
+          xticklabels={E,F,M,A,M,J},
+          ylabel={Valor (escalado)},
+          xlabel={Mes},
+          legend pos=north west,
+          legend style={font=\tiny},
+        ]
+          \addplot[AlmTerra, line width=2pt, mark=*]
+            coordinates {(1,2)(2,3)(3,5)(4,7)(5,9)(6,10)};
+          \addlegendentry{Variable A}
+          \addplot[AlmAzulM, line width=2pt, mark=square*]
+            coordinates {(1,8)(2,7)(3,6)(4,4)(5,3)(6,2)};
+          \addlegendentry{Variable B}
+        \end{axis}
+      \end{tikzpicture}
+      \begin{center}
+        \small\color{AlmGris}
+        A sube, B baja → correlación \textbf{negativa}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Tipos de correlación}
+% ---------------------------------------------------------------
+
+\begin{frame}{Correlación: positiva, negativa o nula}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+    \centering
+    {\color{AlmVerde}\bfseries Correlación positiva}\\[4pt]
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=4.5cm, height=3.8cm,
+        axis lines=left, xmin=0, xmax=6, ymin=0, ymax=10,
+        xtick=\empty, ytick=\empty,
+        tick style={draw=none},
+      ]
+        \addplot[AlmVerde, line width=2pt, no marks]
+          coordinates {(0,1)(5,9)};
+        \addplot[only marks, mark=*, AlmVerde!80, mark size=2pt]
+          coordinates {(1,1.8)(2,3.5)(3,5.1)(4,6.8)(5,8.5)};
+      \end{axis}
+    \end{tikzpicture}\\[4pt]
+    \footnotesize Cuando $x$ $\uparrow$, también $y$ $\uparrow$\\
+    Ejemplo: temperatura $\uparrow$ → turistas $\uparrow$
+    \end{column}
+    \begin{column}{0.31\textwidth}
+    \centering
+    {\color{AlmTerra}\bfseries Correlación negativa}\\[4pt]
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=4.5cm, height=3.8cm,
+        axis lines=left, xmin=0, xmax=6, ymin=0, ymax=10,
+        xtick=\empty, ytick=\empty,
+        tick style={draw=none},
+      ]
+        \addplot[AlmTerra, line width=2pt, no marks]
+          coordinates {(0,9)(5,1)};
+        \addplot[only marks, mark=*, AlmTerra!80, mark size=2pt]
+          coordinates {(1,8.2)(2,6.5)(3,4.9)(4,3.2)(5,1.5)};
+      \end{axis}
+    \end{tikzpicture}\\[4pt]
+    \footnotesize Cuando $x$ $\uparrow$, $y$ $\downarrow$\\
+    Ejemplo: lluvia $\uparrow$ → aforo playa $\downarrow$
+    \end{column}
+    \begin{column}{0.31\textwidth}
+    \centering
+    {\color{AlmGris}\bfseries Sin correlación}\\[4pt]
+    \begin{tikzpicture}
+      \begin{axis}[
+        width=4.5cm, height=3.8cm,
+        axis lines=left, xmin=0, xmax=6, ymin=0, ymax=10,
+        xtick=\empty, ytick=\empty,
+        tick style={draw=none},
+      ]
+        \addplot[only marks, mark=*, AlmGris, mark size=2pt]
+          coordinates {
+            (0.5,2)(1,8)(1.5,4)(2,6)(2.5,1)(3,9)
+            (3.5,3)(4,7)(4.5,2)(5,5)(5.5,8)
+          };
+      \end{axis}
+    \end{tikzpicture}\\[4pt]
+    \footnotesize Los puntos no siguen ningún patrón\\
+    Ejemplo: n.º de farolas $\leftrightarrow$ turistas
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Temperatura vs.\ turismo}
+% ---------------------------------------------------------------
+
+\begin{frame}{Temperatura y turismo en Almería — dos ejes}
+  \begin{columns}[c]
+    \begin{column}{0.62\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=10cm, height=5.8cm,
+          axis y line*=left,
+          axis x line=bottom,
+          xmin=1, xmax=12, ymin=8, ymax=33,
+          xtick={1,...,12},
+          xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+          ylabel={\color{AlmTerra}Temperatura (°C)},
+          xlabel={Mes},
+          tick label style={font=\tiny},
+          label style={font=\small},
+          title={Temperatura (°C) y turistas ($\times 10^4$)},
+          title style={font=\small\bfseries, color=AlmAzul},
+          grid=both,
+          grid style={line width=0.3pt, AlmAzulC!25},
+        ]
+          \addplot[AlmTerra, line width=2.5pt, mark=*,
+                   mark options={fill=AlmTerra}]
+            coordinates {
+              (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
+              (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
+            };
+          \addlegendentry{\footnotesize Temperatura}
+        \end{axis}
+        \begin{axis}[
+          width=10cm, height=5.8cm,
+          axis y line*=right,
+          axis x line=none,
+          xmin=1, xmax=12, ymin=0, ymax=80,
+          ylabel={\color{AlmAzulM}Turistas ($\times 10^4$/mes)},
+          tick label style={font=\tiny},
+          label style={font=\small},
+          ytick={0,20,40,60,80},
+        ]
+          \addplot[AlmAzulM, line width=2.5pt, mark=square*,
+                   mark options={fill=AlmAzulM}, dashed]
+            coordinates {
+              (1,6)(2,6.5)(3,8)(4,12)(5,15)(6,25)
+              (7,50)(8,60)(9,30)(10,20)(11,10)(12,8)
+            };
+          \addlegendentry{\footnotesize Turistas}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \textbf{Observaciones:}
+      \begin{itemize}
+        \item Ambas curvas tienen el \textbf{pico en julio--agosto}.
+        \item Ambas tienen el \textbf{mínimo en enero}.
+        \item Cuando la temperatura $\uparrow$,
+              los turistas también $\uparrow$.
+        \item \textbf{Correlación positiva} clara.
+      \end{itemize}
+      \vspace{6pt}
+      \begin{notabox}[Doble eje $y$]
+        \footnotesize
+        Se usan dos ejes $y$ cuando las
+        variables tienen \textbf{escalas muy
+        diferentes} (°C vs.\ decenas de miles).
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Lluvia vs.\ aforo en playas}
+% ---------------------------------------------------------------
+
+\begin{frame}{Lluvia y aforo de playas — correlación negativa}
+  \begin{columns}[c]
+    \begin{column}{0.58\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          almeria bar,
+          width=9.5cm, height=5.2cm,
+          symbolic x coords={E,F,M,A,M,J,J,A,S,O,N,D},
+          xtick=data,
+          ylabel={Lluvia (mm) / Aforo (\%)},
+          xlabel={Mes},
+          title={Lluvia mensual (barras) y aforo de playa (línea)},
+          ymin=0, ymax=100,
+          bar width=0.38cm,
+          legend pos=north west,
+          legend style={font=\tiny},
+          nodes near coords=\empty,
+        ]
+          \addplot[fill=AlmAzulC!60, fill opacity=0.8]
+            coordinates {
+              (E,25)(F,22)(M,18)(A,12)(M,8)(J,3)
+              (J,1)(A,1)(S,8)(O,20)(N,28)(D,30)
+            };
+          \addlegendentry{Lluvia (mm)}
+          \addplot[AlmTerra, line width=2.5pt, mark=*,
+                   mark options={fill=AlmTerra}]
+            coordinates {
+              (E,15)(F,18)(M,22)(A,35)(M,50)(J,70)
+              (J,95)(A,98)(S,65)(O,35)(N,18)(D,12)
+            };
+          \addlegendentry{Aforo playa (\%)}
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \textbf{Análisis:}
+      \begin{itemize}
+        \item Lluvia alta (otoño--invierno) →
+              aforo de playa \textbf{bajo}.
+        \item Lluvia baja (verano) →
+              aforo de playa \textbf{alto}.
+        \item \textbf{Correlación negativa}: cuando
+              una variable sube, la otra baja.
+      \end{itemize}
+      \vspace{6pt}
+      \begin{analizarbox}
+        \footnotesize
+        ¿La lluvia es la \textit{causa} de que
+        las playas estén vacías, o existen
+        otras variables explicativas?
+        (temperatura, vacaciones, etc.)
+      \end{analizarbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Correlación $\neq$ Causalidad}
+% ---------------------------------------------------------------
+
+\begin{frame}{¡Atención! Correlación no implica causalidad}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{errorbox}
+        \textbf{Error de razonamiento frecuente:}\\[4pt]
+        «Como la temperatura y el turismo suben juntos,
+        \textit{la temperatura es la causa del turismo.}»\\[6pt]
+        Pero también hay \textbf{otra variable oculta}:
+        las \textit{vacaciones escolares} coinciden con
+        el verano. Son las vacaciones (no solo el calor)
+        las que permiten a las familias viajar.
+      \end{errorbox}
+      \vspace{6pt}
+      \begin{notabox}[Variable oculta o confusora]
+        \footnotesize
+        Una \textbf{variable confusora} es aquella que
+        influye en $x$ e $y$ simultáneamente, haciendo
+        que parezca que $x$ causa $y$ cuando en realidad
+        ambas están causadas por una tercera variable.
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \textbf{Ejemplo clásico:}\\[6pt]
+      \begin{center}
+      \begin{tikzpicture}[
+        nodo/.style={
+          rounded corners=4pt, draw=AlmAzulM,
+          fill=AlmFondo, font=\small, inner sep=5pt,
+          text width=2.5cm, align=center
+        },
+        causa/.style={->, AlmTerra, line width=1.5pt}
+      ]
+        \node[nodo] (V) at (0,2.5) {Vacaciones\\de verano};
+        \node[nodo] (T) at (-2,0) {Temperatura\\alta (°C)};
+        \node[nodo] (Tu) at (2,0) {Turistas\\$\uparrow$};
+        \draw[causa] (V) -- (T);
+        \draw[causa] (V) -- (Tu);
+        \draw[AlmGris, dashed, ->, line width=1pt] (T) -- (Tu)
+          node[midway, below, font=\tiny, color=AlmGris]
+          {correlación\,≠\,causa};
+      \end{tikzpicture}
+      \end{center}
+      \vspace{4pt}
+      \footnotesize\color{AlmGris}
+      Las vacaciones causan TANTO que haya mucha gente
+      en la playa COMO que observemos días calurosos
+      en los registros turísticos.
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Cómo «miente» una gráfica}
+% ---------------------------------------------------------------
+
+\begin{frame}{La escala puede engañar}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \centering
+      {\color{AlmTerra}\bfseries\small Gráfica «alarmista»}\\
+      (eje $y$ truncado: 0 omitido)\\[4pt]
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=6cm, height=4.2cm,
+          axis lines=left,
+          xmin=2019.5, xmax=2022.5,
+          ymin=2.7, ymax=3.1,
+          xtick={2020,2021,2022},
+          ytick={2.7,2.8,2.9,3.0,3.1},
+          xlabel={Año}, ylabel={Mill.},
+          tick label style={font=\tiny},
+          label style={font=\tiny},
+          title style={font=\tiny},
+          title={¡Caída catastrófica!},
+        ]
+          \addplot[AlmTerra, line width=2.5pt, mark=*]
+            coordinates {(2020,2.75)(2021,2.85)(2022,3.0)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \centering
+      {\color{AlmVerde}\bfseries\small Gráfica honesta}\\
+      (eje $y$ desde 0)\\[4pt]
+      \begin{tikzpicture}
+        \begin{axis}[
+          width=6cm, height=4.2cm,
+          axis lines=left,
+          xmin=2019.5, xmax=2022.5,
+          ymin=0, ymax=3.5,
+          xtick={2020,2021,2022},
+          ytick={0,1,2,3},
+          xlabel={Año}, ylabel={Mill.},
+          tick label style={font=\tiny},
+          label style={font=\tiny},
+          title style={font=\tiny},
+          title={Crecimiento moderado},
+        ]
+          \addplot[AlmVerde, line width=2.5pt, mark=*]
+            coordinates {(2020,2.75)(2021,2.85)(2022,3.0)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{center}
+    \small ¡Los mismos datos, escalas diferentes,
+    impresiones \textbf{completamente distintas}!
+    Siempre comprueba si el eje $y$ empieza en $0$.
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Ejercicios multinivel}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios multinivel}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{analizarbox}
+        \footnotesize\dificultad{2}\\[4pt]
+        Tienes un gráfico dual: temperatura (°C)
+        y ventas de helados en Almería por mes.\\[4pt]
+        \textbf{Analiza:}\\
+        (a) Tipo de correlación.\\
+        (b) ¿Cuándo coinciden los picos?\\
+        (c) ¿Hay un desfase (lag) entre ambas?\\
+        Argumenta en 5 líneas.
+      \end{analizarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{evaluarbox}
+        \footnotesize\dificultad{3}\\[4pt]
+        Tienes tres comparaciones:\\[3pt]
+        A: temperatura vs.\ turistas\\
+        B: vacaciones escolares vs.\ turistas\\
+        C: precio vuelos vs.\ turistas\\[4pt]
+        \textbf{Evalúa} cuál de los tres factores
+        explica mejor el turismo en Almería.
+        ¿Son independientes o están relacionados
+        entre sí? Escribe un argumento de 8 líneas.
+      \end{evaluarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{crearbox}
+        \footnotesize\dificultad{4}\\[4pt]
+        Inventa \textbf{dos variables urbanas}
+        de Almería que tengan:
+        \begin{itemize}
+          \item Una correlación \textbf{positiva}
+          \item Una correlación \textbf{negativa}
+        \end{itemize}
+        Dibuja a mano un gráfico esquemático
+        de cada par. Explica la posible variable
+        confusora en cada caso.
+      \end{crearbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Escribe un \textbf{análisis comparativo} de dos gráficas de
+    datos de Almería. Debe incluir:
+    \begin{enumerate}
+      \item Identificación del tipo de correlación (positiva/negativa/nula)
+            con justificación basada en los valores leídos
+      \item Al menos un punto donde ambas variables cambian juntas
+            y uno donde se separan — explica por qué
+      \item Discusión de si la correlación implica causalidad:
+            ¿existe una variable oculta?
+      \item Conclusión de 4--5 líneas sobre la relación entre
+            las dos variables en el contexto de Almería
+    \end{enumerate}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \textbf{Correlación $\neq$ Causalidad}\\[6pt]
+    \incorrecto\ «El turismo aumenta porque hace más calor.
+    Por tanto, si calentamos la ciudad artificialmente,
+    vendrán más turistas.»\\[6pt]
+    \correcto\ La correlación entre temperatura y turismo se debe en
+    parte a las vacaciones de verano, al sol en la playa, y a
+    patrones culturales. El calor \textit{solo} no causaría más turismo.
+    Identificar la variable confusora es fundamental para
+    razonar correctamente.
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 15}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item Comparar gráficas permite detectar
+            \textbf{correlaciones} entre variables.
+      \item \textbf{Correlación positiva}: ambas variables
+            suben/bajan juntas.
+      \item \textbf{Correlación negativa}: una sube cuando
+            la otra baja.
+      \item Se usan \textbf{dos ejes $y$} cuando las escalas
+            son muy distintas.
+      \item \textbf{Correlación $\neq$ causalidad}:
+            siempre busca posibles variables confusoras.
+      \item Una gráfica puede \textbf{engañar} si el eje $y$
+            no empieza en $0$.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    \textbf{Sesión 16:} Relaciones funcionales y proporcionalidad directa}
+  \end{center}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,562 @@
+% ================================================================
+%  SESIÓN 12 — De enunciado a tabla
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{12}
+\renewcommand{\SessionTitle}{De enunciado a tabla}
+\renewcommand{\SessionName}{Sesión 12}
+\renewcommand{\SessionObjective}{Organizar datos de un enunciado textual en una tabla ordenada y funcional, identificando las variables y sus valores}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 1 — ¿Por qué necesitamos tablas?
+% ---------------------------------------------------------------
+\begin{frame}{¿Por qué organizar datos en una tabla?}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        \small
+        Un \textbf{texto con datos} es difícil de analizar:
+        \begin{itemize}
+          \item Los números están dispersos entre palabras.
+          \item No se aprecia el orden ni la magnitud.
+          \item Es imposible hacer una gráfica directamente.
+        \end{itemize}
+        \vspace{4pt}
+        Una \textbf{tabla} organiza la información de forma
+        \textit{sistemática, ordenada y visual}.
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{notabox}[Dato de Almería]
+        \small
+        El Patronato de Turismo de Almería publica sus estadísticas
+        en tablas mensuales.
+        Sin esa organización, los datos serían ilegibles.
+      \end{notabox}
+
+      \vspace{0.3cm}
+      \begin{center}
+      \begin{tikzpicture}
+        \node[font=\Large, color=AlmTerra] (texto) at (0,0)
+          {\faFileAlt};
+        \node[font=\small, color=AlmTerra, below=2pt of texto]
+          {Texto disperso};
+        \draw[-Stealth, AlmAzulM, line width=2pt] (0.6,0) -- (1.6,0);
+        \node[font=\Large, color=AlmVerde] (tabla) at (2.2,0)
+          {\faTable};
+        \node[font=\small, color=AlmVerde, below=2pt of tabla]
+          {Tabla ordenada};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 2 — Estructura de una tabla
+% ---------------------------------------------------------------
+\begin{frame}{Estructura de una tabla de datos}
+  \begin{center}
+  \begin{tikzpicture}[font=\small, every node/.style={align=center}]
+    % Tabla visual con anotaciones
+    \draw[AlmAzulM, line width=1.5pt] (0,0) rectangle (8,3.4);
+    % Cabecera
+    \fill[AlmAzul!85] (0,2.8) rectangle (8,3.4);
+    \node[text=white, font=\bfseries\small] at (2.4,3.1)
+      {Encabezado col.~1};
+    \draw[AlmAzulM, line width=1pt] (4.8,0) -- (4.8,3.4);
+    \node[text=white, font=\bfseries\small] at (6.4,3.1)
+      {Encabezado col.~2};
+    % Filas
+    \foreach \y/\col in {2.2/AlmFondo, 1.6/white, 1.0/AlmFondo, 0.4/white}{
+      \fill[\col, opacity=0.6] (0.1,\y-0.4) rectangle (7.9,\y+0.2);
+    }
+    \node at (2.4,2.1) {Fila 1 · celda A}; \node at (6.4,2.1) {Fila 1 · celda B};
+    \node at (2.4,1.5) {Fila 2 · celda A}; \node at (6.4,1.5) {Fila 2 · celda B};
+    \node at (2.4,0.9) {Fila 3 · celda A}; \node at (6.4,0.9) {Fila 3 · celda B};
+    \node at (2.4,0.3) {\ldots};           \node at (6.4,0.3) {\ldots};
+    % Anotaciones externas
+    \draw[acota] (-0.7,2.8) -- (-0.7,3.4)
+      node[midway, left=2pt, font=\tiny\bfseries, color=AlmAzulM]
+      {\rotatebox{90}{Encabezados}};
+    \draw[acota] (-0.7,0) -- (-0.7,2.8)
+      node[midway, left=2pt, font=\tiny\bfseries, color=AlmGris]
+      {\rotatebox{90}{Filas de datos}};
+    \draw[<->, >=Stealth, AlmTerra, line width=0.8pt]
+      (0,3.6) -- (4.7,3.6)
+      node[midway, above, font=\tiny\bfseries, color=AlmTerra]
+      {Columna \(x\) independiente};
+    \draw[<->, >=Stealth, AlmVerde, line width=0.8pt]
+      (4.9,3.6) -- (8,3.6)
+      node[midway, above, font=\tiny\bfseries, color=AlmVerde]
+      {Columna \(y\) dependiente};
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.1cm}
+  \begin{center}
+  \small
+  \textbf{Regla:} columna izquierda = variable independiente \(x\);
+  columna derecha = variable dependiente \(y\).
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Pasos para construir una tabla
+% ---------------------------------------------------------------
+\begin{frame}{Pasos para construir una tabla desde un texto}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[1]
+        \small Lee con atención y \textbf{subraya todos los números}.
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[2]
+        \small Identifica \textbf{qué representa cada número}
+        (¿es una fecha? ¿una cantidad? ¿una medida?).
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[3]
+        \small Decide cuál es la \textbf{variable independiente \(x\)}
+        y cuál la \textbf{dependiente \(y\)}.
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[4]
+        \small Crea los \textbf{encabezados} con nombre claro y unidades
+        entre paréntesis: \textit{Mes}, \textit{Visitantes (miles)}.
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[5]
+        \small Rellena los valores en \textbf{orden creciente de \(x\)}
+        (de menor a mayor).
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[6]
+        \small \textbf{Verifica}: ¿están todos los datos?
+        ¿son consistentes las unidades?
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.2cm}
+  \begin{notabox}[Clave]
+    \small
+    Ordenar por \(x\) no es un capricho: facilita la lectura
+    y es imprescindible para trazar una gráfica correcta después.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Ejemplo: visitantes a la Alcazaba
+% ---------------------------------------------------------------
+\begin{frame}{Ejemplo 1: visitantes a la Alcazaba}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{ejemplobox}
+        \small\itshape
+        «En enero la Alcazaba recibió 8\,500 visitantes.
+        En febrero, 9\,200. Marzo registró 12\,000 visitantes.
+        En abril hubo 18\,500. En mayo la cifra llegó a 22\,000 personas.»
+      \end{ejemplobox}
+
+      \vspace{0.3cm}
+      \begin{pasobox}[Análisis]
+        \small
+        \begin{itemize}
+          \item \(x\) = mes (cuantitativa discreta)
+          \item \(y\) = visitantes (cuantitativa discreta)
+          \item Ordenar: enero → mayo
+        \end{itemize}
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.35}
+      \begin{tabular}{>{\bfseries\color{AlmAzulM}}c
+                      >{\centering\arraybackslash}c
+                      r}
+        \toprule
+        \rowcolor{AlmAzul!12}
+        \textbf{Mes} & \textbf{N.º mes} & \textbf{Visitantes} \\
+        \midrule
+        Enero    & 1 & 8\,500  \\
+        \rowcolor{AlmFondo}
+        Febrero  & 2 & 9\,200  \\
+        Marzo    & 3 & 12\,000 \\
+        \rowcolor{AlmFondo}
+        Abril    & 4 & 18\,500 \\
+        Mayo     & 5 & 22\,000 \\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+      \vspace{0.2cm}
+      \begin{notabox}[Observa]
+        \small
+        ¡Los datos estaban desordenados en el texto!
+        La tabla los ordena por el mes.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Ejemplo 2: tarifa de taxi en Almería
+% ---------------------------------------------------------------
+\begin{frame}{Ejemplo 2: tarifa de taxi en Almería}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{ejemplobox}
+        \small\itshape
+        «La bajada de bandera es 2{,}40\,€.
+        Cada kilómetro recorrido cuesta 1{,}20\,€ adicionales.
+        Calcula el precio para 1, 2, 3, 4 y 5\,km.»
+      \end{ejemplobox}
+
+      \vspace{0.25cm}
+      \begin{formulabox}
+        y = 2{,}40 + 1{,}20 \cdot x
+      \end{formulabox}
+
+      \vspace{0.2cm}
+      {\small $x$ = km recorridos \quad $y$ = precio total (€)}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \renewcommand{\arraystretch}{1.35}
+      \begin{tabular}{>{\bfseries\color{AlmAzulM}\centering\arraybackslash}p{1.8cm}
+                      >{\centering\arraybackslash}p{2.4cm}}
+        \toprule
+        \rowcolor{AlmAzul!12}
+        \textbf{Km (\(x\))} & \textbf{Precio €\,(\(y\))} \\
+        \midrule
+        1 & 2{,}40 + 1{,}20 = 3{,}60 \\
+        \rowcolor{AlmFondo}
+        2 & 2{,}40 + 2{,}40 = 4{,}80 \\
+        3 & 2{,}40 + 3{,}60 = 6{,}00 \\
+        \rowcolor{AlmFondo}
+        4 & 2{,}40 + 4{,}80 = 7{,}20 \\
+        5 & 2{,}40 + 6{,}00 = 8{,}40 \\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Tabla de frecuencias
+% ---------------------------------------------------------------
+\begin{frame}{Tabla de frecuencias: cuando muchos datos se repiten}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{teoriabox}
+        \small
+        Cuando hay \textbf{muchas repeticiones} del mismo valor,
+        usamos una \textbf{tabla de frecuencias}:
+        \begin{itemize}
+          \item \textbf{Valor}: cada valor posible de la variable.
+          \item \textbf{Marcas de conteo}: palotes para contar
+                (5 palotes = \texttt{IIII\hspace{-1pt}/}).
+          \item \textbf{Frecuencia}: número total de repeticiones.
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \small
+      \textit{Ejemplo: tipo de transporte en Almería (encuesta a 30 alumnos)}\\[4pt]
+      \renewcommand{\arraystretch}{1.25}
+      \begin{tabular}{lcc}
+        \toprule
+        \rowcolor{AlmAzul!12}
+        \textbf{Transporte} & \textbf{Marcas} & \textbf{Frec.} \\
+        \midrule
+        A pie      & \texttt{IIIII IIIII II}  & 12 \\
+        \rowcolor{AlmFondo}
+        Autobús    & \texttt{IIIII IIII}       &  9 \\
+        Coche      & \texttt{IIIII I}          &  6 \\
+        \rowcolor{AlmFondo}
+        Bicicleta  & \texttt{III}              &  3 \\
+        \midrule
+        \textbf{Total} & & \textbf{30} \\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Gráfico de barras a partir de la tabla (pgfplots)
+% ---------------------------------------------------------------
+\begin{frame}{De la tabla al gráfico: Alcazaba enero–mayo}
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      almeria bar,
+      width=0.82\linewidth, height=0.56\linewidth,
+      title={Visitantes mensuales a la Alcazaba},
+      xlabel={Mes},
+      ylabel={Visitantes},
+      symbolic x coords={Enero,Febrero,Marzo,Abril,Mayo},
+      xtick=data,
+      ymin=0, ymax=26000,
+      nodes near coords style={font=\tiny\bfseries, color=AlmAzul},
+      bar width=0.6cm,
+    ]
+      \addplot[fill=AlmAzulM, draw=AlmAzul] coordinates {
+        (Enero,8500)
+        (Febrero,9200)
+        (Marzo,12000)
+        (Abril,18500)
+        (Mayo,22000)
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+  \vspace{-0.2cm}
+  {\small\color{AlmGris} La tabla se convierte directamente en este gráfico
+  gracias al orden correcto de los datos.}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: elementos de una tabla}
+  \begin{recordarbox}
+    Responde sin mirar los apuntes:
+    \begin{enumerate}
+      \item ¿Cuáles son los \textbf{4 elementos} que debe tener
+            toda tabla bien estructurada?
+      \item ¿Qué información debe aparecer en los
+            \textbf{encabezados de columna}?
+      \item ¿Qué variable va en la columna \textbf{izquierda}?
+            ¿Y en la derecha?
+      \item ¿Por qué hay que ordenar los datos
+            de menor a mayor valor de \(x\)?
+    \end{enumerate}
+  \end{recordarbox}
+
+  \vspace{0.3cm}
+  \begin{center}
+  \small
+  \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l}
+    \toprule
+    Elemento & Descripción \\
+    \midrule
+    Encabezados & Nombre de variable + unidad \\
+    Filas & Un dato por fila \\
+    Columna \(x\) & Variable independiente (izquierda) \\
+    Columna \(y\) & Variable dependiente (derecha) \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Ejercicio COMPRENDER
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: detectar errores en una tabla}
+  \begin{comprenderbox}
+    La siguiente tabla tiene \textbf{4 errores}. Identifícalos
+    y reescribe la tabla de forma correcta.
+
+    \vspace{0.25cm}
+    \begin{center}
+    \small
+    \begin{tabular}{cc}
+      \toprule
+      \rowcolor{AlmTerra!10}
+      \textbf{Datos} & \textbf{Cosas} \\
+      \midrule
+      Julio  & 280000 \\
+      Enero  & 60 \\
+      Marzo  & 80000 \\
+      Agosto & mucho \\
+      Febrero& 65000 \\
+      \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \vspace{0.15cm}
+    \textit{Pista}: busca problemas en encabezados, unidades,
+    orden y consistencia de datos.
+  \end{comprenderbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: el autobús de Almería}
+  \begin{aplicarbox}
+    Lee el enunciado y construye la tabla correspondiente:
+
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{tcolorbox}[colback=AlmAmbar!12, colframe=AlmAmbar!60!black,
+                      width=0.88\textwidth, arc=4pt, boxrule=0.8pt]
+      \small\itshape
+      «El autobús urbano de Almería tarda 5 minutos en hacer 2 paradas.
+      Para 4 paradas necesita 10 minutos.
+      Con 6 paradas son 15 minutos.
+      Las 8 paradas se completan en 20 minutos,
+      y las 12 paradas en 30 minutos.»
+    \end{tcolorbox}
+    \end{center}
+
+    \vspace{0.2cm}
+    \begin{enumerate}
+      \item Construye la tabla completa con encabezados y unidades.
+      \item ¿Cuál es la variable independiente? ¿Y la dependiente?
+      \item ¿Ves un patrón? ¿Cuánto tarda para \textbf{10 paradas}?
+    \end{enumerate}
+  \end{aplicarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \textbf{Meter los datos en orden aleatorio}:
+
+    \vspace{0.3cm}
+    \begin{columns}[T]
+      \begin{column}{0.44\textwidth}
+        \incorrecto\; \textbf{Tabla desordenada}
+        \vspace{4pt}
+        \small
+        \begin{tabular}{cc}
+          \toprule
+          \rowcolor{AlmTerra!10}
+          Mes & Visitantes \\
+          \midrule
+          Julio & 500\,000 \\
+          Enero & 60\,000 \\
+          Abril & 120\,000 \\
+          Marzo & 80\,000 \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.44\textwidth}
+        \correcto\; \textbf{Tabla ordenada}
+        \vspace{4pt}
+        \small
+        \begin{tabular}{cc}
+          \toprule
+          \rowcolor{AlmVerde!10}
+          Mes & Visitantes \\
+          \midrule
+          Enero & 60\,000 \\
+          Marzo & 80\,000 \\
+          Abril & 120\,000 \\
+          Julio & 500\,000 \\
+          \bottomrule
+        \end{tabular}
+      \end{column}
+    \end{columns}
+
+    \vspace{0.25cm}
+    \small
+    Una tabla desordenada \textbf{impide ver la tendencia} y genera gráficas
+    con puntos conectados de forma caótica.
+    Ordena siempre de menor a mayor valor de \(x\).
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Construye en tu cuaderno \textbf{dos tablas completas}
+    a partir de estos dos párrafos:
+
+    \vspace{0.2cm}
+    \begin{tcolorbox}[colback=AlmAmbar!10, colframe=AlmAmbar!60!black,
+                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\small,
+                      title={Párrafo A — Temperaturas en Almería}]
+      \small\itshape
+      «En enero la temperatura media es 12\,°C.
+      En abril sube a 19\,°C. En julio alcanza 30\,°C.
+      Octubre registra 21\,°C y diciembre baja a 13\,°C.»
+    \end{tcolorbox}
+
+    \vspace{0.2cm}
+    \begin{tcolorbox}[colback=AlmAzulC!10, colframe=AlmAzulC!70!black,
+                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\small,
+                      title={Párrafo B — Precio del taxi}]
+      \small\itshape
+      «Un taxi en Almería cobra 1{,}80\,€/km con bajada de bandera de 3\,€.
+      Calcula el precio total para 1, 3, 5, 7 y 10\,km.»
+    \end{tcolorbox}
+
+    \vspace{0.2cm}
+    \small
+    Cada tabla debe tener: \textbf{encabezados con unidades},
+    \textbf{orden correcto de \(x\)} y \textbf{5 filas de datos}.
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Resumen de sesión
+% ---------------------------------------------------------------
+\begin{frame}{Resumen: lo que hemos aprendido hoy}
+  \begin{resumenbox}
+    \begin{columns}[T]
+      \begin{column}{0.50\textwidth}
+        \textbf{Estructura de una tabla:}
+        \begin{itemize}
+          \item Encabezados con nombre y unidades
+          \item Columna izquierda = \(x\) independiente
+          \item Columna derecha = \(y\) dependiente
+          \item Filas ordenadas de menor a mayor \(x\)
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.46\textwidth}
+        \textbf{6 pasos para construir la tabla:}
+        \begin{enumerate}
+          \small
+          \item Subraya todos los números
+          \item Identifica qué representa cada uno
+          \item Decide \(x\) e \(y\)
+          \item Crea encabezados claros
+          \item Rellena en orden
+          \item Verifica consistencia
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \separador
+    \vspace{0.15cm}
+    \small
+    \textbf{Error a evitar:}
+    datos en orden aleatorio dificultan la lectura y hacen
+    imposible trazar una gráfica correcta.
+  \end{resumenbox}
+
+  \vspace{0.2cm}
+  \begin{center}
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}
+  \end{center}
+\end{frame}
+
+\end{document}

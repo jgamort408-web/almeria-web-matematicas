@@ -1,0 +1,483 @@
+% ================================================================
+%  SESIÓN 17 — Seleccionar la información de la guía
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO · IES Al-Ándalus
+%  Compilar: pdflatex sesion17.tex
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{17}
+\renewcommand{\SessionTitle}{Seleccionar la información\\de la guía}
+\renewcommand{\SessionName}{Sesión 17}
+\renewcommand{\SessionObjective}{Aplicar criterios matemáticos y comunicativos para seleccionar, verificar y organizar la información que formará parte de la guía turística matemática de Almería}
+\renewcommand{\BlockName}{Bloque 4: Producto final}
+
+\begin{document}
+
+% ── PORTADA ────────────────────────────────────────────────────────
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ── ÍNDICE ─────────────────────────────────────────────────────────
+\begin{frame}{Contenidos de hoy}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \item Contexto: ¿qué hemos recogido?
+        \item Criterios de selección
+        \item Lista de verificación de datos
+        \item Problemas de calidad habituales
+        \item Árbol de decisión
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Categorías de la guía
+        \item Evaluar datos concretos
+        \item Ejercicios ANALIZAR / EVALUAR / CREAR
+        \item Evidencia del día
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{center}
+    \bloomtag{Analizar}\bloomtag{Evaluar}\bloomtag{Crear}
+  \end{center}
+\end{frame}
+
+% ── SECCIÓN 1 ──────────────────────────────────────────────────────
+\seccionframe[BAnalizar]{De la exploración a la selección}
+
+% ── FRAME 3: Contexto ──────────────────────────────────────────────
+\begin{frame}{Ya tenemos datos: ¿cuáles elegimos?}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        En las \textbf{16 sesiones anteriores} hemos recogido datos matemáticos sobre Almería:
+        \begin{itemize}
+          \item Coordenadas de monumentos
+          \item Áreas, perímetros y alturas
+          \item Tablas estadísticas y gráficas
+          \item Rutas y distancias
+          \item Relaciones de proporcionalidad
+        \end{itemize}
+        \vspace{0.2cm}
+        Ahora toca \textbf{seleccionar lo mejor} para la guía.
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.45\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.9]
+        % Triángulo de selección
+        \node[draw=AlmAzul, fill=AlmAzulC!15, rounded corners=6pt,
+              minimum width=3.5cm, minimum height=0.65cm,
+              font=\scriptsize\bfseries, color=AlmAzul] (a) at (0, 2.2)
+          {Muchos datos (sesiones 1-16)};
+        \node[draw=AlmAmbar!80!black, fill=AlmAmbar!15, rounded corners=6pt,
+              minimum width=2.6cm, minimum height=0.65cm,
+              font=\scriptsize\bfseries, color=AlmAzul] (b) at (0, 1.1)
+          {Datos candidatos};
+        \node[draw=AlmVerde, fill=AlmVerde!15, rounded corners=6pt,
+              minimum width=2.0cm, minimum height=0.65cm,
+              font=\scriptsize\bfseries, color=AlmVerde] (c) at (0, 0)
+          {Datos seleccionados};
+        \draw[->, thick, AlmAzulM] (a) -- (b);
+        \draw[->, thick, AlmAmbar!70!black] (b) -- (c);
+        \node[right=0.1cm of a, font=\tiny, color=AlmGris] {100\%};
+        \node[right=0.1cm of b, font=\tiny, color=AlmGris] {50\%};
+        \node[right=0.1cm of c, font=\tiny, color=AlmGris] {25\%};
+      \end{tikzpicture}
+      \end{center}
+      \begin{notabox}[Principio]
+        \textbf{Calidad} sobre cantidad.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 4: Criterios de selección ───────────────────────────────
+\begin{frame}{Los cinco criterios de selección}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\faCheckDouble\ R — Relevancia}
+        ¿Es este dato \textbf{matemáticamente interesante}? ¿Aporta algo al turista?
+      \end{block}
+      \vspace{0.2cm}
+      \begin{block}{\faSearch\ E — Exactitud}
+        ¿Es el dato \textbf{preciso y verificable}? ¿Tiene fuente?
+      \end{block>}
+      \vspace{0.2cm}
+      \begin{block}{\faComments\ C — Claridad}
+        ¿Se puede explicar a un turista \textbf{sin formación matemática}?
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\faMapMarkerAlt\ R — Representatividad}
+        ¿Representa bien a Almería? ¿Es \textbf{característico} de la ciudad?
+      \end{block}
+      \vspace{0.2cm}
+      \begin{block}{\faStar\ O — Originalidad}
+        ¿Es \textbf{sorprendente o único}? ¿Algo que el turista no esperaría?
+      \end{block}
+      \vspace{0.3cm}
+      \begin{formulabox}[BAnalizar]
+        \textbf{R\,·\,E\,·\,C\,·\,R\,·\,O}
+      \end{formulabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 5: Lista de verificación ────────────────────────────────
+\begin{frame}{Lista de verificación para cada dato}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \renewcommand{\arraystretch}{1.4}
+      \begin{tabular}{|c|p{6.5cm}|}
+        \hline
+        \rowcolor{AlmAzul!15}
+        \textbf{Check} & \textbf{Pregunta} \\
+        \hline
+        $\square$ & Fuente verificada (no inventada) \\
+        $\square$ & Unidades correctas (m, no m² para distancias) \\
+        $\square$ & Cálculos comprobados dos veces \\
+        $\square$ & Visualizable (mapa, tabla o gráfica) \\
+        $\square$ & Interesante para un turista \\
+        \hline
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{notabox}[Regla de los 5/5]
+        Un dato de \textbf{calidad} supera \textbf{todos} los checks.\\[6pt]
+        Un dato con 3 o menos checks debe \textbf{revisarse o descartarse}.
+      \end{notabox}
+      \vspace{0.2cm}
+      \begin{notabox}[Unidades]
+        Distancia $\to$ m, km\\
+        Área $\to$ m², ha, km²\\
+        Tiempo $\to$ min, h\\
+        Temperatura $\to$ °C
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 6: Problemas de calidad ─────────────────────────────────
+\begin{frame}{Errores habituales en la calidad de los datos}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{errorbox}
+        \textbf{Tipos de datos problemáticos:}
+        \begin{itemize}
+          \item[\incorrecto] \textbf{Obsoletos:} «La población de Almería en 2000 era...»
+          \item[\incorrecto] \textbf{Sin fuente:} «Dicen que la Alcazaba tiene 43.000 m²»
+          \item[\incorrecto] \textbf{Sin unidades:} «La torre mide 55»
+          \item[\incorrecto] \textbf{Cálculo incorrecto:} perímetro calculado como área
+        \end{itemize}
+      \end{errorbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{exampleblock}{\correcto\ Datos de calidad:}
+        \begin{itemize}
+          \item «La Alcazaba ocupa \textbf{4,3 ha} = 43.000 m²\\ (Fuente: Junta de Andalucía, 2023)»
+          \item «El Cabo de Gata tiene \textbf{32 m} de altura (IGN, 2022)»
+          \item «Almería recibió \textbf{1,2 millones} de turistas en 2023 (INE)»
+        \end{itemize}
+      \end{exampleblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 7: Árbol de decisión TikZ ───────────────────────────────
+\begin{frame}{Árbol de decisión: ¿incluyo este dato?}
+  \begin{center}
+  \begin{tikzpicture}[
+    decision/.style={diamond, draw=AlmAzulM, fill=AlmAzulC!20,
+                     text width=2.6cm, align=center, font=\tiny\bfseries,
+                     inner sep=1pt, aspect=1.8},
+    result/.style={rounded corners=4pt, draw=AlmVerde, fill=AlmVerde!15,
+                   font=\tiny\bfseries, text width=2cm, align=center, inner sep=3pt},
+    reject/.style={rounded corners=4pt, draw=AlmTerra, fill=AlmTerra!10,
+                   font=\tiny\bfseries, text width=1.8cm, align=center, inner sep=3pt},
+    arr/.style={->, >=Stealth, thick, AlmAzulM},
+    scale=0.9, every node/.style={font=\tiny}
+  ]
+    \node[decision] (Q1) at (0,0) {¿Tiene fuente verificable?};
+    \node[reject] (R1) at (-3.2,-1.5) {Descartar o buscar fuente};
+    \node[decision] (Q2) at (2.0,-1.5) {¿Tiene unidades correctas?};
+    \node[reject] (R2) at (4.8,-1.5) {Corregir unidades};
+    \node[decision] (Q3) at (2.0,-3.0) {¿Es relevante para el turista?};
+    \node[reject] (R3) at (5.0,-3.0) {Descartar};
+    \node[result] (OK) at (2.0,-4.5) {\correcto\ Incluir en la guía};
+
+    \draw[arr] (Q1) -- node[above,sloped]{\tiny No} (R1);
+    \draw[arr] (Q1) -- node[above]{\tiny Sí} (Q2);
+    \draw[arr] (Q2) -- node[above]{\tiny No} (R2);
+    \draw[arr] (Q2) -- node[right]{\tiny Sí} (Q3);
+    \draw[arr] (Q3) -- node[above]{\tiny No} (R3);
+    \draw[arr] (Q3) -- node[right]{\tiny Sí} (OK);
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ── FRAME 8: Categorías de la guía ────────────────────────────────
+\begin{frame}{Categorías de la guía turística matemática}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Estructura de la guía}
+        \begin{enumerate}
+          \item \textbf{Mapa de la ciudad} — coordenadas, escala, puntos clave
+          \item \textbf{Monumentos principales} — áreas, alturas, fechas, visitantes
+          \item \textbf{Rutas turísticas} — distancias, tiempos, dificultad
+        \end{enumerate}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Estructura (cont.)}
+        \begin{enumerate}\setcounter{enumi}{3}
+          \item \textbf{Datos curiosos} — estadísticas sorprendentes de Almería
+          \item \textbf{Gráficas estadísticas} — turismo, temperatura, población
+          \item \textbf{Glosario matemático} — términos usados en la guía
+        \end{enumerate}
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+  \vspace{0.35cm}
+  \begin{center}
+  \begin{tikzpicture}
+    \foreach \i/\cat/\col in {
+      1/Mapa/AlmAzulM,
+      2/Monumentos/AlmTerra,
+      3/Rutas/AlmVerde,
+      4/Curiosidades/AlmAmbar!80!black,
+      5/Gráficas/BAnalizar,
+      6/Glosario/BCrear}{
+      \node[draw=\col, fill=\col!12, rounded corners=3pt,
+            font=\tiny\bfseries\color{\col}, inner sep=4pt,
+            minimum width=1.8cm, minimum height=0.55cm]
+        at ({(\i-1)*2.2},0) {\cat};
+    }
+  \end{tikzpicture}
+  \end{center}
+\end{frame>}
+
+% ── FRAME 9: Evaluar datos concretos ──────────────────────────────
+\begin{frame}{Evaluando datos concretos}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{Dato A}
+        «La Alcazaba ocupa aproximadamente 43.000 m²»
+        \vspace{0.2cm}
+
+        \begin{tabular}{lc}
+          Fuente verificable & $\square$ \\
+          Unidades correctas & \correcto \\
+          Relevante & \correcto \\
+          Verificable & \correcto \\
+        \end{tabular}
+        \vspace{0.2cm}
+        \textcolor{AlmAmbar!80!black}{\textbf{Candidato: buscar fuente}}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{Dato B}
+        «La Alcazaba tiene 100 torres»
+        \vspace{0.2cm}
+
+        \begin{tabular}{lc}
+          Fuente verificable & \incorrecto \\
+          Unidades correctas & \correcto \\
+          Relevante & \correcto \\
+          Plausible & \incorrecto \\
+        \end{tabular}
+        \vspace{0.2cm}
+        \textcolor{AlmTerra}{\textbf{Rechazado: valor sospechoso}}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 10: Ejercicio ANALIZAR ──────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Analizar}}
+  \begin{analizarbox}
+    \textbf{8 candidatos para la guía.} Aplica la lista de verificación a cada uno y decide cuáles de los 5 incluirías:
+
+    \vspace{0.2cm}
+    \begin{columns}[t]
+      \begin{column}{0.48\textwidth}
+        \begin{enumerate}
+          \item «El Paseo de Almería mide 1,2 km de largo» (sin fuente)
+          \item «El faro del Cabo de Gata: 32 m» (IGN 2022)
+          \item «Almería tiene muchos días de sol» (sin número)
+          \item «La temperatura media en julio es 27°C» (AEMET 2023)
+        \end{enumerate}
+      \end{column>}
+      \begin{column}{0.48\textwidth}
+        \begin{enumerate}\setcounter{enumi}{4}
+          \item «El Cable Inglés mide 1.100 m» (Ayto. 2021)
+          \item «La Alcazaba es muy grande» (sin dato)
+          \item «En 2023 llegaron 1.200.000 turistas» (INE)
+          \item «El estadio Juegos Mediterráneos: 15.000 localidades» (sin año)
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+
+    \vspace{0.2cm}
+    \textbf{¿Cuáles 5 incluyes? ¿Por qué?} Usa la rúbrica R-E-C-R-O.
+  \end{analizarbox}
+\end{frame>}
+
+% ── FRAME 11: Ejercicio EVALUAR ───────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Evaluar}}
+  \begin{evaluarbox}
+    \textbf{Tu equipo tiene los siguientes materiales:}
+    \begin{columns}[t]
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item 3 mapas con coordenadas
+          \item 2 gráficas estadísticas
+          \item 5 listas de coordenadas
+          \item 1 tabla de cálculos verificados
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        Decide la \textbf{estructura óptima} de tu capítulo de guía:
+        \begin{enumerate}
+          \item ¿Qué materiales incluyes?
+          \item ¿Cuáles descartas? ¿Por qué?
+          \item ¿Qué sección del capítulo encabeza cada material?
+          \item ¿Falta algo? ¿Qué añadirías?
+        \end{enumerate}
+      \end{column}
+    \end{columns}
+    \vspace{0.2cm}
+    Justifica \textbf{cada} decisión con criterios matemáticos.
+    \dificultad{3}
+  \end{evaluarbox}
+\end{frame>}
+
+% ── FRAME 12: Ejercicio CREAR ─────────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Crear}}
+  \begin{crearbox}
+    \textbf{Diseña la portada de tu guía turística matemática:}
+
+    \vspace{0.3cm}
+    \begin{columns}[t]
+      \begin{column}{0.55\textwidth}
+        La portada debe incluir:
+        \begin{enumerate}
+          \item \textbf{Título} de la guía
+          \item \textbf{Subtítulo} que describa el contenido matemático
+          \item \textbf{Una estadística clave} sobre Almería (bien elegida y verificada)
+          \item \textbf{Miniatura de mapa} con coordenadas de 3 puntos turísticos
+          \item Nombre del equipo y fecha
+        \end{enumerate}
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \begin{notabox}[Diseño]
+          Recuerda:
+          \begin{itemize}
+            \item El número debe ser \textbf{preciso} y tener \textbf{unidades}
+            \item El mapa debe tener \textbf{ejes} y \textbf{escala}
+            \item El título debe mencionar \textbf{matemáticas}
+          \end{itemize}
+        \end{notabox}
+        \dificultad{4}
+      \end{column}
+    \end{columns}
+  \end{crearbox}
+\end{frame}
+
+% ── FRAME 13: Error frecuente ─────────────────────────────────────
+\begin{frame}{¡Cuidado! «Más datos = mejor guía»}
+  \begin{errorbox}
+    \textbf{Error habitual:} incluir \textbf{todo} lo recopilado porque «más información es mejor».
+
+    \vspace{0.3cm}
+    \begin{columns}[t]
+      \begin{column}{0.47\textwidth}
+        \incorrecto\ \textbf{Guía con exceso:}
+        \begin{itemize}
+          \item 47 coordenadas sin clasificar
+          \item Datos sin fuente mezclados con datos verificados
+          \item Gráficas redundantes
+          \item Números sin contexto
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.47\textwidth}
+        \correcto\ \textbf{Guía bien seleccionada:}
+        \begin{itemize}
+          \item 10--15 datos \textbf{seleccionados y verificados}
+          \item Cada dato tiene fuente y unidades
+          \item Gráficas complementarias, no repetidas
+          \item Números con contexto y comparación
+        \end{itemize}
+      \end{column}
+    \end{columns}
+    \vspace{0.2cm}
+    \begin{center}
+      \textit{Una buena guía tiene datos \textbf{seleccionados}, \textbf{verificados} y \textbf{relevantes}.}
+    \end{center}
+  \end{errorbox}
+\end{frame}
+
+% ── FRAME 14: Evidencia del día ───────────────────────────────────
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \textbf{Lista de datos seleccionados} (entregar al final):
+
+    \vspace{0.3cm}
+    La lista debe contener \textbf{exactamente 10 datos}, organizados por categoría, con:
+
+    \begin{columns}[t]
+      \begin{column}{0.55\textwidth}
+        Para cada dato:
+        \begin{itemize}
+          \item El dato exacto (con número, unidades y fuente)
+          \item La categoría de la guía a la que pertenece
+          \item Puntuación en los 5 criterios R-E-C-R-O
+          \item Justificación en una frase de por qué se incluye
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \begin{notabox}[Distribución mínima]
+          \begin{itemize}
+            \item 2 datos de Mapa
+            \item 2 datos de Monumentos
+            \item 2 datos de Rutas
+            \item 2 datos de Gráficas
+            \item 2 datos de Curiosidades
+          \end{itemize}
+        \end{notabox}
+      \end{column}
+    \end{columns}
+  \end{evidenciabox}
+\end{frame}
+
+% ── FRAME 15: Resumen ─────────────────────────────────────────────
+\begin{frame}{Resumen de la sesión 17}
+  \begin{resumenbox}
+    \begin{columns}[t]
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item Hemos aplicado los \textbf{5 criterios} R-E-C-R-O para evaluar datos.
+          \item Hemos aprendido a detectar \textbf{datos problemáticos}: sin fuente, sin unidades, obsoletos o implausibles.
+          \item El \textbf{árbol de decisión} ayuda a tomar decisiones sistemáticas.
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item La guía tiene \textbf{6 categorías} bien definidas.
+          \item La \textbf{selección rigurosa} es parte del proceso matemático.
+          \item En la próxima sesión: \textbf{construimos la guía completa}.
+        \end{itemize}
+        \vspace{0.3cm}
+        \begin{formulabox}[BCrear]
+          Calidad $>$ Cantidad
+        \end{formulabox}
+      \end{column}
+    \end{columns}
+  \end{resumenbox}
+\end{frame}
+
+\end{document}

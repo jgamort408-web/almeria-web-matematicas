@@ -1,0 +1,534 @@
+% ================================================================
+%  SESIÓN 09 — Perímetro y área: no son lo mismo
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{09}
+\renewcommand{\SessionTitle}{Perímetro y área: no son lo mismo}
+\renewcommand{\SessionName}{Sesión 09}
+\renewcommand{\SessionObjective}{%
+  Distinguir conceptual y numéricamente el perímetro del área,
+  comprendiendo que son medidas independientes y que una puede
+  cambiar sin afectar a la otra.%
+}
+\renewcommand{\BlockName}{Bloque 2: Geometría urbana}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE
+% ---------------------------------------------------------------
+\begin{frame}{Contenidos de hoy}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Tabla comparativa P vs.\ A
+        \item Mismos P, distintos A
+        \item Mismos A, distintos P
+        \item Problema isoperimérico
+        \item Implicaciones en urbanismo
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Almería: Rambla completa
+        \item Cálculo paralelo P y A
+        \item Ejercicios Bloom
+        \item Error frecuente
+        \item Evidencia del día
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{notabox}[Niveles de Bloom]
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{Comparando perímetro y área}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Tabla comparativa
+% ---------------------------------------------------------------
+\begin{frame}{Perímetro vs. Área: tabla comparativa}
+  \begin{center}
+  \small
+  \begin{tabular}{|>{\bfseries\color{AlmAzulM}}l|>{\centering\arraybackslash}p{3.8cm}|>{\centering\arraybackslash}p{3.8cm}|}
+    \hline
+    \rowcolor{AlmAzul!20}
+    & \textbf{\color{AlmTerra}Perímetro} & \textbf{\color{AlmVerde}Área} \\
+    \hline
+    ¿Qué mide? &
+      El \textbf{contorno}\\(la valla) &
+      La \textbf{superficie}\\(el césped) \\
+    \hline
+    Dimensión &
+      \textbf{1D} (lineal) &
+      \textbf{2D} (superficial) \\
+    \hline
+    Unidades &
+      m, km, cm\ldots &
+      m$^2$, km$^2$, ha\ldots \\
+    \hline
+    Fórmula rect. &
+      $P = 2(l + w)$ &
+      $A = l \times w$ \\
+    \hline
+    Uso &
+      Vallas, bordes,\\caminos &
+      Suelos, pinturas,\\césped \\
+    \hline
+  \end{tabular}
+  \end{center}
+
+  \vspace{0.2cm}
+  \begin{notabox}[Idea clave]
+    \small Perímetro y área miden cosas \textbf{completamente distintas}.
+    Una puede ser grande mientras la otra es pequeña.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Mismo P, distinto A
+% ---------------------------------------------------------------
+\begin{frame}{Mismo perímetro, distinto área}
+  \begin{columns}[c]
+    \begin{column}{0.62\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.78]
+        % Rectángulo 6x2
+        \fill[AlmTerra!12] (0,0) rectangle (4.8,1.6);
+        \draw[rectot, line width=1.8pt] (0,0) rectangle (4.8,1.6);
+        \draw[acota] (0,-0.55) -- (4.8,-0.55)
+          node[midway,below,font=\scriptsize]{6};
+        \draw[acota] (5.15,0) -- (5.15,1.6)
+          node[midway,right,font=\scriptsize]{2};
+        \node[font=\scriptsize\bfseries, color=AlmTerra] at (2.4,0.8)
+          {$P = 16$ \quad $A = 12$};
+
+        % Rectángulo 4x4 (más abajo)
+        \fill[AlmVerde!15] (0,-3.0) rectangle (3.2,-3.0+3.2);
+        \draw[rectov, line width=1.8pt] (0,-3.0) rectangle (3.2,-3.0+3.2);
+        \draw[acota] (0,-3.6) -- (3.2,-3.6)
+          node[midway,below,font=\scriptsize]{4};
+        \draw[acota] (3.55,-3.0) -- (3.55,-3.0+3.2)
+          node[midway,right,font=\scriptsize]{4};
+        \node[font=\scriptsize\bfseries, color=AlmVerde] at (1.6,-1.4)
+          {$P = 16$ \quad $A = 16$};
+
+        % Etiqueta
+        \node[font=\scriptsize\bfseries, color=AlmAmbar!80!black]
+          at (2.5,-0.1) {};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \begin{teoriabox}
+        \small
+        Ambos rectángulos tienen
+        $P = 16$ unidades.
+        \\[6pt]
+        Pero sus áreas son distintas:
+        \begin{itemize}
+          \item 6$\times$2: $A = 12$
+          \item 4$\times$4: $A = 16$
+        \end{itemize}
+        \vspace{4pt}
+        El cuadrado es la figura
+        de \textbf{mayor área} para
+        un perímetro fijo.
+        \\[4pt]
+        \scriptsize(Problema isoperimérico)
+      \end{teoriabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Mismo A, distinto P
+% ---------------------------------------------------------------
+\begin{frame}{Mismo área, distinto perímetro}
+  \begin{columns}[c]
+    \begin{column}{0.62\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.78]
+        % Rectángulo 3x4 → A=12, P=14
+        \fill[AlmAzulC!18] (0,0) rectangle (2.4,3.2);
+        \draw[zona, line width=1.8pt] (0,0) rectangle (2.4,3.2);
+        \draw[acota] (0,-0.55) -- (2.4,-0.55)
+          node[midway,below,font=\scriptsize]{3};
+        \draw[acota] (2.75,0) -- (2.75,3.2)
+          node[midway,right,font=\scriptsize]{4};
+        \node[font=\scriptsize\bfseries, color=AlmAzulM] at (1.2,1.6)
+          {$P = 14$\quad$A = 12$};
+
+        % Rectángulo 6x2 → A=12, P=16
+        \fill[AlmAmbar!15] (4.2,0.8) rectangle (4.2+4.8,0.8+1.6);
+        \draw[AlmAmbar!70!black, line width=1.8pt]
+          (4.2,0.8) rectangle (4.2+4.8,0.8+1.6);
+        \draw[acota] (4.2,0.25) -- (9.0,0.25)
+          node[midway,below,font=\scriptsize]{6};
+        \draw[acota] (9.35,0.8) -- (9.35,2.4)
+          node[midway,right,font=\scriptsize]{2};
+        \node[font=\scriptsize\bfseries, color=AlmAmbar!80!black] at (6.6,1.6)
+          {$P = 16$\quad$A = 12$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \begin{teoriabox}
+        \small
+        Ambos rectángulos tienen
+        $A = 12$ unidades cuadradas.
+        \\[6pt]
+        Pero sus perímetros son distintos:
+        \begin{itemize}
+          \item 3$\times$4: $P = 14$
+          \item 6$\times$2: $P = 16$
+        \end{itemize}
+        \vspace{4pt}
+        La figura más «cuadrada»
+        tiene menor perímetro para
+        una misma área.
+      \end{teoriabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Implicaciones en urbanismo
+% ---------------------------------------------------------------
+\begin{frame}{¿Cuándo usar cada medida?}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{\color{AlmTerra}Necesitas el PERÍMETRO}
+        \small
+        \begin{itemize}
+          \item Colocar una \textbf{valla} alrededor de un parque.
+          \item Poner \textbf{bordillo} en el borde de una acera.
+          \item Calcular la distancia de una \textbf{ruta a pie}.
+          \item Instalar \textbf{luminarias} en el contorno de una plaza.
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{\color{AlmVerde}Necesitas el ÁREA}
+        \small
+        \begin{itemize}
+          \item Comprar \textbf{baldosas} para pavimentar.
+          \item Calcular el \textbf{césped} a sembrar.
+          \item Valorar el \textbf{precio} de un terreno.
+          \item Pintar \textbf{la fachada} de un edificio.
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+  \vspace{0.3cm}
+  \begin{notabox}[Resumen]
+    \small \textbf{Valla, bordillo, camino} $\rightarrow$ Perímetro (metros).
+    \quad
+    \textbf{Suelo, césped, pintura} $\rightarrow$ Área (m$^2$).
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAplicar]{Almería: la Rambla}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Ejemplo completo: Rambla de Almería
+% ---------------------------------------------------------------
+\begin{frame}{Ejemplo completo: Rambla de Almería}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{ejemplobox}
+        \small La \textbf{Rambla de Almería} es aproximadamente
+        rectangular con \textbf{370 m} de largo y \textbf{50 m}
+        de ancho.
+        \begin{align*}
+          P &= 2(370 + 50) = 2 \times 420 = \mathbf{840\ m} \\
+          A &= 370 \times 50 = \mathbf{18{,}500\ m^2}
+            = \mathbf{1{,}85\ ha}
+        \end{align*}
+        \textbf{P} sirve para: vallar todo el contorno. \\
+        \textbf{A} sirve para: pavimentar la superficie.
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.70]
+        % Rambla (rectángulo alargado)
+        \fill[AlmAmbar!15] (0,0) rectangle (5.5,0.75);
+        \draw[AlmAmbar!70!black, line width=2pt] (0,0) rectangle (5.5,0.75);
+        % Valla (borde rojo)
+        \draw[AlmTerra, line width=3pt, dashed] (0,0) rectangle (5.5,0.75);
+        % Árboles (zona verde interior simplificada)
+        \fill[AlmVerde!20] (0.2,0.1) rectangle (5.3,0.65);
+        \draw[acota] (0,-0.5) -- (5.5,-0.5)
+          node[midway,below,font=\tiny]{370 m};
+        \draw[acota] (5.9,0) -- (5.9,0.75)
+          node[midway,right,font=\tiny]{50 m};
+        \node[font=\tiny\bfseries, color=AlmVerde!70!black] at (2.75,0.375)
+          {Rambla de Almería};
+        \node[font=\tiny\bfseries, color=AlmTerra] at (2.75,-0.95)
+          {$P = 840$ m};
+        \node[font=\tiny\bfseries, color=AlmVerde!70!black] at (2.75,-1.35)
+          {$A = 18{.}500$ m$^2$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BRecordar]{Ejercicios — RECORDAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 1 — RECORDAR \dificultad{1}}
+  \begin{recordarbox}
+    Para un rectángulo de \textbf{12 m} de largo y \textbf{5 m}
+    de ancho, calcula:
+    \begin{enumerate}
+      \item El \textbf{perímetro}. Indica su unidad.
+      \item El \textbf{área}. Indica su unidad.
+    \end{enumerate}
+    ¿Cuál es la diferencia entre las unidades de perímetro
+    y área?
+  \end{recordarbox}
+  \vspace{0.25cm}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.80]
+    \fill[AlmAzulC!12] (0,0) rectangle (4.8,2.0);
+    \draw[zona, line width=1.8pt] (0,0) rectangle (4.8,2.0);
+    \draw[acota] (0,-0.55) -- (4.8,-0.55)
+      node[midway,below,font=\scriptsize]{12 m};
+    \draw[acota] (5.15,0) -- (5.15,2.0)
+      node[midway,right,font=\scriptsize]{5 m};
+    \node[font=\small, color=AlmTerra] at (1.8,1.0) {$P = ?$\ m};
+    \node[font=\small, color=AlmVerde] at (3.4,1.0) {$A = ?$\ m$^2$};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BComprender]{Ejercicios — COMPRENDER}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Ejercicio COMPRENDER (problema isoperimérico)
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 2 — COMPRENDER \dificultad{3}}
+  \begin{comprenderbox}
+    Tienes \textbf{24 m} de valla para cercar un huerto rectangular.
+    Explora todas las posibilidades (lados enteros) y encuentra
+    la que da \textbf{mayor área}:
+
+    \vspace{0.15cm}
+    \small
+    \begin{center}
+    \begin{tabular}{|c|c|c|c|}
+      \hline
+      \rowcolor{AlmAzul!15}
+      \textbf{Largo} & \textbf{Ancho} & \textbf{Perímetro} & \textbf{Área} \\
+      \hline
+      1 m & 11 m & 24 m & \phantom{000} m$^2$ \\
+      2 m & 10 m & 24 m & \phantom{000} m$^2$ \\
+      3 m &  9 m & 24 m & \phantom{000} m$^2$ \\
+      4 m &  8 m & 24 m & \phantom{000} m$^2$ \\
+      5 m &  7 m & 24 m & \phantom{000} m$^2$ \\
+      6 m &  6 m & 24 m & \phantom{000} m$^2$ \\
+      \hline
+    \end{tabular}
+    \end{center}
+
+    ¿Qué forma geométrica da el área máxima?
+  \end{comprenderbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAplicar]{Ejercicios — APLICAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 3 — APLICAR \dificultad{3}}
+  \begin{aplicarbox}
+    \small Un urbanista de Almería necesita:
+    \begin{enumerate}
+      \item \textbf{Vallar} un parque rectangular de 80 m $\times$ 60 m
+            (precio: 45 €/m de valla).
+      \item \textbf{Cubrir} su superficie con gravilla
+            (precio: 12 €/m$^2$).
+    \end{enumerate}
+    Calcula:
+    \begin{enumerate}[a)]
+      \item El coste total de la valla.
+      \item El coste total de la gravilla.
+      \item ¿Cuál es mayor? ¿Qué dato usa cada cálculo (P o A)?
+    \end{enumerate}
+  \end{aplicarbox}
+  \vspace{0.15cm}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{pasobox}[1]
+        \scriptsize $P = 2(80 + 60) = ?$ m
+        \\
+        Coste valla $= P \times 45$~€
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{pasobox}[2]
+        \scriptsize $A = 80 \times 60 = ?$~m$^2$
+        \\
+        Coste gravilla $= A \times 12$~€
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Los tres casos TikZ (comparativa completa)
+% ---------------------------------------------------------------
+\begin{frame}{Tres rectángulos: misma P o misma A}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.72]
+    % --- Caso 1: 6x2, P=16, A=12 ---
+    \fill[AlmTerra!12] (0,0) rectangle (4.8,1.6);
+    \draw[rectot, line width=1.5pt] (0,0) rectangle (4.8,1.6);
+    \node[above, font=\tiny\bfseries, color=AlmTerra] at (2.4,1.6)
+      {$6 \times 2$};
+    \node[font=\tiny, color=AlmTerra] at (2.4,0.8) {$P=16$};
+    \node[font=\tiny, color=AlmTerra] at (2.4,0.3) {$A=12$};
+
+    % --- Caso 2: 4x4, P=16, A=16 ---
+    \fill[AlmVerde!15] (5.8,0) rectangle (5.8+3.2,3.2);
+    \draw[rectov, line width=1.5pt] (5.8,0) rectangle (5.8+3.2,3.2);
+    \node[above, font=\tiny\bfseries, color=AlmVerde] at (7.4,3.2)
+      {$4 \times 4$};
+    \node[font=\tiny, color=AlmVerde] at (7.4,1.8) {$P=16$};
+    \node[font=\tiny, color=AlmVerde] at (7.4,1.2) {$A=16$};
+
+    % Flecha entre 1 y 2
+    \draw[->, AlmAmbar!80!black, line width=1.2pt]
+      (5.0,0.8) -- (5.6,0.8);
+    \node[above, font=\tiny\bfseries, color=AlmAmbar!80!black]
+      at (5.3,0.8) {P igual};
+
+    % --- Caso 3: 3x4, P=14, A=12 ---
+    \fill[AlmAzulC!18] (0,-3.5) rectangle (2.4,-3.5+3.2);
+    \draw[zona, line width=1.5pt] (0,-3.5) rectangle (2.4,-3.5+3.2);
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (1.2,-3.5)
+      {$3 \times 4$};
+    \node[font=\tiny, color=AlmAzulM] at (1.2,-2.0) {$P=14$};
+    \node[font=\tiny, color=AlmAzulM] at (1.2,-2.5) {$A=12$};
+
+    % Flecha entre 3 y 1 (misma A)
+    \draw[->, AlmGris, dashed, line width=1.0pt]
+      (2.6,-2.1) -- (4.4,-0.5);
+    \node[right, font=\tiny\bfseries, color=AlmGris]
+      at (3.5,-1.4) {A igual};
+  \end{tikzpicture}
+  \end{center}
+  \begin{notabox}[Conclusión]
+    \small Si cambias la forma de un rectángulo manteniendo el mismo
+    perímetro, el área cambia. Y viceversa.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{itemize}
+      \item \incorrecto\
+            \textbf{«El área del parque es 280 metros»}
+            \\[6pt]
+            \correcto\
+            El área se mide en \textbf{m$^2$}:
+            «El área es 280 \textbf{m$^2$}».
+            Si dices solo «metros», estás indicando una longitud.
+
+      \vspace{0.3cm}
+      \item \incorrecto\
+            \textbf{«El perímetro es 4{,}800 metros cuadrados»}
+            \\[6pt]
+            \correcto\
+            El perímetro es una longitud (1D):
+            «El perímetro es 4{,}800 \textbf{m}».
+            Nunca lleva el exponente 2.
+
+      \vspace{0.3cm}
+      \item \incorrecto\
+            Pensar que «mayor área $\Rightarrow$ mayor perímetro».
+            \\[6pt]
+            \correcto\
+            Son medidas \textbf{independientes}.
+            Un rectángulo puede tener mayor área
+            y menor perímetro que otro.
+    \end{itemize}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Resumen
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item \textbf{Perímetro} $\neq$ \textbf{Área}: miden cosas distintas.
+      \item P mide el \emph{contorno} (1D, en metros).
+            A mide la \emph{superficie} (2D, en m$^2$).
+      \item Dos figuras con el mismo P pueden tener distintas A,
+            y viceversa.
+      \item Con P fijo, el cuadrado maximiza el área
+            (problema isoperimérico).
+      \item Rambla de Almería: $P = 840$ m, $A = 18{,}500$ m$^2$.
+      \item Usar P para vallas/bordillos;
+            usar A para suelos/césped.
+    \end{itemize}
+  \end{resumenbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 14 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \textbf{Ficha doble: Perímetro y Área en paralelo}
+
+    \vspace{0.2cm}
+    Elige \textbf{3 figuras} de diferente forma (rectángulo, triángulo,
+    trapecio). Para cada una:
+    \begin{enumerate}
+      \item Dibuja la figura con sus medidas.
+      \item Calcula el perímetro — muestra todos los pasos.
+      \item Calcula el área — muestra todos los pasos.
+      \item Escribe las unidades correctas para cada resultado.
+      \item Indica para qué sirve cada medida en un contexto real.
+    \end{enumerate}
+    \vspace{0.2cm}
+    \textbf{Criterio de éxito:} los 6 cálculos (3 P + 3 A) son correctos
+    y las unidades son las adecuadas para cada tipo de medida.
+  \end{evidenciabox}
+\end{frame}
+
+\end{document}

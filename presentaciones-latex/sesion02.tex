@@ -1,0 +1,583 @@
+% ================================================================
+%  sesion02.tex  —  Sesión 2 de 20
+%  ¿Qué se puede medir y representar en una ciudad?
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  Compilar con:  pdflatex sesion02.tex  (dos pasadas)
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+% ---------------------------------------------------------------
+%  DATOS DE LA SESIÓN
+% ---------------------------------------------------------------
+\renewcommand{\SessionNumber}{02}
+\renewcommand{\SessionTitle}{¿Qué se puede medir y representar en una ciudad?}
+\renewcommand{\SessionName}{Sesión 02}
+\renewcommand{\SessionObjective}{%
+  Clasificar los tipos de información matemática presentes en una ciudad
+  (ubicación, medida, dato) e identificar ejemplos reales en Almería.}
+\renewcommand{\BlockName}{Bloque 1: Mapa y coordenadas}
+
+% ================================================================
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE DE LA SESIÓN
+% ---------------------------------------------------------------
+\begin{frame}{Índice de la sesión}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Tres tipos de información matemática
+        \item Magnitudes y unidades
+        \item Tabla de conversión de unidades
+        \item Ejemplos reales de Almería
+        \item Conversiones con la Rambla y el Puerto
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{5}
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Tres tipos de información matemática}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué información matemática hay en una ciudad?}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        Toda la información matemática de una ciudad
+        puede clasificarse en \textbf{tres grandes tipos}:
+        \begin{itemize}
+          \item \textbf{Ubicación:} ¿Dónde está?
+          \item \textbf{Medida:} ¿Cuánto mide/pesa/dura?
+          \item \textbf{Dato:} ¿Cuántos/cuántas en un momento?
+        \end{itemize}
+      \end{teoriabox}
+      \vspace{6pt}
+      Reconocer el tipo correcto nos ayuda a elegir
+      la \textbf{herramienta matemática} adecuada.
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.88,
+            nodo/.style={rounded corners=5pt, minimum width=2.5cm,
+                         minimum height=0.7cm, align=center,
+                         font=\small\bfseries}]
+          % Nodo raíz
+          \node[nodo, fill=AlmAzul, text=AlmBlanco]
+            (inf) at (0,2.8) {Información\\matemática};
+          % Tres hijos
+          \node[nodo, fill=AlmAzulM, text=AlmBlanco]
+            (ubi) at (-2.6,1.2) {Ubicación};
+          \node[nodo, fill=AlmAmbar!80!black, text=AlmBlanco]
+            (med) at (0,1.2)    {Medida};
+          \node[nodo, fill=AlmVerde, text=AlmBlanco]
+            (dat) at (2.6,1.2)  {Dato};
+          % Flechas
+          \draw[AlmAmbar, line width=1.4pt, ->]
+            (inf) -- (ubi);
+          \draw[AlmAmbar, line width=1.4pt, ->]
+            (inf) -- (med);
+          \draw[AlmAmbar, line width=1.4pt, ->]
+            (inf) -- (dat);
+          % Ejemplos pequeños
+          \node[font=\tiny, color=AlmGris, align=center]
+            at (-2.6,0.45) {coordenadas\\referencias};
+          \node[font=\tiny, color=AlmGris, align=center]
+            at (0,0.45)    {longitud\\superficie\\masa};
+          \node[font=\tiny, color=AlmGris, align=center]
+            at (2.6,0.45)  {población\\temperatura\\turistas};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% -------
+\begin{frame}{Los tres tipos en detalle}
+  \begin{columns}[T]
+    \begin{column}{0.32\textwidth}
+      \begin{definicionbox}{Ubicación}
+        \footnotesize
+        Indica \textbf{dónde} se encuentra algo
+        mediante coordenadas o referencias espaciales.\\[4pt]
+        Ejemplo en Almería:\\
+        \datoalm{Alcazaba}{36,8409°\,N\;/\;2,4699°\,O}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{definicionbox}{Medida}
+        \footnotesize
+        Expresa una \textbf{magnitud física} con un valor
+        \emph{fijo} (no cambia con el tiempo).\\[4pt]
+        Ejemplo en Almería:\\
+        \datoalm{Rambla}{370 m de longitud}\\
+        \datoalm{Puerto}{35 ha de superficie}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{definicionbox}{Dato}
+        \footnotesize
+        Información numérica \textbf{variable}: puede
+        cambiar según el momento o el año.\\[4pt]
+        Ejemplo en Almería:\\
+        \datoalm{Temperatura}{máx. 38 °C en agosto}\\
+        \datoalm{Turistas}{5,8 millones en 2023}
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{notabox}[Clave para distinguirlos]
+    \small
+    \correcto\ La \textbf{medida} no cambia: la longitud de la Rambla
+    siempre es 370 m.\\
+    \correcto\ El \textbf{dato} cambia: la temperatura de mañana puede ser distinta.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Magnitudes y unidades}
+% ---------------------------------------------------------------
+
+\begin{frame}{Magnitudes físicas y sus unidades}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        Una \textbf{magnitud} es todo aquello que se puede
+        medir. Toda medida consta de:
+        \[
+          \text{medida} = \underbrace{\text{número}}_{\text{valor}}
+            \;\times\;
+          \underbrace{\text{unidad}}_{\text{patrón}}
+        \]
+        Ejemplo: $370\ \unidad{m}$ — el número es 370
+        y la unidad es el metro (\unidad{m}).
+      \end{teoriabox}
+      \vspace{6pt}
+      \begin{notabox}[Regla de oro]
+        \small
+        Nunca escribas un resultado \textbf{sin unidades}.\\
+        «370» no significa nada; «$370\ \text{m}$» sí.
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \vspace{4pt}
+      {\small
+      \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Magnitud} & \textbf{Unidad base} & \textbf{Símbolo}\\
+        \midrule
+        Longitud     & metro        & \unidad{m}\\
+        Superficie   & metro cuadrado & \unidad{m\textsuperscript{2}}\\
+        Masa         & kilogramo    & \unidad{kg}\\
+        Tiempo       & segundo      & \unidad{s}\\
+        Temperatura  & grado Celsius & \unidad{°C}\\
+        \bottomrule
+      \end{tabular}}
+      \vspace{8pt}
+      \begin{ejemplobox}
+        \footnotesize
+        La \textbf{Catedral de Almería} tiene
+        55 \unidad{m} de altura. Su torre mide
+        un \textbf{tiempo} de sombra diferente
+        según la estación del año.
+      \end{ejemplobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Tabla de conversión de unidades}
+% ---------------------------------------------------------------
+
+\begin{frame}{Conversiones de unidades más usadas}
+  \begin{columns}[c]
+    \begin{column}{0.56\textwidth}
+      \begin{center}
+        {\small
+        \begin{tabular}{@{}llll@{}}
+          \toprule
+          \textbf{Magnitud} & \textbf{Unidad} & \textbf{Equivalencia}\\
+          \midrule
+          \multirow{3}{*}{Longitud}
+            & \unidad{km}  & $1\ \text{km} = 1\,000\ \text{m}$\\
+            & \unidad{m}   & $1\ \text{m} = 100\ \text{cm}$\\
+            & \unidad{cm}  & $1\ \text{cm} = 10\ \text{mm}$\\[4pt]
+          \multirow{3}{*}{Superficie}
+            & \unidad{km\textsuperscript{2}}
+                           & $1\ \text{km}^2 = 1\,000\,000\ \text{m}^2$\\
+            & \unidad{ha}  & $1\ \text{ha} = 10\,000\ \text{m}^2$\\
+            & \unidad{m\textsuperscript{2}}
+                           & unidad base\\[4pt]
+          \multirow{2}{*}{Masa}
+            & \unidad{t}   & $1\ \text{t} = 1\,000\ \text{kg}$\\
+            & \unidad{g}   & $1\ \text{kg} = 1\,000\ \text{g}$\\[4pt]
+          \multirow{2}{*}{Tiempo}
+            & \unidad{h}   & $1\ \text{h} = 3\,600\ \text{s}$\\
+            & \unidad{min} & $1\ \text{min} = 60\ \text{s}$\\
+          \bottomrule
+        \end{tabular}}
+      \end{center}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \begin{formulabox}[AlmAzulM]
+        \small
+        \[
+          1\ \text{ha} = 10\,000\ \text{m}^2
+        \]
+        \[
+          1\ \text{km} = 1\,000\ \text{m}
+        \]
+        \[
+          1\ \text{km}^2 = 100\ \text{ha}
+        \]
+      \end{formulabox}
+      \vspace{6pt}
+      \begin{tikzpicture}[scale=0.80]
+        % Escalera de conversión de longitud
+        \foreach \i/\lbl/\col in {%
+          0/{mm}/AlmGris,
+          1/{cm}/AlmAzulC,
+          2/{m}/AlmAzulM,
+          3/{km}/AlmAzul}{
+          \fill[\col, rounded corners=2pt]
+            (\i*0.82, \i*0.38)
+            rectangle (\i*0.82+2.6, \i*0.38+0.34);
+          \node[font=\tiny\bfseries, text=white]
+            at (\i*0.82+1.3, \i*0.38+0.17) {\lbl};
+        }
+        \node[font=\tiny, color=AlmGris] at (1.3,-0.28)
+          {$\times 10$\quad $\times 100$\quad $\times 1000$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4 y 5. Ejemplos reales de Almería}
+% ---------------------------------------------------------------
+
+\begin{frame}{La Rambla de Almería — Longitud y anchura}
+  \framesubtitle{Magnitud: Longitud · Unidades: m, km}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{ejemplobox}
+        \small
+        La \textbf{Rambla de Almería} es el paseo central
+        de la ciudad.\\[6pt]
+        \datoalm{Longitud}{370 m}\\
+        \datoalm{Anchura máxima}{50 m}\\[6pt]
+        Ambas medidas expresan la magnitud
+        \textbf{longitud} en metros (\unidad{m}).
+      \end{ejemplobox}
+      \vspace{6pt}
+      \begin{pasobox}[1]
+        \footnotesize
+        Convertir longitud a kilómetros:
+        \[
+          370\ \text{m} \div 1\,000 = \mathbf{0{,}37\ \text{km}}
+        \]
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[2]
+        \footnotesize
+        Estimar área (rectángulo aproximado):
+        \[
+          A \approx 370 \times 50 = \mathbf{18\,500\ \text{m}^2}
+        \]
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.82]
+          % Representación esquemática de la Rambla
+          \fill[AlmAzulC!20, rounded corners=3pt]
+            (0,0) rectangle (5.2,1.4);
+          \fill[AlmVerde!35, rounded corners=2pt]
+            (0.12,0.12) rectangle (5.08,1.28);
+          % Acotación longitud
+          \draw[acota] (0,-0.28) -- (5.2,-0.28);
+          \node[font=\tiny\bfseries, color=AlmAzulM]
+            at (2.6,-0.52) {370 m};
+          % Acotación anchura
+          \draw[acota] (5.38,0) -- (5.38,1.4);
+          \node[font=\tiny\bfseries, color=AlmAzulM,
+                rotate=90, anchor=south]
+            at (5.62,0.7) {50 m};
+          % Etiqueta
+          \node[font=\scriptsize\bfseries, color=AlmAzul]
+            at (2.6,0.7) {Rambla de Almería};
+          % Flecha norte
+          \node[font=\tiny, color=AlmGris] at (0.35,1.15)
+            {N$\uparrow$};
+        \end{tikzpicture}
+      \end{center}
+      \vspace{4pt}
+      \begin{notabox}[Tipo de información]
+        \footnotesize
+        \textbf{Longitud} (370 m) $\rightarrow$ \emph{Medida}\\
+        \textbf{Anchura} (50 m) $\rightarrow$ \emph{Medida}\\
+        \textbf{Visitantes diarios} $\rightarrow$ \emph{Dato}
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{El Puerto de Almería — Conversión de superficie}
+  \framesubtitle{Magnitud: Superficie · 1 ha = 10\,000 m²}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{ejemplobox}
+        \small
+        El \textbf{Puerto de Almería} ocupa
+        \textbf{35 ha} de superficie.\\[6pt]
+        ¿Cuántos metros cuadrados son?\\
+        ¿Cuántos km\textsuperscript{2} son?
+      \end{ejemplobox}
+      \vspace{6pt}
+      \begin{pasobox}[1]
+        \footnotesize
+        Convertir a \textbf{m\textsuperscript{2}}:
+        \[
+          35\ \text{ha} \times 10\,000 = \mathbf{350\,000\ \text{m}^2}
+        \]
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[2]
+        \footnotesize
+        Convertir a \textbf{km\textsuperscript{2}}:
+        \[
+          350\,000\ \text{m}^2 \div 1\,000\,000 = \mathbf{0{,}35\ \text{km}^2}
+        \]
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.78]
+          % Cuadrado grande = Puerto (35 ha)
+          \fill[AlmAzulC!30, rounded corners=4pt]
+            (0,0) rectangle (4.5,4.5);
+          \node[font=\scriptsize\bfseries, color=AlmAzul]
+            at (2.25,4.1) {Puerto de Almería};
+          \node[font=\small\bfseries, color=AlmAzulM]
+            at (2.25,2.4) {35 ha};
+          \node[font=\footnotesize, color=AlmGris]
+            at (2.25,1.85) {$= 350\,000\ \text{m}^2$};
+          \node[font=\footnotesize, color=AlmGris]
+            at (2.25,1.3)  {$= 0{,}35\ \text{km}^2$};
+          % Cuadradito = campo de fútbol ~0,7 ha
+          \fill[AlmVerde!50, rounded corners=2pt]
+            (0.15,0.15) rectangle (1.35,1.0);
+          \node[font=\tiny, color=AlmVerde!70!black]
+            at (0.75,0.57) {\(\approx\)campo};
+          % Acotación
+          \draw[acota] (0,-0.28) -- (4.5,-0.28);
+          \node[font=\tiny, color=AlmGris] at (2.25,-0.52)
+            {escala aprox.};
+        \end{tikzpicture}
+      \end{center}
+      \vspace{2pt}
+      \begin{notabox}[Curiosidad]
+        \footnotesize
+        35 ha equivalen a unos
+        \textbf{49 campos de fútbol}.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Ejercicios multinivel — Bloom}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicio RECORDAR}
+  \bloomtag{RECORDAR}\quad\dificultad{1}
+  \vspace{4pt}
+  \begin{recordarbox}
+    \small
+    \textbf{Tarea:} Completa la siguiente tabla de memoria
+    (o con tus apuntes).\\[6pt]
+    \begin{tabular}{@{}lll@{}}
+      \toprule
+      \textbf{Magnitud} & \textbf{Unidad base} & \textbf{Ejemplo en Almería}\\
+      \midrule
+      Longitud     & \ldots\ldots & \ldots\ldots\ldots\ldots\\[4pt]
+      Superficie   & \ldots\ldots & \ldots\ldots\ldots\ldots\\[4pt]
+      Masa         & \ldots\ldots & \ldots\ldots\ldots\ldots\\[4pt]
+      Tiempo       & \ldots\ldots & \ldots\ldots\ldots\ldots\\[4pt]
+      Temperatura  & \ldots\ldots & \ldots\ldots\ldots\ldots\\
+      \bottomrule
+    \end{tabular}
+    \\[6pt]
+    Relaciona cada magnitud con un lugar o elemento real de Almería.
+  \end{recordarbox}
+\end{frame}
+
+\begin{frame}{Ejercicio COMPRENDER}
+  \bloomtag{COMPRENDER}\quad\dificultad{2}
+  \vspace{4pt}
+  \begin{comprenderbox}
+    \small
+    La \textbf{playa de El Zapillo} mide 2,5 km de longitud.\\[6pt]
+    Responde razonando cada respuesta:
+    \begin{enumerate}
+      \item ¿Qué \textbf{magnitud} representa esa medida?
+            ¿A qué tipo de información pertenece
+            (ubicación / medida / dato)?
+      \item Convierte 2,5 km a \textbf{metros}.
+            Muestra la operación completa.
+      \item Para calcular la \textbf{superficie} de la playa,
+            ¿qué otra medida necesitarías?
+            ¿Qué operación harías?
+    \end{enumerate}
+  \end{comprenderbox}
+  \vspace{4pt}
+  \begin{notabox}[Pista]
+    \footnotesize
+    Longitud $\times$ anchura $=$ superficie (si es rectangular).
+  \end{notabox}
+\end{frame}
+
+\begin{frame}{Ejercicio APLICAR}
+  \bloomtag{APLICAR}\quad\dificultad{3}
+  \vspace{4pt}
+  \begin{aplicarbox}
+    \footnotesize
+    Clasifica cada dato de la tabla como \textbf{Ubicación},
+    \textbf{Medida} o \textbf{Dato}. Convierte las unidades
+    cuando se indique.\\[4pt]
+    \begin{tabular}{@{}p{4.2cm}lp{2.4cm}@{}}
+      \toprule
+      \textbf{Información} & \textbf{Tipo} & \textbf{Conversión}\\
+      \midrule
+      Alcazaba: 36,84°\,N / 2,47°\,O
+        & \ldots & —\\[3pt]
+      Catedral: 55 m de altura
+        & \ldots & \ldots en km\\[3pt]
+      Temperatura máx. agosto: 38 °C
+        & \ldots & —\\[3pt]
+      Puerto: 35 ha
+        & \ldots & \ldots en m\textsuperscript{2}\\[3pt]
+      Turistas 2023: 5\,800\,000
+        & \ldots & —\\[3pt]
+      Paseo Marítimo: 3 km
+        & \ldots & \ldots en m\\
+      \bottomrule
+    \end{tabular}
+  \end{aplicarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  EVIDENCIA
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega tu \textbf{Tabla Clasificada} con al menos
+    \textbf{5 elementos reales de Almería},
+    una fila por elemento:
+    \vspace{6pt}
+    \begin{center}
+      \small
+      \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Tipo (Ubicación / Medida / Dato)}
+          & \textbf{Ejemplo de Almería}
+          & \textbf{Unidad}\\
+        \midrule
+        Medida & Longitud de la Rambla: 370 m & \unidad{m}\\
+        \ldots & \ldots & \ldots\\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+    \vspace{6pt}
+    \begin{itemize}
+      \item Incluye al menos \textbf{una conversión de unidades}
+            con los pasos completos.
+      \item Justifica en una frase por qué cada elemento
+            es Ubicación, Medida o Dato.
+    \end{itemize}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ERROR FRECUENTE
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{columns}[c]
+      \begin{column}{0.50\textwidth}
+        \incorrecto\ \textbf{Error frecuente}\\[4pt]
+        Confundir un \textbf{dato} (varía con el tiempo)
+        con una \textbf{medida} (valor fijo).\\[6pt]
+        «La temperatura de Almería es
+        \cancel{una medida fija}» — \textbf{incorrecto}.\\
+        La temperatura cambia: es un \textbf{dato}.
+      \end{column}
+      \begin{column}{0.46\textwidth}
+        \correcto\ \textbf{Correcto}\\[4pt]
+        La \textbf{altura} de la Catedral (55 m)
+        \emph{no cambia con el tiempo}:
+        es una \textbf{medida}.\\[6pt]
+        La \textbf{temperatura} máxima de un día
+        \emph{sí cambia} cada día:
+        es un \textbf{dato}.
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+  \vspace{8pt}
+  \begin{notabox}[Regla rápida]
+    \small
+    ¿Cambiaría si volvemos a medirlo mañana?
+    \correcto\;Sí $\Rightarrow$ \textbf{dato}.\quad
+    \correcto\;No $\Rightarrow$ \textbf{medida}.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  RESUMEN
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 02}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item La información matemática de una ciudad se clasifica
+            en \textbf{Ubicación}, \textbf{Medida} y \textbf{Dato}.
+      \item Toda medida tiene \textbf{valor numérico} y \textbf{unidad};
+            escribir la unidad es obligatorio.
+      \item Las magnitudes más frecuentes son longitud (\unidad{m}, \unidad{km}),
+            superficie (\unidad{m\textsuperscript{2}}, \unidad{ha}),
+            masa (\unidad{kg}), tiempo (\unidad{s}, \unidad{h}) y
+            temperatura (\unidad{°C}).
+      \item Conversiones clave:
+            $1\ \text{km}=1\,000\ \text{m}$;
+            $1\ \text{ha}=10\,000\ \text{m}^2$.
+      \item Un dato \textbf{cambia} con el tiempo;
+            una medida \textbf{no cambia}.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}
+    \faArrowCircleRight\enskip
+    \textbf{Próxima sesión:}
+    Plano por cuadrantes — localizar lugares con letra y número.}
+  \end{center}
+\end{frame}
+
+\end{document}

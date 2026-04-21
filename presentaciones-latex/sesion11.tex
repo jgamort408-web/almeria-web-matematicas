@@ -1,0 +1,519 @@
+% ================================================================
+%  SESIÓN 11 — Variables urbanas
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{11}
+\renewcommand{\SessionTitle}{Variables urbanas}
+\renewcommand{\SessionName}{Sesión 11}
+\renewcommand{\SessionObjective}{Identificar variables cuantitativas y cualitativas en el contexto urbano de Almería, distinguiendo variables independientes de dependientes}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 1 — ¿Qué es una variable?
+% ---------------------------------------------------------------
+\begin{frame}{¿Qué es una variable?}
+  \begin{definicionbox}{Variable}
+    Una \textbf{variable} es una característica o cualidad que puede tomar
+    \textbf{diferentes valores} en los distintos elementos de un conjunto.
+    Si todos los elementos tuvieran el mismo valor, no sería variable.
+  \end{definicionbox}
+
+  \vspace{0.4cm}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{ejemplobox}
+        \small
+        \begin{itemize}
+          \item \textbf{Temperatura} de cada día de julio en Almería
+          \item \textbf{Número de visitantes} al Alcázar cada mes
+          \item \textbf{Tipo de monumento} (árabe, renacentista, moderno\ldots)
+          \item \textbf{Barrio} de residencia de cada alumno
+        \end{itemize}
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{notabox}[Dato curioso]
+        \small
+        El término \textit{variable} viene del latín \textit{variabilis}:
+        \textbf{que puede cambiar}.
+        En estadística, cada columna de una tabla de datos
+        suele representar una variable distinta.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 2 — Clasificación de variables (árbol TikZ)
+% ---------------------------------------------------------------
+\begin{frame}{Tipos de variables: árbol de clasificación}
+  \begin{center}
+  \begin{tikzpicture}[
+      every node/.style={font=\small},
+      nodo/.style={rounded corners=4pt, draw, align=center,
+                   inner sep=4pt, text width=2.8cm},
+      nodov/.style={nodo, fill=AlmAzul!15, draw=AlmAzul, text=AlmAzul},
+      nodoc/.style={nodo, fill=AlmAmbar!20, draw=AlmAmbar!70!black},
+      nodod/.style={nodo, fill=AlmTerra!12, draw=AlmTerra},
+      flecha/.style={-Stealth, AlmAzulM, line width=1pt},
+      scale=0.92
+    ]
+    % Raíz
+    \node[nodov] (var) at (0,0) {\textbf{VARIABLE}};
+    % Hijos nivel 1
+    \node[nodoc] (cual) at (-3.5,-1.6) {Cualitativa\\\small(describe una\\cualidad)};
+    \node[nodoc] (cuant) at (3.5,-1.6) {Cuantitativa\\\small(valor numérico)};
+    % Hijos nivel 2
+    \node[nodod] (disc) at (2.0,-3.4) {Discreta\\\small números enteros,\\\small contables};
+    \node[nodod] (cont) at (5.0,-3.4) {Continua\\\small cualquier valor\\\small en un intervalo};
+    % Flechas
+    \draw[flecha] (var) -- (cual);
+    \draw[flecha] (var) -- (cuant);
+    \draw[flecha] (cuant) -- (disc);
+    \draw[flecha] (cuant) -- (cont);
+    % Ejemplos
+    \node[font=\tiny, text=AlmGris, align=center] at (-3.5,-2.9)
+      {barrio, tipo de\\monumento, medio\\de transporte};
+    \node[font=\tiny, text=AlmGris, align=center] at (2.0,-4.5)
+      {turistas/día,\\nº de autobuses};
+    \node[font=\tiny, text=AlmGris, align=center] at (5.0,-4.5)
+      {temperatura,\\altura, distancia};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Cualitativa vs Cuantitativa (detalles)
+% ---------------------------------------------------------------
+\begin{frame}{Cualitativa y cuantitativa: diferencias clave}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Variable cualitativa}
+        \small
+        Describe una \textbf{cualidad o categoría}.
+        \textbf{No es un número} (aunque a veces se codifique con números).\\[4pt]
+        \textit{Ejemplos en Almería:}
+        \begin{itemize}\setlength\itemsep{2pt}
+          \item Barrio del municipio
+          \item Estilo del monumento
+          \item Medio de transporte usado
+          \item Temporada turística
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Variable cuantitativa}
+        \small
+        Toma \textbf{valores numéricos} con los que tiene sentido operar.\\[4pt]
+        \begin{itemize}\setlength\itemsep{2pt}
+          \item \textbf{Discreta}: valores enteros y contables\\
+            \textit{nº de autobuses de línea, visitantes por día}
+          \item \textbf{Continua}: cualquier valor real en un rango\\
+            \textit{temperatura, velocidad del viento, consumo de agua}
+        \end{itemize}
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \begin{notabox}[Truco para distinguirlas]
+    \small
+    Pregúntate: \textbf{«¿Tiene sentido calcular la media?»}
+    Si sí (media de temperatura = 24{,}3\,°C \correcto),
+    es cuantitativa.
+    Si no («media de barrios» no tiene sentido \incorrecto),
+    es cualitativa.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Variable independiente y dependiente
+% ---------------------------------------------------------------
+\begin{frame}{Variable independiente y dependiente}
+  \begin{teoriabox}
+    \begin{itemize}
+      \item \textbf{Variable independiente} (\(x\)): la que controlamos o elegimos.
+            Causa el cambio. Va en el \textbf{eje horizontal}.
+      \item \textbf{Variable dependiente} (\(y\)): la que cambia \textit{como consecuencia} de \(x\).
+            Va en el \textbf{eje vertical}.
+    \end{itemize}
+  \end{teoriabox}
+
+  \vspace{0.3cm}
+  \begin{center}
+  \begin{tikzpicture}
+    \node[rounded corners=5pt, fill=AlmAzulM!15, draw=AlmAzulM,
+          minimum width=3.2cm, minimum height=1cm, font=\bfseries\small]
+      (xi) at (0,0) {Mes del año\\{\tiny(variable independiente \(x\))}};
+    \node[rounded corners=5pt, fill=AlmAmbar!25, draw=AlmAmbar!70!black,
+          minimum width=3.6cm, minimum height=1cm, font=\bfseries\small]
+      (yi) at (7,0) {Nº de turistas\\{\tiny(variable dependiente \(y\))}};
+    \draw[-Stealth, AlmTerra, line width=2pt] (xi.east) -- node[above,font=\small,color=AlmTerra]
+      {\textit{determina}} (yi.west);
+  \end{tikzpicture}
+  \end{center}
+
+  \vspace{0.2cm}
+  \begin{columns}[T]
+    \begin{column}{0.55\textwidth}
+      \begin{ejemplobox}
+        \small
+        \textbf{Pregunta clave}: ¿Qué \textit{causa} a qué?\\
+        \begin{itemize}
+          \item «A más temperatura \textrightarrow\ más consumo de agua»\\
+            $x$ = temperatura; $y$ = consumo
+          \item «A más lluvia \textrightarrow\ menos turistas»\\
+            $x$ = precipitación; $y$ = turistas
+        \end{itemize}
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{notabox}[Fórmula mental]
+        \small
+        \[\text{Cuanto más } x \;\Rightarrow\; \text{más/menos } y\]
+        Si tiene sentido, \(x\) es la independiente.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Tabla de variables urbanas de Almería
+% ---------------------------------------------------------------
+\begin{frame}{Variables urbanas de Almería: tabla de ejemplos}
+  \begin{center}
+  \small
+  \renewcommand{\arraystretch}{1.25}
+  \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l l l}
+    \toprule
+    \rowcolor{AlmAzul!12}
+    \multicolumn{1}{c}{\textbf{Variable}} & \textbf{Tipo} & \textbf{Rol} & \textbf{Se relaciona con\ldots} \\
+    \midrule
+    Mes del año & Cuant. discreta & $x$ (independiente) & Nº de visitantes ($y$) \\
+    \rowcolor{AlmFondo}
+    Temperatura media & Cuant. continua & $x$ & Consumo de agua ($y$) \\
+    Barrio & Cualitativa & $x$ & Precio medio de vivienda ($y$) \\
+    \rowcolor{AlmFondo}
+    Hora del día & Cuant. discreta & $x$ & Intensidad de tráfico ($y$) \\
+    Estación del año & Cualitativa & $x$ & Tipo de turista ($y$) \\
+    \rowcolor{AlmFondo}
+    Nº de bares en calle & Cuant. discreta & $y$ & Mes del año ($x$) \\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+
+  \vspace{0.2cm}
+  \begin{notabox}[Observa]
+    \small
+    Una variable puede ser \textbf{independiente en un par}
+    y \textbf{dependiente en otro}.
+    El rol depende de la \textit{relación} que estudiamos.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Gráfico de dispersión: turistas por mes
+% ---------------------------------------------------------------
+\begin{frame}{Turistas en Almería por mes: diagrama de puntos}
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      almeria,
+      width=0.82\linewidth, height=0.55\linewidth,
+      xlabel={Mes (1 = enero \ldots 12 = diciembre)},
+      ylabel={Turistas (miles)},
+      title={Turistas mensuales en Almería (datos aproximados)},
+      xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+      xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+      ymin=0, ymax=700,
+      ytick={0,100,200,300,400,500,600,700},
+      yticklabels={0,100,200,300,400,500,600,700},
+    ]
+      \addplot[
+        only marks,
+        mark=*, mark size=3.5pt,
+        color=AlmAzulM,
+      ] coordinates {
+        (1,60) (2,65) (3,80) (4,120) (5,150)
+        (6,250) (7,500) (8,600) (9,300) (10,200)
+        (11,100) (12,80)
+      };
+      \addplot[
+        AlmTerra!70, dashed, line width=1pt, smooth
+      ] coordinates {
+        (1,60) (2,65) (3,80) (4,120) (5,150)
+        (6,250) (7,500) (8,600) (9,300) (10,200)
+        (11,100) (12,80)
+      };
+      \node[font=\tiny\bfseries, color=AlmTerra, above] at (axis cs:8,600)
+        {Máximo: agosto};
+      \node[font=\tiny\bfseries, color=AlmAzulM, below right] at (axis cs:1,60)
+        {Mínimo: enero};
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+  \vspace{-0.1cm}
+  {\small $x$ = mes (variable independiente) \quad $y$ = turistas en miles (variable dependiente)}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: clasificar variables}
+  \begin{recordarbox}
+    Clasifica cada variable como \textbf{cualitativa},
+    \textbf{cuantitativa discreta} o \textbf{cuantitativa continua}:
+
+    \vspace{0.25cm}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{clc}
+      \toprule
+      \textbf{N.º} & \textbf{Variable} & \textbf{Tipo} \\
+      \midrule
+      1 & Altura de la Torre de la Catedral de Almería & \textcolor{AlmGris}{\textit{(completa)}} \\
+      2 & Tipo de transporte utilizado & \\
+      3 & Visitantes diarios al Alcázar & \\
+      4 & Velocidad del viento en el Puerto & \\
+      5 & Estilo artístico del monumento & \\
+      6 & Consumo de agua por hogar (litros) & \\
+      \bottomrule
+    \end{tabular}
+  \end{recordarbox}
+
+  \vspace{0.2cm}
+  \begin{notabox}[Pista]
+    \small
+    Pregunta 1: la altura puede ser 98{,}36\,m → admite decimales → \textbf{continua}.
+    Para las demás, aplica el mismo razonamiento.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Ejercicio COMPRENDER
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: temperatura y ventas de helados}
+  \begin{comprenderbox}
+    El ayuntamiento recoge datos sobre la \textbf{temperatura diaria}
+    y las \textbf{ventas de helados} en el Paseo de Almería.
+    Responde:
+
+    \vspace{0.2cm}
+    \begin{enumerate}
+      \item ¿Cuál es la variable independiente (\(x\))?
+            ¿Por qué?
+      \item ¿Cuál es la variable dependiente (\(y\))?
+      \item Explica con tus palabras la relación entre ambas.
+      \item ¿Qué ocurrirá con las ventas de helados si la temperatura
+            sube de 25\,°C a 38\,°C?
+            ¿Y si baja a 10\,°C?
+    \end{enumerate}
+  \end{comprenderbox}
+
+  \vspace{0.3cm}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{notabox}[Para reflexionar]
+        \small
+        ¿Podría ser que las ventas de helados
+        \textit{causaran} el aumento de temperatura?
+        ¿Tiene sentido invertir el par?
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{notabox}[Vocabulario]
+        \small
+        «A mayor temperatura, mayores ventas» →
+        relación \textbf{directa} o \textbf{positiva}.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: inventa pares de variables urbanas}
+  \begin{aplicarbox}
+    Inventa \textbf{dos pares de variables} propias de Almería:
+
+    \vspace{0.2cm}
+    \textbf{Par A}: la variable independiente \(x\) es \textit{el tiempo}
+    (hora, día, mes o año).\\
+    \textbf{Par B}: la variable independiente \(x\) es
+    \textit{una magnitud física} (distancia, temperatura, altura\ldots).
+
+    \vspace{0.2cm}
+    Para cada par indica:
+    \begin{enumerate}
+      \item Nombre y clasificación de \(x\)
+      \item Nombre y clasificación de \(y\)
+      \item Predicción: «Cuanto más \(x\)\ldots»
+    \end{enumerate}
+  \end{aplicarbox}
+
+  \vspace{0.2cm}
+  \begin{ejemplobox}
+    \small
+    \textbf{Ejemplo de Par A}: $x$ = mes del año (cuantitativa discreta);
+    $y$ = litros de agua consumidos (cuantitativa continua).\\
+    Predicción: «En verano, a mayor calor, mayor consumo».
+  \end{ejemplobox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio ANALIZAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: una variable oculta}
+  \begin{analizarbox}
+    El siguiente conjunto de datos muestra turistas en Almería
+    en el mes de \textbf{agosto} de varios años:
+
+    \vspace{0.2cm}
+    \begin{center}
+    \small
+    \begin{tabular}{cc}
+      \toprule
+      \textbf{Año (\(x\))} & \textbf{Turistas agosto (\(y\))} \\
+      \midrule
+      2019 & 620\,000 \\
+      2020 & \textcolor{AlmTerra}{\textbf{180\,000}} \\
+      2021 & 390\,000 \\
+      2022 & 590\,000 \\
+      \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \vspace{0.2cm}
+    \begin{enumerate}
+      \item Identifica \(x\) e \(y\) y clasifica cada una.
+      \item En 2020 hay una \textbf{caída enorme}.
+            El año por sí solo no la explica.
+            ¿Qué \textit{variable oculta} podría haber causado ese descenso?
+      \item ¿Podría haber más de una variable oculta?
+            Razona la respuesta.
+    \end{enumerate}
+  \end{analizarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \textbf{Confundir el sentido de la causalidad}:
+
+    \vspace{0.3cm}
+    \begin{center}
+    \begin{tikzpicture}
+      \node[rounded corners=4pt, fill=AlmTerra!15, draw=AlmTerra,
+            text width=5cm, align=center, font=\small] (mal)
+        at (0,0) {«El \textbf{número de turistas}\\
+                  hace que \textbf{cambie el mes}»};
+      \node[right=0.5cm of mal, font=\Large, color=AlmTerra] {\incorrecto};
+    \end{tikzpicture}
+
+    \vspace{0.4cm}
+    \begin{tikzpicture}
+      \node[rounded corners=4pt, fill=AlmVerde!12, draw=AlmVerde,
+            text width=5cm, align=center, font=\small] (bien)
+        at (0,0) {«El \textbf{mes del año}\\
+                  influye en el \textbf{número de turistas}»};
+      \node[right=0.5cm of bien, font=\Large, color=AlmVerde] {\correcto};
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{0.3cm}
+    \small
+    El \textbf{tiempo} (mes, año, hora) siempre es la variable
+    \textit{independiente}: el tiempo avanza solo, no lo controla
+    ningún dato de la tabla.
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Completa en tu cuaderno la siguiente \textbf{tabla de variables urbanas}
+    con al menos \textbf{5 pares}. Para cada uno indica:
+
+    \vspace{0.2cm}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{>{\bfseries}c l l l l}
+      \toprule
+      \textbf{Par} & \textbf{Variable \(x\)} & \textbf{Tipo de \(x\)} &
+      \textbf{Variable \(y\)} & \textbf{Tipo de \(y\)} \\
+      \midrule
+      1 & Mes del año & C. discreta & Nº visitantes Alcazaba & C. discreta \\
+      2 & & & & \\
+      3 & & & & \\
+      4 & & & & \\
+      5 & & & & \\
+      \bottomrule
+    \end{tabular}
+
+    \vspace{0.3cm}
+    \small
+    Indica con \textbf{una flecha} la dirección de la dependencia:
+    $x \longrightarrow y$.
+    Escribe una frase prediciendo la relación («a mayor $x$\ldots»).
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Resumen de sesión
+% ---------------------------------------------------------------
+\begin{frame}{Resumen: lo que hemos aprendido hoy}
+  \begin{resumenbox}
+    \begin{columns}[T]
+      \begin{column}{0.48\textwidth}
+        \textbf{Tipos de variable:}
+        \begin{itemize}
+          \item \textbf{Cualitativa}: describe categorías
+          \item \textbf{Cuantitativa discreta}: valores enteros
+          \item \textbf{Cuantitativa continua}: cualquier valor real
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \textbf{Independiente vs. dependiente:}
+        \begin{itemize}
+          \item $x$ \textbf{independiente}: la que controla o causa
+          \item $y$ \textbf{dependiente}: la que cambia por $x$
+          \item Pregunta: ¿qué \textit{causa} a qué?
+        \end{itemize}
+      \end{column}
+    \end{columns}
+
+    \vspace{0.3cm}
+    \separador
+    \vspace{0.2cm}
+    \small
+    \textbf{Contexto de Almería:} mes del año ($x$) \textrightarrow\ turistas ($y$);
+    temperatura ($x$) \textrightarrow\ consumo de agua ($y$);
+    barrio ($x$) \textrightarrow\ precio vivienda ($y$).
+  \end{resumenbox}
+
+  \vspace{0.2cm}
+  \begin{center}
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}\quad
+    \bloomtag{Analizar}
+  \end{center}
+\end{frame}
+
+\end{document}

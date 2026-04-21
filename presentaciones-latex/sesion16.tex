@@ -1,0 +1,608 @@
+% ================================================================
+%  SESIÓN 16 — Relaciones funcionales y proporcionalidad
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO · IES Al-Ándalus
+%  Compilar: pdflatex sesion16.tex
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{16}
+\renewcommand{\SessionTitle}{Relaciones funcionales\\y proporcionalidad}
+\renewcommand{\SessionName}{Sesión 16}
+\renewcommand{\SessionObjective}{Identificar y representar relaciones de proporcionalidad directa mediante tablas y gráficas, reconociendo la constante de proporcionalidad y aplicándola a situaciones reales de Almería}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+% ── PORTADA ────────────────────────────────────────────────────────
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ── ÍNDICE ─────────────────────────────────────────────────────────
+\begin{frame}{Contenidos de hoy}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \item Relación vs.\ función
+        \item Proporcionalidad directa
+        \item Cómo encontrar la constante $k$
+        \item Gráfica de $y = kx$
+        \item Ejemplos en Almería
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Tabla de la proporcionalidad
+        \item Lo que \textbf{no} es proporcional
+        \item Propiedades clave
+        \item Ejercicios por niveles Bloom
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{center}
+    \bloomtag{Comprender}\bloomtag{Aplicar}\bloomtag{Analizar}\bloomtag{Evaluar}
+  \end{center}
+\end{frame}
+
+% ── SECCIÓN 1 ──────────────────────────────────────────────────────
+\seccionframe[AlmAzulM]{Relación vs.\ Función}
+
+% ── FRAME 3: Relación y función ────────────────────────────────────
+\begin{frame}{Relación y función: ¿cuál es la diferencia?}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Relación}
+        Cualquier \textbf{conexión} entre dos conjuntos de valores. A cada $x$ pueden corresponder \emph{varios} valores de $y$.
+        \[
+          x = 4 \;\longrightarrow\; y \in \{2,\,-2\}
+        \]
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Función}
+        Una regla que asigna a cada valor de entrada \textbf{exactamente un} valor de salida.
+        \[
+          \text{Para cada } x,\; \exists!\; y = f(x)
+        \]
+        Se lee: «$y$ es función de $x$».
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.85]
+    % RELACIÓN (izq)
+    \node[draw=AlmAzulM, ellipse, minimum width=1.2cm, minimum height=2.2cm,
+          fill=AlmAzulC!15] at (0,0) {};
+    \foreach \v/\y in {2/0.6, 4/0, 6/-0.6}
+      \node[font=\small] at (0,\y) {\v};
+    \node[draw=AlmAzulM, ellipse, minimum width=1.2cm, minimum height=2.8cm,
+          fill=AlmAzulC!15] at (2.8,0) {};
+    \foreach \v/\y in {-2/0.9, 1/0.3, 2/-0.3, 3/-0.9}
+      \node[font=\small] at (2.8,\y) {\v};
+    \draw[->, AlmAzulM, thick] (0.6, 0.6) -- (2.2, 0.9);
+    \draw[->, AlmAzulM, thick] (0.6, 0.6) -- (2.2,-0.3);
+    \draw[->, AlmAzulM, thick] (0.6, 0) -- (2.2, 0.3);
+    \draw[->, AlmTerra, thick] (0.6,-0.6) -- (2.2, -0.9);
+    \node[above, font=\tiny\bfseries, color=AlmGris] at (1.4,1.4) {RELACIÓN};
+    % FUNCIÓN (der)
+    \node[draw=AlmVerde, ellipse, minimum width=1.2cm, minimum height=2.2cm,
+          fill=AlmVerde!10] at (5.4,0) {};
+    \foreach \v/\y in {1/0.6, 2/0, 3/-0.6}
+      \node[font=\small] at (5.4,\y) {\v};
+    \node[draw=AlmVerde, ellipse, minimum width=1.2cm, minimum height=2.2cm,
+          fill=AlmVerde!10] at (8.2,0) {};
+    \foreach \v/\y in {3/0.6, 6/0, 9/-0.6}
+      \node[font=\small] at (8.2,\y) {\v};
+    \draw[->, AlmVerde, thick] (6.0, 0.6) -- (7.6, 0.6);
+    \draw[->, AlmVerde, thick] (6.0, 0.0) -- (7.6, 0.0);
+    \draw[->, AlmVerde, thick] (6.0,-0.6) -- (7.6,-0.6);
+    \node[above, font=\tiny\bfseries, color=AlmGris] at (6.8,1.4) {FUNCIÓN};
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ── SECCIÓN 2 ──────────────────────────────────────────────────────
+\seccionframe[BComprender]{Proporcionalidad directa}
+
+% ── FRAME 4: Definición proporcionalidad ───────────────────────────
+\begin{frame}{Proporcionalidad directa: definición}
+  \begin{teoriabox}
+    Dos magnitudes $x$ e $y$ son \textbf{directamente proporcionales} si existe una constante $k \neq 0$ tal que:
+    \[
+      \boxed{y = k \cdot x}
+    \]
+    $k$ se llama \textbf{constante de proporcionalidad}.
+  \end{teoriabox}
+  \vspace{0.3cm}
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{notabox}[Duplicar]
+        Si $x$ se duplica,\\$y$ también se duplica.
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{notabox}[Triplicar]
+        Si $x$ se triplica,\\$y$ también se triplica.
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{notabox}[Cociente]
+        El cociente\\$\dfrac{y}{x} = k$ es \textbf{siempre constante}.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+  \vspace{0.35cm}
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw=AlmAzulM, fill=AlmAzulC!12, rounded corners=5pt,
+            font=\small\bfseries, inner sep=6pt] {
+        La gráfica es una \textcolor{AlmTerra}{recta que pasa por el origen} $(0,0)$};
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ── FRAME 5: Encontrar k ───────────────────────────────────────────
+\begin{frame}{¿Cómo encontrar la constante $k$?}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{pasobox}[1]
+        Escribe la fórmula $y = k \cdot x$.
+      \end{pasobox}
+      \vspace{0.2cm}
+      \begin{pasobox}[2]
+        Despeja $k$: $\quad k = \dfrac{y}{x}$
+      \end{pasobox}
+      \vspace{0.2cm}
+      \begin{pasobox}[3]
+        Sustituye \textbf{cualquier par} $(x,\,y)$ conocido.
+      \end{pasobox}
+      \vspace{0.2cm}
+      \begin{pasobox}[4]
+        Verifica con \textbf{otro par}: si $k$ es siempre igual, hay proporcionalidad directa.
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{ejemplobox}
+        \textbf{Taxi en Almería:}\\
+        \SI{2}{\km} cuestan \SI{5.00}{\euro}\\[4pt]
+        $k = \dfrac{5{,}00}{2} = \SI{2{,}50}{\euro/\km}$\\[4pt]
+        Verificamos con $x=4$:\\
+        $y = 2{,}50 \times 4 = \SI{10{,}00}{\euro}$ \correcto
+      \end{ejemplobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 6: Gráfica de y = 2.5x ──────────────────────────────────
+\begin{frame}{Gráfica de proporcionalidad directa: tarifa de taxi en Almería}
+  \begin{columns}[c]
+    \begin{column}{0.60\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          almeria line,
+          width=\linewidth,
+          height=0.75\linewidth,
+          xmin=0, xmax=5.5,
+          ymin=0, ymax=15,
+          xlabel={Distancia (km)},
+          ylabel={Coste (\euro)},
+          title={Tarifa taxi Almería: $y = 2{,}5x$},
+          xtick={0,1,2,3,4,5},
+          ytick={0,2.5,5,7.5,10,12.5},
+          yticklabels={0, 2{,}5, 5, 7{,}5, 10, 12{,}5},
+        ]
+          % línea de proporcionalidad
+          \addplot[AlmTerra, line width=2pt, domain=0:5.5] {2.5*x};
+          % puntos marcados
+          \addplot[only marks, mark=*, mark size=3pt, AlmAzulM]
+            coordinates {(0,0)(1,2.5)(2,5)(3,7.5)(4,10)(5,12.5)};
+          % etiqueta de la recta
+          \node[font=\tiny\bfseries, color=AlmTerra, anchor=west]
+            at (axis cs: 3.5, 10.5) {$y = 2{,}5\,x$};
+          % pendiente k
+          \draw[<->, AlmVerde, thick]
+            (axis cs: 2, 5) -- (axis cs: 3, 5)
+            node[midway, below, font=\tiny\bfseries, color=AlmVerde] {$\Delta x = 1$};
+          \draw[<->, AlmVerde, thick]
+            (axis cs: 3, 5) -- (axis cs: 3, 7.5)
+            node[midway, right, font=\tiny\bfseries, color=AlmVerde] {$k = 2{,}5$};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      \small
+      \begin{tabular}{@{}cc@{}}
+        \toprule
+        \textbf{km} & \textbf{\euro} \\
+        \midrule
+        0 & 0{,}00 \\
+        1 & 2{,}50 \\
+        2 & 5{,}00 \\
+        3 & 7{,}50 \\
+        4 & 10{,}00 \\
+        5 & 12{,}50 \\
+        \bottomrule
+      \end{tabular}
+      \vspace{0.4cm}
+
+      \begin{formulabox}
+        $k = \dfrac{y}{x} = 2{,}5$
+      \end{formulabox}
+      \vspace{0.2cm}
+      {\tiny La recta \textbf{pasa por el origen} y tiene pendiente $k = 2{,}5$.}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 7: Ejemplos almería ──────────────────────────────────────
+\begin{frame}{Proporcionalidad directa en Almería}
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{ejemplobox}
+        \textbf{\faMapMarkerAlt\ Bus urbano}\\[4pt]
+        3 viajes $= 3 \times 1{,}40 = \SI{4{,}20}{\euro}$\\[4pt]
+        \[y = 1{,}40\,x\]
+        $k = \SI{1{,}40}{\euro/\text{viaje}}$
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{ejemplobox}
+        \textbf{\faWalking\ Caminando}\\[4pt]
+        Velocidad $= 5$ km/h\\[4pt]
+        \[d = 5\,t\]
+        $k = 5$ km/h
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{ejemplobox}
+        \textbf{\faPaintRoller\ Baldosas plaza}\\[4pt]
+        1 m² $\to$ 9 baldosas\\[4pt]
+        \[y = 9\,x\]
+        20 m² $\to$ 180 baldosas
+      \end{ejemplobox}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{center}
+    \begin{tikzpicture}
+      \node[draw=AlmAmbar, fill=AlmAmbar!10, rounded corners=4pt,
+            font=\small, inner sep=8pt, text width=10cm, align=center] {
+        En todos los casos: si $x$ se multiplica por $n$, $y$ también se multiplica por $n$,\\
+        y el cociente $y/x$ es siempre la misma constante $k$.
+      };
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ── FRAME 8: Tabla y = 1.40x ──────────────────────────────────────
+\begin{frame}{Tabla de proporcionalidad: viajes en bus}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{|>{\bfseries\color{AlmAzulM}}c|c|c|}
+        \hline
+        \rowcolor{AlmAzul!15}
+        \textbf{Viajes ($x$)} & \textbf{Coste ($y$, \euro)} & \textbf{$y/x$} \\
+        \hline
+        1  & 1{,}40  & 1{,}40 \\
+        2  & 2{,}80  & 1{,}40 \\
+        3  & 4{,}20  & 1{,}40 \\
+        4  & 5{,}60  & 1{,}40 \\
+        5  & 7{,}00  & 1{,}40 \\
+        10 & 14{,}00 & 1{,}40 \\
+        \hline
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{teoriabox}
+        \textbf{Propiedades que verificar:}
+        \begin{itemize}
+          \item[\correcto] $y/x = k$ siempre igual
+          \item[\correcto] Gráfica: recta por $(0,0)$
+          \item[\correcto] Fórmula: $y = 1{,}40\,x$
+        \end{itemize}
+      \end{teoriabox}
+      \vspace{0.3cm}
+      \begin{formulabox}[AlmAmbar]
+        $y = 1{,}40\,x$
+      \end{formulabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ── FRAME 9: No proporcional vs proporcional ───────────────────────
+\begin{frame}{Proporcional vs.\ lineal: ¡no confundir!}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \begin{block}{\correcto\ Proporcional: $y = 2{,}5\,x$}
+        Taxi \textbf{sin tarifa de bajada:}\\
+        $y = 2{,}5\,x$
+        \begin{itemize}
+          \item Pasa por el origen $(0,\,0)$
+          \item $y/x = 2{,}5$ (constante)
+        \end{itemize}
+      \end{block}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{alertblock}{\incorrecto\ Lineal (no proporcional): $y = 2{,}40 + 1{,}20\,x$}
+        Taxi \textbf{con tarifa de bajada} €2{,}40:
+        \begin{itemize}
+          \item \textbf{No} pasa por el origen
+          \item $y/x \neq$ constante
+          \item Sí es lineal (recta)
+        \end{itemize}
+      \end{alertblock}
+    \end{column}
+  \end{columns}
+  \vspace{0.3cm}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.85]
+    \begin{axis}[
+      almeria,
+      width=0.65\linewidth,
+      height=0.38\linewidth,
+      xmin=0, xmax=5.5,
+      ymin=0, ymax=12,
+      xlabel={km}, ylabel={\euro},
+      title={Comparación de tarifas},
+      legend pos=north west,
+      xtick={0,1,2,3,4,5},
+    ]
+      \addplot[AlmVerde, line width=2pt, domain=0:5.5] {2.5*x};
+      \addlegendentry{$y=2{,}5x$ (proporcional)}
+      \addplot[AlmTerra, line width=2pt, dashed, domain=0:5.5] {2.4 + 1.2*x};
+      \addlegendentry{$y=2{,}4+1{,}2x$ (lineal)}
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ── FRAME 10: Propiedades clave ────────────────────────────────────
+\begin{frame}{Tres formas de reconocer la proporcionalidad directa}
+  \begin{columns}[t]
+    \begin{column}{0.32\textwidth}
+      \begin{block}{\faTable\ Por la tabla}
+        \[
+          \frac{y}{x} = k \;\text{(siempre igual)}
+        \]
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{\faChartLine\ Por la gráfica}
+        Recta que pasa por el \textbf{origen} $(0,0)$
+      \end{block}
+    \end{column}
+    \begin{column}{0.32\textwidth}
+      \begin{block}{\faCalculator\ Por la fórmula}
+        \[y = k \cdot x\]
+        sin término independiente
+      \end{block}
+    \end{column}
+  \end{columns}
+  \vspace{0.5cm}
+  \begin{errorbox}
+    $y = k\,x$ \textbf{sí} es proporcionalidad directa.\\
+    $y = mx + b$ con $b \neq 0$ es \textbf{lineal pero NO proporcional}.\\
+    El término $b$ «levanta» la recta y la separa del origen.
+  \end{errorbox}
+\end{frame}
+
+% ── FRAME 11: Ejercicio COMPRENDER ────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Comprender}}
+  \begin{comprenderbox}
+    \textbf{Fuente de la Alameda (Almería):} llenado a \textbf{40 litros/minuto}.
+
+    \vspace{0.3cm}
+    \begin{columns}[t]
+      \begin{column}{0.55\textwidth}
+        \textbf{a)} Completa la tabla:
+        \vspace{0.2cm}
+
+        \renewcommand{\arraystretch}{1.2}
+        \begin{tabular}{|c|c|c|}
+          \hline
+          \rowcolor{AlmAzulC!20}
+          $t$ (min) & $V$ (litros) & $V/t$ \\
+          \hline
+          1 & \phantom{40}  & \phantom{40} \\
+          2 & \phantom{80}  & \phantom{40} \\
+          3 & \phantom{120} & \phantom{40} \\
+          4 & \phantom{160} & \phantom{40} \\
+          5 & \phantom{200} & \phantom{40} \\
+          6 & \phantom{240} & \phantom{40} \\
+          \hline
+        \end{tabular}
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \textbf{b)} ¿Es proporcionalidad directa?
+
+        \vspace{0.3cm}
+        Justifica usando el cociente $V/t$.
+
+        \vspace{0.3cm}
+        \textbf{c)} ¿Cuántos litros habrá tras 15 minutos?
+      \end{column}
+    \end{columns}
+  \end{comprenderbox}
+\end{frame}
+
+% ── FRAME 12: Ejercicio APLICAR ───────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Aplicar}}
+  \begin{aplicarbox}
+    \textbf{Entrada a la Alcazaba de Almería:} €3 por adulto.
+
+    \vspace{0.25cm}
+    \begin{columns}[t]
+      \begin{column}{0.60\textwidth}
+        \begin{enumerate}
+          \item[\textbf{a)}] Escribe la fórmula de proporcionalidad.
+          \item[\textbf{b)}] Construye una tabla para 1 a 10 personas.
+          \item[\textbf{c)}] Dibuja la gráfica (ejes correctamente etiquetados).
+          \item[\textbf{d)}] ¿Cuántas personas necesitan €21?
+        \end{enumerate}
+      \end{column}
+      \begin{column}{0.37\textwidth}
+        \begin{notabox}[Pista]
+          $\text{Coste} = k \times \text{personas}$\\[4pt]
+          Despeja «personas» para el apartado d).
+        \end{notabox}
+        \vspace{0.2cm}
+        \dificultad{2}
+      \end{column}
+    \end{columns}
+  \end{aplicarbox}
+\end{frame}
+
+% ── FRAME 13: Ejercicio ANALIZAR ──────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Analizar}}
+  \begin{analizarbox}
+    \textbf{Dos planes de dispensador de agua:}
+
+    \vspace{0.2cm}
+    \begin{columns}[t]
+      \begin{column}{0.47\textwidth}
+        \begin{block}{Plan A}
+          €0{,}80 por litro\\
+          \[y_A = 0{,}80\,x\]
+        \end{block}
+      \end{column}
+      \begin{column}{0.47\textwidth}
+        \begin{alertblock}{Plan B}
+          €5 fijos + €0{,}40 por litro\\
+          \[y_B = 5 + 0{,}40\,x\]
+        \end{alertblock}
+      \end{column}
+    \end{columns}
+    \vspace{0.3cm}
+    \begin{enumerate}
+      \item ¿Cuál de los dos es proporcionalidad directa? ¿Por qué?
+      \item ¿Para qué cantidad son igual de caros?\\
+            Resuelve: $0{,}80\,x = 5 + 0{,}40\,x$
+      \item ¿Cuándo conviene el Plan A? ¿Cuándo el Plan B?
+    \end{enumerate}
+    \dificultad{3}
+  \end{analizarbox}
+\end{frame}
+
+% ── FRAME 14: Ejercicio EVALUAR ──────────────────────────────────
+\begin{frame}{Ejercicio — \bloomtag{Evaluar}}
+  \begin{evaluarbox}
+    \textbf{Dos ciclistas salen de Almería al mismo tiempo:}
+    \begin{itemize}
+      \item Ciclista A: 15 km/h \quad $\Rightarrow$ \quad $d_A = 15\,t$
+      \item Ciclista B: 20 km/h \quad $\Rightarrow$ \quad $d_B = 20\,t$
+    \end{itemize}
+    \vspace{0.3cm}
+    \begin{columns}[t]
+      \begin{column}{0.55\textwidth}
+        \begin{enumerate}
+          \item ¿Son ambas distancias proporcionales al tiempo? Razona.
+          \item Tras 2 horas, ¿cuántos km les separan?
+          \item La diferencia $d_B - d_A = 5t$, ¿es también proporcional al tiempo?
+          \item ¿Cuál sería la constante de esa diferencia?
+        \end{enumerate}
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \begin{notabox}[Reflexión]
+          «La suma o diferencia de dos funciones proporcionales, ¿sigue siendo proporcional?»
+        \end{notabox}
+        \dificultad{4}
+      \end{column}
+    \end{columns}
+  \end{evaluarbox}
+\end{frame}
+
+% ── FRAME 15: Error frecuente ────────────────────────────────────
+\begin{frame}{¡Cuidado! El error más habitual}
+  \begin{errorbox}
+    \textbf{Confundir proporcionalidad directa con función lineal:}
+    \vspace{0.2cm}
+
+    \begin{columns}[t]
+      \begin{column}{0.47\textwidth}
+        \begin{center}
+          \correcto\; \textbf{Proporcionalidad directa}\\[4pt]
+          $y = 3x$\\[4pt]
+          {\small Pasa por el origen $(0,0)$}\\
+          {\small $y/x = 3$ siempre}
+        \end{center}
+      \end{column}
+      \begin{column}{0.47\textwidth}
+        \begin{center}
+          \incorrecto\; \textbf{Solo lineal (no proporcional)}\\[4pt]
+          $y = 3x + 5$\\[4pt]
+          {\small No pasa por el origen}\\
+          {\small $y/x \neq$ constante}
+        \end{center}
+      \end{column}
+    \end{columns}
+    \vspace{0.3cm}
+    El término independiente $b$ en $y = mx + b$ «rompe» la proporcionalidad. Si $b = 0$, entonces sí es proporcional.
+  \end{errorbox}
+\end{frame}
+
+% ── FRAME 16: Evidencia del día ──────────────────────────────────
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \textbf{Ficha de proporcionalidad} (entregar al final de la sesión):
+
+    \vspace{0.3cm}
+    \begin{columns}[t]
+      \begin{column}{0.55\textwidth}
+        La ficha debe incluir \textbf{los cuatro elementos}:
+        \begin{enumerate}
+          \item \textbf{Tabla} de valores con columna $y/x$
+          \item \textbf{Fórmula} $y = k \cdot x$ con valor de $k$
+          \item \textbf{Gráfica} con ejes etiquetados y línea que pase por el origen
+          \item \textbf{Verificación} del cociente constante $y/x = k$
+        \end{enumerate}
+      \end{column}
+      \begin{column}{0.42\textwidth}
+        \begin{notabox}[Situación a elegir]
+          \begin{itemize}
+            \item Bus urbano ($k = 1{,}40$)
+            \item Alcazaba ($k = 3{,}00$)
+            \item Baldosas ($k = 9$)
+            \item Tu propio ejemplo
+          \end{itemize}
+        \end{notabox}
+      \end{column}
+    \end{columns}
+  \end{evidenciabox}
+\end{frame}
+
+% ── FRAME 17: Resumen ─────────────────────────────────────────────
+\begin{frame}{Resumen de la sesión 16}
+  \begin{resumenbox}
+    \begin{columns}[t]
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item Una \textbf{función} asigna exactamente un $y$ a cada $x$.
+          \item La \textbf{proporcionalidad directa}: $y = k\,x$.
+          \item $k$ es la \textbf{constante de proporcionalidad}: $k = y/x$.
+          \item La gráfica es una \textbf{recta que pasa por el origen}.
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \begin{itemize}
+          \item Si $b \neq 0$, $y = kx + b$ es \textbf{lineal} pero \textbf{no proporcional}.
+          \item En Almería: taxi ($k=2{,}5$), bus ($k=1{,}40$), baldosas ($k=9$).
+          \item \textbf{Verificar siempre}: tabla, gráfica y fórmula.
+        \end{itemize}
+      \end{column}
+    \end{columns}
+  \end{resumenbox}
+
+  \vspace{0.3cm}
+  \begin{center}
+    \bloomtag{Comprender}\ identificar relaciones de proporcionalidad\\[3pt]
+    \bloomtag{Aplicar}\ construir tablas y gráficas\\[3pt]
+    \bloomtag{Analizar}\ comparar planes y situaciones\\[3pt]
+    \bloomtag{Evaluar}\ razonar sobre propiedades de funciones\\
+  \end{center}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,590 @@
+% ================================================================
+%  SESIÓN 08 — Área de zonas urbanas
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{08}
+\renewcommand{\SessionTitle}{Área de zonas urbanas}
+\renewcommand{\SessionName}{Sesión 08}
+\renewcommand{\SessionObjective}{%
+  Calcular el área de figuras planas básicas y aplicarla a zonas verdes
+  y plazas de Almería, interpretando correctamente las unidades
+  de superficie.%
+}
+\renewcommand{\BlockName}{Bloque 2: Geometría urbana}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE
+% ---------------------------------------------------------------
+\begin{frame}{Contenidos de hoy}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Definición de área
+        \item Analogía: el césped del parque
+        \item Unidades de superficie
+        \item Fórmulas de las 6 figuras básicas
+        \item Método de cuadrícula
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Conversiones de unidades
+        \item Ejemplos en Almería
+        \item Problema paso a paso
+        \item Ejercicios Bloom
+        \item Evidencia del día
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{notabox}[Niveles de Bloom]
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{¿Qué es el área?}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Definición
+% ---------------------------------------------------------------
+\begin{frame}{Área: la superficie interior}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{definicionbox}{Área}
+        El \textbf{área} de una figura es la medida de la
+        \textbf{superficie encerrada} en su interior.
+        Indica cuánto espacio ocupa la figura en el plano.
+      \end{definicionbox}
+
+      \vspace{0.35cm}
+      \begin{notabox}[Analogía]
+        \small El área es como el \textbf{césped} a segar dentro
+        del parque: mides cuánto verde hay,
+        no la longitud de la valla que lo rodea.
+      \end{notabox}
+
+      \vspace{0.3cm}
+      \textbf{Unidades:} m$^2$, km$^2$, cm$^2$, mm$^2$, ha, a \\
+      \small (dos dimensiones $\Rightarrow$ el exponente es 2)
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        % Parque con cuadrícula de área
+        \draw[AlmAzulC!30, very thin, step=0.5]
+          (0,0) grid (3.5,2.5);
+        \draw[AlmTerra, line width=2.5pt] (0,0) rectangle (3.5,2.5);
+        \fill[AlmVerde!22] (0,0) rectangle (3.5,2.5);
+        \draw[AlmAzulC!30, very thin, step=0.5]
+          (0,0) grid (3.5,2.5);
+        \node[font=\small\bfseries, color=AlmVerde!70!black]
+          at (1.75,1.25) {ÁREA};
+        \node[font=\tiny\bfseries, color=AlmTerra]
+          at (1.75,-0.3) {Perímetro (borde)};
+        % Cota
+        \draw[acota] (0,-0.65) -- (3.5,-0.65)
+          node[midway,below,font=\tiny]{base $b$};
+        \draw[acota] (3.9,0) -- (3.9,2.5)
+          node[midway,right,font=\tiny]{altura $h$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Unidades de superficie
+% ---------------------------------------------------------------
+\begin{frame}{Unidades de superficie y conversiones}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{center}
+      \small
+      \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l l}
+        \toprule
+        Unidad & Símbolo & Equivalencia \\
+        \midrule
+        milímetro cuadrado & mm$^2$ & \\
+        centímetro cuadrado & cm$^2$ & 1 cm$^2$ = 100 mm$^2$ \\
+        metro cuadrado & m$^2$ & 1 m$^2$ = 10{,}000 cm$^2$ \\
+        área & a & 1 a = 100 m$^2$ \\
+        hectárea & ha & 1 ha = 10{,}000 m$^2$ \\
+        kilómetro cuadrado & km$^2$ & 1 km$^2$ = 1{,}000{,}000 m$^2$ \\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{formulabox}[AlmAmbar!60!black]
+        \small
+        1 ha = 10{,}000 m$^2$\\[4pt]
+        1 km$^2$ = 100 ha
+      \end{formulabox}
+      \vspace{0.3cm}
+      \begin{notabox}[Uso práctico]
+        \small
+        \begin{itemize}
+          \item Parcelas/campos: \textbf{ha}
+          \item Pisos/plazas: \textbf{m$^2$}
+          \item Comunidades/países: \textbf{km$^2$}
+        \end{itemize}
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Fórmulas: cuadrado y rectángulo
+% ---------------------------------------------------------------
+\begin{frame}{Fórmulas de área (I): cuadrado y rectángulo}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[AlmVerde!15] (0,0) rectangle (2.0,2.0);
+        \draw[rectov, line width=1.5pt] (0,0) rectangle (2.0,2.0);
+        \draw[acota] (0,-0.5) -- (2.0,-0.5)
+          node[midway,below,font=\scriptsize]{$l$};
+        \draw[acota] (2.4,0) -- (2.4,2.0)
+          node[midway,right,font=\scriptsize]{$l$};
+        \node[font=\small\bfseries, color=AlmVerde!70!black]
+          at (1.0,1.0) {$A = l^2$};
+        \node[below, font=\scriptsize\bfseries, color=AlmVerde]
+          at (1.0,-0.9) {Cuadrado};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[AlmVerde]{A_{\text{cuad}} = l^2}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[AlmAzulC!18] (0,0) rectangle (2.8,1.6);
+        \draw[zona, line width=1.5pt] (0,0) rectangle (2.8,1.6);
+        \draw[acota] (0,-0.5) -- (2.8,-0.5)
+          node[midway,below,font=\scriptsize]{$b$};
+        \draw[acota] (3.2,0) -- (3.2,1.6)
+          node[midway,right,font=\scriptsize]{$h$};
+        \node[font=\small\bfseries, color=AlmAzulM]
+          at (1.4,0.8) {$A = b \times h$};
+        \node[below, font=\scriptsize\bfseries, color=AlmAzulM]
+          at (1.4,-0.9) {Rectángulo};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[AlmAzulM]{A_{\text{rect}} = b \times h}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Fórmulas: triángulo y paralelogramo
+% ---------------------------------------------------------------
+\begin{frame}{Fórmulas de área (II): triángulo y paralelogramo}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[AlmTerra!12] (0,0) -- (3.0,0) -- (2.0,1.8) -- cycle;
+        \draw[rectot, line width=1.5pt] (0,0) -- (3.0,0) -- (2.0,1.8) -- cycle;
+        % Altura
+        \draw[AlmGris, dashed, thin] (2.0,0) -- (2.0,1.8);
+        \draw[acota] (-0.4,0) -- (-0.4,1.8)
+          node[midway,left,font=\scriptsize]{$h$};
+        \draw[acota] (0,-0.5) -- (3.0,-0.5)
+          node[midway,below,font=\scriptsize]{$b$};
+        \node[font=\small\bfseries, color=AlmTerra]
+          at (1.5,0.6) {$\dfrac{b \times h}{2}$};
+        \node[below, font=\scriptsize\bfseries, color=AlmTerra]
+          at (1.5,-0.9) {Triángulo};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[AlmTerra]{A_{\text{trián}} = \dfrac{b \times h}{2}}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[BAnalizar!10]
+          (0.5,0) -- (3.1,0) -- (2.6,1.6) -- (0.0,1.6) -- cycle;
+        \draw[rectov, line width=1.5pt]
+          (0.5,0) -- (3.1,0) -- (2.6,1.6) -- (0.0,1.6) -- cycle;
+        \draw[AlmGris, dashed, thin] (0.5,0) -- (0.5,1.6);
+        \draw[acota] (-0.4,0) -- (-0.4,1.6)
+          node[midway,left,font=\scriptsize]{$h$};
+        \draw[acota] (0.5,-0.5) -- (3.1,-0.5)
+          node[midway,below,font=\scriptsize]{$b$};
+        \node[font=\small\bfseries, color=AlmVerde]
+          at (1.6,0.8) {$A = b \times h$};
+        \node[below, font=\scriptsize\bfseries, color=AlmVerde]
+          at (1.6,-0.9) {Paralelogramo};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[BAnalizar]{A_{\text{paral}} = b \times h}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Fórmulas: trapecio y círculo
+% ---------------------------------------------------------------
+\begin{frame}{Fórmulas de área (III): trapecio y círculo}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[AlmAmbar!15]
+          (0.4,0) -- (3.2,0) -- (2.8,1.6) -- (0.8,1.6) -- cycle;
+        \draw[AlmAmbar!70!black, line width=1.5pt]
+          (0.4,0) -- (3.2,0) -- (2.8,1.6) -- (0.8,1.6) -- cycle;
+        \draw[acota] (0.4,-0.5) -- (3.2,-0.5)
+          node[midway,below,font=\tiny]{$B$ (base mayor)};
+        \draw[acota] (0.8,1.9) -- (2.8,1.9)
+          node[midway,above,font=\tiny]{$b$ (base menor)};
+        \draw[AlmGris, dashed, thin] (0.8,0) -- (0.8,1.6);
+        \draw[acota] (-0.35,0) -- (-0.35,1.6)
+          node[midway,left,font=\tiny]{$h$};
+        \node[below, font=\scriptsize\bfseries, color=AlmAmbar!80!black]
+          at (1.8,-0.9) {Trapecio};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[AlmAmbar!70!black]{A_{\text{trap}} =
+        \dfrac{(B+b)}{2} \times h}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.80]
+        \fill[AlmAzulC!20] (1.5,1.5) circle (1.4);
+        \draw[AlmAzulM, line width=1.5pt] (1.5,1.5) circle (1.4);
+        \draw[AlmTerra, line width=1pt] (1.5,1.5) -- (2.9,1.5)
+          node[midway,above,font=\scriptsize]{$r$};
+        \node[font=\small\bfseries, color=AlmAzulM]
+          at (1.5,1.5) {$\pi r^2$};
+        \node[below, font=\scriptsize\bfseries, color=AlmAzulM]
+          at (1.5,0.0) {Círculo};
+      \end{tikzpicture}
+      \end{center}
+      \formuladest[AlmAzulM]{A_{\text{círc}} = \pi \times r^2}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAplicar]{Áreas en Almería}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Ejemplos en Almería
+% ---------------------------------------------------------------
+\begin{frame}{Áreas de zonas verdes de Almería}
+  \begin{columns}[t]
+    \begin{column}{0.54\textwidth}
+      \begin{ejemplobox}
+        \small
+        \textbf{Parque Nicolás Salmerón}
+        (rectángulo 400 m $\times$ 80 m):
+        \[A = 400 \times 80 = \mathbf{32{,}000\ m^2} = \mathbf{3{,}2\ ha}\]
+
+        \vspace{0.1cm}
+        \textbf{Plaza triangular} (base 120 m, altura 95 m):
+        \[A = \frac{120 \times 95}{2} = \frac{11{,}400}{2}
+          = \mathbf{5{,}700\ m^2}\]
+
+        \vspace{0.1cm}
+        \textbf{Alcazaba de Almería}
+        (área aproximada):
+        \[A \approx \mathbf{43{,}000\ m^2} = \mathbf{4{,}3\ ha}\]
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{notabox}[¿Qué es una hectárea?]
+        \small
+        1 ha = 10{,}000 m$^2$.
+        \\[4pt]
+        Equivale a un cuadrado de
+        \textbf{100 m} $\times$ \textbf{100 m}.
+        \\[4pt]
+        Se usa en agricultura, urbanismo
+        y cartografía.
+        \\[4pt]
+        La Alcazaba ocupa más de 4 campos
+        de fútbol (un campo $\approx$ 0{,}7 ha).
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Problema paso a paso
+% ---------------------------------------------------------------
+\begin{frame}{Problema resuelto: manzana trapezoidal}
+  \begin{definicionbox}{Enunciado}
+    \small Una manzana de Almería tiene forma de trapecio con
+    bases paralelas de \textbf{200 m} y \textbf{140 m},
+    y altura \textbf{90 m}.
+    Calcula su área en m$^2$ y en hectáreas.
+  \end{definicionbox}
+
+  \vspace{0.15cm}
+  \begin{columns}[t]
+    \begin{column}{0.50\textwidth}
+      \begin{pasobox}[1]
+        \small Identificar la fórmula del trapecio:
+        \[A = \frac{(B + b)}{2} \times h\]
+      \end{pasobox}
+      \vspace{0.2cm}
+      \begin{pasobox}[2]
+        \small Sustituir valores:
+        \[A = \frac{(200 + 140)}{2} \times 90
+          = \frac{340}{2} \times 90\]
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{pasobox}[3]
+        \small Calcular:
+        \[A = 170 \times 90 = \mathbf{15{,}300\ m^2}\]
+      \end{pasobox}
+      \vspace{0.2cm}
+      \begin{pasobox}[4]
+        \small Convertir a hectáreas:
+        \[A = \frac{15{,}300}{10{,}000} = \mathbf{1{,}53\ ha}\]
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BRecordar]{Ejercicios — RECORDAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 1 — RECORDAR \dificultad{1}}
+  \begin{recordarbox}
+    \begin{enumerate}
+      \item Escribe la fórmula del área de:
+            rectángulo, triángulo y círculo.
+      \item Relaciona cada figura con su fórmula:
+
+      \vspace{0.2cm}
+      \begin{center}
+      \small
+      \begin{tabular}{|l|l|}
+        \hline
+        \rowcolor{AlmAzul!15}
+        \textbf{Figura} & \textbf{Fórmula} \\
+        \hline
+        Cuadrado & $A = \pi r^2$ \\
+        \hline
+        Triángulo & $A = l^2$ \\
+        \hline
+        Trapecio & $A = b \times h / 2$ \\
+        \hline
+        Círculo & $A = \tfrac{(B+b)}{2} \times h$ \\
+        \hline
+      \end{tabular}
+      \end{center}
+    \end{enumerate}
+  \end{recordarbox}
+  \vspace{0.15cm}
+  \begin{notabox}[Pista]
+    \small Para el triángulo, la altura debe ser perpendicular a la base.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BComprender]{Ejercicios — COMPRENDER}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Ejercicio COMPRENDER
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 2 — COMPRENDER \dificultad{2}}
+  \begin{comprenderbox}
+    Un \textbf{cuadrado} de lado 10 m y un \textbf{rectángulo}
+    de 15 m $\times$ 5 m tienen el mismo perímetro (40 m).
+    \begin{enumerate}
+      \item Calcula el área de cada uno.
+      \item ¿Cuál tiene mayor área?
+      \item ¿Qué conclusión extraes sobre la relación
+            entre perímetro y área?
+    \end{enumerate}
+  \end{comprenderbox}
+
+  \vspace{0.2cm}
+  \begin{columns}[c]
+    \begin{column}{0.40\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.60]
+        \fill[AlmVerde!15] (0,0) rectangle (2.0,2.0);
+        \draw[rectov] (0,0) rectangle (2.0,2.0);
+        \draw[acota] (0,-0.5) -- (2.0,-0.5)
+          node[midway,below,font=\tiny]{10 m};
+        \node[font=\scriptsize\bfseries, color=AlmVerde] at (1.0,1.0) {?};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.55\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.60]
+        \fill[AlmAzulC!18] (0,0) rectangle (3.0,1.0);
+        \draw[zona] (0,0) rectangle (3.0,1.0);
+        \draw[acota] (0,-0.5) -- (3.0,-0.5)
+          node[midway,below,font=\tiny]{15 m};
+        \draw[acota] (3.4,0) -- (3.4,1.0)
+          node[midway,right,font=\tiny]{5 m};
+        \node[font=\scriptsize\bfseries, color=AlmAzulM] at (1.5,0.5) {?};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAplicar]{Ejercicios — APLICAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 3 — APLICAR \dificultad{3}}
+  \begin{aplicarbox}
+    \small Se quiere crear una \textbf{zona verde triangular}
+    en la playa de Almería con base \textbf{300 m}
+    y altura \textbf{150 m}.
+    \begin{enumerate}
+      \item Calcula el área en m$^2$.
+      \item Exprésala en hectáreas (ha).
+      \item Calcula el coste de sembrar césped
+            si el precio es \textbf{8 €/m$^2$}.
+    \end{enumerate}
+  \end{aplicarbox}
+
+  \vspace{0.15cm}
+  \begin{columns}[c]
+    \begin{column}{0.42\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.55]
+        \fill[AlmVerde!18] (0,0) -- (4.5,0) -- (2.25,2.25) -- cycle;
+        \draw[rectov, line width=1.5pt]
+          (0,0) -- (4.5,0) -- (2.25,2.25) -- cycle;
+        \draw[AlmGris, dashed, thin] (2.25,0) -- (2.25,2.25);
+        \draw[acota] (0,-0.6) -- (4.5,-0.6)
+          node[midway,below,font=\tiny]{300 m};
+        \draw[acota] (2.6,0) -- (2.6,2.25)
+          node[midway,right,font=\tiny]{150 m};
+        \node[font=\scriptsize\bfseries, color=AlmVerde!70!black]
+          at (2.25,0.8) {Zona verde};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{pasobox}[1]
+        \scriptsize $A = \dfrac{b \times h}{2}
+          = \dfrac{300 \times 150}{2} = ?\ \text{m}^2$
+      \end{pasobox}
+      \vspace{0.15cm}
+      \begin{pasobox}[2]
+        \scriptsize $A_{\text{ha}} = \dfrac{A_{\text{m}^2}}{10{,}000}$
+      \end{pasobox}
+      \vspace{0.15cm}
+      \begin{pasobox}[3]
+        \scriptsize $\text{Coste} = A_{\text{m}^2} \times 8$~€/m$^2$
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{itemize}
+      \item \incorrecto\
+            \textbf{«El parque tiene 32{,}000 metros»}
+            \\[6pt]
+            \correcto\
+            El área se mide en metros \textbf{cuadrados}:
+            «El parque tiene 32{,}000 \textbf{m$^2$}» o «3{,}2 ha».
+            \\
+            La palabra «metros» sola indica longitud (perímetro, distancia),
+            no superficie.
+
+      \vspace{0.4cm}
+      \item \incorrecto\
+            Usar la fórmula del rectángulo en un triángulo:
+            \\
+            $A = 120 \times 95 = 11{,}400$~m$^2$ (sin dividir entre 2).
+            \\[6pt]
+            \correcto\
+            $A = \dfrac{120 \times 95}{2} = 5{,}700$~m$^2$
+            \\
+            El triángulo es \textbf{la mitad} del rectángulo que lo contiene.
+    \end{itemize}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 14 — Resumen
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item El \textbf{área} mide la superficie interior:
+            como el césped a segar.
+      \item Unidades: m$^2$, cm$^2$, km$^2$, \textbf{ha}
+            (1 ha = 10{,}000 m$^2$).
+      \item Fórmulas clave:
+        $A_{\text{cuad}} = l^2$, \quad
+        $A_{\text{rect}} = b \times h$, \quad
+        $A_{\text{trián}} = \tfrac{bh}{2}$, \\
+        $A_{\text{paral}} = bh$, \quad
+        $A_{\text{trap}} = \tfrac{B+b}{2} \times h$, \quad
+        $A_{\text{círc}} = \pi r^2$.
+      \item La altura debe ser \textbf{perpendicular} a la base.
+      \item Parque Salmerón: $A = 32{,}000$~m$^2 = 3{,}2$~ha.
+    \end{itemize}
+  \end{resumenbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 15 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \textbf{Mapa de zonas verdes con áreas calculadas}
+
+    \vspace{0.2cm}
+    Investiga \textbf{3 parques o plazas} de Almería.
+    Para cada uno:
+    \begin{enumerate}
+      \item Dibuja su forma aproximada con medidas.
+      \item Identifica qué figura geométrica modela mejor su planta.
+      \item Aplica la fórmula correcta y calcula el área en m$^2$.
+      \item Convierte a hectáreas.
+      \item Calcula el coste hipotético de regar el parque
+            a razón de 2~€/m$^2$.
+    \end{enumerate}
+    \vspace{0.2cm}
+    \textbf{Criterio de éxito:} los 3 cálculos son correctos,
+    las fórmulas están indicadas y las unidades son adecuadas.
+  \end{evidenciabox}
+\end{frame}
+
+\end{document}

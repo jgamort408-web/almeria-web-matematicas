@@ -1,0 +1,501 @@
+% ================================================================
+%  sesion14.tex  —  Sesión 14 de 20
+%  Leer e interpretar gráficas
+%  Bloque 3: Datos y gráficas · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{14}
+\renewcommand{\SessionTitle}{Leer e interpretar gráficas}
+\renewcommand{\SessionName}{Sesión 14}
+\renewcommand{\SessionObjective}{%
+  Leer coordenadas de una gráfica, identificar tendencias,
+  máximos, mínimos y valores clave, y extraer conclusiones
+  sobre la realidad de Almería.}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Cómo leer un valor de una gráfica
+        \item Elementos clave: máximo, mínimo, tendencia
+        \item Interpretación de la pendiente
+        \item Gráfica de temperatura en Almería
+        \item Gráfica de visitantes 2017--2022
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Preguntas tipo sobre gráficas
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Cómo leer un valor de una gráfica}
+% ---------------------------------------------------------------
+
+\begin{frame}{Protocolo de lectura de una gráfica}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \begin{pasobox}[1]
+        \footnotesize
+        Localiza el valor de \textbf{$x$} que te interesa
+        en el eje horizontal.
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[2]
+        \footnotesize
+        Sube en vertical hasta tocar la
+        \textbf{curva o barra}.
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[3]
+        \footnotesize
+        Desplázate en horizontal hacia el
+        \textbf{eje vertical} y lee el valor $y$.
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[4]
+        \footnotesize
+        Escribe el resultado con sus
+        \textbf{unidades} (no olvides el eje $y$).
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{tikzpicture}[scale=0.82]
+        \begin{axis}[
+          almeria line,
+          width=6.8cm, height=5.2cm,
+          xmin=0, xmax=7, ymin=0, ymax=30,
+          xtick={1,2,3,4,5,6},
+          xticklabels={Ene,Feb,Mar,Abr,May,Jun},
+          ytick={0,10,20,30},
+          ylabel={Temperatura (°C)},
+          xlabel={Mes},
+        ]
+          \addplot[AlmTerra, line width=2pt, mark=*]
+            coordinates {(1,12)(2,13)(3,16)(4,19)(5,23)(6,27)};
+          % Líneas de lectura para Abril (x=4, y=19)
+          \draw[AlmVerde, dashed, line width=1pt]
+            (axis cs:4,0) -- (axis cs:4,19) -- (axis cs:0,19);
+          \node[fill=AlmVerde!20, draw=AlmVerde, rounded corners,
+                font=\tiny\bfseries, inner sep=2pt]
+            at (axis cs:2.5,19) {$y=19\,°C$};
+          \node[fill=AlmVerde!20, draw=AlmVerde, rounded corners,
+                font=\tiny\bfseries, inner sep=2pt]
+            at (axis cs:4,5) {$x=\text{Abr}$};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Elementos clave de una gráfica}
+% ---------------------------------------------------------------
+
+\begin{frame}{Máximo, mínimo, tendencia y punto de inflexión}
+  \begin{columns}[T]
+    \begin{column}{0.42\textwidth}
+      \begin{definicionbox}{Valor máximo}
+        Punto más alto de la gráfica.
+        Mayor valor de $y$.
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Valor mínimo}
+        Punto más bajo de la gráfica.
+        Menor valor de $y$.
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Tendencia}
+        Dirección general de la curva:\\
+        $\nearrow$ creciente \quad
+        $\searrow$ decreciente \quad
+        $\rightarrow$ constante
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Punto de inflexión}
+        Donde la tendencia cambia de sentido.
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          almeria line,
+          width=8.5cm, height=5.5cm,
+          xmin=1, xmax=12, ymin=10, ymax=33,
+          xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+          xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+          ylabel={°C}, xlabel={Mes},
+          title={Temperatura media mensual en Almería},
+        ]
+          \addplot[AlmTerra, line width=2pt, mark=*,
+                   mark options={fill=AlmTerra}]
+            coordinates {
+              (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
+              (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
+            };
+          % Máximo
+          \node[above, font=\tiny\bfseries, color=AlmTerra]
+            at (axis cs:7.5,30) {\faArrowUp\ Máx: 30°C};
+          % Mínimo
+          \node[below right, font=\tiny\bfseries, color=AlmAzulM]
+            at (axis cs:1,12) {\faArrowDown\ Mín: 12°C};
+          % Tendencia creciente
+          \draw[->, AlmVerde, line width=1.2pt]
+            (axis cs:2,14) -- (axis cs:6,26)
+            node[midway, above left, font=\tiny, color=AlmVerde]
+            {creciente};
+          % Tendencia decreciente
+          \draw[->, BEvaluar, line width=1.2pt]
+            (axis cs:8,29) -- (axis cs:11,17)
+            node[midway, above right, font=\tiny, color=BEvaluar]
+            {decreciente};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Interpretación de la pendiente}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué nos dice la pendiente de una curva?}
+  \begin{columns}[c]
+    \begin{column}{0.5\textwidth}
+      \begin{teoriabox}
+        La \textbf{pendiente} (inclinación) indica la
+        \textit{velocidad de cambio}:
+        \begin{itemize}
+          \item Pendiente \textbf{pronunciada}: el valor
+                cambia \textbf{rápido}.
+          \item Pendiente \textbf{suave}: el valor cambia
+                \textbf{lentamente}.
+          \item Línea \textbf{horizontal}: el valor
+                \textbf{no cambia}.
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{tikzpicture}[scale=0.85]
+        \begin{axis}[
+          almeria line,
+          width=6.8cm, height=4.8cm,
+          xmin=0, xmax=6, ymin=0, ymax=12,
+          axis lines=left,
+          xtick={1,2,3,4,5},
+          ytick={0,4,8,12},
+          ylabel={$y$}, xlabel={$x$},
+        ]
+          % Pendiente pronunciada
+          \addplot[AlmTerra, line width=2pt]
+            coordinates {(0,0)(1,4)(2,8)(3,12)};
+          \node[right, font=\tiny\bfseries, color=AlmTerra]
+            at (axis cs:3,12) {pronunciada};
+          % Pendiente suave
+          \addplot[AlmVerde, line width=2pt]
+            coordinates {(0,0)(1,1.5)(2,3)(3,4.5)(5,7.5)};
+          \node[right, font=\tiny\bfseries, color=AlmVerde]
+            at (axis cs:5,7.5) {suave};
+          % Horizontal
+          \addplot[AlmAzulM, line width=2pt, dashed]
+            coordinates {(0,2)(5,2)};
+          \node[right, font=\tiny\bfseries, color=AlmAzulM]
+            at (axis cs:4,2.5) {constante};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Temperatura en Almería}
+% ---------------------------------------------------------------
+
+\begin{frame}{Análisis de la gráfica de temperatura}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          almeria line,
+          width=9cm, height=5.5cm,
+          xmin=1, xmax=12, ymin=8, ymax=34,
+          xtick={1,...,12},
+          xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+          ylabel={Temperatura (°C)},
+          xlabel={Mes},
+          title={Temperatura media · Almería},
+          ytick={10,15,20,25,30},
+        ]
+          \addplot[AlmTerra, line width=2.5pt, mark=*,
+                   mark options={fill=AlmTerra, scale=1.2}]
+            coordinates {
+              (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
+              (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
+            };
+          % Zona de verano (>20°C)
+          \addplot[AlmAmbar!40, fill opacity=0.4, draw=none]
+            fill between[
+              of=temps and axis,
+              soft clip={domain=5:9}
+            ];
+          % Línea de referencia 20°C
+          \addplot[AlmAmbar!70, dashed, line width=1pt]
+            coordinates {(1,20)(12,20)}
+            node[right, font=\tiny, color=AlmAmbar!80!black]
+            {20°C};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      Respondemos las preguntas clave:
+      \begin{itemize}
+        \item \textbf{Máximo:} julio--agosto, $30\,°C$
+        \item \textbf{Mínimo:} enero, $12\,°C$
+        \item \textbf{Rango:} $30-12 = 18\,°C$
+        \item \textbf{Meses $>20\,°C$:} junio, julio, agosto, septiembre
+        \item \textbf{Tendencia} ene→ago: \textit{creciente}
+        \item \textbf{Tendencia} ago→dic: \textit{decreciente}
+        \item \textbf{Simetría:} casi simétrica respecto a agosto
+      \end{itemize}
+      \vspace{6pt}
+      \begin{notabox}
+        \footnotesize
+        Almería tiene uno de los climas
+        más cálidos y secos de Europa.
+        ¡Más de 3\,000 horas de sol al año!
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Visitantes 2017--2022}
+% ---------------------------------------------------------------
+
+\begin{frame}{Turismo en Almería: gráfica de barras 2017--2022}
+  \begin{columns}[c]
+    \begin{column}{0.58\textwidth}
+      \begin{tikzpicture}
+        \begin{axis}[
+          almeria bar,
+          width=9.5cm, height=5.5cm,
+          symbolic x coords={2017,2018,2019,2020,2021,2022},
+          xtick=data,
+          ylabel={Visitantes (millones)},
+          xlabel={Año},
+          title={Visitantes a Almería (millones)},
+          ymin=0, ymax=3.5,
+          nodes near coords style={font=\tiny\bfseries},
+          bar width=0.55cm,
+        ]
+          \addplot[fill=AlmAzulM, fill opacity=0.85]
+            coordinates {
+              (2017,2.5)(2018,2.7)(2019,2.9)
+              (2020,1.2)(2021,1.8)(2022,2.8)
+            };
+          % Línea de tendencia general
+          \addplot[AlmTerra, line width=1.5pt, dashed, no marks]
+            coordinates {(2017,2.5)(2018,2.7)(2019,2.9)
+                          (2020,1.2)(2021,1.8)(2022,2.8)};
+        \end{axis}
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.38\textwidth}
+      Datos relevantes:
+      \begin{itemize}
+        \item Máximo: 2019 → 2,9 M
+        \item Mínimo: 2020 → 1,2 M
+        \item Caída 2019→2020:\\
+          $\dfrac{2{,}9-1{,}2}{2{,}9}\times 100
+          \approx \mathbf{59\,\%}$
+        \item Recuperación 2021→2022:\\
+          $\dfrac{2{,}8-1{,}8}{1{,}8}\times 100
+          \approx \mathbf{56\,\%}$
+      \end{itemize}
+      \vspace{6pt}
+      \begin{analizarbox}
+        \footnotesize
+        ¿Qué evento de 2020 explica
+        la caída drástica de visitantes?
+        ¿Qué nos indica la recuperación
+        de 2022?
+      \end{analizarbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Preguntas tipo sobre gráficas}
+% ---------------------------------------------------------------
+
+\begin{frame}{Preguntas que siempre debes poder responder}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Lectura de valores:}
+      \begin{itemize}
+        \item «¿Cuál es el valor de $y$ cuando $x = \ldots$?»
+        \item «¿En qué mes/año fue el valor más alto?»
+        \item «¿Entre qué valores oscila $y$?»
+      \end{itemize}
+      \vspace{8pt}
+      \textbf{Tendencias:}
+      \begin{itemize}
+        \item «¿La gráfica es creciente, decreciente
+              o constante entre $x_1$ y $x_2$?»
+        \item «¿Dónde está el punto de inflexión?»
+        \item «¿Cuál es la tendencia general?»
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Comparación:}
+      \begin{itemize}
+        \item «¿Entre qué dos puntos fue mayor
+              el crecimiento?»
+        \item «¿Cuál es la variación total de $y$?»
+      \end{itemize}
+      \vspace{8pt}
+      \textbf{Interpretación:}
+      \begin{itemize}
+        \item «¿Qué puede explicar la anomalía en $x = \ldots$?»
+        \item «¿Qué predices para el siguiente valor?»
+        \item «¿Qué conclusión puedes extraer del gráfico?»
+      \end{itemize}
+      \vspace{8pt}
+      \begin{notabox}[Consejo]
+        \footnotesize
+        Siempre lee el \textbf{título}, los
+        \textbf{ejes} y la \textbf{unidad} antes
+        de responder cualquier pregunta.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Ejercicios multinivel}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios multinivel}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{comprenderbox}
+        \footnotesize\dificultad{1}\\[4pt]
+        Usando la gráfica de temperatura de Almería:\\[4pt]
+        (a) ¿Temperatura en abril?\\
+        (b) ¿Mes más caluroso?\\
+        (c) ¿Cuántos meses supera 20°C?\\
+        (d) Describe la tendencia de enero a agosto
+        en una frase.
+      \end{comprenderbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{aplicarbox}
+        \footnotesize\dificultad{2}\\[4pt]
+        Con la gráfica de visitantes:\\[4pt]
+        (a) Mejor año y número de visitantes.\\
+        (b) Peor año y número de visitantes.\\
+        (c) Calcula el \% de cambio de 2021 a 2022.\\
+        (d) Si la tendencia continúa, ¿cuántos
+        visitantes habría en 2023?
+      \end{aplicarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{analizarbox}
+        \footnotesize\dificultad{3}\\[4pt]
+        La gráfica muestra el número de terrazas
+        abiertas en Almería por mes: máximo en
+        agosto, mínimo en enero.\\[4pt]
+        \textbf{Analiza:} ¿Qué relación tiene con
+        la temperatura? ¿Con el turismo?
+        ¿Qué variable \textit{causa} la apertura
+        de terrazas? Argumenta en 6 líneas.
+      \end{analizarbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Escribe un \textbf{análisis de dos gráficas} (temperatura y
+    visitantes) que incluya:
+    \begin{enumerate}
+      \item Los valores leídos en al menos 3 puntos de cada gráfica
+      \item Identificación del máximo, mínimo y tendencia general
+      \item Una anomalía o punto de inflexión con su posible explicación
+      \item Una conclusión de 3--4 líneas sobre lo que la gráfica revela
+            sobre Almería
+    \end{enumerate}
+    \vspace{4pt}
+    \textit{No basta con leer los números: debes interpretarlos.}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{columns}[c]
+      \begin{column}{0.48\textwidth}
+        \incorrecto\ Leer los ejes al revés:\\[4pt]
+        «En el mes de julio, la temperatura
+        es 7» ← Leyó el eje $x$ donde debía
+        leer el eje $y$.
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \correcto\ Protocolo correcto:\\[4pt]
+        1. Localiza julio en el eje \textbf{horizontal}.\\
+        2. Sube hasta la curva.\\
+        3. Lee el valor en el eje \textbf{vertical}: $30\,°C$.
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+  \vspace{6pt}
+  \begin{errorbox}
+    \incorrecto\ «En 2020 bajaron los visitantes porque
+    no había buenos hoteles.»\\[4pt]
+    \correcto\ Una gráfica muestra \textbf{qué} pasó,
+    pero no siempre explica \textbf{por qué}.
+    Hay que buscar la explicación con otras fuentes o razonar
+    con más datos (en 2020 hubo pandemia mundial de COVID-19).
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 14}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item Para leer un valor: localiza $x$ → sube a la curva
+            → lee $y$ en el eje vertical.
+      \item Identificamos \textbf{máximo}, \textbf{mínimo},
+            \textbf{tendencia} (creciente/decreciente/constante)
+            y \textbf{punto de inflexión}.
+      \item La pendiente indica la \textbf{velocidad de cambio}.
+      \item La gráfica de temperatura de Almería es \textit{creciente}
+            de enero a julio--agosto, y \textit{decreciente} de agosto
+            a diciembre.
+      \item Anomalías (como 2020) requieren \textbf{interpretación
+            contextual}, no solo matemática.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    \textbf{Sesión 15:} Comparar gráficas y detectar correlaciones}
+  \end{center}
+\end{frame}
+
+\end{document}

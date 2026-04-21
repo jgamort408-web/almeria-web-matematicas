@@ -1,0 +1,535 @@
+% ================================================================
+%  sesion20.tex  —  Sesión 20 de 20
+%  Exposición y cierre del proyecto
+%  Bloque 4: Producto final · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{20}
+\renewcommand{\SessionTitle}{Exposición y cierre del proyecto}
+\renewcommand{\SessionName}{Sesión 20}
+\renewcommand{\SessionObjective}{%
+  Presentar la guía turística matemática ante la clase,
+  defender las decisiones matemáticas tomadas, y reflexionar
+  sobre los aprendizajes adquiridos a lo largo del proyecto.}
+\renewcommand{\BlockName}{Bloque 4: Producto final}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Estructura de la exposición oral
+        \item Consejos para presentar matemáticas
+        \item Vocabulario matemático requerido
+        \item Rúbrica de evaluación oral
+        \item Síntesis de los 4 bloques
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Lo que hemos construido
+        \item Preguntas de reflexión final
+        \item Ejercicios (evaluar y crear)
+        \item Error final: el mito
+        \item Cierre del proyecto
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Estructura de la exposición}
+% ---------------------------------------------------------------
+
+\begin{frame}{Exposición oral — 5 minutos por equipo}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{tikzpicture}[
+        bloque/.style={
+          rounded corners=4pt,
+          draw=AlmAzulM, fill=AlmFondo,
+          text width=6.5cm, align=left,
+          inner sep=7pt, font=\small
+        },
+        tiempo/.style={
+          circle, fill=AlmAmbar, text=AlmAzul,
+          font=\bfseries\small, inner sep=3pt,
+          minimum size=0.8cm
+        }
+      ]
+        \node[tiempo] (t1) at (0,4.5) {1'};
+        \node[bloque, right=0.3cm of t1] {
+          \textbf{Introducción}\\
+          {\footnotesize Equipo, objetivo del proyecto,
+          monumento o zona de Almería elegida como tema central.}
+        };
+        \node[tiempo] (t2) at (0,3.1) {2'};
+        \node[bloque, right=0.3cm of t2] {
+          \textbf{2 resultados matemáticos clave}\\
+          {\footnotesize Un cálculo completo (área, distancia, etc.)
+          y una gráfica explicada. Mostrad vuestros pasos.}
+        };
+        \node[tiempo] (t3) at (0,1.7) {1'};
+        \node[bloque, right=0.3cm of t3] {
+          \textbf{Descubrimiento más sorprendente}\\
+          {\footnotesize El dato de Almería que más os ha sorprendido
+          y por qué tiene importancia matemática.}
+        };
+        \node[tiempo] (t4) at (0,0.3) {1'};
+        \node[bloque, right=0.3cm of t4] {
+          \textbf{Reflexión}\\
+          {\footnotesize Una cosa que habéis aprendido y una
+          que haríais diferente en un segundo intento.}
+        };
+        % Flecha temporal
+        \draw[AlmAmbar, line width=1.5pt, ->]
+          (t1.south) -- (t2.north);
+        \draw[AlmAmbar, line width=1.5pt, ->]
+          (t2.south) -- (t3.north);
+        \draw[AlmAmbar, line width=1.5pt, ->]
+          (t3.south) -- (t4.north);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{notabox}[Materiales permitidos]
+        \begin{itemize}
+          \item La guía impresa o en pantalla
+          \item Fichas de notas (no leer todo)
+          \item El mapa de coordenadas para señalar
+          \item Las gráficas de la guía en grande
+        \end{itemize}
+      \end{notabox}
+      \vspace{6pt}
+      \begin{notabox}[Preguntas del profesor]
+        \footnotesize
+        Tras la exposición habrá 1--2 preguntas
+        que \textbf{cualquier miembro del equipo}
+        debe poder responder. No son trampa:
+        solo verifican que entendéis lo que
+        habéis hecho.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Consejos para presentar}
+% ---------------------------------------------------------------
+
+\begin{frame}{Consejos para presentar matemáticas en público}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{\color{AlmVerde}\faCheck\ Sí hacer:}
+      \begin{itemize}
+        \item Mirar a la audiencia, no al papel.
+        \item Señalar los números en el mapa o la gráfica
+              mientras los explicas.
+        \item Usar vocabulario matemático correcto:
+              «\textit{calculamos el área con $b \times h$}»
+              en vez de «\textit{lo multiplicamos}».
+        \item Justificar cada decisión:
+              «Elegimos la gráfica lineal porque
+              la temperatura es variable continua.»
+        \item Hablar despacio en los cálculos:
+              la audiencia necesita seguir los pasos.
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{\color{AlmTerra}\faTimes\ No hacer:}
+      \begin{itemize}
+        \item Leer el trabajo en voz alta sin mirarnos.
+        \item Decir «este número» sin señalar cuál.
+        \item Usar «esto», «aquello», «la cosa»
+              en lugar del nombre matemático.
+        \item Ignorar las unidades en la presentación oral.
+        \item Excusarse continuamente: «Sé que no está bien pero\ldots»\\
+              {\footnotesize Si sabes que hay un error,
+              corrígelo antes de presentar.}
+      \end{itemize}
+      \vspace{6pt}
+      \begin{notabox}[Ante preguntas difíciles]
+        \footnotesize
+        «Buena pregunta. Según nuestros datos\ldots»\\
+        «No lo hemos calculado, pero podríamos\ldots»\\
+        «No estoy seguro/a, lo podría verificar con\ldots»
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Vocabulario matemático}
+% ---------------------------------------------------------------
+
+\begin{frame}{Vocabulario matemático: ¡úsalo!}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      Debéis usar \textbf{al menos 10} de estos términos
+      durante la exposición:
+      \vspace{4pt}
+      \begin{center}
+      \begin{tabular}{ll}
+        \toprule
+        \textbf{Término} & \textbf{Contexto de uso}\\
+        \midrule
+        Coordenadas & Localización en el mapa\\
+        Perímetro   & Borde de una zona\\
+        Área        & Superficie de un espacio\\
+        Función     & Relación x→y\\
+        Proporcionalidad & k = y/x constante\\
+        Variable    & Lo que medimos\\
+        Tendencia   & Dirección de una gráfica\\
+        Correlación & Relación entre dos variables\\
+        Escala      & Conversión mapa--realidad\\
+        Magnitud    & Lo que se mide (longitud, etc.)\\
+        Perpendicular & Ángulo recto entre calles\\
+        Polígono    & Figura cerrada de lados rectos\\
+        \bottomrule
+      \end{tabular}
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Ejemplos de frases bien construidas:}\\[6pt]
+      \begin{tcolorbox}[colback=AlmVerde!8, colframe=AlmVerde,
+                        arc=4pt, boxrule=0.5pt, fontupper=\small]
+        «La \textbf{distancia} entre la Alcazaba y el Puerto
+        es $d = \sqrt{3^2+3^2} = \sqrt{18} \approx 4{,}2$
+        unidades, que con nuestra \textbf{escala}
+        de 1\,u = 200\,m equivale a \SI{840}{m}.»
+      \end{tcolorbox}
+      \vspace{6pt}
+      \begin{tcolorbox}[colback=AlmVerde!8, colframe=AlmVerde,
+                        arc=4pt, boxrule=0.5pt, fontupper=\small]
+        «La gráfica de turistas muestra una
+        \textbf{tendencia creciente} de enero a agosto,
+        lo que indica una \textbf{correlación positiva}
+        con la temperatura.»
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Rúbrica de evaluación oral}
+% ---------------------------------------------------------------
+
+\begin{frame}{Rúbrica de evaluación de la exposición oral}
+  \begin{center}
+  \footnotesize
+  \begin{tabular}{p{3.5cm} p{2.2cm} p{2.2cm} p{2.2cm} c}
+    \toprule
+    \textbf{Criterio} & \textbf{Excelente (3)} & \textbf{Bien (2)}
+      & \textbf{Mejora (1)} & \textbf{Pts.}\\
+    \midrule
+    Exactitud matemática\\de los datos
+      & Sin errores
+      & 1 error menor
+      & 2+ errores
+      & /3\\[4pt]
+    Claridad en la\\explicación de cálculos
+      & Paso a paso,\\muy claro
+      & Mayormente claro
+      & Confuso o\\incompleto
+      & /3\\[4pt]
+    Vocabulario\\matemático
+      & $\geq 10$ términos\\correctos
+      & 6--9 términos
+      & $<6$ términos
+      & /2\\[4pt]
+    Calidad visual\\(gráficas, mapas, tablas)
+      & Todos completos\\y correctos
+      & Algún elemento\\incompleto
+      & Varios\\incompletos
+      & /2\\
+    \midrule
+    \multicolumn{4}{r}{\textbf{TOTAL}} & \textbf{/10}\\
+    \bottomrule
+  \end{tabular}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    {\small 9--10: Sobresaliente \quad 7--8: Notable \quad
+    5--6: Bien \quad $<5$: Necesita revisión}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Síntesis: 4 bloques, 20 sesiones}
+% ---------------------------------------------------------------
+
+\begin{frame}{Lo que hemos aprendido — Los 4 bloques}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[enhanced, colback=AlmAzulM!12,
+        colframe=AlmAzulM, arc=5pt,
+        title={\faMapMarkerAlt\enskip Bloque 1: Mapa y coordenadas},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmAzulM, arc=3pt}]
+        \footnotesize
+        Sesiones 1--4\\
+        \textbf{Clave:} localizar cualquier punto con $(x,y)$,
+        escala, tipos de información (Ubicación/Medida/Dato)
+      \end{tcolorbox}
+      \vspace{6pt}
+      \begin{tcolorbox}[enhanced, colback=AlmTerra!10,
+        colframe=AlmTerra, arc=5pt,
+        title={\faCity\enskip Bloque 2: Geometría urbana},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmTerra, arc=3pt}]
+        \footnotesize
+        Sesiones 5--10\\
+        \textbf{Clave:} perímetro, área, polígonos,
+        Teorema de Pitágoras para distancias
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[enhanced, colback=AlmVerde!10,
+        colframe=AlmVerde, arc=5pt,
+        title={\faChartLine\enskip Bloque 3: Datos y gráficas},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmVerde, arc=3pt}]
+        \footnotesize
+        Sesiones 11--16\\
+        \textbf{Clave:} variables, tablas, gráficas,
+        proporcionalidad directa $y=kx$
+      \end{tcolorbox}
+      \vspace{6pt}
+      \begin{tcolorbox}[enhanced, colback=BCrear!10,
+        colframe=BCrear, arc=5pt,
+        title={\faStar\enskip Bloque 4: Producto final},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=BCrear, arc=3pt}]
+        \footnotesize
+        Sesiones 17--20\\
+        \textbf{Clave:} selección, construcción, revisión
+        y presentación de la guía turística matemática
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Lo que hemos construido}
+% ---------------------------------------------------------------
+
+\begin{frame}{¿Qué hemos construido?}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{resumenbox}
+        \textbf{Una guía turística matemática real de Almería:}
+        \begin{itemize}
+          \item \faMapMarkerAlt\ Mapa con coordenadas cartesianas
+                y $\geq 10$ puntos de interés
+          \item \faRuler\ Áreas y perímetros de zonas urbanas
+          \item \faRoute\ Rutas calculadas con el Teorema de Pitágoras
+          \item \faChartBar\ Gráficas de datos reales de Almería
+          \item \faTable\ Tablas organizadas con datos verificados
+          \item \faEquals\ Proporcionalidades y funciones lineales
+          \item \faBookOpen\ Glosario de términos matemáticos
+          \item \faLightbulb\ Datos curiosos con significado matemático
+        \end{itemize}
+      \end{resumenbox}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{tikzpicture}[scale=0.7]
+        % Guía representada como libro
+        \fill[AlmAzul, rounded corners=5pt]
+          (0,0) rectangle (5,7);
+        \fill[AlmAmbar]
+          (0,6.2) rectangle (5,7);
+        \node[text=AlmAzul, font=\tiny\bfseries] at (2.5,6.6)
+          {ALMERÍA EN CIFRAS Y FORMAS};
+        \fill[AlmAzulC!30] (0.3,4.6) rectangle (4.7,6.0);
+        \node[text=AlmAzul, font=\tiny, align=center] at (2.5,5.3)
+          {mapa + coordenadas};
+        \fill[AlmAmbar!20] (0.3,3.5) rectangle (2.2,4.4);
+        \node[text=AlmNegro, font=\tiny, align=center] at (1.25,3.95)
+          {tabla\\monum.};
+        \fill[AlmVerde!20] (2.5,3.5) rectangle (4.7,4.4);
+        \node[text=AlmNegro, font=\tiny, align=center] at (3.6,3.95)
+          {gráfica\\turistas};
+        \foreach \y in {2.7,2.3,1.9,1.5,1.1,0.7}{
+          \fill[AlmBlanco!20] (0.3,\y) rectangle (4.7,\y+0.22);
+        }
+        \node[text=AlmAmbar, font=\tiny] at (2.5,0.3)
+          {Matemáticas 1.º ESO · IES Al-Ándalus};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Reflexión final}
+% ---------------------------------------------------------------
+
+\begin{frame}{Preguntas para la reflexión final}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=AlmAmbar!10, colframe=AlmAmbar!70!black,
+        title={\faBrain\enskip Reflexiones matemáticas},
+        fonttitle=\bfseries\small\color=AlmAzul,
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt},
+        arc=4pt]
+        \small
+        \begin{enumerate}
+          \item ¿Qué herramienta matemática
+                (coordenadas, geometría, gráficas)
+                ha resultado más \textbf{útil} para
+                describir Almería?
+          \vspace{4pt}
+          \item ¿Qué dato de Almería os ha
+                \textbf{sorprendido más} y por qué
+                tiene importancia matemática?
+          \vspace{4pt}
+          \item Si tuvieras que guiar a un turista
+                por Almería usando \textbf{solo matemáticas},
+                ¿qué tres cosas le mostrarías?
+        \end{enumerate}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=AlmAzulM!10, colframe=AlmAzulM,
+        title={\faStar\enskip Tarjeta de cierre},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmAzulM, arc=3pt},
+        arc=4pt]
+        \small
+        Completa estas frases en tu cuaderno:
+        \begin{enumerate}
+          \item «La herramienta matemática más útil
+                para una guía turística es
+                \underline{\hspace{2cm}}
+                porque \underline{\hspace{2cm}}.»
+          \item «Me sorprendió descubrir que
+                \underline{\hspace{3cm}}.»
+          \item «La próxima vez mejoraría
+                \underline{\hspace{3cm}}.»
+          \item «Las matemáticas en una ciudad
+                son \underline{\hspace{3cm}}.»
+        \end{enumerate}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BCrear]{8. Ejercicios}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios finales}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{evaluarbox}
+        \footnotesize\dificultad{3}\\[4pt]
+        Después de escuchar \textbf{tres exposiciones}
+        de otros equipos, evalúa cada una con la rúbrica
+        (puntuación numérica + 2 líneas de justificación
+        por criterio).\\[6pt]
+        ¿Qué aspectos destacan de los mejores trabajos?
+        ¿Qué diferencia a una guía «notable» de una
+        «sobresaliente»?
+      \end{evaluarbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{crearbox}
+        \footnotesize\dificultad{4}\\[4pt]
+        \textbf{Proyecto ampliado (opcional):}\\[6pt]
+        ¿Y si aplicáramos el mismo método a
+        \textbf{otra ciudad}? Elige una ciudad
+        (tu ciudad natal, Madrid, Sevilla\ldots)
+        y diseña las \textbf{primeras 2 páginas}
+        de una guía turística matemática para ella,
+        usando exactamente las mismas herramientas:
+        mapa con coordenadas, tabla de monumentos
+        y una gráfica de datos locales.
+      \end{crearbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega final del proyecto — 3 elementos:
+    \begin{enumerate}
+      \item \textbf{Guía turística matemática} completa
+            (versión final revisada con todas las correcciones)
+      \item \textbf{Tarjeta de cierre} con las 4 frases completadas
+            (reflexión personal)
+      \item \textbf{Evaluación de 3 exposiciones} de otros equipos
+            con rúbrica completada y justificación escrita
+    \end{enumerate}
+    \vspace{6pt}
+    \begin{center}
+      \large\color{AlmAmbar}
+      {\Large\faAward}\quad
+      \textbf{¡Enhorabuena por completar el proyecto!}
+    \end{center}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error final!}
+  \begin{errorbox}
+    \textbf{«Las matemáticas son abstractas y no tienen
+    conexión con la vida real»}\\[8pt]
+    \incorrecto\ Esta afirmación es el error más grande
+    de todos los que hemos visto en 20 sesiones.\\[8pt]
+    \correcto\ Hemos demostrado exactamente lo contrario:\\
+    Las matemáticas \textbf{sí están} en las calles de Almería,
+    en las distancias entre monumentos, en las gráficas
+    de turistas, en las áreas de los parques, en la
+    proporcionalidad del precio de los transportes y en
+    las coordenadas que nos llevan de un lugar a otro.\\[6pt]
+    \textit{La ciudad que acabáis de describir matemáticamente
+    es la misma ciudad en la que vivís cada día.}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Cierre del proyecto — Almería en Cifras y Formas}
+  \begin{center}
+    \begin{tikzpicture}
+      \fill[AlmAzul, rounded corners=8pt]
+        (-5.5,-2.5) rectangle (5.5,2.5);
+      \fill[AlmAmbar]
+        (-5.5,1.8) rectangle (5.5,2.5);
+      \node[text=AlmBlanco, font=\Large\bfseries] at (0,0.6)
+        {Almería en Cifras y Formas};
+      \node[text=AlmAmbar, font=\normalsize] at (0,-0.1)
+        {20 sesiones · 4 bloques · 1 guía turística matemática};
+      \node[text=AlmBlanco!70, font=\small] at (0,-0.8)
+        {Matemáticas 1.º ESO · \InstituteName};
+      \node[text=AlmBlanco!55, font=\footnotesize] at (0,-1.4)
+        {\AuthorName · \SchoolYear};
+      % Estrellas decorativas
+      \foreach \a in {0,60,...,300}{
+        \node[text=AlmAmbar, opacity=0.35, font=\scriptsize]
+          at (\a:4.2) {$\bigstar$};
+      }
+    \end{tikzpicture}
+  \end{center}
+  \vspace{4pt}
+  \begin{center}
+    {\color{AlmAzulM}\large
+    ¡Gracias por vuestro trabajo durante todo el proyecto!}\\[4pt]
+    {\color{AlmGris}\footnotesize
+    La matemática no es solo un libro de ejercicios.
+    La matemática eres tú describiendo el mundo que te rodea.}
+  \end{center}
+\end{frame}
+
+\end{document}

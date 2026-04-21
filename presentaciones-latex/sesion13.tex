@@ -1,0 +1,563 @@
+% ================================================================
+%  SESIÓN 13 — De tabla a gráfica
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{13}
+\renewcommand{\SessionTitle}{De tabla a gráfica}
+\renewcommand{\SessionName}{Sesión 13}
+\renewcommand{\SessionObjective}{Representar datos de una tabla en una gráfica (diagrama de barras y gráfica lineal) eligiendo el tipo adecuado según el tipo de variable}
+\renewcommand{\BlockName}{Bloque 3: Datos y gráficas}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 1 — ¿Por qué representar gráficamente?
+% ---------------------------------------------------------------
+\begin{frame}{¿Por qué usar gráficas?}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        \small
+        Una tabla muestra los datos con \textbf{precisión},
+        pero una gráfica los hace \textbf{visibles}:
+        \begin{itemize}
+          \item Revela \textbf{tendencias} (subida, bajada, estabilidad).
+          \item Permite detectar \textbf{valores atípicos} de un vistazo.
+          \item Facilita la \textbf{comparación} entre series.
+          \item Comunica la información más rápido que un texto.
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{notabox}[Datos → Gráfica → Conclusión]
+        \small
+        \begin{center}
+        \begin{tikzpicture}[node distance=0.7cm,
+            caja/.style={rounded corners=4pt, draw=AlmAzulM,
+                         fill=AlmFondo, text width=2.2cm,
+                         align=center, font=\tiny\bfseries}]
+          \node[caja] (d) {Tabla\\de datos};
+          \node[caja, below=of d] (g) {Gráfica\\adecuada};
+          \node[caja, below=of g] (c) {Conclusión\\estadística};
+          \draw[-Stealth, AlmAzulM] (d)--(g);
+          \draw[-Stealth, AlmAzulM] (g)--(c);
+        \end{tikzpicture}
+        \end{center}
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 2 — Tipos de gráficas y cuándo usarlas
+% ---------------------------------------------------------------
+\begin{frame}{Tipos de gráficas y cuándo usarlas}
+  \small
+  \renewcommand{\arraystretch}{1.4}
+  \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l l}
+    \toprule
+    \rowcolor{AlmAzul!12}
+    \textbf{Tipo de gráfica} & \textbf{Cuándo usarla} & \textbf{Ejemplo en Almería} \\
+    \midrule
+    Diagrama de barras
+      & Variable $x$ discreta o categórica
+      & Visitantes por barrio \\
+    \rowcolor{AlmFondo}
+    Gráfica lineal
+      & $x$ continua o temporal; muestra tendencia
+      & Temperatura media mensual \\
+    Diagrama de puntos
+      & Dos variables cuantitativas; correlación
+      & Temperatura vs.\ turistas \\
+    \rowcolor{AlmFondo}
+    Diagrama de sectores
+      & Partes de un todo (porcentajes)
+      & Tipo de transporte usado \\
+    \bottomrule
+  \end{tabular}
+
+  \vspace{0.3cm}
+  \begin{notabox}[Regla práctica]
+    \small
+    Si $x$ son \textbf{categorías o meses} que comparo → barras.\\
+    Si $x$ es \textbf{tiempo continuo} y quiero ver la evolución → línea.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Elementos de una gráfica (TikZ anotado)
+% ---------------------------------------------------------------
+\begin{frame}{Elementos de una gráfica bien construida}
+  \begin{columns}[T]
+    \begin{column}{0.54\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[font=\scriptsize, scale=0.88]
+        % Ejes
+        \draw[AlmAzulM, line width=1.2pt, -Stealth] (0,0)--(6.2,0)
+          node[right, color=AlmAzulM, font=\tiny\bfseries] {Mes ($x$)};
+        \draw[AlmAzulM, line width=1.2pt, -Stealth] (0,0)--(0,4.2)
+          node[above, color=AlmAzulM, font=\tiny\bfseries,
+               xshift=-0.3cm, rotate=90] {Visitantes ($y$)};
+        % Barras de muestra
+        \foreach \x/\h/\c in {
+          0.6/0.9/AlmAzulC, 1.2/1.0/AlmAzulC, 1.8/1.3/AlmAzulC,
+          2.4/1.9/AlmAzulM, 3.0/2.7/AlmAzulM}{
+          \fill[\c, opacity=0.7] (\x,0) rectangle (\x+0.5,\h);
+        }
+        % Título
+        \node[color=AlmAzul, font=\tiny\bfseries] at (3.0,4.0)
+          {Visitantes mensuales a la Alcazaba};
+        % Escala y
+        \foreach \h/\v in {1.0/10000, 2.0/20000, 3.0/30000}{
+          \draw[AlmGris!40, line width=0.4pt] (0,\h)--(5.8,\h);
+          \node[left, color=AlmGris, font=\tiny] at (0,\h) {\v};
+        }
+        % Etiquetas x
+        \foreach \x/\l in {0.85/E, 1.45/F, 2.05/M, 2.65/A, 3.25/M}{
+          \node[below=2pt, color=AlmGris] at (\x,0) {\l};
+        }
+        % Anotaciones externas
+        \draw[-Stealth, AlmTerra, thin] (5.4,3.8) -- (4.6,2.8)
+          node[above right, color=AlmTerra, font=\tiny\bfseries,
+               xshift=8pt, yshift=4pt] {Título};
+        \draw[-Stealth, AlmVerde, thin] (5.4,0.5) -- (0.7,0.5)
+          node[above right, color=AlmVerde, font=\tiny\bfseries,
+               xshift=-24pt, yshift=6pt] {Barra};
+        \node[AlmAzulM, font=\tiny\bfseries] at (-1.1,2.0)
+          {\rotatebox{90}{Escala $y$}};
+        \node[AlmAzulM, font=\tiny\bfseries] at (3.2,-0.5)
+          {Etiquetas $x$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{teoriabox}
+        \small
+        Todo gráfico debe tener:
+        \begin{itemize}
+          \item \textbf{Eje $x$}: variable independiente + unidad
+          \item \textbf{Eje $y$}: variable dependiente + unidad
+          \item \textbf{Escala}: intervalos regulares, comenzando en~0
+          \item \textbf{Título}: qué se representa
+          \item \textbf{Leyenda}: si hay más de una serie
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Pasos para dibujar un gráfico
+% ---------------------------------------------------------------
+\begin{frame}{Pasos para trazar una gráfica}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[1]
+        \small Decide el \textbf{tipo} de gráfica
+        (¿barras o línea?).
+      \end{pasobox}\vspace{3pt}
+      \begin{pasobox}[2]
+        \small Dibuja los \textbf{ejes} $x$ (horizontal) e $y$ (vertical).
+      \end{pasobox}\vspace{3pt}
+      \begin{pasobox}[3]
+        \small \textbf{Etiqueta} cada eje: variable + unidad.
+      \end{pasobox}\vspace{3pt}
+      \begin{pasobox}[4]
+        \small Elige la \textbf{escala}: mayor valor $\times\;1{,}1$
+        para el máximo del eje.
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[5]
+        \small \textbf{Representa} cada par $(x,y)$
+        de la tabla como punto.
+      \end{pasobox}\vspace{3pt}
+      \begin{pasobox}[6]
+        \small \textbf{Une} los puntos con línea (gráfica lineal)
+        o rellena barras (diagrama de barras).
+      \end{pasobox}\vspace{3pt}
+      \begin{pasobox}[7]
+        \small Añade el \textbf{título} descriptivo.
+      \end{pasobox}
+
+      \vspace{0.25cm}
+      \begin{notabox}[Clave del paso 4]
+        \small
+        El eje $y$ \textbf{siempre empieza en 0}
+        salvo razón justificada.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Diagrama de barras: visitantes Almería ene–jun
+% ---------------------------------------------------------------
+\begin{frame}{Diagrama de barras: turistas en Almería (ene–jun)}
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      almeria bar,
+      width=0.82\linewidth, height=0.56\linewidth,
+      title={Turistas mensuales en Almería (enero–junio)},
+      xlabel={Mes},
+      ylabel={Turistas},
+      symbolic x coords={Enero,Febrero,Marzo,Abril,Mayo,Junio},
+      xtick=data,
+      xticklabel style={font=\tiny, rotate=15, anchor=north east},
+      ymin=0, ymax=330000,
+      ytick={0,50000,100000,150000,200000,250000,300000},
+      yticklabels={0,50\,k,100\,k,150\,k,200\,k,250\,k,300\,k},
+      nodes near coords style={font=\tiny\bfseries, color=AlmAzul,
+                                rotate=90, anchor=west},
+    ]
+      \addplot[fill=AlmAzulM!75, draw=AlmAzul, fill opacity=0.85] coordinates {
+        (Enero,60000)
+        (Febrero,65000)
+        (Marzo,85000)
+        (Abril,130000)
+        (Mayo,180000)
+        (Junio,280000)
+      };
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+  {\small\color{AlmGris}
+   Usamos barras porque los meses son \textbf{categorías discretas}
+   que queremos \textit{comparar}.}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Gráfica lineal: temperatura mensual en Almería
+% ---------------------------------------------------------------
+\begin{frame}{Gráfica lineal: temperatura media mensual en Almería}
+  \begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      almeria line,
+      width=0.82\linewidth, height=0.54\linewidth,
+      title={Temperatura media mensual en Almería (°C)},
+      xlabel={Mes},
+      ylabel={Temperatura (°C)},
+      xtick={1,2,3,4,5,6,7,8,9,10,11,12},
+      xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
+      ymin=8, ymax=34,
+      ytick={10,15,20,25,30},
+    ]
+      \addplot[
+        color=AlmTerra, line width=2pt, mark=*, mark size=2.5pt,
+        mark options={fill=AlmTerra!70, draw=AlmTerra}
+      ] coordinates {
+        (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
+        (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
+      };
+      \node[font=\tiny\bfseries, color=AlmTerra, above=4pt] at (axis cs:7,30)
+        {30\,°C};
+      \node[font=\tiny\bfseries, color=AlmAzulM, below=4pt] at (axis cs:1,12)
+        {12\,°C};
+    \end{axis}
+  \end{tikzpicture}
+  \end{center}
+  {\small\color{AlmGris}
+   Usamos línea porque la temperatura varía de forma \textbf{continua}
+   a lo largo del tiempo y queremos ver la \textit{tendencia}.}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Barras vs. línea: ¿cuándo usar cada una?
+% ---------------------------------------------------------------
+\begin{frame}{Barras vs. línea: la elección correcta}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Diagrama de barras — úsalo cuando:}
+        \small
+        \begin{itemize}
+          \item $x$ son \textbf{categorías separadas}\\
+                (tipos, barrios, meses como etiquetas)
+          \item Quieres \textbf{comparar magnitudes}
+          \item No hay continuidad entre valores de $x$
+        \end{itemize}
+        \vspace{4pt}
+        \textit{Ejemplo}: nº de plazas hoteleras por barrio de Almería
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Gráfica lineal — úsala cuando:}
+        \small
+        \begin{itemize}
+          \item $x$ es \textbf{continua o temporal}
+                (tiempo, distancia, temperatura)
+          \item Quieres mostrar una \textbf{tendencia} o evolución
+          \item Tiene sentido hablar de valores intermedios
+        \end{itemize}
+        \vspace{4pt}
+        \textit{Ejemplo}: temperatura media horaria en un día de verano
+      \end{definicionbox}
+    \end{column}
+  \end{columns}
+
+  \vspace{0.3cm}
+  \begin{notabox}[¿Y si tengo dudas?]
+    \small
+    Pregúntate: «¿Tendría sentido un valor \textit{entre} dos puntos del eje $x$?»
+    Si sí → línea. Si no → barras.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: tipos de gráficas}
+  \begin{recordarbox}
+    \begin{enumerate}
+      \item Nombra \textbf{4 tipos de gráficas} que conoces.
+      \item Para cada una, escribe \textbf{un ejemplo concreto}
+            relacionado con Almería en el que sea apropiada.
+      \item Completa la tabla:
+    \end{enumerate}
+
+    \vspace{0.2cm}
+    \small
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{lcc}
+      \toprule
+      \rowcolor{AlmAzul!12}
+      \textbf{Situación} & \textbf{¿Barras o línea?} & \textbf{¿Por qué?} \\
+      \midrule
+      Visitantes por mes (etiquetas) & & \\
+      \rowcolor{AlmFondo}
+      Temperatura a lo largo del día & & \\
+      Cuota de turistas por país & & \\
+      \rowcolor{AlmFondo}
+      Evolución anual de pernoctaciones & & \\
+      \bottomrule
+    \end{tabular}
+  \end{recordarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Ejercicio COMPRENDER
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: ¿barras o línea?}
+  \begin{comprenderbox}
+    Se recogen estos datos sobre alquileres en Almería:
+
+    \vspace{0.2cm}
+    \begin{center}
+    \small
+    \begin{tabular}{cc}
+      \toprule
+      \rowcolor{AlmAzul!12}
+      \textbf{Distancia al centro (km)} & \textbf{Precio alquiler (€/m²)} \\
+      \midrule
+      0{,}5 & 12 \\
+      \rowcolor{AlmFondo}
+      1{,}0 & 10 \\
+      1{,}5 & 8{,}5 \\
+      \rowcolor{AlmFondo}
+      2{,}0 & 7 \\
+      2{,}5 & 6 \\
+      \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \vspace{0.2cm}
+    \begin{enumerate}
+      \item ¿Deberías usar un diagrama de barras o una gráfica lineal?
+            \textbf{Justifica tu respuesta}.
+      \item ¿Cuál es la variable independiente? ¿Y la dependiente?
+      \item Describe en una frase la tendencia que observas.
+    \end{enumerate}
+  \end{comprenderbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio: graficar los datos del autobús}
+  \begin{aplicarbox}
+    Retoma la tabla del autobús de Almería (sesión 12):
+
+    \vspace{0.2cm}
+    \begin{center}
+    \small
+    \begin{tabular}{cc}
+      \toprule
+      \rowcolor{AlmAzul!12}
+      \textbf{Paradas (\(x\))} & \textbf{Tiempo min (\(y\))} \\
+      \midrule
+      2 & 5 \\ \rowcolor{AlmFondo}
+      4 & 10 \\
+      6 & 15 \\ \rowcolor{AlmFondo}
+      8 & 20 \\
+      12 & 30 \\
+      \bottomrule
+    \end{tabular}
+    \end{center}
+
+    \vspace{0.2cm}
+    \begin{enumerate}
+      \item Dibuja la gráfica lineal correspondiente en papel cuadriculado.
+            Etiqueta ambos ejes con nombre y unidad.
+            Elige una escala adecuada para el eje $y$ (máx. 30~min).
+      \item ¿Qué \textbf{tendencia} observas?
+      \item ¿Qué representa la \textbf{inclinación} de la línea?
+    \end{enumerate}
+  \end{aplicarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \textbf{Empezar el eje \(y\) en un valor distinto de cero}
+    para exagerar las diferencias:
+
+    \vspace{0.3cm}
+    \begin{columns}[T]
+      \begin{column}{0.46\textwidth}
+        \incorrecto\; \textbf{Eje \(y\) desde 95\,000}\\[4pt]
+        \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+          \begin{axis}[
+            width=0.9\linewidth, height=0.7\linewidth,
+            axis lines=left, ymin=95000, ymax=105000,
+            xtick={1,2,3}, xticklabels={E,F,M},
+            ytick={95000,100000,105000},
+            yticklabels={95k,100k,105k},
+            tick label style={font=\tiny},
+            label style={font=\tiny},
+            ylabel style={font=\tiny},
+            ylabel={Visitantes},
+            xlabel={Mes},
+            ybar, bar width=0.4cm,
+            nodes near coords, nodes near coords style={font=\tiny},
+          ]
+            \addplot[fill=AlmTerra!60] coordinates
+              {(1,97000)(2,100000)(3,104000)};
+          \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \small\color{AlmTerra}
+        ¡Parece que la diferencia es enorme!
+      \end{column}
+      \begin{column}{0.46\textwidth}
+        \correcto\; \textbf{Eje \(y\) desde 0}\\[4pt]
+        \begin{center}
+        \begin{tikzpicture}[scale=0.7]
+          \begin{axis}[
+            width=0.9\linewidth, height=0.7\linewidth,
+            axis lines=left, ymin=0, ymax=115000,
+            xtick={1,2,3}, xticklabels={E,F,M},
+            ytick={0,50000,100000},
+            yticklabels={0,50k,100k},
+            tick label style={font=\tiny},
+            label style={font=\tiny},
+            ylabel style={font=\tiny},
+            ylabel={Visitantes},
+            xlabel={Mes},
+            ybar, bar width=0.4cm,
+            nodes near coords, nodes near coords style={font=\tiny},
+          ]
+            \addplot[fill=AlmVerde!60] coordinates
+              {(1,97000)(2,100000)(3,104000)};
+          \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        \small\color{AlmVerde}
+        La diferencia es real pero pequeña.
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Dibuja en tu cuaderno \textbf{dos gráficas} a partir de las tablas
+    que construiste en la sesión anterior:
+
+    \vspace{0.15cm}
+    \begin{enumerate}
+      \item \textbf{Gráfica A} — Temperaturas medias de Almería:
+            \begin{itemize}
+              \small
+              \item Elige el tipo correcto (barras o línea).
+              \item Etiqueta los ejes: «Mes» y «Temperatura (°C)».
+              \item Escala: 0–35\,°C.
+              \item Título: «Temperatura media mensual en Almería».
+            \end{itemize}
+      \item \textbf{Gráfica B} — Precio del taxi en Almería:
+            \begin{itemize}
+              \small
+              \item Elige el tipo correcto.
+              \item Etiqueta: «Km recorridos» y «Precio (€)».
+              \item Escala acorde al máximo de la tabla.
+            \end{itemize}
+    \end{enumerate}
+
+    \vspace{0.15cm}
+    \small
+    Para cada gráfica: justifica en una frase por qué elegiste
+    ese tipo de representación.
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Resumen de sesión
+% ---------------------------------------------------------------
+\begin{frame}{Resumen: lo que hemos aprendido hoy}
+  \begin{resumenbox}
+    \begin{columns}[T]
+      \begin{column}{0.48\textwidth}
+        \textbf{Elegir el tipo de gráfica:}
+        \begin{itemize}
+          \item \textbf{Barras}: categorías, comparar
+          \item \textbf{Línea}: variable continua, tendencia
+          \item \textbf{Puntos}: correlación entre dos variables
+          \item \textbf{Sectores}: partes de un todo
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \textbf{Elementos imprescindibles:}
+        \begin{itemize}
+          \item Ejes etiquetados con unidades
+          \item Escala regular comenzando en 0
+          \item Título claro y descriptivo
+          \item Leyenda si hay varias series
+        \end{itemize}
+      \end{column}
+    \end{columns}
+
+    \vspace{0.25cm}
+    \separador
+    \vspace{0.15cm}
+    \small
+    \textbf{Error crítico:} empezar el eje $y$ en un valor
+    distinto de cero distorsiona visualmente las diferencias y
+    puede ser \textit{engañoso}.
+  \end{resumenbox}
+
+  \vspace{0.2cm}
+  \begin{center}
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}
+  \end{center}
+\end{frame}
+
+\end{document}

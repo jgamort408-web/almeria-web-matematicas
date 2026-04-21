@@ -1,0 +1,649 @@
+% ================================================================
+%  almeria-beamer.sty
+%  Tema Beamer personalizado — "Almería en Cifras y Formas"
+%  Situación de Aprendizaje · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+%  ---------------------------------------------------------------
+%  Uso:  \usepackage{almeria-beamer}   (en el preámbulo de cada sesión)
+%  Compilación: pdflatex  o  xelatex  (recomendado xelatex para UTF-8)
+% ================================================================
+\ProvidesPackage{almeria-beamer}[2026/04/20 v1.0]
+
+% ---------------------------------------------------------------
+%  PAQUETES BASE
+% ---------------------------------------------------------------
+\RequirePackage[spanish,es-noshorthands,es-noindentfirst]{babel}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage{microtype}
+
+% Matemáticas
+\RequirePackage{amsmath,amssymb,mathtools}
+% Definición manual de \cancel (evita dependencia del paquete cancel)
+\newcommand{\cancel}[1]{\sout{#1}}
+\RequirePackage[normalem]{ulem}   % \sout{} para tachar texto
+% Unidades SI — definición manual (evita paquete siunitx)
+\newcommand{\SI}[2]{\ensuremath{#1\,\mathrm{#2}}}
+\newcommand{\SIrange}[3]{\ensuremath{#1}--\ensuremath{#2\,\mathrm{#3}}}
+\newcommand{\num}[1]{\ensuremath{#1}}
+
+% Gráficos y diagramas
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\usetikzlibrary{%
+  arrows.meta, shapes.geometric, shapes.misc,
+  positioning, calc, fit, intersections,
+  decorations.pathreplacing, decorations.markings,
+  patterns, backgrounds,
+  matrix, angles
+}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepgfplotslibrary{fillbetween}
+
+% Tablas
+\RequirePackage{booktabs}
+\RequirePackage{array}
+\RequirePackage{multicol}
+\RequirePackage{multirow}
+\RequirePackage{tabularx}
+\RequirePackage{colortbl}
+
+% Cajas
+\RequirePackage[most]{tcolorbox}
+\tcbuselibrary{skins, theorems}
+
+% Iconos — aliases de texto (sin fontawesome5 para mayor compatibilidad)
+\newcommand{\faBook}{{\small\textbf{[T]}}}
+\newcommand{\faInfoCircle}{{\small\textbf{[i]}}}
+\newcommand{\faMapMarkerAlt}{$\blacktriangle$}
+\newcommand{\faBrain}{$\star$}
+\newcommand{\faLightbulb}{$\circ$}
+\newcommand{\faTools}{$\triangleright$}
+\newcommand{\faSearch}{$\diamond$}
+\newcommand{\faBalanceScale}{$\Leftrightarrow$}
+\newcommand{\faStar}{\textbf{*}}
+\newcommand{\faExclamationTriangle}{\textbf{!}}
+\newcommand{\faClipboardCheck}{\checkmark}
+\newcommand{\faCheckDouble}{\checkmark\checkmark}
+\newcommand{\faArrowCircleRight}{$\Rightarrow$}
+\newcommand{\faUserTie}{\textbf{@}}
+\newcommand{\faSchool}{\textbf{[E]}}
+\newcommand{\faBookOpen}{\textbf{[L]}}
+\newcommand{\faChartBar}{$\sqsubset$}
+\newcommand{\faChartLine}{$\sim$}
+\newcommand{\faTable}{$\boxplus$}
+\newcommand{\faRoute}{$\to$}
+\newcommand{\faDatabase}{$\bullet$}
+\newcommand{\faCheck}{\checkmark}
+\newcommand{\faTimes}{$\times$}
+\newcommand{\faCheckCircle}{\checkmark} % <-- Añadido
+\newcommand{\faTimesCircle}{\textbf{X}} % <-- Añadido
+\newcommand{\faCalculator}{$\Sigma$}
+\newcommand{\faCommentAlt}{\textbf{[?]}}
+\newcommand{\faCity}{$\square$}
+\newcommand{\faEquals}{$=$}
+\newcommand{\faRuler}{$\vert$}
+\newcommand{\faStickyNote}{$\circ$}
+\newcommand{\faAward}{$\bigstar$}
+\newcommand{\fastar}{\textbf{*}}
+\newcommand{\faUser}{\textbf{@}}
+
+% Miscelánea
+\RequirePackage{xspace}
+\RequirePackage{etoolbox}
+
+
+% ---------------------------------------------------------------
+%  PALETA DE COLORES  (espejo exacto de la web)
+% ---------------------------------------------------------------
+% Primarios
+\definecolor{AlmAzul}{HTML}{003F63}      % azul marino   --azul-mar
+\definecolor{AlmAzulM}{HTML}{0066A2}     % azul medio
+\definecolor{AlmAzulC}{HTML}{4A90D9}     % azul claro    --azul-claro
+\definecolor{AlmAzulO}{HTML}{1A2E44}     % azul oscuro   --azul-oscuro
+\definecolor{AlmTerra}{HTML}{C0392B}     % terracota     --terracota
+\definecolor{AlmAmbar}{HTML}{E8B84B}     % ámbar/dorado
+\definecolor{AlmVerde}{HTML}{2E7D32}     % verde         --verde-med
+\definecolor{AlmFondo}{HTML}{F0F4F8}     % fondo claro
+\definecolor{AlmGris}{HTML}{546E7A}      % gris secundario
+\definecolor{AlmBlanco}{HTML}{FFFFFF}
+\definecolor{AlmNegro}{HTML}{1A1A2E}
+
+% Niveles de Bloom (= colores de .proceso-tarjeta en la web)
+\definecolor{BRecordar}{HTML}{C62828}    % rojo oscuro
+\definecolor{BComprender}{HTML}{E65100}  % naranja oscuro
+\definecolor{BAplicar}{HTML}{F57F17}     % ámbar oscuro
+\definecolor{BAnalizar}{HTML}{2E7D32}    % verde
+\definecolor{BEvaluar}{HTML}{1565C0}     % azul
+\definecolor{BCrear}{HTML}{6A1B9A}       % púrpura
+
+
+% ---------------------------------------------------------------
+%  TEMA BEAMER — configuración general
+% ---------------------------------------------------------------
+\usetheme{default}
+\setbeamertemplate{navigation symbols}{}   % sin botones de navegación
+
+% -- Colores del tema --
+\setbeamercolor{normal text}{fg=AlmNegro, bg=AlmBlanco}
+\setbeamercolor{structure}{fg=AlmAzul}
+\setbeamercolor{frametitle}{fg=AlmBlanco, bg=AlmAzul}
+\setbeamercolor{title}{fg=AlmBlanco, bg=AlmAzul}
+\setbeamercolor{subtitle}{fg=AlmAmbar, bg=AlmAzul}
+\setbeamercolor{alerted text}{fg=AlmTerra}
+\setbeamercolor{example text}{fg=AlmVerde}
+\setbeamercolor{block title}{fg=AlmBlanco, bg=AlmAzulM}
+\setbeamercolor{block body}{fg=AlmNegro, bg=AlmFondo}
+\setbeamercolor{block title alerted}{fg=AlmBlanco, bg=AlmTerra}
+\setbeamercolor{block body alerted}{fg=AlmNegro, bg=AlmTerra!8}
+\setbeamercolor{block title example}{fg=AlmBlanco, bg=AlmVerde}
+\setbeamercolor{block body example}{fg=AlmNegro, bg=AlmVerde!8}
+\setbeamercolor{itemize item}{fg=AlmAzulM}
+\setbeamercolor{itemize subitem}{fg=AlmTerra}
+\setbeamercolor{enumerate item}{fg=AlmAzulM}
+\setbeamercolor{footline}{fg=AlmBlanco, bg=AlmAzul}
+\setbeamercolor{section in toc}{fg=AlmAzul}
+\setbeamercolor{subsection in toc}{fg=AlmAzulM}
+\setbeamercolor{separator line}{fg=AlmAmbar}
+
+% -- Fuentes del tema --
+\setbeamerfont{title}{size=\Large, series=\bfseries}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{frametitle}{size=\large, series=\bfseries}
+\setbeamerfont{block title}{size=\normalsize, series=\bfseries}
+\setbeamerfont{footline}{size=\scriptsize}
+\setbeamerfont{section in toc}{size=\normalsize, series=\bfseries}
+
+% -- Viñetas --
+\setbeamertemplate{itemize item}{{\color{AlmAzulM}$\blacktriangleright$}}
+\setbeamertemplate{itemize subitem}{{\color{AlmTerra}\textbullet}}
+\setbeamertemplate{itemize subsubitem}{{\color{AlmVerde}$\circ$}}
+\setbeamertemplate{enumerate item}{\color{AlmAzulM}\textbf{\arabic{enumi}.}}
+\setbeamertemplate{enumerate subitem}{\color{AlmTerra}\alph{enumii})}
+
+
+% ---------------------------------------------------------------
+%  TÍTULO DE DIAPOSITIVA (frametitle)
+% ---------------------------------------------------------------
+\setbeamertemplate{frametitle}{%
+  \nointerlineskip
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.68cm, dp=0.22cm,
+      leftskip=0.5cm, rightskip=0.5cm]{frametitle}%
+    \vspace{0.05cm}%
+    \usebeamerfont{frametitle}\insertframetitle%
+    \ifx\insertframesubtitle\empty\else
+      \hfill{\small\color{AlmAmbar!90}\insertframesubtitle}%
+    \fi
+  \end{beamercolorbox}%
+  \nointerlineskip
+  \begin{tikzpicture}[baseline=0pt]
+    \fill[AlmAmbar] (0,0) rectangle (\paperwidth, 2.5pt);
+  \end{tikzpicture}%
+  \vspace{-2pt}%
+}
+
+
+% ---------------------------------------------------------------
+%  PIE DE PÁGINA (footline)
+% ---------------------------------------------------------------
+\setbeamertemplate{footline}{%
+  \leavevmode%
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.46cm, dp=0.18cm,
+      leftskip=0.45cm, rightskip=0.45cm]{footline}%
+    \usebeamerfont{footline}%
+    {\color{AlmAmbar!80}\faMapMarkerAlt}\,%
+    {\color{AlmBlanco!80}\ProjectName}%
+    \hfill
+    {\color{AlmBlanco}\BlockName\enskip$\cdot$\enskip\SessionName}%
+    \hfill
+    {\color{AlmBlanco!65}\insertframenumber\,/\,\inserttotalframenumber}%
+  \end{beamercolorbox}%
+}
+
+
+% ---------------------------------------------------------------
+%  PORTADA (title page)
+% ---------------------------------------------------------------
+\defbeamertemplate*{title page}{almeria}{%
+  % Fondo completo azul marino
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[AlmAzul]
+      (current page.south west) rectangle (current page.north east);
+    % Ola inferior decorativa
+    \fill[AlmAzulM, opacity=0.45]
+      (current page.south west) --
+      ([yshift=3.2cm]current page.south west) ..controls
+      ([xshift=4cm,yshift=3.8cm]current page.south west) and
+      ([xshift=-4cm,yshift=2.8cm]current page.south east) ..
+      ([yshift=3.2cm]current page.south east) --
+      (current page.south east) -- cycle;
+    % Franja dorada superior
+    \fill[AlmAmbar]
+      ([yshift=-3pt]current page.north west)
+      rectangle
+      ([yshift=-10pt]current page.north east);
+    % Círculo decorativo (esquina superior derecha)
+    \fill[AlmAmbar, opacity=0.10]
+      ([xshift=-0.8cm, yshift=-0.8cm]current page.north east) circle (4.8cm);
+    \fill[AlmAzulM, opacity=0.20]
+      ([xshift=-2.5cm, yshift=-2.5cm]current page.north east) circle (3.2cm);
+    % Badge número de sesión
+    \node[
+      circle, draw=AlmAmbar, line width=2.2pt,
+      fill=AlmAzulM, minimum size=3cm,
+      text=AlmBlanco, font=\bfseries\huge,
+      anchor=center
+    ] at ([xshift=-2.2cm, yshift=-2.2cm]current page.north east)
+      (badge) {\SessionNumber};
+    \node[above=3pt of badge, text=AlmAmbar,
+          font=\tiny\bfseries\sffamily, anchor=south] {SESIÓN};
+    % Badge bloque
+    \node[
+      rounded corners=3pt, fill=AlmAmbar!85!white,
+      text=AlmAzul, font=\tiny\bfseries\sffamily,
+      anchor=north, inner sep=4pt
+    ] at ([xshift=-2.2cm, yshift=-4cm]current page.north east) {\BlockName};
+  \end{tikzpicture}
+
+  % Contenido
+  \vskip0.55cm
+  \begin{columns}[c]
+    \begin{column}{0.73\textwidth}
+      {\color{AlmAmbar}\footnotesize\bfseries
+        \faMapMarkerAlt\quad\ProjectName}%
+
+      {\color{AlmBlanco}\LARGE\bfseries\SessionTitle}%
+
+      {\color{AlmBlanco!65}\small
+        Sesión \SessionNumber\ $\cdot$\ \SchoolSubject\ $\cdot$\ \SchoolYear}%
+
+      % Caja objetivo
+      \begin{tcolorbox}[
+        enhanced, sharp corners,
+        colback=AlmAzulM!55!AlmAzul,
+        colframe=AlmAmbar,
+        boxrule=1pt, leftrule=3pt,
+        boxsep=5pt, arc=3pt,
+        width=0.95\textwidth,
+        before skip=0pt, after skip=0pt
+      ]
+        {\color{AlmAmbar}\bfseries\tiny OBJETIVO\quad}%
+        {\color{AlmBlanco!90}\small\SessionObjective}%
+      \end{tcolorbox}
+
+      {\color{AlmBlanco!45}\tiny
+        \faUserTie\;\AuthorName
+        \quad\textbar\quad
+        \faSchool\;\InstituteName
+        \quad\textbar\quad
+        \faBookOpen\;\SchoolSubject
+      }
+    \end{column}
+    \begin{column}{0.27\textwidth}
+      % El badge está en el overlay TikZ
+    \end{column}
+  \end{columns}
+}
+\setbeamertemplate{title page}[almeria]
+
+
+% ---------------------------------------------------------------
+%  DIAPOSITIVA DE SECCIÓN  (separador entre secciones)
+% ---------------------------------------------------------------
+\newcommand{\seccionframe}[2][AlmAzulM]{%
+  \begingroup
+    \setbeamercolor{background canvas}{bg=#1}
+    \begin{frame}[plain, c]
+      \begin{center}
+        \begin{tikzpicture}
+          \draw[AlmAmbar, line width=1.8pt] (-3.5,0) -- (3.5,0);
+        \end{tikzpicture}
+        {\color{AlmBlanco}\huge\bfseries #2}
+        \begin{tikzpicture}
+          \draw[AlmAmbar, line width=1.8pt] (-3.5,0) -- (3.5,0);
+        \end{tikzpicture}
+      \end{center}
+    \end{frame}
+  \endgroup
+}
+
+
+% ---------------------------------------------------------------
+%  ENTORNOS TCOLORBOX — CAJAS PEDAGÓGICAS
+% ---------------------------------------------------------------
+
+% --- Teoría ---
+\newtcolorbox{teoriabox}[1][]{%
+  enhanced,
+  colback=AlmAzul!7, colframe=AlmAzul,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faBook\enskip Teoría},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmAzul, arc=3pt, boxrule=0pt},
+  arc=4pt, boxrule=0.5pt, leftrule=4pt,
+  before upper={\setlength{\parskip}{3pt}},
+  #1%
+}
+
+% --- Definición (título personalizable) ---
+\newtcolorbox{definicionbox}[2][]{%
+  enhanced,
+  colback=AlmAzulM!9, colframe=AlmAzulM,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faInfoCircle\enskip #2},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmAzulM, arc=3pt, boxrule=0pt},
+  arc=4pt, boxrule=0.5pt, leftrule=4pt,
+  #1%
+}
+
+% --- Ejemplo en Almería ---
+\newtcolorbox{ejemplobox}[1][]{%
+  enhanced,
+  colback=AlmAmbar!10, colframe=AlmAmbar,
+  fonttitle=\bfseries\small\color{AlmAzul},
+  title={\faMapMarkerAlt\enskip Ejemplo en Almería},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt, boxrule=0pt},
+  arc=4pt, boxrule=0.5pt, leftrule=4pt,
+  #1%
+}
+
+% --- Ejercicios por nivel Bloom ---
+\newtcolorbox{recordarbox}[1][]{%
+  enhanced,
+  colback=BRecordar!8, colframe=BRecordar,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faBrain\enskip RECORDAR},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BRecordar, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+\newtcolorbox{comprenderbox}[1][]{%
+  enhanced,
+  colback=BComprender!8, colframe=BComprender,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faLightbulb\enskip COMPRENDER},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BComprender, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+\newtcolorbox{aplicarbox}[1][]{%
+  enhanced,
+  colback=BAplicar!10, colframe=BAplicar!80!black,
+  fonttitle=\bfseries\small\color{AlmNegro},
+  title={\faTools\enskip APLICAR},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BAplicar, coltext=AlmNegro, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+\newtcolorbox{analizarbox}[1][]{%
+  enhanced,
+  colback=BAnalizar!8, colframe=BAnalizar,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faSearch\enskip ANALIZAR},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BAnalizar, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+\newtcolorbox{evaluarbox}[1][]{%
+  enhanced,
+  colback=BEvaluar!8, colframe=BEvaluar,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faBalanceScale\enskip EVALUAR},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BEvaluar, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+\newtcolorbox{crearbox}[1][]{%
+  enhanced,
+  colback=BCrear!8, colframe=BCrear,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faStar\enskip CREAR},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=BCrear, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, #1%
+}
+
+% --- Error frecuente ---
+\newtcolorbox{errorbox}{%
+  enhanced,
+  colback=AlmTerra!8, colframe=AlmTerra,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faExclamationTriangle\enskip \textbf{¡Cuidado con este error!}},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmTerra, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt%
+}
+
+% --- Evidencia del día ---
+\newtcolorbox{evidenciabox}{%
+  enhanced,
+  colback=AlmVerde!8, colframe=AlmVerde,
+  fonttitle=\bfseries\small\color{AlmBlanco},
+  title={\faClipboardCheck\enskip Evidencia del día},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmVerde, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt%
+}
+
+% --- Paso en solución (numerado) ---
+\newtcolorbox{pasobox}[1][1]{%
+  enhanced,
+  colback=AlmFondo, colframe=AlmAzulM,
+  fonttitle=\bfseries\scriptsize\color{AlmBlanco},
+  title={Paso #1},
+  attach boxed title to top left={yshift=-2mm, xshift=3mm},
+  boxed title style={colback=AlmAzulM, arc=2pt, boxrule=0pt},
+  arc=3pt, leftrule=3pt, boxrule=0.3pt,
+  top=4pt, bottom=4pt%
+}
+
+% --- Resumen final de sesión ---
+\newtcolorbox{resumenbox}{%
+  enhanced,
+  colback=AlmAzul!6, colframe=AlmAzul,
+  fonttitle=\bfseries\color{AlmBlanco},
+  title={\faCheckDouble\enskip Lo que hemos aprendido hoy},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmAzul, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt%
+}
+
+% --- Nota/Curiosidad ---
+\newtcolorbox{notabox}[1][Nota]{%
+  enhanced,
+  colback=AlmAmbar!8, colframe=AlmAmbar!60!black,
+  fonttitle=\bfseries\small\color{AlmAzul},
+  title={\faStickyNote\enskip #1},
+  attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+  boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt%
+}
+
+% --- Fórmula destacada (centrada, grande) ---
+\newtcolorbox{formulabox}[1][AlmAzulM]{%
+  enhanced, center,
+  colback=#1!9, colframe=#1,
+  boxrule=1pt, arc=6pt,
+  width=0.82\linewidth,
+  halign=center,
+  fontupper=\large\bfseries%
+}
+
+
+% ---------------------------------------------------------------
+%  COMANDOS DE AYUDA
+% ---------------------------------------------------------------
+
+% Tag de nivel Bloom (inline)
+\newcommand{\bloomtag}[1]{%
+  \tcbox[on line,
+    colback=B#1, colframe=B#1,
+    fontupper=\tiny\bfseries\color{white},
+    nobeforeafter, boxsep=1.5pt, arc=2pt,
+    left=2pt, right=2pt, top=1pt, bottom=1pt]{#1}%
+  \xspace%
+}
+
+% Estrellas de dificultad (1-5)
+\newcommand{\dificultad}[1]{%
+  \foreach \i in {1,...,5}{%
+    \ifnum\i>#1%
+      \textcolor{gray!35}{$\bigstar$}%
+    \else%
+      \textcolor{AlmAmbar}{$\bigstar$}%
+    \fi%
+  }%
+}
+
+% Fórmula en caja centrada
+\newcommand{\formuladest}[2][AlmAzulM]{%
+  \begin{center}
+    \tcbox[enhanced, colback=#1!9, colframe=#1,
+           fontupper=\Large\bfseries, arc=5pt,
+           boxsep=8pt, left=6pt, right=6pt]{$\displaystyle #2$}
+  \end{center}%
+}
+
+% Dato de Almería (inline)
+\newcommand{\datoalm}[2]{%
+  {\color{AlmAzulM}\textbf{#1}}\,: #2%
+}
+
+% Fuente de datos (pie de diapositiva)
+\newcommand{\fuente}[1]{%
+  \vfill
+  {\tiny\color{AlmGris}\faDatabase\enskip Fuente: #1}%
+}
+
+% Separador visual (línea ámbar)
+\newcommand{\separador}{%
+  \begin{tikzpicture}
+    \draw[AlmAmbar, line width=1.2pt] (0,0) -- (\linewidth, 0);
+  \end{tikzpicture}%
+  \vspace{2pt}%
+}
+
+% Flecha de solución (paso a paso)
+\newcommand{\pasoflechas}{%
+  \begin{center}
+    {\color{AlmAzulM}\Large$\Downarrow$}
+  \end{center}%
+}
+
+% Tick verde / Cruz roja (para comparar correcto/incorrecto)
+\newcommand{\correcto}{\textcolor{AlmVerde}{\faCheckCircle}\xspace}
+\newcommand{\incorrecto}{\textcolor{AlmTerra}{\faTimesCircle}\xspace}
+
+% Unidad de medida destacada
+\newcommand{\unidad}[1]{\textcolor{AlmAzulM}{\textbf{#1}}}
+
+% Número de sesión destacado en texto
+\newcommand{\nsesion}[1]{%
+  \tcbox[on line, colback=AlmAzul, colframe=AlmAzul,
+         fontupper=\bfseries\color{AlmBlanco},
+         nobeforeafter, boxsep=2pt, arc=3pt]{Sesión #1}%
+}
+
+
+% ---------------------------------------------------------------
+%  ESTILO PGFPLOTS  (gráficas consistentes con la web)
+% ---------------------------------------------------------------
+\pgfplotsset{
+  almeria/.style={
+    axis lines=left,
+    axis line style={AlmAzulM, line width=1pt},
+    tick style={AlmAzulM},
+    tick label style={font=\small, color=AlmNegro},
+    label style={font=\small\bfseries, color=AlmAzul},
+    grid=both,
+    grid style={line width=0.3pt, AlmAzulC!30},
+    major grid style={line width=0.5pt, AlmAzulC!50},
+    title style={font=\small\bfseries, color=AlmAzul},
+    legend style={
+      font=\tiny, draw=AlmAzulM!50,
+      fill=AlmFondo, rounded corners=2pt
+    },
+    width=0.95\linewidth,
+    height=0.72\linewidth,
+  },
+  almeria bar/.style={
+    almeria,
+    ybar,
+    bar width=0.55cm,
+    enlarge x limits=0.15,
+    nodes near coords,
+    nodes near coords style={font=\tiny\bfseries, color=AlmAzul},
+  },
+  almeria line/.style={
+    almeria,
+    smooth,
+    mark size=2.5pt,
+  },
+}
+
+
+% ---------------------------------------------------------------
+%  ESTILOS TIKZ  (diagramas geométricos)
+% ---------------------------------------------------------------
+\tikzset{
+  % Punto en coordenadas
+  punto/.style={
+    circle, fill=AlmAzulM, inner sep=2.2pt, draw=AlmBlanco, line width=0.8pt
+  },
+  puntot/.style={
+    circle, fill=AlmTerra, inner sep=2.2pt, draw=AlmBlanco, line width=0.8pt
+  },
+  puntov/.style={
+    circle, fill=AlmVerde, inner sep=2.2pt, draw=AlmBlanco, line width=0.8pt
+  },
+  % Etiqueta de punto
+  etiqueta/.style={
+    font=\small\bfseries, color=AlmAzulM, above right
+  },
+  % Segmento / recta
+  recto/.style={AlmAzulM, line width=1.5pt},
+  rectot/.style={AlmTerra, line width=1.5pt},
+  rectov/.style={AlmVerde, line width=1.5pt},
+  % Ángulo
+  arco/.style={draw=AlmTerra, line width=0.8pt},
+  % Flecha de acotación
+  acota/.style={
+    <->, >=Stealth, AlmGris, line width=0.8pt,
+    shorten <=2pt, shorten >=2pt
+  },
+  % Sombreado de zona (área)
+  zona/.style={fill=AlmAzulC, fill opacity=0.18, draw=AlmAzulM, line width=0.8pt},
+  zonat/.style={fill=AlmTerra, fill opacity=0.15, draw=AlmTerra, line width=0.8pt},
+  zonav/.style={fill=AlmVerde, fill opacity=0.15, draw=AlmVerde, line width=0.8pt},
+  % Cuadradito de ángulo recto
+  rectoang/.style={draw=AlmAzulM, line width=0.7pt, fill=none},
+}
+
+
+% ---------------------------------------------------------------
+%  VARIABLES GLOBALES  (se redefinen en cada sesión)
+% ---------------------------------------------------------------
+\providecommand{\ProjectName}{Almería en Cifras y Formas}
+\providecommand{\SessionNumber}{01}
+\providecommand{\SessionTitle}{Título de la sesión}
+\providecommand{\SessionName}{Sesión 01}
+\providecommand{\SessionObjective}{Objetivo de la sesión}
+\providecommand{\BlockName}{Bloque 1: Mapa y coordenadas}
+\providecommand{\AuthorName}{Juan María Gámez Ortiz}
+\providecommand{\InstituteName}{IES Al-Ándalus}
+\providecommand{\SchoolYear}{2025--2026}
+\providecommand{\SchoolSubject}{Matemáticas 1.º ESO}
+
+% ================================================================
+%  FIN DEL PAQUETE
+% ================================================================

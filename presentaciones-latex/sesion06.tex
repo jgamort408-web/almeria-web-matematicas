@@ -1,0 +1,602 @@
+% ================================================================
+%  SESIÓN 06 — Figuras planas en la ciudad
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  IES Al-Ándalus · 2025-2026
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{06}
+\renewcommand{\SessionTitle}{Figuras planas en la ciudad}
+\renewcommand{\SessionName}{Sesión 06}
+\renewcommand{\SessionObjective}{%
+  Identificar y clasificar figuras planas (polígonos) en elementos
+  arquitectónicos de Almería, reconociendo sus propiedades básicas
+  (lados, vértices, ángulos).%
+}
+\renewcommand{\BlockName}{Bloque 2: Geometría urbana}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE
+% ---------------------------------------------------------------
+\begin{frame}{Contenidos de hoy}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Figura plana y polígono
+        \item Clasificación de polígonos
+        \item Propiedades: lados, vértices, ángulos
+        \item Polígonos regulares e irregulares
+        \item Cuadriláteros especiales
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{itemize}
+        \item Tipos de triángulos
+        \item Suma de ángulos interiores
+        \item Polígonos en Almería
+        \item Ejercicios Bloom
+        \item Evidencia del día
+      \end{itemize}
+    \end{column}
+  \end{columns}
+  \vspace{0.4cm}
+  \begin{notabox}[Niveles de Bloom]
+    \bloomtag{Recordar}\quad
+    \bloomtag{Comprender}\quad
+    \bloomtag{Aplicar}\quad
+    \bloomtag{Analizar}
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{Figuras planas y polígonos}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 3 — Figura plana y polígono
+% ---------------------------------------------------------------
+\begin{frame}{¿Qué es una figura plana?}
+  \begin{columns}[c]
+    \begin{column}{0.54\textwidth}
+      \begin{definicionbox}{Figura plana}
+        Figura geométrica que se puede dibujar completamente en
+        un plano (en dos dimensiones: largo y ancho).
+        No tiene profundidad.
+      \end{definicionbox}
+      \vspace{0.3cm}
+      \begin{definicionbox}{Polígono}
+        Figura plana \textbf{cerrada} formada por segmentos de recta
+        (llamados \textbf{lados}). Los segmentos se unen en puntos
+        llamados \textbf{vértices}.
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.85]
+        % polígono ejemplo (pentágono irregular)
+        \draw[zona] (0,0) -- (2,0) -- (2.6,1.4) -- (1.3,2.2) -- (-0.4,1.3) -- cycle;
+        \foreach \p/\lbl/\pos in {
+          (0,0)/A/below left,
+          (2,0)/B/below right,
+          (2.6,1.4)/C/right,
+          (1.3,2.2)/D/above,
+          (-0.4,1.3)/E/left}{
+          \node[punto] at \p {};
+          \node[\pos, font=\bfseries\scriptsize, color=AlmAzulM] at \p {\lbl};
+        }
+        % etiqueta lados
+        \node[color=AlmTerra, font=\tiny\bfseries] at (1,-0.3) {lado};
+        % etiqueta vértice
+        \draw[->, AlmTerra, thin] (0.6,-0.5) -- (-0.05,-0.05);
+        \node[color=AlmTerra, font=\tiny\bfseries] at (0.9,-0.55) {vértice};
+      \end{tikzpicture}
+      \end{center}
+      \begin{notabox}[Clave]
+        \scriptsize Un círculo \textbf{NO} es un polígono:
+        no tiene lados rectos.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 4 — Galería de polígonos (TikZ)
+% ---------------------------------------------------------------
+\begin{frame}{Galería de polígonos: de 3 a 8 lados}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.78]
+    % ---- Triángulo ----
+    \draw[zona] (0,0) -- (1.2,0) -- (0.6,1.0) -- cycle;
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (0.6,-0.12) {Triángulo};
+    \node[below, font=\tiny, color=AlmGris] at (0.6,-0.38) {3 lados / 180°};
+    % ---- Cuadrilátero ----
+    \draw[zona] (1.7,0) -- (3.1,0) -- (3.1,1.0) -- (1.7,1.0) -- cycle;
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.4,-0.12) {Cuadrilátero};
+    \node[below, font=\tiny, color=AlmGris] at (2.4,-0.38) {4 lados / 360°};
+    % ---- Pentágono ----
+    \begin{scope}[shift={(4.0,0.5)}]
+      \draw[zona] \foreach \i in {0,1,2,3,4}{
+        -- ({cos(90+\i*72)*0.6},{sin(90+\i*72)*0.6})
+      } -- cycle;
+    \end{scope}
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (4.0,-0.12) {Pentágono};
+    \node[below, font=\tiny, color=AlmGris] at (4.0,-0.38) {5 lados / 540°};
+    % ---- Hexágono ----
+    \begin{scope}[shift={(5.7,0.5)}]
+      \draw[zona] \foreach \i in {0,1,2,3,4,5}{
+        -- ({cos(90+\i*60)*0.6},{sin(90+\i*60)*0.6})
+      } -- cycle;
+    \end{scope}
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (5.7,-0.12) {Hexágono};
+    \node[below, font=\tiny, color=AlmGris] at (5.7,-0.38) {6 lados / 720°};
+    % ---- Heptágono ----
+    \begin{scope}[shift={(7.4,0.5)}]
+      \draw[zona] \foreach \i in {0,1,2,3,4,5,6}{
+        -- ({cos(90+\i*51.43)*0.6},{sin(90+\i*51.43)*0.6})
+      } -- cycle;
+    \end{scope}
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (7.4,-0.12) {Heptágono};
+    \node[below, font=\tiny, color=AlmGris] at (7.4,-0.38) {7 lados / 900°};
+    % ---- Octógono ----
+    \begin{scope}[shift={(9.1,0.5)}]
+      \draw[zona] \foreach \i in {0,1,2,3,4,5,6,7}{
+        -- ({cos(90+\i*45)*0.6},{sin(90+\i*45)*0.6})
+      } -- cycle;
+    \end{scope}
+    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (9.1,-0.12) {Octógono};
+    \node[below, font=\tiny, color=AlmGris] at (9.1,-0.38) {8 lados / 1080°};
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.15cm}
+  \begin{teoriabox}
+    \small\textbf{Regla clave:} en todo polígono, el número de lados
+    $=$ número de vértices $=$ número de ángulos interiores.
+    La suma de ángulos interiores de un polígono de $n$ lados es
+    $(n-2)\times 180°$.
+  \end{teoriabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 5 — Regular vs. Irregular
+% ---------------------------------------------------------------
+\begin{frame}{Polígono regular vs. irregular}
+  \begin{columns}[c]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Polígono regular}
+        Todos los lados son \textbf{iguales}
+        \textbf{y} todos los ángulos son \textbf{iguales}.
+        \\[4pt]
+        Ejemplos: triángulo equilátero, cuadrado, hexágono regular.
+      \end{definicionbox}
+      \vspace{0.3cm}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.8]
+        \begin{scope}[shift={(0,0)}]
+          \draw[rectov, fill=AlmVerde!15] \foreach \i in {0,1,2}{
+            -- ({cos(90+\i*120)*0.7},{sin(90+\i*120)*0.7})
+          } -- cycle;
+          \node[below, font=\scriptsize\bfseries, color=AlmVerde] at (0,-0.8) {Regular};
+        \end{scope}
+        \begin{scope}[shift={(1.9,0)}]
+          \draw[rectov, fill=AlmVerde!15] (0,0) -- (1.2,0) -- (1.2,1.2) -- (0,1.2) -- cycle;
+          \node[below, font=\scriptsize\bfseries, color=AlmVerde] at (0.6,-0.12) {Regular};
+        \end{scope}
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Polígono irregular}
+        Los lados \textbf{o} los ángulos son diferentes entre sí.
+        \\[4pt]
+        Muchas figuras de la arquitectura real son irregulares.
+      \end{definicionbox}
+      \vspace{0.3cm}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.8]
+        \begin{scope}[shift={(0,0)}]
+          \draw[rectot, fill=AlmTerra!12]
+            (0,0) -- (1.4,0) -- (1.0,0.8) -- (0.3,1.1) -- cycle;
+          \node[below, font=\scriptsize\bfseries, color=AlmTerra] at (0.7,-0.12) {Irregular};
+        \end{scope}
+        \begin{scope}[shift={(2.2,0)}]
+          \draw[rectot, fill=AlmTerra!12]
+            (0,0.3) -- (1.1,0) -- (1.3,0.9) -- (0.8,1.3) -- (0.1,1.0) -- cycle;
+          \node[below, font=\scriptsize\bfseries, color=AlmTerra] at (0.65,-0.12) {Irregular};
+        \end{scope}
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 6 — Cuadriláteros especiales
+% ---------------------------------------------------------------
+\begin{frame}{Cuadriláteros especiales}
+  \begin{center}
+  \begin{tikzpicture}[scale=0.78, every node/.style={font=\tiny}]
+    % Rectángulo
+    \draw[zona] (0,0) rectangle (1.8,1.0);
+    \node[below=2pt] at (0.9,-0.0) {\textbf{Rectángulo}};
+    \node[below=14pt, color=AlmGris] at (0.9,0) {4 ángulos rectos};
+    \node[below=24pt, color=AlmGris] at (0.9,0) {lados opuestos =};
+    % Cuadrado
+    \draw[zona] (2.4,0) rectangle (3.6,1.2);
+    \node[below=2pt] at (3.0,-0.0) {\textbf{Cuadrado}};
+    \node[below=14pt, color=AlmGris] at (3.0,0) {4 ángulos rectos};
+    \node[below=24pt, color=AlmGris] at (3.0,0) {4 lados iguales};
+    % Rombo
+    \draw[zona] (4.6,0.5) -- (5.4,0) -- (6.2,0.5) -- (5.4,1.0) -- cycle;
+    \node[below=2pt] at (5.4,-0.0) {\textbf{Rombo}};
+    \node[below=14pt, color=AlmGris] at (5.4,0) {4 lados iguales};
+    \node[below=24pt, color=AlmGris] at (5.4,0) {ángulos ≠ 90°};
+    % Trapecio
+    \draw[zona] (7.0,0) -- (8.6,0) -- (8.2,1.0) -- (7.4,1.0) -- cycle;
+    \node[below=2pt] at (7.8,-0.0) {\textbf{Trapecio}};
+    \node[below=14pt, color=AlmGris] at (7.8,0) {1 par de lados};
+    \node[below=24pt, color=AlmGris] at (7.8,0) {paralelos};
+    % Paralelogramo
+    \draw[zona] (9.4,0) -- (11.0,0) -- (10.6,1.0) -- (9.0,1.0) -- cycle;
+    \node[below=2pt] at (10.0,-0.0) {\textbf{Paralelogramo}};
+    \node[below=14pt, color=AlmGris] at (10.0,0) {2 pares paralelos};
+    \node[below=24pt, color=AlmGris] at (10.0,0) {lados opuestos =};
+  \end{tikzpicture}
+  \end{center}
+  \vspace{0.1cm}
+  \begin{notabox}[Jerarquía]
+    \small Cuadrado $\subset$ Rectángulo $\subset$ Paralelogramo $\subset$ Cuadrilátero
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 7 — Tipos de triángulos
+% ---------------------------------------------------------------
+\begin{frame}{Tipos de triángulos}
+  \begin{columns}[t]
+    \begin{column}{0.50\textwidth}
+      \textbf{\color{AlmAzulM}Por sus lados:}
+      \vspace{0.2cm}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.75]
+        % Equilátero
+        \draw[rectov, fill=AlmVerde!12]
+          (0,0) -- (1.0,0) -- (0.5,0.87) -- cycle;
+        \node[below, font=\tiny\bfseries, color=AlmVerde] at (0.5,-0.05) {Equilátero};
+        \node[below, font=\tiny, color=AlmGris] at (0.5,-0.25) {3 lados iguales};
+        % Isósceles
+        \draw[zona]
+          (1.8,0) -- (3.2,0) -- (2.5,1.1) -- cycle;
+        \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.5,-0.05) {Isósceles};
+        \node[below, font=\tiny, color=AlmGris] at (2.5,-0.25) {2 lados iguales};
+        % Escaleno
+        \draw[rectot, fill=AlmTerra!10]
+          (4.0,0) -- (5.6,0) -- (5.2,1.0) -- cycle;
+        \node[below, font=\tiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Escaleno};
+        \node[below, font=\tiny, color=AlmGris] at (4.9,-0.25) {todos distintos};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \textbf{\color{AlmAzulM}Por sus ángulos:}
+      \vspace{0.2cm}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.75]
+        % Acutángulo
+        \draw[rectov, fill=AlmVerde!12]
+          (0,0) -- (1.4,0) -- (0.8,1.0) -- cycle;
+        \node[below, font=\tiny\bfseries, color=AlmVerde] at (0.7,-0.05) {Acutángulo};
+        \node[below, font=\tiny, color=AlmGris] at (0.7,-0.25) {todos $<$ 90°};
+        % Rectángulo
+        \draw[zona]
+          (1.9,0) -- (3.3,0) -- (1.9,1.0) -- cycle;
+        \draw[rectoang] (1.9,0) -- (2.2,0) -- (2.2,0.3) -- (1.9,0.3);
+        \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.6,-0.05) {Rectángulo};
+        \node[below, font=\tiny, color=AlmGris] at (2.6,-0.25) {un ángulo $=90°$};
+        % Obtusángulo
+        \draw[rectot, fill=AlmTerra!10]
+          (4.0,0.5) -- (5.6,0) -- (4.3,1.1) -- cycle;
+        \node[below, font=\tiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Obtusángulo};
+        \node[below, font=\tiny, color=AlmGris] at (4.9,-0.25) {un ángulo $>90°$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+  \vspace{0.2cm}
+  \begin{formulabox}
+    Suma de ángulos de un triángulo $= \alpha + \beta + \gamma = 180°$
+    \quad\quad
+    Suma de ángulos de un cuadrilátero $= 360°$
+  \end{formulabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAnalizar]{Polígonos en Almería}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 8 — Almería y polígonos
+% ---------------------------------------------------------------
+\begin{frame}{Polígonos en la arquitectura almeriense}
+  \begin{columns}[t]
+    \begin{column}{0.50\textwidth}
+      \begin{ejemplobox}
+        \small
+        \begin{itemize}
+          \item \textbf{Catedral de Almería:} fachada con rectángulos,
+                arcos y triángulos en las cornisas.
+          \item \textbf{Plazas del centro:} cuadriláteros (cuadrados
+                y trapecios) en el trazado urbano.
+          \item \textbf{Torres de la Alcazaba:} polígonos irregulares
+                en la planta de cada torre.
+          \item \textbf{Puerto de Almería:} edificios con ventanas
+                hexagonales regulares.
+        \end{itemize}
+      \end{ejemplobox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.72]
+        % Silueta estilizada de edificio con formas
+        % Base rectangular
+        \draw[zona] (0,0) rectangle (3.6,1.8);
+        % Ventana rectangular
+        \draw[rectov, fill=AlmAzulC!25] (0.3,0.4) rectangle (1.0,1.2);
+        \draw[rectov, fill=AlmAzulC!25] (1.4,0.4) rectangle (2.1,1.2);
+        \draw[rectov, fill=AlmAzulC!25] (2.5,0.4) rectangle (3.2,1.2);
+        % Tejado triangular
+        \draw[rectot, fill=AlmTerra!20] (0,1.8) -- (1.8,2.8) -- (3.6,1.8) -- cycle;
+        % Hexágono (ventana especial)
+        \node[font=\tiny\bfseries, color=AlmAzul] at (1.8,0.2) {Rectángulos};
+        \node[font=\tiny\bfseries, color=AlmTerra] at (1.8,2.55) {Triángulo};
+      \end{tikzpicture}
+      \end{center}
+      \begin{notabox}[Dato]
+        \scriptsize La Catedral de Almería (s. XVI) es una de las
+        pocas catedrales-fortaleza de España: sus muros combinan
+        rectángulos y arcos de medio punto.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BRecordar]{Ejercicios — RECORDAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 9 — Ejercicio RECORDAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 1 — RECORDAR \dificultad{1}}
+  \begin{recordarbox}
+    \begin{enumerate}
+      \item ¿Cómo se llama el polígono de 5 lados?
+      \item ¿Cuántos vértices tiene un hexágono?
+      \item Completa la tabla:
+
+      \vspace{0.2cm}
+      \begin{center}
+      \small
+      \begin{tabular}{|>{\bfseries\color{AlmAzulM}}l|c|c|c|}
+        \hline
+        \rowcolor{AlmAzul!15}
+        \textbf{Figura} & \textbf{Lados} & \textbf{Vértices} &
+        \textbf{Suma ángulos} \\
+        \hline
+        Triángulo  & 3 & \phantom{000} & \phantom{000°} \\
+        \hline
+        Cuadrilátero & \phantom{0} & 4 & \phantom{000°} \\
+        \hline
+        Pentágono  & \phantom{0} & \phantom{0} & 540° \\
+        \hline
+        Hexágono   & \phantom{0} & \phantom{0} & \phantom{000°} \\
+        \hline
+        Octógono   & \phantom{0} & \phantom{0} & \phantom{000°} \\
+        \hline
+      \end{tabular}
+      \end{center}
+    \end{enumerate}
+  \end{recordarbox}
+  \vspace{0.15cm}
+  \begin{notabox}[Pista]
+    \small Suma de ángulos $= (n-2)\times 180°$, donde $n$ es el número de lados.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BComprender]{Ejercicios — COMPRENDER}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 10 — Ejercicio COMPRENDER
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 2 — COMPRENDER \dificultad{2}}
+  \begin{comprenderbox}
+    Una plaza de Almería tiene cuatro lados de longitudes:
+    \textbf{25 m, 30 m, 25 m y 30 m}. Los cuatro ángulos son de 90°.
+    \begin{enumerate}
+      \item ¿Qué tipo de cuadrilátero es?
+      \item ¿Es regular o irregular? Razona tu respuesta.
+      \item ¿Qué condición adicional necesitaría para ser un cuadrado?
+    \end{enumerate}
+  \end{comprenderbox}
+  \vspace{0.2cm}
+  \begin{columns}[t]
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[1]
+        Identificar el tipo por sus propiedades:
+        lados opuestos iguales + 4 ángulos rectos.
+      \end{pasobox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{pasobox}[2]
+        Comparar con la definición de polígono regular:
+        ¿todos los lados son iguales?
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAplicar]{Ejercicios — APLICAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 11 — Ejercicio APLICAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 3 — APLICAR \dificultad{3}}
+  \begin{aplicarbox}
+    Identifica los polígonos que aparecen en estos 5 elementos
+    de Almería y clasifícalos (regular/irregular):
+
+    \vspace{0.15cm}
+    \small
+    \begin{tabular}{@{}p{3.2cm}p{3.5cm}p{2.8cm}@{}}
+      \toprule
+      \textbf{Elemento} & \textbf{Polígono(s)} & \textbf{Reg. / Irreg.} \\
+      \midrule
+      Fachada Catedral & \phantom{xxxxxxxxxx} & \phantom{xxxxx} \\
+      Ventana hexagonal & \phantom{xxxxxxxxxx} & \phantom{xxxxx} \\
+      Torre Alcazaba & \phantom{xxxxxxxxxx} & \phantom{xxxxx} \\
+      Plaza del Ayuntamiento & \phantom{xxxxxxxxxx} & \phantom{xxxxx} \\
+      Panel solar (tejado) & \phantom{xxxxxxxxxx} & \phantom{xxxxx} \\
+      \bottomrule
+    \end{tabular}
+  \end{aplicarbox}
+  \vspace{0.15cm}
+  \begin{notabox}[Recuerda]
+    \small Cuenta los lados visibles. Comprueba si todos los lados
+    y ángulos son iguales para determinar si es regular.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe[BAnalizar]{Ejercicios — ANALIZAR}
+% ---------------------------------------------------------------
+
+% ---------------------------------------------------------------
+%  FRAME 12 — Ejercicio ANALIZAR
+% ---------------------------------------------------------------
+\begin{frame}{Ejercicio 4 — ANALIZAR \dificultad{4}}
+  \begin{analizarbox}
+    Compara un \textbf{cuadrado} y un \textbf{rectángulo}:
+    \begin{enumerate}
+      \item ¿Qué tienen en común (número de lados, vértices,
+            suma de ángulos)?
+      \item ¿En qué se diferencian?
+      \item Si ves una figura con 4 ángulos rectos pero sin
+            ninguna medida, ¿puedes saber si es cuadrado
+            o rectángulo? ¿Por qué?
+    \end{enumerate}
+  \end{analizarbox}
+  \vspace{0.2cm}
+  \begin{columns}[c]
+    \begin{column}{0.30\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.65]
+        \draw[zona] (0,0) rectangle (1.4,1.4);
+        \draw[rectoang] (0,0) -- (0.25,0) -- (0.25,0.25) -- (0,0.25);
+        \node[below, font=\tiny\bfseries] at (0.7,-0.1) {Cuadrado};
+        \node[below, font=\tiny, color=AlmGris] at (0.7,-0.35) {$l = l$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.30\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=0.65]
+        \draw[zona] (0,0) rectangle (2.0,1.1);
+        \draw[rectoang] (0,0) -- (0.25,0) -- (0.25,0.25) -- (0,0.25);
+        \node[below, font=\tiny\bfseries] at (1.0,-0.1) {Rectángulo};
+        \node[below, font=\tiny, color=AlmGris] at (1.0,-0.35) {$l \neq w$};
+      \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.34\textwidth}
+      \small\color{AlmAzulM}
+      Ambos: 4 lados, 4 vértices, 360°. \\[4pt]
+      Diferencia: ¿todos los lados iguales?
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 13 — Error frecuente
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con estos errores!}
+  \begin{errorbox}
+    \begin{itemize}
+      \item \incorrecto\ \textbf{«El círculo es un polígono»}
+            \\
+            \correcto\ Un círculo tiene un contorno \emph{curvo}, no lados rectos.
+            \textbf{No es un polígono.}
+      \vspace{0.3cm}
+      \item \incorrecto\ \textbf{«El hexágono tiene 5 lados»}
+            \\
+            \correcto\ HEXA = 6. \quad
+            \textbf{HEXÁgono $\rightarrow$ 6 lados}.
+            \\
+            Pentágono (PENTA $= 5$) es el de 5 lados.
+      \vspace{0.3cm}
+      \item \incorrecto\ \textbf{«Todo cuadrilátero es un cuadrado»}
+            \\
+            \correcto\ Solo si los 4 lados son iguales
+            \textbf{y} los 4 ángulos son rectos.
+    \end{itemize}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 14 — Resumen
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item Un \textbf{polígono} es una figura plana cerrada con lados rectos.
+      \item Se clasifica por número de lados: triángulo (3) hasta octógono (8).
+      \item En todo polígono: \#lados $=$ \#vértices $=$ \#ángulos.
+      \item \textbf{Regular}: todos los lados y ángulos iguales.
+            \textbf{Irregular}: no se cumple.
+      \item Triángulos por lados: equilátero, isósceles, escaleno.
+      \item Triángulos por ángulos: acutángulo, rectángulo, obtusángulo.
+      \item Suma de ángulos: triángulo $= 180°$, cuadrilátero $= 360°$,
+            en general $(n-2)\times 180°$.
+    \end{itemize}
+  \end{resumenbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  FRAME 15 — Evidencia del día
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \textbf{Catálogo de figuras planas de Almería}
+
+    \vspace{0.3cm}
+    Elabora un catálogo con al menos \textbf{5 edificios o elementos}
+    de Almería. Para cada uno indica:
+
+    \vspace{0.15cm}
+    \begin{enumerate}
+      \item Nombre del edificio o elemento.
+      \item Polígono(s) identificado(s).
+      \item Número de lados y vértices.
+      \item Regular o irregular — justifica con las propiedades.
+      \item Dibuja el polígono (a mano o con regla y compás).
+    \end{enumerate}
+
+    \vspace{0.2cm}
+    \textbf{Criterio de éxito:} los 5 polígonos están correctamente
+    identificados, clasificados y dibujados.
+  \end{evidenciabox}
+\end{frame}
+
+\end{document}

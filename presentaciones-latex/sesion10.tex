@@ -1,0 +1,488 @@
+% ================================================================
+%  sesion10.tex  —  Sesión 10 de 20
+%  Rutas y distancias por Almería
+%  Bloque 2: Geometría urbana · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{10}
+\renewcommand{\SessionTitle}{Rutas y distancias por Almería}
+\renewcommand{\SessionName}{Sesión 10}
+\renewcommand{\SessionObjective}{%
+  Calcular distancias reales entre puntos turísticos de Almería
+  usando el Teorema de Pitágoras y la escala del mapa,
+  y diseñar rutas turísticas optimizadas.}
+\renewcommand{\BlockName}{Bloque 2: Geometría urbana}
+
+\begin{document}
+
+% ---------------------------------------------------------------
+\begin{frame}[plain]\titlepage\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Dos tipos de distancia
+        \item El Teorema de Pitágoras
+        \item Fórmula de la distancia entre dos puntos
+        \item Escala del mapa
+        \item Ejemplo paso a paso
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Ruta turística por Almería
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Dos tipos de distancia}
+% ---------------------------------------------------------------
+
+\begin{frame}{Distancia en línea recta vs.\ distancia real}
+  \begin{columns}[c]
+    \begin{column}{0.55\textwidth}
+      \begin{definicionbox}{Distancia euclídea (línea recta)}
+        La longitud del segmento más corto que une dos puntos.
+        Es la distancia \textit{en el aire}, sin obstáculos.
+        Se calcula con el Teorema de Pitágoras.
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{definicionbox}{Distancia real (por la calle)}
+        El camino que recorremos siguiendo las calles o rutas
+        existentes. Siempre es \textbf{mayor o igual} que
+        la distancia en línea recta.
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.42\textwidth}
+      \begin{tikzpicture}[scale=0.92]
+        \draw[AlmFondo!60, step=0.6cm] (0,0) grid (4.8,3.6);
+        % Puntos
+        \node[punto] (A) at (0.6,0.6) {};
+        \node[punto] (B) at (4.2,3.0) {};
+        \node[etiqueta, above left] at (A) {A};
+        \node[etiqueta, above right] at (B) {B};
+        % Línea recta (euclídea)
+        \draw[recto, AlmAzulM] (A) -- (B)
+          node[midway, below right, font=\tiny\bfseries, color=AlmAzulM]
+          {distancia euclídea};
+        % Ruta Manhattan
+        \draw[rectot, dashed, line width=1.3pt]
+          (A) -- (4.2,0.6) -- (B)
+          node[midway, right, font=\tiny, color=AlmTerra]
+          {ruta calles};
+        % Acotaciones
+        \draw[acota] (0.6,0.2) -- (4.2,0.2)
+          node[midway, below, font=\tiny] {$\Delta x$};
+        \draw[acota] (4.5,0.6) -- (4.5,3.0)
+          node[midway, right, font=\tiny] {$\Delta y$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. El Teorema de Pitágoras}
+% ---------------------------------------------------------------
+
+\begin{frame}{Teorema de Pitágoras}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        En todo triángulo \textbf{rectángulo}, el cuadrado
+        de la hipotenusa es igual a la suma de los cuadrados
+        de los catetos:
+        \[
+          c^2 = a^2 + b^2
+          \qquad \Longrightarrow \qquad
+          c = \sqrt{a^2 + b^2}
+        \]
+        \vspace{2pt}
+        \begin{itemize}
+          \item $a, b$ = catetos (lados que forman el ángulo recto)
+          \item $c$ = hipotenusa (lado opuesto al ángulo recto,
+                el más largo)
+        \end{itemize}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{center}
+      \begin{tikzpicture}[scale=1.1]
+        % Triángulo rectángulo
+        \coordinate (O) at (0,0);
+        \coordinate (A) at (3,0);
+        \coordinate (B) at (0,2.2);
+        \fill[zona] (O) -- (A) -- (B) -- cycle;
+        \draw[recto] (O) -- (A) node[midway, below, font=\small] {$a$};
+        \draw[recto] (O) -- (B) node[midway, left, font=\small] {$b$};
+        \draw[rectot, line width=2pt] (A) -- (B)
+          node[midway, right, font=\small\bfseries, color=AlmTerra] {$c$};
+        % Ángulo recto
+        \draw[rectoang] (0.28,0) -- (0.28,0.28) -- (0,0.28);
+        % Cuadrados visuales
+        \fill[AlmAzulC, opacity=0.25]
+          (0,-0.55) rectangle (3,-0.25) node[midway, font=\tiny, color=AlmAzul] {$a^2$};
+        \fill[BRecordar, opacity=0.20]
+          (-0.6,0) rectangle (-0.3,2.2) node[midway, font=\tiny, color=BRecordar, rotate=90] {$b^2$};
+      \end{tikzpicture}
+      \end{center}
+      \vspace{4pt}
+      \begin{formulabox}[AlmTerra]
+        $c = \sqrt{a^2 + b^2}$
+      \end{formulabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Distancia entre dos puntos}
+% ---------------------------------------------------------------
+
+\begin{frame}{Fórmula de la distancia entre dos puntos}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{teoriabox}
+        Dados dos puntos $A(x_1,\,y_1)$ y $B(x_2,\,y_2)$:
+        \[
+          d(A,B) = \sqrt{(x_2-x_1)^2 + (y_2-y_1)^2}
+        \]
+        Los desplazamientos $\Delta x = x_2 - x_1$ y
+        $\Delta y = y_2 - y_1$ son los catetos;
+        la distancia es la hipotenusa.
+      \end{teoriabox}
+      \vspace{6pt}
+      \begin{notabox}[Tripletas pitagóricas]
+        \footnotesize
+        $3$-$4$-$5$;\quad $5$-$12$-$13$;\quad $8$-$15$-$17$\\
+        ¡Útiles para comprobar resultados mentalmente!
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tikzpicture}[scale=0.85]
+        \draw[AlmFondo!80, step=1cm] (-0.5,-0.5) grid (5.5,5.5);
+        \draw[->, AlmAzulM, line width=1pt] (-0.3,0) -- (5.3,0)
+          node[right, font=\small] {$x$};
+        \draw[->, AlmAzulM, line width=1pt] (0,-0.3) -- (0,5.3)
+          node[above, font=\small] {$y$};
+        \coordinate (A) at (1,1);
+        \coordinate (B) at (4,5);
+        \node[punto] at (A) {};
+        \node[punto] at (B) {};
+        \node[etiqueta, below left, font=\small] at (A) {$A(1,1)$};
+        \node[etiqueta, above left, font=\small] at (B) {$B(4,5)$};
+        % Triángulo auxiliar
+        \coordinate (C) at (4,1);
+        \draw[AlmGris, dashed] (A) -- (C) -- (B);
+        \draw[rectoang] (3.72,1) -- (3.72,1.28) -- (4,1.28);
+        \draw[rectot, line width=2pt] (A) -- (B);
+        % Catetos
+        \node[below, font=\tiny, color=AlmGris] at (2.5,1) {$\Delta x=3$};
+        \node[right, font=\tiny, color=AlmGris] at (4,3) {$\Delta y=4$};
+        \node[above left, font=\small\bfseries, color=AlmTerra] at (2.5,3)
+          {$c=5$};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Escala del mapa}
+% ---------------------------------------------------------------
+
+\begin{frame}{Escala del mapa}
+  \begin{columns}[T]
+    \begin{column}{0.52\textwidth}
+      \begin{definicionbox}{Escala}
+        Relación entre la medida en el mapa y la medida real.
+        Si la escala es $1{:}E$, entonces:
+        \[
+          d_{\text{real}} = d_{\text{mapa}} \times E
+        \]
+        \textbf{Ejemplo:} Escala 1:5\,000\\
+        $\Rightarrow$ 1 cm en el mapa = 5\,000 cm = \textbf{50 m} en realidad.
+      \end{definicionbox}
+      \vspace{8pt}
+      En nuestro mapa de Almería usamos:
+      \begin{center}
+        \tcbox[colback=AlmAmbar!15, colframe=AlmAmbar,
+               fontupper=\bfseries\small, arc=4pt]{%
+          \textbf{1 unidad} del plano $=$ \textbf{200 m} reales}
+      \end{center}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tabular}{lll}
+        \toprule
+        \textbf{Mapa} & \textbf{Escala} & \textbf{Real}\\
+        \midrule
+        1 cm & 1:1\,000  & 10 m\\
+        1 cm & 1:5\,000  & 50 m\\
+        1 cm & 1:10\,000 & 100 m\\
+        1 cm & 1:50\,000 & 500 m\\
+        1 cm & 1:100\,000 & 1 km\\
+        \bottomrule
+      \end{tabular}
+      \vspace{8pt}
+      \begin{ejemplobox}
+        \footnotesize
+        Dos puntos en el mapa distan 3 unidades.
+        Con escala 1 u = 200 m:\\
+        $d_{\text{real}} = 3 \times 200 = \mathbf{600\ \text{m}}$
+      \end{ejemplobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Ejemplo paso a paso}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejemplo: Alcazaba $\rightarrow$ Catedral}
+  \framesubtitle{Escala: 1 unidad = 200 m}
+  \begin{columns}[c]
+    \begin{column}{0.44\textwidth}
+      \begin{tikzpicture}[scale=0.82]
+        \draw[AlmFondo!80, step=1cm] (0,0) grid (5,5);
+        \draw[->, AlmAzulM, line width=0.8pt] (0,0)--(5.3,0)
+          node[right,font=\tiny]{$x$};
+        \draw[->, AlmAzulM, line width=0.8pt] (0,0)--(0,5.3)
+          node[above,font=\tiny]{$y$};
+        % Puntos
+        \coordinate (Alc) at (1,4);
+        \coordinate (Cat) at (2,2);
+        \coordinate (Mer) at (3,2);
+        \coordinate (Pto) at (4,1);
+        \node[punto] at (Alc) {};
+        \node[puntot] at (Cat) {};
+        \node[puntov] at (Mer) {};
+        \node[punto] at (Pto) {};
+        \node[font=\tiny\bfseries, above right, color=AlmAzulM] at (Alc)
+          {Alcazaba (1,4)};
+        \node[font=\tiny\bfseries, above right, color=AlmTerra] at (Cat)
+          {Catedral (2,2)};
+        \node[font=\tiny\bfseries, above right, color=AlmVerde] at (Mer)
+          {Mercado (3,2)};
+        \node[font=\tiny\bfseries, below right, color=AlmAzulM] at (Pto)
+          {Puerto (4,1)};
+        % Ruta
+        \draw[rectot, line width=2pt, ->] (Alc) -- (Cat);
+        \draw[rectov, line width=2pt, ->] (Cat) -- (Mer);
+        \draw[recto, line width=2pt, ->]  (Mer) -- (Pto);
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.52\textwidth}
+      \begin{pasobox}[1]
+        \footnotesize
+        $A(1,4)\to B(2,2)$:\\
+        $\Delta x=1,\;\Delta y=-2$\\
+        $d=\sqrt{1^2+2^2}=\sqrt{5}\approx 2{,}24\ \text{u}$\\
+        $\rightarrow 2{,}24\times 200 \approx \mathbf{448\ \text{m}}$
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[2]
+        \footnotesize
+        $B(2,2)\to C(3,2)$:\\
+        $\Delta x=1,\;\Delta y=0$\\
+        $d=\sqrt{1^2+0^2}=1\ \text{u} = \mathbf{200\ \text{m}}$
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[3]
+        \footnotesize
+        $C(3,2)\to D(4,1)$:\\
+        $\Delta x=1,\;\Delta y=-1$\\
+        $d=\sqrt{1^2+1^2}=\sqrt{2}\approx 1{,}41\ \text{u}$\\
+        $\rightarrow 1{,}41\times 200\approx \mathbf{283\ \text{m}}$
+      \end{pasobox}
+      \vspace{4pt}
+      \begin{pasobox}[4]
+        \footnotesize
+        \textbf{Distancia total:}
+        $448+200+283 = \mathbf{931\ \text{m}}$\\[2pt]
+        Tiempo a 5 km/h $= \frac{0{,}931}{5}\times 60
+        \approx \mathbf{11\ \text{min}}$
+      \end{pasobox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Ruta turística completa}
+% ---------------------------------------------------------------
+
+\begin{frame}{Planifica tu ruta en Almería}
+  \begin{columns}[T]
+    \begin{column}{0.56\textwidth}
+      \begin{ejemplobox}
+        \small
+        \textbf{Puntos turísticos} (escala 1 u = 200 m):
+        \begin{center}
+        \begin{tabular}{lcc}
+          \toprule
+          Lugar & $x$ & $y$\\
+          \midrule
+          Alcazaba         & 1 & 4\\
+          Catedral         & 2 & 2\\
+          Mercado Central  & 3 & 2\\
+          Puerto           & 4 & 1\\
+          Playa de Almería & 5 & 2\\
+          \bottomrule
+        \end{tabular}
+        \end{center}
+      \end{ejemplobox}
+      \vspace{4pt}
+      \begin{notabox}[Tiempo de paseo]
+        \footnotesize
+        Velocidad media turista: $\approx 4{,}5\ \text{km/h}$\\
+        Fórmula: $t = \dfrac{d}{v}$\\
+        (resultado en horas; $\times 60$ para minutos)
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.41\textwidth}
+      \begin{tabular}{lc}
+        \toprule
+        \textbf{Tramo} & $d$ (m)\\
+        \midrule
+        Alcazaba → Catedral  & 448\\
+        Catedral → Mercado   & 200\\
+        Mercado → Puerto     & 283\\
+        Puerto → Playa       & 224\\
+        \midrule
+        \textbf{Total ruta}  & \textbf{1\,155}\\
+        \bottomrule
+      \end{tabular}
+      \vspace{8pt}
+      \begin{formulabox}[AlmVerde]
+        $t = \dfrac{1{,}155\ \text{km}}{4{,}5\ \text{km/h}}
+           \approx 15{,}4\ \text{min}$
+      \end{formulabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Ejercicios multinivel}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicios multinivel}
+  \begin{columns}[T]
+    \begin{column}{0.31\textwidth}
+      \begin{aplicarbox}
+        \footnotesize\dificultad{2}\\[4pt]
+        Calcula la distancia entre los pares de puntos:\\[3pt]
+        $P(0,0)$ y $Q(3,4)$\\
+        $R(1,2)$ y $S(4,6)$\\
+        $M(-2,1)$ y $N(2,4)$\\[4pt]
+        ¿Cuál es la distancia más corta?
+        Convierte a metros (escala 1 u = 200 m).
+      \end{aplicarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{analizarbox}
+        \footnotesize\dificultad{3}\\[4pt]
+        La Alcazaba está en $(1,4)$ y el
+        faro del Cabo de Gata en $(8,0)$
+        (escala 1 u = 1 km).\\[4pt]
+        La distancia en línea recta es
+        $\approx 8{,}06$ km. Pero la carretera
+        mide 12 km.\\[4pt]
+        \textbf{Analiza:} ¿Por qué difieren?
+        ¿Cuándo usarías cada medida?
+        Argumenta en 5 líneas.
+      \end{analizarbox}
+    \end{column}
+    \begin{column}{0.31\textwidth}
+      \begin{evaluarbox}
+        \footnotesize\dificultad{4}\\[4pt]
+        Tienes \textbf{2 horas} y caminas a
+        4 km/h. Diseña una ruta turística
+        por Almería visitando \textbf{al menos
+        5 lugares} de la lista anterior.\\[4pt]
+        Calcula la distancia total y el
+        tiempo. ¿Es factible?\\[4pt]
+        Justifica tu elección de ruta:
+        ¿optimizas distancia o número de
+        lugares?
+      \end{evaluarbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    \begin{itemize}
+      \item Entrega tu \textbf{Mapa de ruta turística} con:
+        \begin{enumerate}
+          \item Los puntos turísticos marcados con sus coordenadas
+          \item Las distancias calculadas en cada tramo (con operaciones)
+          \item La distancia total de la ruta en metros y km
+          \item El tiempo estimado de recorrido a pie
+        \end{enumerate}
+      \item Las operaciones deben aparecer escritas, no solo el resultado.
+      \item Indica la escala usada.
+    \end{itemize}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{columns}[c]
+      \begin{column}{0.48\textwidth}
+        \incorrecto\ \textbf{Error grave}\\[4pt]
+        Olvidar la raíz cuadrada:\\[4pt]
+        $d = (x_2-x_1)^2 + (y_2-y_1)^2$\\
+        $d = 3^2 + 4^2 = 9+16 = 25$\\[4pt]
+        \textcolor{AlmTerra}{Eso es $d^2$, ¡no $d$!}
+      \end{column}
+      \begin{column}{0.48\textwidth}
+        \correcto\ \textbf{Correcto}\\[4pt]
+        Siempre aplica la raíz:\\[4pt]
+        $d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$\\
+        $d = \sqrt{3^2+4^2} = \sqrt{25} = \mathbf{5}$
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+  \vspace{6pt}
+  \begin{notabox}[Truco de comprobación]
+    \small
+    La distancia siempre debe ser \textbf{mayor que cada cateto
+    por separado} y \textbf{menor que su suma}.
+    Si $a=3$ y $b=4$, entonces $3 < d < 7$. ¿Cumple $d=5$? ¡Sí!
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 10}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item La \textbf{distancia euclídea} (línea recta) entre
+            $A(x_1,y_1)$ y $B(x_2,y_2)$ es:
+            $d = \sqrt{(x_2-x_1)^2+(y_2-y_1)^2}$
+      \item Es la aplicación directa del
+            \textbf{Teorema de Pitágoras} al plano cartesiano.
+      \item La \textbf{escala} convierte unidades del mapa
+            a metros reales: $d_{\text{real}} = d_{\text{mapa}}\times E$
+      \item La distancia por calles siempre es
+            $\geq$ la distancia en línea recta.
+      \item El \textbf{tiempo} de recorrido: $t = d / v$
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    \textbf{Próximo bloque:}
+    Datos y gráficas (Sesiones 11--16)}
+  \end{center}
+  \fuente{Datos de distancias: estimaciones didácticas sobre plano de Almería}
+\end{frame}
+
+\end{document}

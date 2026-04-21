@@ -1,0 +1,443 @@
+% ================================================================
+%  sesion18.tex  —  Sesión 18 de 20
+%  Construimos la guía — Almería en Cifras y Formas
+%  Bloque 4: Producto final · Matemáticas 1.º ESO
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+\renewcommand{\SessionNumber}{18}
+\renewcommand{\SessionTitle}{Construimos la guía turística matemática}
+\renewcommand{\SessionName}{Sesión 18}
+\renewcommand{\SessionObjective}{%
+  Elaborar el borrador completo de la guía turística matemática
+  integrando mapa con coordenadas, tablas, gráficas, medidas
+  y rutas calculadas de Almería.}
+\renewcommand{\BlockName}{Bloque 4: Producto final}
+
+\begin{document}
+
+\begin{frame}[plain]\titlepage\end{frame}
+
+\begin{frame}{Índice}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Estructura de la guía (7 secciones)
+        \item Principios de diseño profesional
+        \item Requisitos del mapa de coordenadas
+        \item Requisitos de tablas y gráficas
+        \item Lista de verificación matemática
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}\setcounter{enumi}{5}
+        \item Datos curiosos de Almería
+        \item Ejercicios: construir la guía
+        \item Lista de cotejo entre equipos
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Estructura de la guía}
+% ---------------------------------------------------------------
+
+\begin{frame}{Las 7 secciones de vuestra guía}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item[\faBookOpen] \textbf{Portada}\\
+          {\footnotesize Título, autores, estadística llamativa, miniatura del mapa}
+        \vspace{3pt}
+        \item[\faMapMarkerAlt] \textbf{Mapa con coordenadas}\\
+          {\footnotesize $\geq 10$ puntos turísticos con $(x,y)$, escala, rosa de los vientos}
+        \vspace{3pt}
+        \item[\faTable] \textbf{Monumentos en cifras}\\
+          {\footnotesize Tabla: nombre, coordenadas, área/altura, visitantes/año}
+        \vspace{3pt}
+        \item[\faRoute] \textbf{Rutas matemáticas}\\
+          {\footnotesize 2--3 rutas: distancias calculadas, tiempo estimado}
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item[\faChartLine] \textbf{Gráficas de Almería}\\
+          {\footnotesize $\geq 2$ gráficas (temperatura, turismo\ldots) con análisis}
+        \vspace{3pt}
+        \item[\faLightbulb] \textbf{Datos curiosos}\\
+          {\footnotesize 5--8 hechos matemáticos sorprendentes de Almería}
+        \vspace{3pt}
+        \item[\faBook] \textbf{Glosario matemático}\\
+          {\footnotesize $\geq 10$ términos usados en la guía con definición}
+      \end{enumerate}
+      \vspace{8pt}
+      \begin{notabox}[Extensión orientativa]
+        \footnotesize
+        Mínimo 8 páginas (papel o digital).\\
+        Cada sección debe llevar título claro
+        y numeración de página.
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Principios de diseño profesional}
+% ---------------------------------------------------------------
+
+\begin{frame}{Diseño que comunica matemáticas}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{teoriabox}
+        \textbf{4 principios de diseño}\\[4pt]
+        \begin{enumerate}
+          \item \textbf{Coherencia visual}\\
+            Mismos colores, misma tipografía\\
+            en todos los apartados.
+          \vspace{4pt}
+          \item \textbf{Equilibrio texto--imagen}\\
+            Aprox.\ 50\% texto, 50\% figuras
+            (mapas, tablas, gráficas).
+          \vspace{4pt}
+          \item \textbf{Jerarquía de información}\\
+            Título $>$ subtítulo $>$ cuerpo de texto\\
+            (tamaños distintos, negrita).
+          \vspace{4pt}
+          \item \textbf{Accesibilidad}\\
+            Ejes etiquetados, unidades presentes,
+            fórmulas explicadas.
+        \end{enumerate}
+      \end{teoriabox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      % Maqueta esquemática de doble página
+      \begin{tikzpicture}[scale=0.62]
+        % Página izquierda
+        \fill[AlmAzul] (0,8) rectangle (6,8.6);
+        \node[text=AlmBlanco, font=\tiny\bfseries] at (3,8.3)
+          {ALMERÍA EN CIFRAS Y FORMAS};
+        \fill[AlmAmbar!30, rounded corners=2pt]
+          (0.3,5.8) rectangle (5.7,7.8);
+        \node[font=\tiny, text=AlmNegro, align=center] at (3,6.8)
+          {MAPA DE COORDENADAS\\(10+ puntos etiquetados)};
+        \foreach \y in {5.1,4.7,4.3,3.9}{
+          \fill[AlmGris!20] (0.3,\y) rectangle (5.7,\y+0.25);
+        }
+        \node[font=\tiny, color=AlmGris] at (3,3.6) {texto · texto · texto};
+        % Página derecha
+        \fill[AlmAzul!12] (6.5,3.5) rectangle (12.5,8.6);
+        \fill[AlmAzulC!25, rounded corners=2pt]
+          (6.8,5.5) rectangle (12.2,8.3);
+        \node[font=\tiny, text=AlmAzul, align=center] at (9.5,6.9)
+          {GRÁFICA: turistas/mes\\(pgfplots / mano)};
+        \foreach \y in {4.8,4.4,4.0,3.7}{
+          \fill[AlmGris!20] (6.8,\y) rectangle (12.2,\y+0.22);
+        }
+        % Títulos de sección
+        \node[font=\tiny\bfseries, color=AlmAzul] at (3,8.0)
+          {Sección 2: Mapa};
+        \node[font=\tiny\bfseries, color=AlmAzul] at (9.5,8.0)
+          {Sección 5: Gráficas};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Requisitos del mapa}
+% ---------------------------------------------------------------
+
+\begin{frame}{El mapa de coordenadas: qué debe incluir}
+  \begin{columns}[c]
+    \begin{column}{0.52\textwidth}
+      \begin{itemize}
+        \item[\faCheck] \textbf{Escala indicada}
+              (ej.: 1 unidad = 200 m)
+        \item[\faCheck] \textbf{Rosa de los vientos} (Norte)
+        \item[\faCheck] \textbf{Ejes etiquetados} ($x$ e $y$)
+        \item[\faCheck] \textbf{$\geq 10$ puntos} con nombre
+              y coordenadas $(x,y)$
+        \item[\faCheck] \textbf{Código de color} por tipo:\\
+          {\footnotesize
+          \textcolor{AlmAzulM}{$\bullet$} Monumentos \quad
+          \textcolor{AlmAzulC}{$\bullet$} Playas \\
+          \textcolor{AlmVerde}{$\bullet$} Parques \quad
+          \textcolor{AlmTerra}{$\bullet$} Gastronomía}
+        \item[\faCheck] \textbf{Leyenda} con los colores
+        \item[\faCheck] \textbf{Al menos una ruta} dibujada
+              con flechas
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.44\textwidth}
+      \begin{tikzpicture}[scale=0.75]
+        \draw[AlmFondo!70, step=1cm] (0,0) grid (6,5.5);
+        \draw[->, AlmAzulM] (0,0)--(6.4,0) node[right,font=\tiny]{$x$};
+        \draw[->, AlmAzulM] (0,0)--(0,5.8) node[above,font=\tiny]{$y$};
+        % Puntos
+        \foreach \x/\y/\c/\n in {
+          1/4/AlmAzulM/Alcazaba,
+          2/2/AlmAzulM/Catedral,
+          3/2/AlmTerra/Mercado,
+          4/1/AlmAzulC/Puerto,
+          5/2/AlmAzulC/Playa,
+          1/2/AlmVerde/Parque}{
+          \node[circle,fill=\c,inner sep=2pt] at (\x,\y) {};
+          \node[font=\tiny, above, color=\c] at (\x,\y) {\n};
+        }
+        % Ruta
+        \draw[AlmAmbar, line width=1.2pt, ->]
+          (1,4)--(2,2)--(3,2)--(4,1)--(5,2);
+        % Escala
+        \draw[acota] (0,-0.5) -- (1,-0.5)
+          node[midway,below,font=\tiny]{200 m};
+        % Norte
+        \node[font=\large, color=AlmAzulM] at (5.5,5.2) {$\uparrow$N};
+      \end{tikzpicture}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Tablas y gráficas}
+% ---------------------------------------------------------------
+
+\begin{frame}{Requisitos de tablas y gráficas}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \textbf{Tablas} — lista de verificación:
+      \begin{itemize}
+        \item[\faCheck] Encabezados claros \textbf{con unidades}
+        \item[\faCheck] Datos \textbf{ordenados} por la variable $x$
+        \item[\faCheck] Fuente de los datos indicada
+        \item[\faCheck] Mínimo \textbf{8 filas} de datos
+        \item[\faCheck] Sin celdas vacías sin justificar
+      \end{itemize}
+      \vspace{6pt}
+      \begin{tabular}{lrr}
+        \toprule
+        \textbf{Monumento} & \textbf{Área (m²)} & \textbf{Visit./año}\\
+        \midrule
+        Alcazaba & 43\,000 & 300\,000\\
+        Catedral & 5\,800  & 180\,000\\
+        Cable Inglés & 2\,200 & 95\,000\\
+        Puerto & 350\,000 & --\\
+        \bottomrule
+      \end{tabular}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \textbf{Gráficas} — lista de verificación:
+      \begin{itemize}
+        \item[\faCheck] \textbf{Título} informativo
+        \item[\faCheck] Eje $x$ etiquetado con unidad
+        \item[\faCheck] Eje $y$ etiquetado con unidad
+        \item[\faCheck] Eje $y$ comienza en \textbf{0} (salvo excepción justificada)
+        \item[\faCheck] Escala \textbf{regular} en ambos ejes
+        \item[\faCheck] Leyenda si hay más de una serie
+        \item[\faCheck] Tipo de gráfica \textbf{adecuado} al tipo de variable
+      \end{itemize}
+      \vspace{6pt}
+      \begin{notabox}[Recuerda]
+        \footnotesize
+        Variables discretas → diagrama de \textbf{barras}\\
+        Variables continuas / tiempo → gráfica \textbf{lineal}\\
+        Partes de un todo → diagrama de \textbf{sectores}
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Lista de verificación matemática}
+% ---------------------------------------------------------------
+
+\begin{frame}{Lista de verificación antes de entregar}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=AlmVerde!8, colframe=AlmVerde,
+        title={\faCheckDouble\enskip Verificación matemática},
+        fonttitle=\bfseries\small\color{AlmBlanco},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmVerde, arc=3pt, boxrule=0pt},
+        arc=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item[$\square$] Todas las \textbf{distancias} calculadas con
+                $d=\sqrt{\Delta x^2+\Delta y^2}$
+          \item[$\square$] Todas las \textbf{áreas} con la fórmula correcta
+                y en m²
+          \item[$\square$] Los \textbf{perímetros} en m (no m²)
+          \item[$\square$] Las \textbf{proporcionalidades} verificadas
+                ($y/x = k$ constante)
+          \item[$\square$] Las \textbf{coordenadas} escritas como $(x,y)$,
+                no $(y,x)$
+          \item[$\square$] Los \textbf{gráficos} con ejes etiquetados y
+                escala que empieza en 0
+          \item[$\square$] Todos los \textbf{tiempos} calculados
+                con $t = d/v$
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{tcolorbox}[
+        enhanced, colback=AlmAmbar!10, colframe=AlmAmbar!70!black,
+        title={\faStickyNote\enskip Verificación de presentación},
+        fonttitle=\bfseries\small\color{AlmAzul},
+        attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
+        boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt},
+        arc=4pt]
+        \footnotesize
+        \begin{itemize}
+          \item[$\square$] Portada con título, autores y estadística
+          \item[$\square$] Todas las páginas numeradas
+          \item[$\square$] Índice o tabla de contenidos
+          \item[$\square$] Fuentes de datos citadas
+          \item[$\square$] Glosario con $\geq 10$ términos
+          \item[$\square$] Sin faltas de ortografía
+          \item[$\square$] Diseño coherente (mismos colores y fuentes)
+        \end{itemize}
+      \end{tcolorbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Datos curiosos de Almería}
+% ---------------------------------------------------------------
+
+\begin{frame}{Datos curiosos para vuestra guía}
+  \begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+      \begin{notabox}[¿Sabías que\ldots?]
+        \begin{itemize}
+          \item La \textbf{Alcazaba} ocupa \SI{43000}{m^2}
+                $\approx$ 6 campos de fútbol.
+          \item El \textbf{Cable Inglés} mide \SI{1.1}{km}
+                y pesa \num{1400} toneladas.
+          \item Almería tiene \textbf{3\,000 horas de sol}
+                al año — es la ciudad más soleada de España.
+          \item El \textbf{faro del Cabo de Gata} tiene
+                \SI{32}{m} de altura sobre el mar.
+          \item La \textbf{Rambla de Almería} mide \SI{370}{m}
+                de longitud y hasta \SI{50}{m} de anchura.
+        \end{itemize}
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{notabox}[Más datos\ldots]
+        \begin{itemize}
+          \item El \textbf{Puerto de Almería} ocupa
+                \SI{35}{ha} = \SI{350000}{m^2}.
+          \item La \textbf{catedral} (1524) tiene
+                \SI{55}{m} de altura en su torre.
+          \item El Parque Natural del Cabo de Gata
+                tiene \SI{38000}{ha}.
+          \item Almería recibe $\approx$\,\SI{3}{millones}
+                de turistas al año.
+          \item La temperatura media anual es \SI{18.5}{\celsius}.
+        \end{itemize}
+      \end{notabox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{7. Ejercicios: construir la guía}
+% ---------------------------------------------------------------
+
+\begin{frame}{Construye la guía — Taller de aula}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{aplicarbox}
+        \footnotesize
+        \textbf{Sección «Monumentos en cifras»}\\[4pt]
+        Completa la tabla con \textbf{5 monumentos} de Almería.
+        Para cada uno indica:
+        \begin{enumerate}
+          \item Nombre y breve descripción
+          \item Coordenadas $(x,y)$ en el mapa del proyecto
+          \item Área o altura (con unidades)
+          \item Dato histórico (año de construcción, etc.)
+          \item Un hecho matemático curioso
+        \end{enumerate}
+      \end{aplicarbox}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{crearbox}
+        \footnotesize
+        \textbf{Sección «Ruta de 3 horas»}\\[4pt]
+        Diseña una ruta turística visitando
+        \textbf{6 lugares} del mapa. Para cada tramo:
+        \begin{enumerate}
+          \item Anota los puntos inicial y final con coordenadas
+          \item Calcula la distancia con Pitágoras
+          \item Multiplica por la escala (1 u = 200 m)
+          \item Calcula el tiempo a 4{,}5 km/h
+        \end{enumerate}
+        Suma todas las distancias y tiempos.
+        ¿Cabe en 3 horas? Ajusta si es necesario.
+      \end{crearbox}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega el \textbf{borrador de la guía} con al menos
+    \textbf{4 secciones completas}:
+    \begin{enumerate}
+      \item Portada con título, autores y una estadística de Almería
+      \item Mapa con $\geq 8$ puntos etiquetados, escala y norte
+      \item Tabla de monumentos con $\geq 5$ filas y datos verificados
+      \item Ruta turística con distancias calculadas y tiempo total
+    \end{enumerate}
+    \vspace{4pt}
+    \textit{Recuerda: toda información numérica debe
+    tener su unidad. No existe el «200 metros cuadrados
+    de perímetro».}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \textbf{Una guía matemática no es solo una guía con números.}\\[6pt]
+    \incorrecto\ «La Alcazaba es un monumento histórico muy bonito
+    situado en Almería. Tiene muchas salas y vistas preciosas.»\\
+    {\footnotesize ← Esto es una guía turística clásica, no matemática.}\\[8pt]
+    \correcto\ «La Alcazaba (coordenadas $(1,4)$ en nuestro mapa,
+    escala 1\,u = 200\,m) ocupa \SI{43000}{m^2} $\approx$ \SI{4.3}{ha}
+    y registra \num{300000} visitantes anuales. Su muro de mayor altura
+    mide aproximadamente \SI{15}{m}.»\\
+    {\footnotesize ← Mismo lugar, pero con contenido matemático real.}
+  \end{errorbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 18}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item La guía tiene \textbf{7 secciones}: portada, mapa,
+            monumentos en cifras, rutas, gráficas, datos curiosos
+            y glosario.
+      \item Todo dato matemático necesita su \textbf{unidad}.
+      \item Las gráficas necesitan \textbf{título, ejes etiquetados
+            y escala desde 0}.
+      \item Las tablas deben estar \textbf{ordenadas por $x$}.
+      \item El mapa debe tener \textbf{escala, norte y $\geq 10$ puntos}.
+      \item Calidad $>$ cantidad: datos \textbf{verificados y relevantes}.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    \textbf{Sesión 19:} Revisión entre pares y mejora del borrador}
+  \end{center}
+\end{frame}
+
+\end{document}

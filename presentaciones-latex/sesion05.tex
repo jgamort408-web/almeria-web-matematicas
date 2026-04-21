@@ -1,0 +1,623 @@
+% ================================================================
+%  sesion05.tex  —  Sesión 5 de 20
+%  Rectas, segmentos y ángulos en la ciudad
+%  Almería en Cifras y Formas · Matemáticas 1.º ESO
+%  Compilar con:  pdflatex sesion05.tex  (dos pasadas)
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+% ---------------------------------------------------------------
+%  DATOS DE LA SESIÓN
+% ---------------------------------------------------------------
+\renewcommand{\SessionNumber}{05}
+\renewcommand{\SessionTitle}{Rectas, segmentos y ángulos en la ciudad}
+\renewcommand{\SessionName}{Sesión 05}
+\renewcommand{\SessionObjective}{%
+  Identificar y trazar puntos, rectas, segmentos y ángulos en planos
+  urbanos, reconociendo rectas paralelas y perpendiculares en las
+  calles de Almería.}
+\renewcommand{\BlockName}{Bloque 2: Geometría urbana}
+
+% ================================================================
+\begin{document}
+
+% ---------------------------------------------------------------
+%  PORTADA
+% ---------------------------------------------------------------
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ÍNDICE DE LA SESIÓN
+% ---------------------------------------------------------------
+\begin{frame}{Índice de la sesión}
+  \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \item Punto, recta, semirrecta y segmento
+        \item Ángulos y sus tipos
+        \item Rectas paralelas y perpendiculares
+        \item Almería: geometría en las calles
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{4}
+        \item Diagrama completo de elementos
+        \item Ejercicios multinivel (Bloom)
+        \item Evidencia del día
+        \item Error frecuente
+        \item Resumen
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{1. Punto, recta, semirrecta y segmento}
+% ---------------------------------------------------------------
+
+\begin{frame}{Elementos geométricos básicos}
+  \begin{columns}[T]
+    \begin{column}{0.50\textwidth}
+      \begin{definicionbox}{Punto}
+        \footnotesize
+        Posición exacta en el plano, \textbf{sin dimensiones}.\\
+        Se representa con una letra mayúscula: $A$, $B$, $P$\ldots
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Recta}
+        \footnotesize
+        Se extiende \textbf{infinitamente} en ambas direcciones;
+        no tiene extremos. Se representa con una letra minúscula: $r$, $s$\ldots
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Semirrecta}
+        \footnotesize
+        Mitad de una recta: tiene \textbf{un extremo} (origen)
+        y se extiende hacia un solo lado.
+      \end{definicionbox}
+      \vspace{5pt}
+      \begin{definicionbox}{Segmento}
+        \footnotesize
+        Porción \textbf{finita} de recta entre dos puntos $A$ y $B$.
+        Se escribe $\overline{AB}$. Tiene longitud medible.
+      \end{definicionbox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.88]
+          % ---------- Punto ----------
+          \node[punto] (P) at (0, 5.2) {};
+          \node[font=\small\bfseries, color=AlmAzulM, right=3pt of P] {$P$};
+          \node[font=\tiny, color=AlmGris, right=22pt of P] {punto};
+
+          % ---------- Recta ----------
+          \draw[recto, <->] (-1.8, 4.2) -- (2.2, 4.2);
+          \node[font=\tiny, color=AlmAzulM] at (-1.5, 4.45) {$r$};
+          \node[font=\tiny, color=AlmGris] at (2.8, 4.2) {recta};
+
+          % ---------- Semirrecta ----------
+          \node[punto] at (-1.8, 3.2) {};
+          \draw[recto, ->] (-1.8, 3.2) -- (2.2, 3.2);
+          \node[font=\tiny, color=AlmGris] at (2.8, 3.2) {semirrecta};
+
+          % ---------- Segmento ----------
+          \node[punto] (Sa) at (-1.8, 2.2) {};
+          \node[punto] (Sb) at (2.2, 2.2) {};
+          \draw[recto] (Sa) -- (Sb);
+          \node[font=\small\bfseries, color=AlmAzulM, below=2pt] at (Sa) {$A$};
+          \node[font=\small\bfseries, color=AlmAzulM, below=2pt] at (Sb) {$B$};
+          \node[font=\tiny, color=AlmGris] at (2.8, 2.2) {$\overline{AB}$};
+          % Acotación
+          \draw[acota] (-1.8,1.78) -- (2.2,1.78);
+          \node[font=\tiny, color=AlmGris] at (0.2, 1.52) {longitud medible};
+
+          % Línea separadora
+          \draw[AlmAmbar!60, line width=0.6pt, dashed]
+            (-2.1,0) -- (3.2,0);
+          \node[font=\tiny\bfseries, color=AlmAmbar!80!black]
+            at (0.5, -0.22) {elementos geométricos básicos};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{2. Ángulos y sus tipos}
+% ---------------------------------------------------------------
+
+\begin{frame}{Definición y tipos de ángulo}
+  \begin{columns}[c]
+    \begin{column}{0.42\textwidth}
+      \begin{definicionbox}{Ángulo}
+        \small
+        \textbf{Abertura} entre dos semirrectas
+        que parten del mismo punto (vértice).\\
+        Se mide en \textbf{grados} (°).
+      \end{definicionbox}
+      \vspace{6pt}
+      {\small
+      \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Tipo} & \textbf{Condición} & \textbf{Color}\\
+        \midrule
+        Agudo   & $0° < \alpha < 90°$
+          & \textcolor{AlmAzulM}{azul}\\
+        Recto   & $\alpha = 90°$
+          & \textcolor{AlmAmbar!80!black}{ámbar}\\
+        Obtuso  & $90° < \alpha < 180°$
+          & \textcolor{AlmTerra}{rojo}\\
+        Llano   & $\alpha = 180°$
+          & \textcolor{AlmVerde}{verde}\\
+        \bottomrule
+      \end{tabular}}
+    \end{column}
+    \begin{column}{0.54\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.82]
+          % ---- Agudo ~55° ----
+          \draw[recto, color=AlmAzulM]
+            (0,0) -- (1.3,0);
+          \draw[recto, color=AlmAzulM]
+            (0,0) -- (0.74,1.06);
+          \draw[AlmAzulM, line width=0.7pt]
+            (0.45,0) arc (0:55:0.45);
+          \node[font=\tiny\bfseries, color=AlmAzulM] at (0.7,0.25)
+            {$55°$};
+          \node[font=\tiny, color=AlmGris] at (0.65,-0.28)
+            {agudo};
+
+          % ---- Recto 90° ----
+          \draw[recto, color=AlmAmbar!80!black]
+            (2.5,0) -- (3.8,0);
+          \draw[recto, color=AlmAmbar!80!black]
+            (2.5,0) -- (2.5,1.3);
+          % Cuadradito de ángulo recto
+          \draw[rectoang]
+            (2.5,0) ++(0.28,0) -- ++(0,0.28) -- ++(-0.28,0);
+          \node[font=\tiny\bfseries, color=AlmAmbar!80!black]
+            at (3.2,0.45) {$90°$};
+          \node[font=\tiny, color=AlmGris] at (3.15,-0.28)
+            {recto};
+
+          % ---- Obtuso ~120° ----
+          \draw[recto, color=AlmTerra]
+            (4.8,0) -- (6.1,0);
+          \draw[recto, color=AlmTerra]
+            (4.8,0) -- (4.17,1.06);
+          \draw[AlmTerra, line width=0.7pt]
+            (5.22,0) arc (0:120:0.42);
+          \node[font=\tiny\bfseries, color=AlmTerra] at (5.05,0.35)
+            {$120°$};
+          \node[font=\tiny, color=AlmGris] at (5.45,-0.28)
+            {obtuso};
+
+          % ---- Llano 180° ----
+          \draw[recto, color=AlmVerde]
+            (0,-1.5) -- (3,-1.5);
+          \node[punto, fill=AlmVerde] at (1.5,-1.5) {};
+          \draw[AlmVerde, line width=0.7pt]
+            (1.92,-1.5) arc (0:180:0.42);
+          \node[font=\tiny\bfseries, color=AlmVerde] at (1.5,-1.1)
+            {$180°$};
+          \node[font=\tiny, color=AlmGris] at (1.5,-1.82)
+            {llano};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{3. Rectas paralelas y perpendiculares}
+% ---------------------------------------------------------------
+
+\begin{frame}{Rectas paralelas y perpendiculares}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Rectas paralelas}
+        \small
+        Dos rectas son \textbf{paralelas} si
+        \textbf{nunca se cortan}, por mucho que
+        las prolonguemos.\\[4pt]
+        Siempre mantienen la \textbf{misma distancia}
+        entre sí.\\[4pt]
+        Notación: $r \parallel s$
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.75]
+          \draw[recto, color=AlmAzulM]
+            (0,0.5) -- (3.5,0.5)
+            node[right, font=\tiny\bfseries, color=AlmAzulM]{$r$};
+          \draw[recto, color=AlmAzulM]
+            (0,1.6) -- (3.5,1.6)
+            node[right, font=\tiny\bfseries, color=AlmAzulM]{$s$};
+          % Marcas de paralelismo
+          \draw[AlmAmbar, line width=1pt]
+            (1.5,0.38) -- (1.5,0.62);
+          \draw[AlmAmbar, line width=1pt]
+            (1.5,1.48) -- (1.5,1.72);
+          % Distancia
+          \draw[acota] (2.8,0.5) -- (2.8,1.6);
+          \node[font=\tiny, color=AlmGris, right=2pt]
+            at (2.8,1.05) {dist. cte.};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{definicionbox}{Rectas perpendiculares}
+        \small
+        Dos rectas son \textbf{perpendiculares} si
+        se cortan formando un \textbf{ángulo de 90°}
+        (ángulo recto).\\[4pt]
+        Notación: $r \perp s$
+      \end{definicionbox}
+      \vspace{6pt}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.75]
+          \draw[recto, color=AlmTerra]
+            (0,1.05) -- (3.5,1.05)
+            node[right, font=\tiny\bfseries, color=AlmTerra]{$r$};
+          \draw[recto, color=AlmTerra]
+            (1.75,0) -- (1.75,2.3)
+            node[above, font=\tiny\bfseries, color=AlmTerra]{$s$};
+          % Cuadradito ángulo recto
+          \draw[rectoang]
+            (1.75,1.05) ++(0.22,0) -- ++(0,0.22) -- ++(-0.22,0);
+          \node[font=\small\bfseries, color=AlmAmbar!80!black]
+            at (2.35,1.5) {$90°$};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{4. Almería: geometría en las calles}
+% ---------------------------------------------------------------
+
+\begin{frame}{Geometría en las calles de Almería}
+  \begin{columns}[c]
+    \begin{column}{0.50\textwidth}
+      \begin{ejemplobox}
+        \small
+        \textbf{Paralelas en Almería:}\\
+        La \textbf{Avenida del Mediterráneo} y la
+        \textbf{Calle del Obispo} discurren en la misma
+        dirección; nunca se encuentran. Son \textbf{paralelas}.
+        \vspace{4pt}\\
+        \textbf{Perpendiculares en Almería:}\\
+        La \textbf{Calle Reyes Católicos} corta a la
+        \textbf{Rambla de Almería} formando un ángulo
+        de aproximadamente \textbf{90°}. Son \textbf{perpendiculares}.
+      \end{ejemplobox}
+      \vspace{6pt}
+      \begin{notabox}[Las calles son segmentos]
+        \small
+        Cualquier calle tiene un inicio y un final:
+        es un \textbf{segmento}, no una recta infinita.
+      \end{notabox}
+    \end{column}
+    \begin{column}{0.46\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.85]
+          % Fondo de manzana
+          \fill[AlmFondo, rounded corners=3pt]
+            (0,0) rectangle (4.4,3.8);
+          % Calle horizontal 1 — Av. Mediterráneo (paralela)
+          \fill[AlmAzulC!30]
+            (0,2.6) rectangle (4.4,3.1);
+          \node[font=\tiny\bfseries, color=AlmAzul, align=center]
+            at (2.2,2.85) {Av. Mediterráneo};
+          % Calle horizontal 2 — C. del Obispo (paralela)
+          \fill[AlmAzulC!30]
+            (0,0.6) rectangle (4.4,1.1);
+          \node[font=\tiny\bfseries, color=AlmAzul, align=center]
+            at (2.2,0.85) {C. del Obispo};
+          % Marcas de paralelismo
+          \draw[AlmAmbar, line width=1.2pt]
+            (2.0,2.62) -- (2.0,3.08);
+          \draw[AlmAmbar, line width=1.2pt]
+            (2.0,0.62) -- (2.0,1.08);
+          % Calle vertical — C. Reyes Católicos (perpendicular a Rambla)
+          \fill[AlmTerra!25]
+            (1.8,0) rectangle (2.3,3.8);
+          \node[font=\tiny\bfseries, color=AlmTerra,
+                rotate=90, align=center]
+            at (2.05,1.85) {C. Reyes Católicos};
+          % Cuadradito ángulo recto en intersección Rambla
+          \draw[rectoang, draw=AlmTerra, line width=0.9pt]
+            (2.3,1.1) ++(0,0) -- ++(0.2,0) -- ++(0,0.2);
+          % Leyenda
+          \node[font=\tiny, color=AlmAzulM] at (3.6,3.45)
+            {\textcolor{AlmAzulM}{$\parallel$} paralelas};
+          \node[font=\tiny, color=AlmTerra] at (3.65,3.15)
+            {\textcolor{AlmTerra}{$\perp$} perpendicular};
+        \end{tikzpicture}
+      \end{center}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{5. Diagrama completo de elementos}
+% ---------------------------------------------------------------
+
+\begin{frame}{Todos los elementos en un mapa urbano}
+  \framesubtitle{Plano esquemático de un barrio de Almería}
+  \begin{center}
+    \begin{tikzpicture}[scale=1.0]
+      % Fondo
+      \fill[AlmFondo, rounded corners=4pt]
+        (-0.6,-0.6) rectangle (9.6,5.0);
+
+      % ---- Calles paralelas horizontales ----
+      \draw[recto, color=AlmAzulM, line width=1.8pt]
+        (0,4.0) -- (9,4.0);
+      \draw[recto, color=AlmAzulM, line width=1.8pt]
+        (0,2.2) -- (9,2.2);
+      \draw[recto, color=AlmAzulM, line width=1.8pt]
+        (0,0.4) -- (9,0.4);
+
+      % Marcas de paralelismo en las tres rectas
+      \foreach \y in {4.0,2.2,0.4}{
+        \draw[AlmAmbar, line width=1.0pt]
+          (4.3,\y-0.12) -- (4.3,\y+0.12);
+        \draw[AlmAmbar, line width=1.0pt]
+          (4.6,\y-0.12) -- (4.6,\y+0.12);
+      }
+      \node[font=\tiny\bfseries, color=AlmAzulM] at (-0.3,4.0)
+        {$r_1$};
+      \node[font=\tiny\bfseries, color=AlmAzulM] at (-0.3,2.2)
+        {$r_2$};
+      \node[font=\tiny\bfseries, color=AlmAzulM] at (-0.3,0.4)
+        {$r_3$};
+      \node[font=\tiny, color=AlmAzulM] at (9.3,4.0) {Av.\ Mar};
+      \node[font=\tiny, color=AlmAzulM] at (9.3,2.2) {Rambla};
+      \node[font=\tiny, color=AlmAzulM] at (9.3,0.4) {C.\ Obispo};
+
+      % ---- Calle perpendicular ----
+      \draw[rectot, line width=1.8pt]
+        (2.8,-0.4) -- (2.8,4.8);
+      \node[font=\tiny\bfseries, color=AlmTerra, rotate=90]
+        at (2.55,2.2) {C.\ Reyes Católicos};
+      % Cuadradito ángulo recto
+      \draw[rectoang, draw=AlmTerra, line width=0.9pt]
+        (2.8,2.2) ++(0.18,0) -- ++(0,0.18) -- ++(-0.18,0);
+
+      % ---- Segmentos verdes ----
+      \draw[rectov, line width=2pt]
+        (5.5,0.4) -- (5.5,2.2);
+      \node[font=\tiny\bfseries, color=AlmVerde, rotate=90]
+        at (5.3,1.3) {$\overline{CD}$};
+      \draw[rectov, line width=2pt]
+        (7.0,2.2) -- (8.5,4.0);
+      \node[font=\tiny\bfseries, color=AlmVerde]
+        at (8.0,3.35) {$\overline{EF}$};
+      \draw[rectov, line width=2pt]
+        (1.0,0.4) -- (2.8,0.4);
+      \node[font=\tiny\bfseries, color=AlmVerde]
+        at (1.9,0.62) {$\overline{AB}$};
+
+      % ---- Puntos notables ----
+      \node[punto] (Pt) at (2.8,4.0) {};
+      \node[font=\tiny\bfseries, color=AlmAzulM, above right=0pt]
+        at (Pt) {$P$};
+      \node[punto] (Qt) at (5.5,2.2) {};
+      \node[font=\tiny\bfseries, color=AlmAzulM, above right=0pt]
+        at (Qt) {$Q$};
+
+      % ---- Ángulo agudo entre segmento oblicuo y horizontal ----
+      \draw[AlmAmbar!80!black, line width=0.7pt]
+        (7.28,2.2) arc (0:50:0.28);
+      \node[font=\tiny\bfseries, color=AlmAmbar!80!black]
+        at (7.7,2.45) {agudo};
+
+      % ---- Leyenda ----
+      \node[draw=AlmAzulC!50, fill=AlmBlanco, rounded corners=2pt,
+            inner sep=4pt, font=\tiny, align=left]
+        at (1.5,3.35) {
+          \textcolor{AlmAzulM}{—} paralelas ($r_1 \parallel r_2 \parallel r_3$)\\
+          \textcolor{AlmTerra}{—} perpendicular ($\perp$)\\
+          \textcolor{AlmVerde}{—} segmentos ($\overline{AB}$, $\overline{CD}$, $\overline{EF}$)
+        };
+    \end{tikzpicture}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+\seccionframe{6. Ejercicios multinivel — Bloom}
+% ---------------------------------------------------------------
+
+\begin{frame}{Ejercicio RECORDAR}
+  \bloomtag{RECORDAR}\quad\dificultad{1}
+  \vspace{4pt}
+  \begin{recordarbox}
+    \small
+    Con \textbf{regla y compás} (o solo regla), dibuja en
+    tu cuaderno cada uno de los siguientes elementos:
+    \begin{enumerate}
+      \item Una \textbf{recta} $r$ (indica la doble flecha
+            para mostrar que no tiene extremos).
+      \item Un \textbf{segmento} $\overline{AB}$ de 5 cm.
+            Mide y anota la longitud.
+      \item Un \textbf{ángulo recto} de 90°.
+            Marca el cuadradito del ángulo recto.
+      \item Un \textbf{ángulo agudo} de aproximadamente 60°.
+      \item Un \textbf{ángulo obtuso} de aproximadamente 110°.
+    \end{enumerate}
+    \vspace{4pt}
+    Escribe junto a cada dibujo el nombre del elemento
+    y su definición en una frase breve.
+  \end{recordarbox}
+\end{frame}
+
+\begin{frame}{Ejercicio COMPRENDER}
+  \bloomtag{COMPRENDER}\quad\dificultad{2}
+  \vspace{4pt}
+  \begin{comprenderbox}
+    \small
+    Observa una fotografía del centro histórico de Almería
+    (o el plano que facilita el profesor).\\[6pt]
+    Identifica y \textbf{justifica} con una frase cada uno:
+    \begin{enumerate}
+      \item \textbf{Dos calles paralelas.}\\
+            Justificación: «Son paralelas porque\ldots»
+      \item \textbf{Una intersección perpendicular.}\\
+            Justificación: «Son perpendiculares porque\ldots»
+      \item \textbf{Un ángulo obtuso} visible en un cruce o edificio.\\
+            Justificación: «Es obtuso porque mide más de 90°\ldots»
+    \end{enumerate}
+    \vspace{4pt}
+    \begin{notabox}[Pista]
+      \footnotesize
+      Para justificar el paralelismo: comprueba que
+      las calles \emph{nunca} se cruzan en el mapa.
+    \end{notabox}
+  \end{comprenderbox}
+\end{frame}
+
+\begin{frame}{Ejercicio APLICAR}
+  \bloomtag{APLICAR}\quad\dificultad{3}
+  \vspace{4pt}
+  \begin{aplicarbox}
+    \footnotesize
+    En el \textbf{plano simplificado de Almería} que te
+    entrega el profesor:
+    \begin{itemize}
+      \item Traza con \textcolor{AlmAzulM}{\textbf{azul}}
+            las \textbf{2 calles paralelas} que identifiques.
+            Añade las marcas de paralelismo
+            (\,$\shortmid$\;$\shortmid$\,) sobre ellas.
+      \item Traza con \textcolor{AlmTerra}{\textbf{rojo}}
+            la \textbf{intersección perpendicular} que
+            identifiques. Dibuja el cuadradito de 90°.
+      \item Marca con \textcolor{AlmVerde}{\textbf{verde}}
+            \textbf{3 segmentos} que representen tramos de calles.
+            Escribe su nombre ($\overline{AB}$, $\overline{CD}$,
+            $\overline{EF}$) y mide su longitud aproximada en cm.
+      \item Señala \textbf{2 ángulos agudos} y \textbf{1 ángulo obtuso}
+            que aparezcan en algún cruce o edificio del plano.
+    \end{itemize}
+  \end{aplicarbox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  EVIDENCIA
+% ---------------------------------------------------------------
+\begin{frame}{Evidencia del día}
+  \begin{evidenciabox}
+    Entrega tu \textbf{Plano anotado de Almería} con:
+    \begin{itemize}
+      \item \textcolor{AlmAzulM}{\textbf{Paralelas en azul}}
+            con marcas de paralelismo y nombre de las calles.
+      \item \textcolor{AlmTerra}{\textbf{Perpendiculares en rojo}}
+            con el cuadradito de ángulo recto dibujado.
+      \item \textcolor{AlmVerde}{\textbf{Segmentos en verde}}
+            con sus extremos nombrados y longitud aproximada.
+      \item Al menos \textbf{2 ángulos} etiquetados con su tipo
+            (agudo / recto / obtuso / llano).
+      \item Una tabla resumen:
+    \end{itemize}
+    \vspace{4pt}
+    \begin{center}
+      \small
+      \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{Elemento} & \textbf{Ejemplo en Almería} & \textbf{Justificación}\\
+        \midrule
+        Paralelas & Av.\,Mediterráneo y C.\,Obispo & Nunca se cortan\\
+        Perpendiculares & C.\,Reyes Católicos $\perp$ Rambla & Forman 90°\\
+        \ldots & \ldots & \ldots\\
+        \bottomrule
+      \end{tabular}
+    \end{center}
+  \end{evidenciabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  ERROR FRECUENTE
+% ---------------------------------------------------------------
+\begin{frame}{¡Cuidado con este error!}
+  \begin{errorbox}
+    \begin{columns}[c]
+      \begin{column}{0.50\textwidth}
+        \incorrecto\ \textbf{Error frecuente}\\[6pt]
+        Llamar «recta» a una calle porque parece
+        infinitamente larga.\\[6pt]
+        \begin{center}
+          \cancel{«La Calle Mayor es una \textbf{recta}»}
+        \end{center}
+        \vspace{4pt}
+        \footnotesize
+        Toda calle tiene un inicio y un final:
+        \textbf{siempre es un segmento}.
+        Una recta matemática no tiene extremos
+        y se extiende al infinito en ambos sentidos,
+        lo que es imposible en el mundo real.
+      \end{column}
+      \begin{column}{0.46\textwidth}
+        \correcto\ \textbf{Correcto}\\[6pt]
+        \small
+        «La Calle Mayor es el
+        \textbf{segmento} $\overline{AB}$,
+        donde $A$ es su inicio y $B$ su final.»\\[8pt]
+        \begin{center}
+          \begin{tikzpicture}[scale=0.8]
+            \node[punto] (A) at (0,0) {};
+            \node[font=\small\bfseries, color=AlmAzulM,
+                  below=2pt] at (A) {$A$};
+            \node[punto] (B) at (3.5,0) {};
+            \node[font=\small\bfseries, color=AlmAzulM,
+                  below=2pt] at (B) {$B$};
+            \draw[recto] (A) -- (B);
+            \draw[acota] (0,-0.42) -- (3.5,-0.42);
+            \node[font=\tiny, color=AlmGris] at (1.75,-0.65)
+              {longitud finita};
+          \end{tikzpicture}
+        \end{center}
+      \end{column}
+    \end{columns}
+  \end{errorbox}
+  \vspace{6pt}
+  \begin{notabox}[Regla de oro]
+    \small
+    \textbf{Recta} $\to$ sin extremos, infinita. \quad
+    \textbf{Segmento} $\to$ dos extremos, longitud medible.
+  \end{notabox}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  RESUMEN
+% ---------------------------------------------------------------
+\begin{frame}{Resumen de la sesión 05}
+  \begin{resumenbox}
+    \begin{itemize}
+      \item \textbf{Punto}: posición sin dimensiones. \textbf{Recta}: sin extremos, infinita. \textbf{Semirrecta}: un extremo. \textbf{Segmento}: dos extremos, longitud medible.
+      \item Un \textbf{ángulo} es la abertura entre dos semirrectas
+            con el mismo origen; se mide en grados (°).
+      \item Tipos: \textbf{agudo} ($< 90°$),
+            \textbf{recto} ($= 90°$),
+            \textbf{obtuso} ($90°$--$180°$),
+            \textbf{llano} ($= 180°$).
+      \item \textbf{Paralelas}: nunca se cortan ($r \parallel s$).
+      \item \textbf{Perpendiculares}: se cortan en 90° ($r \perp s$).
+      \item Las calles de Almería son \textbf{segmentos},
+            no rectas, porque tienen inicio y final.
+    \end{itemize}
+  \end{resumenbox}
+  \vspace{6pt}
+  \begin{center}
+    {\small\color{AlmAzulM}
+    \faArrowCircleRight\enskip
+    \textbf{Próxima sesión:}
+    Polígonos en la ciudad — triángulos y cuadriláteros en Almería.}
+  \end{center}
+\end{frame}
+
+\end{document}

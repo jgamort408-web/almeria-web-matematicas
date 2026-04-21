@@ -1,0 +1,154 @@
+% ================================================================
+%  main.tex  —  Compilador maestro
+%  Almería en Cifras y Formas · Presentaciones Beamer
+%  ---------------------------------------------------------------
+%  Este archivo reúne todas las sesiones en un único PDF.
+%  Para compilar una sesión individual, abre directamente
+%  sesionXX.tex y compila con pdflatex (dos pasadas).
+%
+%  Para Overleaf: sube toda la carpeta como proyecto.
+%  El archivo principal de Overleaf debe ser main.tex.
+%
+%  Compilación local (requiere TeX Live o MiKTeX):
+%    pdflatex main.tex
+%    pdflatex main.tex   (segunda pasada para referencias)
+% ================================================================
+\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\usepackage{almeria-beamer}
+
+% ---------------------------------------------------------------
+%  Datos del proyecto (comunes a todas las sesiones)
+% ---------------------------------------------------------------
+\renewcommand{\ProjectName}{Almería en Cifras y Formas}
+\renewcommand{\AuthorName}{Juan María Gámez Ortiz}
+\renewcommand{\InstituteName}{IES Al-Ándalus}
+\renewcommand{\SchoolYear}{2025--2026}
+\renewcommand{\SchoolSubject}{Matemáticas 1.º ESO}
+
+% ---------------------------------------------------------------
+%  Portada del proyecto completo
+% ---------------------------------------------------------------
+\renewcommand{\SessionNumber}{\phantom{0}}
+\renewcommand{\SessionTitle}{Presentaciones de aula}
+\renewcommand{\SessionName}{Colección completa}
+\renewcommand{\SessionObjective}{%
+  Guía teórica completa con ejemplos, soluciones paso a paso
+  y representaciones gráficas para las 20 sesiones de la
+  situación de aprendizaje «Almería en Cifras y Formas».}
+\renewcommand{\BlockName}{Bloques 1--4 · 20 sesiones}
+
+\begin{document}
+
+\begin{frame}[plain]
+  % Portada especial de proyecto completo
+  \begin{tikzpicture}[remember picture, overlay]
+    \fill[AlmAzul] (current page.south west) rectangle (current page.north east);
+    \fill[AlmAzulM, opacity=0.4]
+      (current page.south west) --
+      ([yshift=3.5cm]current page.south west) ..controls
+      ([xshift=5cm,yshift=4cm]current page.south west) and
+      ([xshift=-5cm,yshift=3cm]current page.south east)..
+      ([yshift=3.5cm]current page.south east) --
+      (current page.south east) -- cycle;
+    \fill[AlmAmbar]
+      ([yshift=-3pt]current page.north west)
+      rectangle
+      ([yshift=-10pt]current page.north east);
+  \end{tikzpicture}
+  \vspace{0.6cm}
+  \begin{center}
+    {\color{AlmAmbar}\normalsize\bfseries
+      \faMapMarkerAlt\quad\ProjectName}\\[0.5cm]
+    {\color{AlmBlanco}\Huge\bfseries Presentaciones de aula}\\[0.3cm]
+    {\color{AlmBlanco!70}\large 20 sesiones · Guía teórica completa}\\[0.8cm]
+    \begin{tcolorbox}[
+      enhanced, width=0.72\textwidth,
+      colback=AlmAzulM!50!AlmAzul,
+      colframe=AlmAmbar, boxrule=1pt, arc=4pt,
+      halign=center]
+      {\color{AlmBlanco}\small
+        Bloques 1--4 · \SchoolSubject · \SchoolYear\\
+        \AuthorName · \InstituteName}
+    \end{tcolorbox}
+  \end{center}
+\end{frame}
+
+% ---------------------------------------------------------------
+%  Índice general
+% ---------------------------------------------------------------
+\begin{frame}{Índice general de sesiones}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      {\color{AlmAzulM}\bfseries Bloque 1: Mapa y coordenadas}
+      \begin{enumerate}
+        \item ¿Qué es una guía turística matemática?
+        \item ¿Qué se puede medir en una ciudad?
+        \item Plano por cuadrantes
+        \item Coordenadas y localización
+      \end{enumerate}
+      \vspace{6pt}
+      {\color{AlmTerra}\bfseries Bloque 2: Geometría urbana}
+      \begin{enumerate}\setcounter{enumi}{4}
+        \item Rectas, segmentos y ángulos
+        \item Figuras planas en la ciudad
+        \item Perímetro de zonas urbanas
+        \item Área de zonas urbanas
+        \item Perímetro y área: no son lo mismo
+        \item Rutas y distancias por Almería
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      {\color{AlmVerde}\bfseries Bloque 3: Datos y gráficas}
+      \begin{enumerate}\setcounter{enumi}{10}
+        \item Variables urbanas
+        \item De enunciado a tabla
+        \item De tabla a gráfica
+        \item Leer e interpretar gráficas
+        \item Comparar gráficas
+        \item Relaciones funcionales y proporcionalidad
+      \end{enumerate}
+      \vspace{6pt}
+      {\color{BCrear}\bfseries Bloque 4: Producto final}
+      \begin{enumerate}\setcounter{enumi}{16}
+        \item Seleccionar la información de la guía
+        \item Construimos la guía
+        \item Ensayo y mejora
+        \item Exposición y cierre del proyecto
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+% ================================================================
+%  INCLUSIÓN DE TODAS LAS SESIONES
+%  Cada \input carga el cuerpo de la sesión (sin \documentclass).
+%  NOTA: Para incluir sesiones individuales descomenta las líneas.
+%  En Overleaf, puedes compilar el main.tex completo o
+%  cada sesionXX.tex de forma independiente.
+% ================================================================
+
+% Descomenta las líneas siguientes para generar el PDF completo.
+% Con todas activadas, el PDF resultante tiene ~200+ diapositivas.
+
+% \input{sesion01}
+% \input{sesion02}
+% \input{sesion03}
+% \input{sesion04}
+% \input{sesion05}
+% \input{sesion06}
+% \input{sesion07}
+% \input{sesion08}
+% \input{sesion09}
+% \input{sesion10}
+% \input{sesion11}
+% \input{sesion12}
+% \input{sesion13}
+% \input{sesion14}
+% \input{sesion15}
+% \input{sesion16}
+% \input{sesion17}
+% \input{sesion18}
+% \input{sesion19}
+% \input{sesion20}
+
+\end{document}
