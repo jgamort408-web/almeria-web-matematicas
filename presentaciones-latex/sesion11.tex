@@ -156,11 +156,13 @@
   \begin{center}
   \begin{tikzpicture}
     \node[rounded corners=5pt, fill=AlmAzulM!15, draw=AlmAzulM,
-          minimum width=3.2cm, minimum height=1cm, font=\bfseries\small]
-      (xi) at (0,0) {Mes del año\\{\tiny(variable independiente \(x\))}};
+          minimum width=3.2cm, minimum height=1cm, font=\bfseries\small,
+          align=center, text width=3cm]
+      (xi) at (0,0) {Mes del año\\\small var.\ $x$};
     \node[rounded corners=5pt, fill=AlmAmbar!25, draw=AlmAmbar!70!black,
-          minimum width=3.6cm, minimum height=1cm, font=\bfseries\small]
-      (yi) at (7,0) {Nº de turistas\\{\tiny(variable dependiente \(y\))}};
+          minimum width=3.6cm, minimum height=1cm, font=\bfseries\small,
+          align=center, text width=3.4cm]
+      (yi) at (7,0) {N.º de turistas\\\small var.\ $y$};
     \draw[-Stealth, AlmTerra, line width=2pt] (xi.east) -- node[above,font=\small,color=AlmTerra]
       {\textit{determina}} (yi.west);
   \end{tikzpicture}
@@ -183,7 +185,7 @@
     \begin{column}{0.42\textwidth}
       \begin{notabox}[Fórmula mental]
         \small
-        \[\text{Cuanto más } x \;\Rightarrow\; \text{más/menos } y\]
+        $\text{Cuanto más } x \;\Rightarrow\; \text{más/menos } y$
         Si tiene sentido, \(x\) es la independiente.
       \end{notabox}
     \end{column}

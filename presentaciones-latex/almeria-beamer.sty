@@ -1,13 +1,13 @@
 % ================================================================
-%  almeria-beamer.sty
+%  almeria-beamer.sty  v2.0
 %  Tema Beamer personalizado — "Almería en Cifras y Formas"
 %  Situación de Aprendizaje · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 %  ---------------------------------------------------------------
-%  Uso:  \usepackage{almeria-beamer}   (en el preámbulo de cada sesión)
-%  Compilación: pdflatex  o  xelatex  (recomendado xelatex para UTF-8)
+%  Requiere: MiKTeX 26+ / TeX Live 2022+
+%  Compilar con: pdflatex  (dos pasadas)
 % ================================================================
-\ProvidesPackage{almeria-beamer}[2026/04/20 v1.0]
+\ProvidesPackage{almeria-beamer}[2026/04/21 v2.0]
 
 % ---------------------------------------------------------------
 %  PAQUETES BASE
@@ -20,10 +20,10 @@
 
 % Matemáticas
 \RequirePackage{amsmath,amssymb,mathtools}
-% Definición manual de \cancel (evita dependencia del paquete cancel)
+\RequirePackage[normalem]{ulem}
 \newcommand{\cancel}[1]{\sout{#1}}
-\RequirePackage[normalem]{ulem}   % \sout{} para tachar texto
-% Unidades SI — definición manual (evita paquete siunitx)
+
+% Unidades SI manuales (compatibilidad máxima)
 \newcommand{\SI}[2]{\ensuremath{#1\,\mathrm{#2}}}
 \newcommand{\SIrange}[3]{\ensuremath{#1}--\ensuremath{#2\,\mathrm{#3}}}
 \newcommand{\num}[1]{\ensuremath{#1}}
@@ -40,7 +40,7 @@
   matrix, angles
 }
 \RequirePackage{pgfplots}
-\pgfplotsset{compat=1.16}
+\pgfplotsset{compat=1.18}
 \usepgfplotslibrary{fillbetween}
 
 % Tablas
@@ -51,45 +51,16 @@
 \RequirePackage{tabularx}
 \RequirePackage{colortbl}
 
-% Cajas
+% Cajas pedagógicas (tcolorbox moderno)
 \RequirePackage[most]{tcolorbox}
-\tcbuselibrary{skins, theorems}
+\tcbuselibrary{skins, theorems, breakable}
 
-% Iconos — aliases de texto (sin fontawesome5 para mayor compatibilidad)
-\newcommand{\faBook}{{\small\textbf{[T]}}}
-\newcommand{\faInfoCircle}{{\small\textbf{[i]}}}
-\newcommand{\faMapMarkerAlt}{$\blacktriangle$}
-\newcommand{\faBrain}{$\star$}
-\newcommand{\faLightbulb}{$\circ$}
-\newcommand{\faTools}{$\triangleright$}
-\newcommand{\faSearch}{$\diamond$}
-\newcommand{\faBalanceScale}{$\Leftrightarrow$}
-\newcommand{\faStar}{\textbf{*}}
-\newcommand{\faExclamationTriangle}{\textbf{!}}
-\newcommand{\faClipboardCheck}{\checkmark}
-\newcommand{\faCheckDouble}{\checkmark\checkmark}
-\newcommand{\faArrowCircleRight}{$\Rightarrow$}
-\newcommand{\faUserTie}{\textbf{@}}
-\newcommand{\faSchool}{\textbf{[E]}}
-\newcommand{\faBookOpen}{\textbf{[L]}}
-\newcommand{\faChartBar}{$\sqsubset$}
-\newcommand{\faChartLine}{$\sim$}
-\newcommand{\faTable}{$\boxplus$}
-\newcommand{\faRoute}{$\to$}
-\newcommand{\faDatabase}{$\bullet$}
-\newcommand{\faCheck}{\checkmark}
-\newcommand{\faTimes}{$\times$}
-\newcommand{\faCheckCircle}{\checkmark} % <-- Añadido
-\newcommand{\faTimesCircle}{\textbf{X}} % <-- Añadido
-\newcommand{\faCalculator}{$\Sigma$}
-\newcommand{\faCommentAlt}{\textbf{[?]}}
-\newcommand{\faCity}{$\square$}
-\newcommand{\faEquals}{$=$}
-\newcommand{\faRuler}{$\vert$}
-\newcommand{\faStickyNote}{$\circ$}
-\newcommand{\faAward}{$\bigstar$}
-\newcommand{\fastar}{\textbf{*}}
-\newcommand{\faUser}{\textbf{@}}
+% Iconos FontAwesome5
+\RequirePackage{fontawesome5}
+% map-marker-alt y comment-alt no están en FA5 Free → aliases
+\providecommand{\faMapMarkerAlt}{\faMapMarker}
+\providecommand{\faCommentAlt}{\faComment}
+\providecommand{\fastar}{\faStar}
 
 % Miscelánea
 \RequirePackage{xspace}
@@ -119,13 +90,20 @@
 \definecolor{BAnalizar}{HTML}{2E7D32}    % verde
 \definecolor{BEvaluar}{HTML}{1565C0}     % azul
 \definecolor{BCrear}{HTML}{6A1B9A}       % púrpura
+% Alias ALL-CAPS para compatibilidad con \bloomtag{RECORDAR}
+\colorlet{BRECORDAR}{BRecordar}
+\colorlet{BCOMPRENDER}{BComprender}
+\colorlet{BAPLICAR}{BAplicar}
+\colorlet{BANALIZAR}{BAnalizar}
+\colorlet{BEVALUAR}{BEvaluar}
+\colorlet{BCREAR}{BCrear}
 
 
 % ---------------------------------------------------------------
 %  TEMA BEAMER — configuración general
 % ---------------------------------------------------------------
 \usetheme{default}
-\setbeamertemplate{navigation symbols}{}   % sin botones de navegación
+\setbeamertemplate{navigation symbols}{}
 
 % -- Colores del tema --
 \setbeamercolor{normal text}{fg=AlmNegro, bg=AlmBlanco}
@@ -147,7 +125,6 @@
 \setbeamercolor{footline}{fg=AlmBlanco, bg=AlmAzul}
 \setbeamercolor{section in toc}{fg=AlmAzul}
 \setbeamercolor{subsection in toc}{fg=AlmAzulM}
-\setbeamercolor{separator line}{fg=AlmAmbar}
 
 % -- Fuentes del tema --
 \setbeamerfont{title}{size=\Large, series=\bfseries}
@@ -220,70 +197,83 @@
       ([xshift=-4cm,yshift=2.8cm]current page.south east) ..
       ([yshift=3.2cm]current page.south east) --
       (current page.south east) -- cycle;
+    % Ola superior sutil
+    \fill[AlmAzulO, opacity=0.40]
+      (current page.north west) --
+      ([yshift=-2.8cm]current page.north west) ..controls
+      ([xshift=3cm,yshift=-3.2cm]current page.north west) and
+      ([xshift=-6cm,yshift=-2.4cm]current page.north east) ..
+      ([yshift=-2.8cm]current page.north east) --
+      (current page.north east) -- cycle;
     % Franja dorada superior
     \fill[AlmAmbar]
       ([yshift=-3pt]current page.north west)
       rectangle
-      ([yshift=-10pt]current page.north east);
+      ([yshift=-9pt]current page.north east);
+    % Franja dorada inferior (delgada)
+    \fill[AlmAmbar!70]
+      (current page.south west)
+      rectangle
+      ([yshift=3pt]current page.south east);
     % Círculo decorativo (esquina superior derecha)
-    \fill[AlmAmbar, opacity=0.10]
-      ([xshift=-0.8cm, yshift=-0.8cm]current page.north east) circle (4.8cm);
-    \fill[AlmAzulM, opacity=0.20]
-      ([xshift=-2.5cm, yshift=-2.5cm]current page.north east) circle (3.2cm);
+    \fill[AlmAmbar, opacity=0.08]
+      ([xshift=-0.8cm, yshift=-0.8cm]current page.north east) circle (5.2cm);
+    \fill[AlmAzulM, opacity=0.18]
+      ([xshift=-2.2cm, yshift=-2.2cm]current page.north east) circle (3.5cm);
     % Badge número de sesión
     \node[
-      circle, draw=AlmAmbar, line width=2.2pt,
-      fill=AlmAzulM, minimum size=3cm,
+      circle, draw=AlmAmbar, line width=2.5pt,
+      fill=AlmAzulM!80!AlmAzul, minimum size=3.2cm,
       text=AlmBlanco, font=\bfseries\huge,
       anchor=center
-    ] at ([xshift=-2.2cm, yshift=-2.2cm]current page.north east)
+    ] at ([xshift=-2.3cm, yshift=-2.3cm]current page.north east)
       (badge) {\SessionNumber};
-    \node[above=3pt of badge, text=AlmAmbar,
+    \node[above=4pt of badge, text=AlmAmbar,
           font=\tiny\bfseries\sffamily, anchor=south] {SESIÓN};
     % Badge bloque
     \node[
-      rounded corners=3pt, fill=AlmAmbar!85!white,
-      text=AlmAzul, font=\tiny\bfseries\sffamily,
-      anchor=north, inner sep=4pt
-    ] at ([xshift=-2.2cm, yshift=-4cm]current page.north east) {\BlockName};
+      rounded corners=3pt, fill=AlmAmbar,
+      text=AlmAzulO, font=\tiny\bfseries\sffamily,
+      anchor=north, inner sep=5pt
+    ] at ([xshift=-2.3cm, yshift=-4.2cm]current page.north east) {\BlockName};
   \end{tikzpicture}
 
   % Contenido
   \vskip0.55cm
   \begin{columns}[c]
-    \begin{column}{0.73\textwidth}
+    \begin{column}{0.74\textwidth}
       {\color{AlmAmbar}\footnotesize\bfseries
         \faMapMarkerAlt\quad\ProjectName}%
-
+      \par\vspace{0.15cm}
       {\color{AlmBlanco}\LARGE\bfseries\SessionTitle}%
-
+      \par\vspace{0.12cm}
       {\color{AlmBlanco!65}\small
         Sesión \SessionNumber\ $\cdot$\ \SchoolSubject\ $\cdot$\ \SchoolYear}%
-
+      \par\vspace{0.25cm}
       % Caja objetivo
       \begin{tcolorbox}[
         enhanced, sharp corners,
         colback=AlmAzulM!55!AlmAzul,
         colframe=AlmAmbar,
-        boxrule=1pt, leftrule=3pt,
-        boxsep=5pt, arc=3pt,
+        boxrule=0.8pt, leftrule=3pt,
+        boxsep=4pt, arc=3pt,
         width=0.95\textwidth,
         before skip=0pt, after skip=0pt
       ]
-        {\color{AlmAmbar}\bfseries\tiny OBJETIVO\quad}%
+        {\color{AlmAmbar}\bfseries\tiny \faBookOpen\enspace OBJETIVO\quad}%
         {\color{AlmBlanco!90}\small\SessionObjective}%
       \end{tcolorbox}
-
-      {\color{AlmBlanco!45}\tiny
+      \par\vspace{0.18cm}
+      {\color{AlmBlanco!40}\tiny
         \faUserTie\;\AuthorName
         \quad\textbar\quad
         \faSchool\;\InstituteName
         \quad\textbar\quad
-        \faBookOpen\;\SchoolSubject
+        \faBook\;\SchoolSubject
       }
     \end{column}
-    \begin{column}{0.27\textwidth}
-      % El badge está en el overlay TikZ
+    \begin{column}{0.26\textwidth}
+      % Badge en overlay TikZ
     \end{column}
   \end{columns}
 }
@@ -297,14 +287,23 @@
   \begingroup
     \setbeamercolor{background canvas}{bg=#1}
     \begin{frame}[plain, c]
+      \begin{tikzpicture}[remember picture, overlay]
+        % Franja ámbar izquierda
+        \fill[AlmAmbar]
+          (current page.south west)
+          rectangle
+          ([xshift=5pt]current page.north west);
+        % Franja ámbar derecha
+        \fill[AlmAmbar, opacity=0.35]
+          ([xshift=-5pt]current page.south east)
+          rectangle
+          (current page.north east);
+      \end{tikzpicture}
       \begin{center}
-        \begin{tikzpicture}
-          \draw[AlmAmbar, line width=1.8pt] (-3.5,0) -- (3.5,0);
-        \end{tikzpicture}
-        {\color{AlmBlanco}\huge\bfseries #2}
-        \begin{tikzpicture}
-          \draw[AlmAmbar, line width=1.8pt] (-3.5,0) -- (3.5,0);
-        \end{tikzpicture}
+        \vspace{0.5cm}
+        {\color{AlmAmbar}\rule{0.5\paperwidth}{1.5pt}}\\[0.35cm]
+        {\color{AlmBlanco}\huge\bfseries #2}\\[0.35cm]
+        {\color{AlmAmbar}\rule{0.5\paperwidth}{1.5pt}}
       \end{center}
     \end{frame}
   \endgroup
@@ -318,7 +317,7 @@
 % --- Teoría ---
 \newtcolorbox{teoriabox}[1][]{%
   enhanced,
-  colback=AlmAzul!7, colframe=AlmAzul,
+  colback=AlmAzul!6, colframe=AlmAzul,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faBook\enskip Teoría},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
@@ -331,7 +330,7 @@
 % --- Definición (título personalizable) ---
 \newtcolorbox{definicionbox}[2][]{%
   enhanced,
-  colback=AlmAzulM!9, colframe=AlmAzulM,
+  colback=AlmAzulM!8, colframe=AlmAzulM,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faInfoCircle\enskip #2},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
@@ -344,95 +343,100 @@
 \newtcolorbox{ejemplobox}[1][]{%
   enhanced,
   colback=AlmAmbar!10, colframe=AlmAmbar,
-  fonttitle=\bfseries\small\color{AlmAzul},
+  fonttitle=\bfseries\small\color{AlmAzulO},
   title={\faMapMarkerAlt\enskip Ejemplo en Almería},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
-  boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt, boxrule=0pt},
+  boxed title style={colback=AlmAmbar, coltext=AlmAzulO, arc=3pt, boxrule=0pt},
   arc=4pt, boxrule=0.5pt, leftrule=4pt,
   #1%
 }
 
-% --- Ejercicios por nivel Bloom ---
+% --- RECORDAR ---
 \newtcolorbox{recordarbox}[1][]{%
   enhanced,
-  colback=BRecordar!8, colframe=BRecordar,
+  colback=BRecordar!7, colframe=BRecordar,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faBrain\enskip RECORDAR},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BRecordar, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
+% --- COMPRENDER ---
 \newtcolorbox{comprenderbox}[1][]{%
   enhanced,
-  colback=BComprender!8, colframe=BComprender,
+  colback=BComprender!7, colframe=BComprender,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faLightbulb\enskip COMPRENDER},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BComprender, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
+% --- APLICAR ---
 \newtcolorbox{aplicarbox}[1][]{%
   enhanced,
-  colback=BAplicar!10, colframe=BAplicar!80!black,
+  colback=BAplicar!9, colframe=BAplicar!80!black,
   fonttitle=\bfseries\small\color{AlmNegro},
   title={\faTools\enskip APLICAR},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BAplicar, coltext=AlmNegro, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
+% --- ANALIZAR ---
 \newtcolorbox{analizarbox}[1][]{%
   enhanced,
-  colback=BAnalizar!8, colframe=BAnalizar,
+  colback=BAnalizar!7, colframe=BAnalizar,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faSearch\enskip ANALIZAR},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BAnalizar, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
+% --- EVALUAR ---
 \newtcolorbox{evaluarbox}[1][]{%
   enhanced,
-  colback=BEvaluar!8, colframe=BEvaluar,
+  colback=BEvaluar!7, colframe=BEvaluar,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faBalanceScale\enskip EVALUAR},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BEvaluar, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
+% --- CREAR ---
 \newtcolorbox{crearbox}[1][]{%
   enhanced,
-  colback=BCrear!8, colframe=BCrear,
+  colback=BCrear!7, colframe=BCrear,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faStar\enskip CREAR},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=BCrear, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt, #1%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt, #1%
 }
 
 % --- Error frecuente ---
 \newtcolorbox{errorbox}{%
   enhanced,
-  colback=AlmTerra!8, colframe=AlmTerra,
+  colback=AlmTerra!7, colframe=AlmTerra,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faExclamationTriangle\enskip \textbf{¡Cuidado con este error!}},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=AlmTerra, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt%
 }
 
 % --- Evidencia del día ---
 \newtcolorbox{evidenciabox}{%
   enhanced,
-  colback=AlmVerde!8, colframe=AlmVerde,
+  colback=AlmVerde!7, colframe=AlmVerde,
   fonttitle=\bfseries\small\color{AlmBlanco},
   title={\faClipboardCheck\enskip Evidencia del día},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=AlmVerde, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt%
 }
 
 % --- Paso en solución (numerado) ---
@@ -455,24 +459,24 @@
   title={\faCheckDouble\enskip Lo que hemos aprendido hoy},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
   boxed title style={colback=AlmAzul, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt%
+  arc=4pt, leftrule=4pt, boxrule=0.4pt%
 }
 
 % --- Nota/Curiosidad ---
 \newtcolorbox{notabox}[1][Nota]{%
   enhanced,
   colback=AlmAmbar!8, colframe=AlmAmbar!60!black,
-  fonttitle=\bfseries\small\color{AlmAzul},
+  fonttitle=\bfseries\small\color{AlmAzulO},
   title={\faStickyNote\enskip #1},
   attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
-  boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt, boxrule=0pt},
-  arc=4pt, leftrule=4pt%
+  boxed title style={colback=AlmAmbar, coltext=AlmAzulO, arc=3pt, boxrule=0pt},
+  arc=4pt, leftrule=4pt, boxrule=0.4pt%
 }
 
 % --- Fórmula destacada (centrada, grande) ---
 \newtcolorbox{formulabox}[1][AlmAzulM]{%
   enhanced, center,
-  colback=#1!9, colframe=#1,
+  colback=#1!8, colframe=#1,
   boxrule=1pt, arc=6pt,
   width=0.82\linewidth,
   halign=center,
@@ -540,14 +544,14 @@
   \end{center}%
 }
 
-% Tick verde / Cruz roja (para comparar correcto/incorrecto)
+% Tick verde / Cruz roja
 \newcommand{\correcto}{\textcolor{AlmVerde}{\faCheckCircle}\xspace}
 \newcommand{\incorrecto}{\textcolor{AlmTerra}{\faTimesCircle}\xspace}
 
 % Unidad de medida destacada
 \newcommand{\unidad}[1]{\textcolor{AlmAzulM}{\textbf{#1}}}
 
-% Número de sesión destacado en texto
+% Número de sesión en caja
 \newcommand{\nsesion}[1]{%
   \tcbox[on line, colback=AlmAzul, colframe=AlmAzul,
          fontupper=\bfseries\color{AlmBlanco},
@@ -596,7 +600,6 @@
 %  ESTILOS TIKZ  (diagramas geométricos)
 % ---------------------------------------------------------------
 \tikzset{
-  % Punto en coordenadas
   punto/.style={
     circle, fill=AlmAzulM, inner sep=2.2pt, draw=AlmBlanco, line width=0.8pt
   },
@@ -606,26 +609,20 @@
   puntov/.style={
     circle, fill=AlmVerde, inner sep=2.2pt, draw=AlmBlanco, line width=0.8pt
   },
-  % Etiqueta de punto
   etiqueta/.style={
     font=\small\bfseries, color=AlmAzulM, above right
   },
-  % Segmento / recta
   recto/.style={AlmAzulM, line width=1.5pt},
   rectot/.style={AlmTerra, line width=1.5pt},
   rectov/.style={AlmVerde, line width=1.5pt},
-  % Ángulo
   arco/.style={draw=AlmTerra, line width=0.8pt},
-  % Flecha de acotación
   acota/.style={
     <->, >=Stealth, AlmGris, line width=0.8pt,
     shorten <=2pt, shorten >=2pt
   },
-  % Sombreado de zona (área)
   zona/.style={fill=AlmAzulC, fill opacity=0.18, draw=AlmAzulM, line width=0.8pt},
   zonat/.style={fill=AlmTerra, fill opacity=0.15, draw=AlmTerra, line width=0.8pt},
   zonav/.style={fill=AlmVerde, fill opacity=0.15, draw=AlmVerde, line width=0.8pt},
-  % Cuadradito de ángulo recto
   rectoang/.style={draw=AlmAzulM, line width=0.7pt, fill=none},
 }
 

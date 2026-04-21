@@ -246,12 +246,6 @@
               (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
               (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
             };
-          % Zona de verano (>20°C)
-          \addplot[AlmAmbar!40, fill opacity=0.4, draw=none]
-            fill between[
-              of=temps and axis,
-              soft clip={domain=5:9}
-            ];
           % Línea de referencia 20°C
           \addplot[AlmAmbar!70, dashed, line width=1pt]
             coordinates {(1,20)(12,20)}

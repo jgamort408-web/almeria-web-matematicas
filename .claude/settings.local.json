@@ -42,7 +42,21 @@
       "Bash(head -3 find 'C:/Program Files/MiKTeX 2.9' -name l3*.sty)",
       "Bash(head -3 grep \"ExplSyntaxOn\\\\|l3version\" 'C:/Program Files/MiKTeX 2.9/tex/latex/l3kernel/expl3-code.tex')",
       "Bash(find 'C:/Users/Medion PC/AppData/Local/Temp/miktex_dl/l3kernel_unzip' -name *.sty)",
-      "Bash(pdflatex -interaction=nonstopmode l3.ins)"
+      "Bash(pdflatex -interaction=nonstopmode l3.ins)",
+      "Bash(cmd /c \"pdflatex --version 2>&1 | head -3\")",
+      "Bash(cmd /c \"where pdflatex 2>&1\")",
+      "Bash(cmd /c \"dir \"\"C:\\\\Program Files\\\\MiKTeX\"\" /b 2>&1\")",
+      "Bash(cmd /c \"dir \"\"C:\\\\Users\\\\Medion PC\\\\AppData\\\\Local\\\\Programs\"\" /b 2>&1 | findstr -i miktex\")",
+      "Bash(cmd /c \"powershell -Command \"\"Get-ChildItem ''C:\\\\'', ''C:\\\\Program Files'', ''C:\\\\Program Files \\(x86\\)'', ''C:\\\\Users\\\\Medion PC\\\\AppData\\\\Local'' -ErrorAction SilentlyContinue | Where-Object {$_Name -like ''*MiKTeX*'' -or $_Name -like ''*miktex*'' -or $_Name -like ''*TeX*''} | Select-Object FullName\"\"\")",
+      "Bash(cmd /c \"powershell -Command \"\"Get-Command pdflatex -ErrorAction SilentlyContinue | Select-Object Source; Get-Command xelatex -ErrorAction SilentlyContinue | Select-Object Source; Get-Command lualatex -ErrorAction SilentlyContinue | Select-Object Source\"\"\")",
+      "Bash(cmd /c \"powershell -Command \"\"Get-ChildItem -Path ''C:\\\\'', ''C:\\\\Program Files'', ''C:\\\\Program Files \\(x86\\)'', ''C:\\\\Users'' -Filter ''pdflatex.exe'' -Recurse -ErrorAction SilentlyContinue -Depth 6 | Select-Object FullName\"\" 2>&1 | head -20\")",
+      "Bash(cmd /c \"dir \"\"C:\\\\Users\\\\Medion PC\\\\AppData\\\\Local\\\\MiKTeX\"\" /b 2>&1\")",
+      "Bash(cmd /c \"dir \"\"C:\\\\Users\\\\Medion PC\\\\AppData\\\\Roaming\\\\MiKTeX\"\" /b 2>&1\")",
+      "Bash(cmd /c \"dir \"\"C:\\\\Users\\\\Medion PC\\\\AppData\\\\Local\"\" /b 2>&1\")",
+      "Bash(find '/c/Program Files' -maxdepth 3 -name pdflatex*)",
+      "Bash(find '/c/Program Files/texstudio' -name pdflatex*)",
+      "Bash(find '/c/Users/Medion PC/AppData/Local/MiKTeX/2.9' -name pdflatex*)",
+      "Bash(cat /c/Users/Medion PC/AppData/Roaming/MiKTeX/miktex/config/*.ini)"
     ]
   }
 }
