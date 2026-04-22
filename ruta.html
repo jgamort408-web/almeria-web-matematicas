@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ðŸ“</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruta de Aprendizaje - AlmerÃ­a en Cifras y Formas</title>
+    <title>Ruta de Aprendizaje - Almería en Cifras y Formas</title>
     <style>
 
         body {
@@ -41,7 +41,7 @@
             margin: 0;
         }
 
-        /* NavegaciÃ³n y Controles */
+        /* Navegación y Controles */
         .nav-principal {
             display: flex;
             flex-wrap: wrap;
@@ -116,7 +116,7 @@
             padding-left: 20px;
         }
 
-        /* LÃ­nea vertical central/lateral */
+        /* Línea vertical central/lateral */
         .roadmap::before {
             content: '';
             position: absolute;
@@ -145,7 +145,7 @@
         .bloque-3 { border-left-color: var(--verde-med); }
         .bloque-4 { border-left-color: var(--gris-pizarra); }
 
-        /* Indicador de bloque en la lÃ­nea de tiempo */
+        /* Indicador de bloque en la línea de tiempo */
         .indicador-bloque {
             position: absolute;
             left: -24px;
@@ -187,7 +187,7 @@
             font-size: 0.95rem;
         }
 
-        /* Tarjetas de SesiÃ³n */
+        /* Tarjetas de Sesión */
         .grid-sesiones {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
@@ -282,7 +282,7 @@
         @media (max-width: 680px) {
             /* padding-left >= |left del indicador| para evitar desbordamiento horizontal */
             .roadmap { padding-left: 30px; }
-            /* La lÃ­nea vertical se centra sobre el indicador: 30 - 22 + 16 â‰ˆ 24px desde el borde */
+            /* La línea vertical se centra sobre el indicador: 30 - 22 + 16 ≈ 24px desde el borde */
             .roadmap::before { left: 20px; }
             .bloque { padding: 20px 15px 20px 38px; }
             .indicador-bloque { left: -22px; width: 32px; height: 32px; font-size: 1rem; }
@@ -297,7 +297,7 @@
     <header class="site-header" role="banner">
     <div class="header-inner">
         <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
-            <span class="header-logo-icon" aria-hidden="true">ðŸ“</span>
+            <span class="header-logo-icon" aria-hidden="true">📐</span>
             <span class="header-logo-texto">
                 <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
             </span>
@@ -307,12 +307,12 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
-            <a href="index.html"      class="header-link"><span aria-hidden="true">ðŸ </span> Inicio</a>
-            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">ðŸ“Œ</span> Proyecto</a>
-            <a href="ruta.html"       class="header-link"><span aria-hidden="true">ðŸ—ºï¸</span> Ruta</a>
-            <a href="glosario.html"   class="header-link"><span aria-hidden="true">ðŸ“–</span> Glosario</a>
-            <a href="flashcards.html" class="header-link"><span aria-hidden="true">ðŸƒ</span> Flashcards</a>
-            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">âœ…</span> Evaluacion</a>
+            <a href="index.html"      class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+            <a href="ruta.html"       class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+            <a href="glosario.html"   class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="flashcards.html" class="header-link"><span aria-hidden="true">🃏</span> Flashcards</a>
+            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
         </nav>
     </div>
 </header>
@@ -321,11 +321,11 @@
         
         <header>
             <h1>Ruta de Aprendizaje</h1>
-            <p>20 sesiones para descubrir AlmerÃ­a paso a paso</p>
+            <p>20 sesiones para descubrir Almería paso a paso</p>
         </header>
 
-        <nav class="nav-principal" aria-label="NavegaciÃ³n de ruta">
-            <a href="index.html" class="btn btn-inicio"><span aria-hidden="true">ðŸ </span> Inicio</a>
+        <nav class="nav-principal" aria-label="Navegación de ruta">
+            <a href="index.html" class="btn btn-inicio"><span aria-hidden="true">🏠</span> Inicio</a>
             <a href="bloque1/index.html" class="btn btn-b1">Bloque 1</a>
             <a href="bloque2/index.html" class="btn btn-b2">Bloque 2</a>
             <a href="bloque3/index.html" class="btn btn-b3">Bloque 3</a>
@@ -334,8 +334,8 @@
 
         <div class="leyenda">
             <div class="item-leyenda"><div class="punto-color c-b1"></div> Mapa y coordenadas</div>
-            <div class="item-leyenda"><div class="punto-color c-b2"></div> GeometrÃ­a urbana</div>
-            <div class="item-leyenda"><div class="punto-color c-b3"></div> Datos y grÃ¡ficas</div>
+            <div class="item-leyenda"><div class="punto-color c-b2"></div> Geometría urbana</div>
+            <div class="item-leyenda"><div class="punto-color c-b3"></div> Datos y gráficas</div>
             <div class="item-leyenda"><div class="punto-color c-b4"></div> Producto final</div>
         </div>
 
@@ -349,24 +349,24 @@
                 </div>
                 <div class="grid-sesiones">
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 1</span>
-                        <h3 class="sesion-titulo">PresentaciÃ³n del reto</h3>
-                        <a href="bloque1/sesion01.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 1</span>
+                        <h3 class="sesion-titulo">Presentación del reto</h3>
+                        <a href="bloque1/sesion01.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 2</span>
+                        <span class="sesion-num">Sesión 2</span>
                         <h3 class="sesion-titulo">Magnitudes y mapas</h3>
-                        <a href="bloque1/sesion02.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque1/sesion02.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 3</span>
+                        <span class="sesion-num">Sesión 3</span>
                         <h3 class="sesion-titulo">Plano por cuadrantes</h3>
-                        <a href="bloque1/sesion03.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque1/sesion03.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 4</span>
-                        <h3 class="sesion-titulo">Coordenadas y localizaciÃ³n</h3>
-                        <a href="bloque1/sesion04.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 4</span>
+                        <h3 class="sesion-titulo">Coordenadas y localización</h3>
+                        <a href="bloque1/sesion04.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                 </div>
             </section>
@@ -374,39 +374,39 @@
             <section class="bloque bloque-2">
                 <div class="indicador-bloque">B2</div>
                 <div class="bloque-header">
-                    <h2>GeometrÃ­a urbana</h2>
-                    <p>Formas, perÃ­metros, Ã¡reas y rutas. (Sesiones 5 a 10)</p>
+                    <h2>Geometría urbana</h2>
+                    <p>Formas, perímetros, áreas y rutas. (Sesiones 5 a 10)</p>
                 </div>
                 <div class="grid-sesiones">
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 5</span>
+                        <span class="sesion-num">Sesión 5</span>
                         <h3 class="sesion-titulo">Elementos del plano</h3>
-                        <a href="bloque2/sesion05.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque2/sesion05.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 6</span>
+                        <span class="sesion-num">Sesión 6</span>
                         <h3 class="sesion-titulo">Figuras en la ciudad</h3>
-                        <a href="bloque2/sesion06.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque2/sesion06.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 7</span>
-                        <h3 class="sesion-titulo">CÃ¡lculo de perÃ­metros</h3>
-                        <a href="bloque2/sesion07.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 7</span>
+                        <h3 class="sesion-titulo">Cálculo de perímetros</h3>
+                        <a href="bloque2/sesion07.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 8</span>
-                        <h3 class="sesion-titulo">CÃ¡lculo de Ã¡reas</h3>
-                        <a href="bloque2/sesion08.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 8</span>
+                        <h3 class="sesion-titulo">Cálculo de áreas</h3>
+                        <a href="bloque2/sesion08.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 9</span>
-                        <h3 class="sesion-titulo">PerÃ­metro vs Ãrea</h3>
-                        <a href="bloque2/sesion09.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 9</span>
+                        <h3 class="sesion-titulo">Perímetro vs Área</h3>
+                        <a href="bloque2/sesion09.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 10</span>
+                        <span class="sesion-num">Sesión 10</span>
                         <h3 class="sesion-titulo">Rutas y distancias</h3>
-                        <a href="bloque2/sesion10.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque2/sesion10.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                 </div>
             </section>
@@ -414,39 +414,39 @@
             <section class="bloque bloque-3">
                 <div class="indicador-bloque">B3</div>
                 <div class="bloque-header">
-                    <h2>Datos, funciones y grÃ¡ficas</h2>
-                    <p>Interpretando la informaciÃ³n de AlmerÃ­a. (Sesiones 11 a 16)</p>
+                    <h2>Datos, funciones y gráficas</h2>
+                    <p>Interpretando la información de Almería. (Sesiones 11 a 16)</p>
                 </div>
                 <div class="grid-sesiones">
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 11</span>
+                        <span class="sesion-num">Sesión 11</span>
                         <h3 class="sesion-titulo">Variables y datos</h3>
-                        <a href="bloque3/sesion11.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque3/sesion11.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 12</span>
+                        <span class="sesion-num">Sesión 12</span>
                         <h3 class="sesion-titulo">De enunciado a tabla</h3>
-                        <a href="bloque3/sesion12.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <a href="bloque3/sesion12.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 13</span>
-                        <h3 class="sesion-titulo">De tabla a grÃ¡fica</h3>
-                        <a href="bloque3/sesion13.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 13</span>
+                        <h3 class="sesion-titulo">De tabla a gráfica</h3>
+                        <a href="bloque3/sesion13.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 14</span>
-                        <h3 class="sesion-titulo">Lectura de grÃ¡ficas</h3>
-                        <a href="bloque3/sesion14.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 14</span>
+                        <h3 class="sesion-titulo">Lectura de gráficas</h3>
+                        <a href="bloque3/sesion14.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 15</span>
-                        <h3 class="sesion-titulo">Comparar grÃ¡ficas</h3>
-                        <a href="bloque3/sesion15.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 15</span>
+                        <h3 class="sesion-titulo">Comparar gráficas</h3>
+                        <a href="bloque3/sesion15.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 16</span>
-                        <h3 class="sesion-titulo">Relaciones y proporciÃ³n</h3>
-                        <a href="bloque3/sesion16.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 16</span>
+                        <h3 class="sesion-titulo">Relaciones y proporción</h3>
+                        <a href="bloque3/sesion16.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                 </div>
             </section>
@@ -455,28 +455,28 @@
                 <div class="indicador-bloque">B4</div>
                 <div class="bloque-header">
                     <h2>Producto final</h2>
-                    <p>IntegraciÃ³n y comunicaciÃ³n. (Sesiones 17 a 20)</p>
+                    <p>Integración y comunicación. (Sesiones 17 a 20)</p>
                 </div>
                 <div class="grid-sesiones">
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 17</span>
-                        <h3 class="sesion-titulo">SelecciÃ³n de informaciÃ³n</h3>
-                        <a href="bloque4/sesion17.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 17</span>
+                        <h3 class="sesion-titulo">Selección de información</h3>
+                        <a href="bloque4/sesion17.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 18</span>
-                        <h3 class="sesion-titulo">ConstrucciÃ³n de la guÃ­a</h3>
-                        <a href="bloque4/sesion18.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 18</span>
+                        <h3 class="sesion-titulo">Construcción de la guía</h3>
+                        <a href="bloque4/sesion18.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 19</span>
-                        <h3 class="sesion-titulo">Ensayo y coevaluaciÃ³n</h3>
-                        <a href="bloque4/sesion19.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 19</span>
+                        <h3 class="sesion-titulo">Ensayo y coevaluación</h3>
+                        <a href="bloque4/sesion19.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                     <article class="tarjeta-sesion">
-                        <span class="sesion-num">SesiÃ³n 20</span>
-                        <h3 class="sesion-titulo">ExposiciÃ³n final</h3>
-                        <a href="bloque4/sesion20.html" class="btn-sesion">Abrir sesiÃ³n âž¡ï¸</a>
+                        <span class="sesion-num">Sesión 20</span>
+                        <h3 class="sesion-titulo">Exposición final</h3>
+                        <a href="bloque4/sesion20.html" class="btn-sesion">Abrir sesión ➡️</a>
                     </article>
                 </div>
             </section>
@@ -484,8 +484,8 @@
         </div>
 
         <section class="consejos">
-            <h3><span aria-hidden="true">ðŸ’¡</span> Consejo para avanzar</h3>
-            <p>Trabaja sesiÃ³n a sesiÃ³n y asegÃºrate de guardar las <strong>evidencias</strong> (fichas, tablas y grÃ¡ficas) de cada bloque. Â¡Las necesitarÃ¡s para crear tu guÃ­a final en el Bloque 4!</p>
+            <h3><span aria-hidden="true">💡</span> Consejo para avanzar</h3>
+            <p>Trabaja sesión a sesión y asegúrate de guardar las <strong>evidencias</strong> (fichas, tablas y gráficas) de cada bloque. ¡Las necesitarás para crear tu guía final en el Bloque 4!</p>
         </section>
 
     </div>
@@ -494,27 +494,27 @@
     <footer class="footer-sitio" role="contentinfo">
     <div class="footer-contenido">
         <div class="footer-autor">
-            <span class="footer-nombre">Juan MarÃ­a GÃ¡mez Ortiz</span>
-            <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ãndalus</a>
+            <span class="footer-nombre">Juan María Gámez Ortiz</span>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
         </div>
         <nav class="footer-idiomas" aria-label="Selector de idioma">
-            <span class="footer-idiomas-label"><span aria-hidden="true">ðŸŒ</span> Idioma:</span>
-            <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">ðŸ‡ªðŸ‡¸</span> ES</button>
-            <button class="btn-idioma" data-lang="en"><span aria-hidden="true">ðŸ‡¬ðŸ‡§</span> EN</button>
-            <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">ðŸ‡¸ðŸ‡¦</span> AR</button>
-            <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">ðŸ‡µðŸ‡±</span> PL</button>
-            <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">ðŸ‡·ðŸ‡º</span> RU</button>
-            <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">ðŸ‡³ðŸ‡±</span> NL</button>
-            <button class="btn-idioma" data-lang="de"><span aria-hidden="true">ðŸ‡©ðŸ‡ª</span> DE</button>
+            <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
+            <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">🇪🇸</span> ES</button>
+            <button class="btn-idioma" data-lang="en"><span aria-hidden="true">🇬🇧</span> EN</button>
+            <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">🇸🇦</span> AR</button>
+            <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">🇵🇱</span> PL</button>
+            <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">🇷🇺</span> RU</button>
+            <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">🇳🇱</span> NL</button>
+            <button class="btn-idioma" data-lang="de"><span aria-hidden="true">🇩🇪</span> DE</button>
         </nav>
         <div id="google_translate_element" aria-hidden="true"></div>
         <div class="footer-copy">
-            Â© <span id="footer-aÃ±o"></span> &nbsp;Â·&nbsp; MatemÃ¡ticas 1.Âº ESO &nbsp;Â·&nbsp; AlmerÃ­a
+            © <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería
         </div>
     </div>
 </footer>
 <div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
-<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">â†‘</button>
+<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
 
     <script src="script.js" defer></script>
 </body>

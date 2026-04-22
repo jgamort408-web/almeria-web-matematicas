@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>ðŸ“</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glosario y Herramientas - AlmerÃ­a en Cifras y Formas</title>
+    <title>Glosario y Herramientas - Almería en Cifras y Formas</title>
     
     <script>
         window.MathJax = {
@@ -50,7 +50,7 @@
             margin: 0;
         }
 
-        /* ================= NAVEGACIÃ“N ================= */
+        /* ================= NAVEGACIÓN ================= */
         .controles-nav {
             display: flex;
             justify-content: space-between;
@@ -283,7 +283,7 @@
     <header class="site-header" role="banner">
     <div class="header-inner">
         <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
-            <span class="header-logo-icon" aria-hidden="true">ðŸ“</span>
+            <span class="header-logo-icon" aria-hidden="true">📐</span>
             <span class="header-logo-texto">
                 <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
             </span>
@@ -293,62 +293,62 @@
             <span></span><span></span><span></span>
         </button>
         <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
-            <a href="index.html"      class="header-link"><span aria-hidden="true">ðŸ </span> Inicio</a>
-            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">ðŸ“Œ</span> Proyecto</a>
-            <a href="ruta.html"       class="header-link"><span aria-hidden="true">ðŸ—ºï¸</span> Ruta</a>
-            <a href="glosario.html"   class="header-link"><span aria-hidden="true">ðŸ“–</span> Glosario</a>
-            <a href="flashcards.html" class="header-link"><span aria-hidden="true">ðŸƒ</span> Flashcards</a>
-            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">âœ…</span> Evaluacion</a>
+            <a href="index.html"      class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="proyecto.html"   class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+            <a href="ruta.html"       class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+            <a href="glosario.html"   class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+            <a href="flashcards.html" class="header-link"><span aria-hidden="true">🃏</span> Flashcards</a>
+            <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
         </nav>
     </div>
 </header>
 
     <div class="contenedor" id="contenido-principal" tabindex="-1">
         
-        <nav class="controles-nav" aria-label="NavegaciÃ³n del glosario">
-            <a href="index.html" class="btn-texto"><span aria-hidden="true">ðŸ </span> Inicio</a>
-            <a href="ruta.html" class="btn-texto"><span aria-hidden="true">ðŸ—ºï¸</span> Ruta de Aprendizaje</a>
-            <a href="flashcards.html" class="btn-texto"><span aria-hidden="true">ðŸƒ</span> Flashcards</a>
-            <a href="evaluacion.html" class="btn-texto btn-primario">EvaluaciÃ³n âž¡ï¸</a>
+        <nav class="controles-nav" aria-label="Navegación del glosario">
+            <a href="index.html" class="btn-texto"><span aria-hidden="true">🏠</span> Inicio</a>
+            <a href="ruta.html" class="btn-texto"><span aria-hidden="true">🗺️</span> Ruta de Aprendizaje</a>
+            <a href="flashcards.html" class="btn-texto"><span aria-hidden="true">🃏</span> Flashcards</a>
+            <a href="evaluacion.html" class="btn-texto btn-primario">Evaluación ➡️</a>
         </nav>
 
         <header>
             <h1>Glosario y Herramientas</h1>
-            <p>Tu diccionario matemÃ¡tico y kit de supervivencia para el proyecto</p>
+            <p>Tu diccionario matemático y kit de supervivencia para el proyecto</p>
         </header>
 
         <section class="seccion-buscador">
-            <label for="buscador">ðŸ” Encuentra rÃ¡pidamente cualquier palabra:</label>
-            <input type="text" id="buscador" placeholder="Escribe aquÃ­ (ej. perÃ­metro, eje, grÃ¡fica...)" aria-label="Buscar palabra">
+            <label for="buscador">🔍 Encuentra rápidamente cualquier palabra:</label>
+            <input type="text" id="buscador" placeholder="Escribe aquí (ej. perímetro, eje, gráfica...)" aria-label="Buscar palabra">
         </section>
 
         <section class="grid-glosario" id="contenedor-glosario">
             <div class="mensaje-vacio" id="mensaje-vacio" role="status" aria-live="polite">
-                <span class="mensaje-vacio-icono" aria-hidden="true">ðŸ”</span>
+                <span class="mensaje-vacio-icono" aria-hidden="true">🔍</span>
                 <p class="mensaje-vacio-texto">
-                    No se encontrÃ³ Â«<strong id="termino-buscado"></strong>Â» en el glosario.
+                    No se encontró «<strong id="termino-buscado"></strong>» en el glosario.
                 </p>
-                <p class="mensaje-vacio-sugerencia">Prueba con otra palabra o comprueba la ortografÃ­a.</p>
+                <p class="mensaje-vacio-sugerencia">Prueba con otra palabra o comprueba la ortografía.</p>
             </div>
             
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">Ãngulo</h3>
-                <p class="palabra-def">Abertura entre dos lÃ­neas rectas que se cruzan o se unen en un punto llamado vÃ©rtice.</p>
+                <h3 class="palabra-titulo">Ángulo</h3>
+                <p class="palabra-def">Abertura entre dos líneas rectas que se cruzan o se unen en un punto llamado vértice.</p>
             </article>
             
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">Ãrea</h3>
+                <h3 class="palabra-titulo">Área</h3>
                 <p class="palabra-def">La cantidad de espacio interior o superficie que ocupa una figura plana. Se mide en cuadrados (ej. $m^2$).</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Coordenada</h3>
-                <p class="palabra-def">Par de nÃºmeros $(x, y)$ que sirven para localizar un punto exacto en un plano cuadriculado.</p>
+                <p class="palabra-def">Par de números $(x, y)$ que sirven para localizar un punto exacto en un plano cuadriculado.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Crecimiento</h3>
-                <p class="palabra-def">En una grÃ¡fica, ocurre cuando al avanzar hacia la derecha, la lÃ­nea sube (los valores aumentan).</p>
+                <p class="palabra-def">En una gráfica, ocurre cuando al avanzar hacia la derecha, la línea sube (los valores aumentan).</p>
             </article>
 
             <article class="tarjeta-palabra">
@@ -358,107 +358,107 @@
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Decrecimiento</h3>
-                <p class="palabra-def">En una grÃ¡fica, ocurre cuando al avanzar hacia la derecha, la lÃ­nea baja (los valores disminuyen).</p>
+                <p class="palabra-def">En una gráfica, ocurre cuando al avanzar hacia la derecha, la línea baja (los valores disminuyen).</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Eje</h3>
-                <p class="palabra-def">LÃ­nea recta de referencia. En un plano usamos el eje horizontal ($X$) y el vertical ($Y$).</p>
+                <p class="palabra-def">Línea recta de referencia. En un plano usamos el eje horizontal ($X$) y el vertical ($Y$).</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Escala</h3>
-                <p class="palabra-def">RelaciÃ³n matemÃ¡tica entre la medida de un objeto en un dibujo o mapa y su medida real en la vida.</p>
+                <p class="palabra-def">Relación matemática entre la medida de un objeto en un dibujo o mapa y su medida real en la vida.</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">FunciÃ³n</h3>
-                <p class="palabra-def">RelaciÃ³n entre dos variables donde a cada valor de la primera le corresponde un Ãºnico valor de la segunda.</p>
+                <h3 class="palabra-titulo">Función</h3>
+                <p class="palabra-def">Relación entre dos variables donde a cada valor de la primera le corresponde un único valor de la segunda.</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">GrÃ¡fica</h3>
-                <p class="palabra-def">Dibujo que representa los nÃºmeros de una tabla de datos para poder verlos y entenderlos de forma visual.</p>
+                <h3 class="palabra-titulo">Gráfica</h3>
+                <p class="palabra-def">Dibujo que representa los números de una tabla de datos para poder verlos y entenderlos de forma visual.</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">MÃ¡ximo</h3>
-                <p class="palabra-def">El valor mÃ¡s alto, o el punto que estÃ¡ mÃ¡s elevado en el dibujo de una grÃ¡fica.</p>
+                <h3 class="palabra-titulo">Máximo</h3>
+                <p class="palabra-def">El valor más alto, o el punto que está más elevado en el dibujo de una gráfica.</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">MÃ­nimo</h3>
-                <p class="palabra-def">El valor mÃ¡s bajo, o el punto que estÃ¡ menos elevado en el dibujo de una grÃ¡fica.</p>
+                <h3 class="palabra-titulo">Mínimo</h3>
+                <p class="palabra-def">El valor más bajo, o el punto que está menos elevado en el dibujo de una gráfica.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Paralela</h3>
-                <p class="palabra-def">LÃ­neas rectas que mantienen siempre la misma distancia entre ellas y nunca llegan a cruzarse.</p>
+                <p class="palabra-def">Líneas rectas que mantienen siempre la misma distancia entre ellas y nunca llegan a cruzarse.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Perpendicular</h3>
-                <p class="palabra-def">LÃ­neas rectas que se cruzan formando un Ã¡ngulo recto exacto (90 grados, como la esquina de un folio).</p>
+                <p class="palabra-def">Líneas rectas que se cruzan formando un ángulo recto exacto (90 grados, como la esquina de un folio).</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">PerÃ­metro</h3>
+                <h3 class="palabra-titulo">Perímetro</h3>
                 <p class="palabra-def">La longitud total del borde de una figura. Se calcula sumando lo que miden todos sus lados exteriores.</p>
             </article>
 
             <article class="tarjeta-palabra">
-                <h3 class="palabra-titulo">PolÃ­gono</h3>
-                <p class="palabra-def">Figura plana cerrada formada completamente por segmentos rectos (por ejemplo: triÃ¡ngulos, cuadrados).</p>
+                <h3 class="palabra-titulo">Polígono</h3>
+                <p class="palabra-def">Figura plana cerrada formada completamente por segmentos rectos (por ejemplo: triángulos, cuadrados).</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Proporcionalidad</h3>
-                <p class="palabra-def">RelaciÃ³n constante. Si es directa, significa que si una cantidad aumenta el doble, la otra tambiÃ©n.</p>
+                <p class="palabra-def">Relación constante. Si es directa, significa que si una cantidad aumenta el doble, la otra también.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Punto</h3>
-                <p class="palabra-def">PosiciÃ³n exacta en el espacio. No tiene tamaÃ±o ni forma, solo indica un lugar con coordenadas.</p>
+                <p class="palabra-def">Posición exacta en el espacio. No tiene tamaño ni forma, solo indica un lugar con coordenadas.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Segmento</h3>
-                <p class="palabra-def">Trozo de una lÃ­nea recta que tiene un principio y un final marcados.</p>
+                <p class="palabra-def">Trozo de una línea recta que tiene un principio y un final marcados.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Tabla</h3>
-                <p class="palabra-def">Forma estructurada de organizar y presentar nÃºmeros y datos utilizando filas y columnas.</p>
+                <p class="palabra-def">Forma estructurada de organizar y presentar números y datos utilizando filas y columnas.</p>
             </article>
 
             <article class="tarjeta-palabra">
                 <h3 class="palabra-titulo">Variable</h3>
-                <p class="palabra-def">CaracterÃ­stica o dato que puede cambiar o tomar distintos valores, como la temperatura o la poblaciÃ³n.</p>
+                <p class="palabra-def">Característica o dato que puede cambiar o tomar distintos valores, como la temperatura o la población.</p>
             </article>
         </section>
 
         <section class="seccion-doble">
             <div class="caja-info caja-herramientas">
-                <h2><span aria-hidden="true">ðŸŽ’</span> Herramientas que usaremos</h2>
-                <p>Tu kit bÃ¡sico de trabajo diario:</p>
+                <h2><span aria-hidden="true">🎒</span> Herramientas que usaremos</h2>
+                <p>Tu kit básico de trabajo diario:</p>
                 <ul class="lista-visual">
-                    <li><span aria-hidden="true">ðŸ“</span> Regla transparente</li>
-                    <li><span aria-hidden="true">âœï¸</span> LÃ¡piz y goma</li>
-                    <li><span aria-hidden="true">ðŸ“</span> Papel cuadriculado</li>
-                    <li><span aria-hidden="true">ðŸ”¢</span> Calculadora sencilla</li>
-                    <li><span aria-hidden="true">ðŸ“‚</span> Plantillas de trabajo</li>
+                    <li><span aria-hidden="true">📏</span> Regla transparente</li>
+                    <li><span aria-hidden="true">✏️</span> Lápiz y goma</li>
+                    <li><span aria-hidden="true">📝</span> Papel cuadriculado</li>
+                    <li><span aria-hidden="true">🔢</span> Calculadora sencilla</li>
+                    <li><span aria-hidden="true">📂</span> Plantillas de trabajo</li>
                 </ul>
             </div>
 
             <div class="caja-info caja-frases">
-                <h2><span aria-hidden="true">ðŸ—£ï¸</span> Frases Ãºtiles para explicar matemÃ¡ticas</h2>
-                <p>Ãšsalas cuando tengas que presentar o escribir en tus fichas:</p>
+                <h2><span aria-hidden="true">🗣️</span> Frases útiles para explicar matemáticas</h2>
+                <p>Úsalas cuando tengas que presentar o escribir en tus fichas:</p>
                 <ul class="lista-frases">
                     <li>"Para resolver este problema, <strong>primero he calculado...</strong>"</li>
-                    <li>"He hallado el perÃ­metro <strong>sumando la longitud de...</strong>"</li>
+                    <li>"He hallado el perímetro <strong>sumando la longitud de...</strong>"</li>
                     <li>"En el eje horizontal he colocado <strong>la variable independiente...</strong>"</li>
-                    <li>"La grÃ¡fica nos muestra que el <strong>valor mÃ¡ximo se alcanza en...</strong>"</li>
-                    <li>"Hemos aproximado la forma de este barrio <strong>usando un polÃ­gono...</strong>"</li>
+                    <li>"La gráfica nos muestra que el <strong>valor máximo se alcanza en...</strong>"</li>
+                    <li>"Hemos aproximado la forma de este barrio <strong>usando un polígono...</strong>"</li>
                     <li>"La distancia entre estos dos puntos es de <strong>tantas unidades porque...</strong>"</li>
                 </ul>
             </div>
@@ -476,7 +476,7 @@
                 const termino = e.target.value.toLowerCase().trim();
                 let hayResultados = false;
 
-                // Si estÃ¡ vacÃ­o, quita todos los acentos y convierte a minÃºsculas
+                // Si está vacío, quita todos los acentos y convierte a minúsculas
                 const quitarAcentos = (str) => {
                     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
                 };
@@ -510,27 +510,27 @@
     <footer class="footer-sitio" role="contentinfo">
     <div class="footer-contenido">
         <div class="footer-autor">
-            <span class="footer-nombre">Juan MarÃ­a GÃ¡mez Ortiz</span>
-            <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ãndalus</a>
+            <span class="footer-nombre">Juan María Gámez Ortiz</span>
+            <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
         </div>
         <nav class="footer-idiomas" aria-label="Selector de idioma">
-            <span class="footer-idiomas-label"><span aria-hidden="true">ðŸŒ</span> Idioma:</span>
-            <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">ðŸ‡ªðŸ‡¸</span> ES</button>
-            <button class="btn-idioma" data-lang="en"><span aria-hidden="true">ðŸ‡¬ðŸ‡§</span> EN</button>
-            <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">ðŸ‡¸ðŸ‡¦</span> AR</button>
-            <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">ðŸ‡µðŸ‡±</span> PL</button>
-            <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">ðŸ‡·ðŸ‡º</span> RU</button>
-            <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">ðŸ‡³ðŸ‡±</span> NL</button>
-            <button class="btn-idioma" data-lang="de"><span aria-hidden="true">ðŸ‡©ðŸ‡ª</span> DE</button>
+            <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
+            <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">🇪🇸</span> ES</button>
+            <button class="btn-idioma" data-lang="en"><span aria-hidden="true">🇬🇧</span> EN</button>
+            <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">🇸🇦</span> AR</button>
+            <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">🇵🇱</span> PL</button>
+            <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">🇷🇺</span> RU</button>
+            <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">🇳🇱</span> NL</button>
+            <button class="btn-idioma" data-lang="de"><span aria-hidden="true">🇩🇪</span> DE</button>
         </nav>
         <div id="google_translate_element" aria-hidden="true"></div>
         <div class="footer-copy">
-            Â© <span id="footer-aÃ±o"></span> &nbsp;Â·&nbsp; MatemÃ¡ticas 1.Âº ESO &nbsp;Â·&nbsp; AlmerÃ­a
+            © <span id="footer-año"></span> &nbsp;·&nbsp; Matemáticas 1.º ESO &nbsp;·&nbsp; Almería
         </div>
     </div>
 </footer>
 <div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
-<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">â†‘</button>
+<button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
 
     <script src="script.js" defer></script>
 </body>
