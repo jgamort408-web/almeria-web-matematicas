@@ -1,0 +1,389 @@
+{
+  "metadata": {
+    "title": "Flashcards de Almeria en cifras y formas",
+    "description": "Tarjetas de repaso de todo el proyecto, organizadas por bloque, sesion y categoria.",
+    "version": 1
+  },
+  "cards": [
+    {
+      "id": "proyecto-01",
+      "bloque": "Proyecto",
+      "sesion": 0,
+      "categoria": "Producto final",
+      "pregunta": "¿Cuál es el reto principal del proyecto 'Almería en cifras y formas'?",
+      "respuesta": "Crear en equipo una guía turística matemática de Almería usando geometría, coordenadas, datos, gráficas y explicaciones claras.",
+      "pista": "Piensa en el producto final que reúne todas las evidencias.",
+      "etiquetas": ["reto", "guia", "producto final"]
+    },
+    {
+      "id": "proyecto-02",
+      "bloque": "Proyecto",
+      "sesion": 0,
+      "categoria": "Organización",
+      "pregunta": "¿En cuántos bloques se organiza el proyecto completo?",
+      "respuesta": "En 4 bloques de trabajo.",
+      "pista": "La ruta de aprendizaje divide el curso en partes grandes.",
+      "etiquetas": ["bloques", "organizacion"]
+    },
+    {
+      "id": "proyecto-03",
+      "bloque": "Proyecto",
+      "sesion": 0,
+      "categoria": "Organización",
+      "pregunta": "¿Cuántas sesiones tiene en total el proyecto?",
+      "respuesta": "Tiene 20 sesiones.",
+      "pista": "Aparece destacado en la página del proyecto.",
+      "etiquetas": ["sesiones", "organizacion"]
+    },
+    {
+      "id": "bloque1-01",
+      "bloque": "Bloque 1",
+      "sesion": 1,
+      "categoria": "Coordenadas",
+      "pregunta": "¿Qué es una coordenada en un plano?",
+      "respuesta": "Es un par ordenado de números, normalmente (x, y), que sirve para localizar un punto exacto.",
+      "pista": "Tiene dos componentes y ubica un punto.",
+      "etiquetas": ["coordenadas", "punto", "plano"]
+    },
+    {
+      "id": "bloque1-02",
+      "bloque": "Bloque 1",
+      "sesion": 2,
+      "categoria": "Mapas",
+      "pregunta": "¿Qué indica la escala de un mapa o plano?",
+      "respuesta": "La relación entre una medida representada en el dibujo y la medida real.",
+      "pista": "Compara lo dibujado con lo verdadero.",
+      "etiquetas": ["escala", "mapa", "medidas"]
+    },
+    {
+      "id": "bloque1-03",
+      "bloque": "Bloque 1",
+      "sesion": 3,
+      "categoria": "Plano cartesiano",
+      "pregunta": "¿Qué nombre reciben las cuatro zonas en las que los ejes dividen el plano?",
+      "respuesta": "Se llaman cuadrantes.",
+      "pista": "Cada eje divide el plano y juntos forman cuatro regiones.",
+      "etiquetas": ["cuadrantes", "ejes", "plano"]
+    },
+    {
+      "id": "bloque1-04",
+      "bloque": "Bloque 1",
+      "sesion": 4,
+      "categoria": "Plano cartesiano",
+      "pregunta": "¿Qué representan los ejes X e Y?",
+      "respuesta": "El eje X es la referencia horizontal y el eje Y es la referencia vertical.",
+      "pista": "Uno va de izquierda a derecha y el otro de abajo arriba.",
+      "etiquetas": ["ejes", "horizontal", "vertical"]
+    },
+    {
+      "id": "bloque1-05",
+      "bloque": "Bloque 1",
+      "sesion": 4,
+      "categoria": "Coordenadas",
+      "pregunta": "Al escribir un punto como (3, 5), ¿qué se suele leer primero?",
+      "respuesta": "Primero la coordenada horizontal x y después la coordenada vertical y.",
+      "pista": "Se sigue el orden del par ordenado.",
+      "etiquetas": ["coordenadas", "par ordenado"]
+    },
+    {
+      "id": "bloque2-01",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Geometría básica",
+      "pregunta": "¿Qué es un punto en geometría?",
+      "respuesta": "Una posición exacta en el plano sin dimensiones.",
+      "pista": "Marca un lugar, pero no tiene tamaño.",
+      "etiquetas": ["punto", "geometria"]
+    },
+    {
+      "id": "bloque2-02",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Geometría básica",
+      "pregunta": "¿En qué se diferencia una recta de un segmento?",
+      "respuesta": "La recta es infinita y no tiene extremos; el segmento tiene dos extremos y longitud medible.",
+      "pista": "Una es infinita y el otro está acotado.",
+      "etiquetas": ["recta", "segmento", "diferencias"]
+    },
+    {
+      "id": "bloque2-03",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Ángulos",
+      "pregunta": "¿Qué es un ángulo?",
+      "respuesta": "La abertura entre dos semirrectas con un mismo origen o vértice.",
+      "pista": "Piensa en dos rayos que salen del mismo punto.",
+      "etiquetas": ["angulo", "vertice", "semirrecta"]
+    },
+    {
+      "id": "bloque2-04",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Ángulos",
+      "pregunta": "¿Cómo se clasifica un ángulo recto?",
+      "respuesta": "Es el ángulo que mide exactamente 90 grados.",
+      "pista": "Es la esquina típica de un folio.",
+      "etiquetas": ["angulo recto", "90 grados"]
+    },
+    {
+      "id": "bloque2-05",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Ángulos",
+      "pregunta": "¿Qué diferencia hay entre un ángulo agudo y uno obtuso?",
+      "respuesta": "El agudo mide menos de 90 grados y el obtuso mide más de 90 grados y menos de 180 grados.",
+      "pista": "Compáralos con el ángulo recto.",
+      "etiquetas": ["agudo", "obtuso", "clasificacion"]
+    },
+    {
+      "id": "bloque2-06",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Rectas",
+      "pregunta": "¿Qué significa que dos rectas son paralelas?",
+      "respuesta": "Que nunca se cortan y mantienen siempre la misma distancia entre sí.",
+      "pista": "Van en la misma dirección.",
+      "etiquetas": ["paralelas", "rectas"]
+    },
+    {
+      "id": "bloque2-07",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Rectas",
+      "pregunta": "¿Qué significa que dos rectas son perpendiculares?",
+      "respuesta": "Que se cortan formando un ángulo de 90 grados.",
+      "pista": "Se cruzan como una esquina exacta.",
+      "etiquetas": ["perpendiculares", "90 grados"]
+    },
+    {
+      "id": "bloque2-08",
+      "bloque": "Bloque 2",
+      "sesion": 5,
+      "categoria": "Aplicación urbana",
+      "pregunta": "¿Por qué las calles reales se representan mejor como segmentos que como rectas?",
+      "respuesta": "Porque tienen inicio y final; no se prolongan infinitamente en ambos sentidos.",
+      "pista": "Piensa en los extremos de una calle real.",
+      "etiquetas": ["calles", "segmentos", "mundo real"]
+    },
+    {
+      "id": "bloque2-09",
+      "bloque": "Bloque 2",
+      "sesion": 6,
+      "categoria": "Polígonos",
+      "pregunta": "¿Qué es un polígono?",
+      "respuesta": "Una figura plana cerrada formada por segmentos rectos.",
+      "pista": "No tiene curvas y está cerrada.",
+      "etiquetas": ["poligono", "figuras"]
+    },
+    {
+      "id": "bloque2-10",
+      "bloque": "Bloque 2",
+      "sesion": 7,
+      "categoria": "Perímetro",
+      "pregunta": "¿Qué es el perímetro de una figura?",
+      "respuesta": "La suma de las longitudes de todos sus lados.",
+      "pista": "Es la medida del borde.",
+      "etiquetas": ["perimetro", "longitud"]
+    },
+    {
+      "id": "bloque2-11",
+      "bloque": "Bloque 2",
+      "sesion": 8,
+      "categoria": "Área",
+      "pregunta": "¿Qué representa el área de una figura plana?",
+      "respuesta": "La superficie interior que ocupa.",
+      "pista": "No es el borde, sino lo de dentro.",
+      "etiquetas": ["area", "superficie"]
+    },
+    {
+      "id": "bloque2-12",
+      "bloque": "Bloque 2",
+      "sesion": 9,
+      "categoria": "Comparación",
+      "pregunta": "¿Perímetro y área miden lo mismo?",
+      "respuesta": "No. El perímetro mide el contorno y el área mide la superficie interior.",
+      "pista": "Borde frente a interior.",
+      "etiquetas": ["perimetro", "area", "comparacion"]
+    },
+    {
+      "id": "bloque2-13",
+      "bloque": "Bloque 2",
+      "sesion": 10,
+      "categoria": "Rutas",
+      "pregunta": "Al diseñar una ruta matemática por la ciudad, ¿qué debemos justificar además del recorrido?",
+      "respuesta": "Las distancias, las decisiones tomadas y la relación con la información matemática trabajada.",
+      "pista": "No basta con dibujar un trayecto.",
+      "etiquetas": ["rutas", "justificacion", "distancias"]
+    },
+    {
+      "id": "bloque3-01",
+      "bloque": "Bloque 3",
+      "sesion": 11,
+      "categoria": "Datos",
+      "pregunta": "¿Qué es una variable en un estudio de datos?",
+      "respuesta": "Una característica que puede tomar distintos valores, como la temperatura o la población.",
+      "pista": "Es algo que puede cambiar.",
+      "etiquetas": ["variable", "datos"]
+    },
+    {
+      "id": "bloque3-02",
+      "bloque": "Bloque 3",
+      "sesion": 12,
+      "categoria": "Tablas",
+      "pregunta": "¿Para qué sirve una tabla de datos?",
+      "respuesta": "Para organizar información en filas y columnas de manera clara y ordenada.",
+      "pista": "Ayuda a leer y comparar datos.",
+      "etiquetas": ["tabla", "datos", "organizacion"]
+    },
+    {
+      "id": "bloque3-03",
+      "bloque": "Bloque 3",
+      "sesion": 13,
+      "categoria": "Gráficas",
+      "pregunta": "¿Para qué sirve una gráfica?",
+      "respuesta": "Para representar visualmente datos y facilitar su interpretación.",
+      "pista": "Convierte números en una imagen útil.",
+      "etiquetas": ["grafica", "interpretacion", "datos"]
+    },
+    {
+      "id": "bloque3-04",
+      "bloque": "Bloque 3",
+      "sesion": 14,
+      "categoria": "Lectura de gráficas",
+      "pregunta": "¿Qué significa que una gráfica presenta crecimiento?",
+      "respuesta": "Que al avanzar hacia la derecha, los valores suben o aumentan.",
+      "pista": "Observa si la línea asciende.",
+      "etiquetas": ["crecimiento", "grafica"]
+    },
+    {
+      "id": "bloque3-05",
+      "bloque": "Bloque 3",
+      "sesion": 14,
+      "categoria": "Lectura de gráficas",
+      "pregunta": "¿Qué significa que una gráfica presenta decrecimiento?",
+      "respuesta": "Que al avanzar hacia la derecha, los valores bajan o disminuyen.",
+      "pista": "Observa si la línea desciende.",
+      "etiquetas": ["decrecimiento", "grafica"]
+    },
+    {
+      "id": "bloque3-06",
+      "bloque": "Bloque 3",
+      "sesion": 14,
+      "categoria": "Lectura de gráficas",
+      "pregunta": "¿Qué es un máximo en una gráfica?",
+      "respuesta": "El valor más alto que alcanza la representación.",
+      "pista": "Busca el punto más elevado.",
+      "etiquetas": ["maximo", "grafica"]
+    },
+    {
+      "id": "bloque3-07",
+      "bloque": "Bloque 3",
+      "sesion": 14,
+      "categoria": "Lectura de gráficas",
+      "pregunta": "¿Qué es un mínimo en una gráfica?",
+      "respuesta": "El valor más bajo que alcanza la representación.",
+      "pista": "Busca el punto más bajo.",
+      "etiquetas": ["minimo", "grafica"]
+    },
+    {
+      "id": "bloque3-08",
+      "bloque": "Bloque 3",
+      "sesion": 15,
+      "categoria": "Comparación de datos",
+      "pregunta": "Cuando comparamos dos gráficas, ¿qué conviene revisar primero?",
+      "respuesta": "La escala, los ejes, las unidades y qué variable representa cada una.",
+      "pista": "Antes de comparar, asegúrate de que significan lo mismo.",
+      "etiquetas": ["comparar", "graficas", "escala"]
+    },
+    {
+      "id": "bloque3-09",
+      "bloque": "Bloque 3",
+      "sesion": 16,
+      "categoria": "Proporcionalidad",
+      "pregunta": "¿Qué ocurre en una relación de proporcionalidad directa?",
+      "respuesta": "Que si una cantidad aumenta o disminuye en cierta proporción, la otra cambia en la misma proporción.",
+      "pista": "Si una se duplica, la otra también.",
+      "etiquetas": ["proporcionalidad", "relaciones"]
+    },
+    {
+      "id": "bloque3-10",
+      "bloque": "Bloque 3",
+      "sesion": 16,
+      "categoria": "Funciones",
+      "pregunta": "¿Qué es una función?",
+      "respuesta": "Una relación en la que a cada valor de entrada le corresponde un único valor de salida.",
+      "pista": "Cada x tiene solo una y.",
+      "etiquetas": ["funcion", "relacion", "variables"]
+    },
+    {
+      "id": "bloque4-01",
+      "bloque": "Bloque 4",
+      "sesion": 17,
+      "categoria": "Selección",
+      "pregunta": "¿Qué debemos hacer al seleccionar información para la guía final?",
+      "respuesta": "Elegir la información más relevante, correcta y bien presentada para explicar la ciudad matemáticamente.",
+      "pista": "No se incluye todo: se escoge lo mejor.",
+      "etiquetas": ["seleccion", "guia", "evidencias"]
+    },
+    {
+      "id": "bloque4-02",
+      "bloque": "Bloque 4",
+      "sesion": 18,
+      "categoria": "Construcción",
+      "pregunta": "¿Qué debe reunir una buena guía turística matemática?",
+      "respuesta": "Claridad visual, rigor matemático, buena organización y explicaciones comprensibles.",
+      "pista": "Debe verse bien y estar bien razonada.",
+      "etiquetas": ["guia", "claridad", "rigor"]
+    },
+    {
+      "id": "bloque4-03",
+      "bloque": "Bloque 4",
+      "sesion": 19,
+      "categoria": "Presentación",
+      "pregunta": "¿Para qué sirve el ensayo antes de la exposición final?",
+      "respuesta": "Para detectar fallos, repartir turnos, mejorar la explicación y ganar seguridad.",
+      "pista": "Ensayar ayuda a corregir antes del día final.",
+      "etiquetas": ["ensayo", "presentacion", "coevaluacion"]
+    },
+    {
+      "id": "bloque4-04",
+      "bloque": "Bloque 4",
+      "sesion": 20,
+      "categoria": "Evaluación",
+      "pregunta": "Menciona dos aspectos que se valoran en el producto final.",
+      "respuesta": "Por ejemplo: precisión matemática, claridad visual, uso correcto del vocabulario, interpretación, justificación o trabajo en equipo.",
+      "pista": "Piensa en los criterios de evaluación del proyecto.",
+      "etiquetas": ["evaluacion", "criterios", "producto final"]
+    },
+    {
+      "id": "bloque4-05",
+      "bloque": "Bloque 4",
+      "sesion": 20,
+      "categoria": "Producto final",
+      "pregunta": "¿Qué cinco piezas principales puede incluir la guía final del proyecto?",
+      "respuesta": "Mapa por cuadrantes, fichas geométricas, tablas y gráficas, ruta recomendada y explicación final.",
+      "pista": "Son los componentes clave de la entrega.",
+      "etiquetas": ["entrega", "guia", "productos"]
+    },
+    {
+      "id": "glosario-01",
+      "bloque": "Glosario",
+      "sesion": 0,
+      "categoria": "Vocabulario",
+      "pregunta": "¿Qué es una recta paralela?",
+      "respuesta": "Una recta que mantiene siempre la misma distancia respecto a otra y no se cruza con ella.",
+      "pista": "Nunca se cortan.",
+      "etiquetas": ["glosario", "paralela"]
+    },
+    {
+      "id": "glosario-02",
+      "bloque": "Glosario",
+      "sesion": 0,
+      "categoria": "Vocabulario",
+      "pregunta": "¿Qué es una recta perpendicular?",
+      "respuesta": "Una recta que corta a otra formando un ángulo recto de 90 grados.",
+      "pista": "Forma una esquina exacta.",
+      "etiquetas": ["glosario", "perpendicular"]
+    }
+  ]
+}

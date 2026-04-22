@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flashcards de repaso de todo el proyecto Almeria en cifras y formas, cargadas desde un archivo JSON editable.">
+    <title>Flashcards - Almeria en cifras y formas</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--fondo-cuerpo);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero-flashcards {
+            background: linear-gradient(135deg, var(--gris-pizarra) 0%, var(--azul-mar) 100%);
+            color: var(--blanco);
+            padding: 42px 28px;
+            border-radius: 18px;
+            box-shadow: 0 10px 24px rgba(0, 66, 102, 0.18);
+        }
+
+        .hero-flashcards h1 {
+            margin: 0 0 10px;
+            font-size: 2.5rem;
+        }
+
+        .hero-flashcards p {
+            margin: 0;
+            max-width: 760px;
+            color: var(--arena-clara);
+            font-size: 1.08rem;
+        }
+
+        .resumen-barra {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            gap: 14px;
+        }
+
+        .dato-resumen {
+            background-color: var(--blanco);
+            border-radius: 14px;
+            padding: 18px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--terracota);
+        }
+
+        .dato-resumen strong {
+            display: block;
+            color: var(--azul-mar);
+            font-size: 1.45rem;
+        }
+
+        .panel-filtros,
+        .panel-ayuda,
+        .panel-estado {
+            background-color: var(--blanco);
+            border-radius: 14px;
+            padding: 24px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .panel-filtros {
+            border-top: 4px solid var(--verde-med);
+        }
+
+        .filtros-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            gap: 16px;
+            align-items: end;
+        }
+
+        .campo label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--gris-pizarra);
+        }
+
+        .campo select,
+        .campo input {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 14px;
+            border: 2px solid #d8dee5;
+            border-radius: 10px;
+            font-size: 1rem;
+            background-color: #fff;
+        }
+
+        .campo select:focus,
+        .campo input:focus {
+            outline: none;
+            border-color: var(--terracota);
+            box-shadow: 0 0 0 4px rgba(211, 110, 90, 0.14);
+        }
+
+        .acciones-filtros {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-flash {
+            border: none;
+            border-radius: 10px;
+            padding: 12px 18px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .btn-flash:hover,
+        .btn-flash:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+            outline: 3px solid rgba(0, 90, 140, 0.18);
+            outline-offset: 2px;
+        }
+
+        .btn-primario {
+            background-color: var(--terracota);
+            color: var(--blanco);
+        }
+
+        .btn-secundario {
+            background-color: var(--azul-mar);
+            color: var(--blanco);
+        }
+
+        .btn-neutro {
+            background-color: var(--arena-clara);
+            color: var(--texto-principal);
+        }
+
+        .visor-flashcards {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .tarjeta-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .tarjeta-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .chip {
+            background-color: #e9f1f7;
+            color: var(--azul-mar);
+            padding: 8px 12px;
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: bold;
+        }
+
+        .flashcard {
+            background: linear-gradient(160deg, #ffffff 0%, #f8fbfd 100%);
+            min-height: 360px;
+            border-radius: 24px;
+            padding: 28px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 66, 102, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .flashcard[data-face="front"] .cara-reverso,
+        .flashcard[data-face="back"] .cara-frente {
+            display: none;
+        }
+
+        .flashcard h2 {
+            margin: 0;
+            color: var(--azul-mar);
+            font-size: 1.9rem;
+            line-height: 1.2;
+        }
+
+        .flashcard p {
+            margin: 0;
+            font-size: 1.12rem;
+        }
+
+        .flashcard .texto-destacado {
+            font-size: 1.18rem;
+        }
+
+        .pie-tarjeta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .etiquetas {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .etiqueta {
+            background-color: #f7ecde;
+            color: #865b12;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 0.85rem;
+        }
+
+        .controles-tarjeta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .panel-estado {
+            border-top: 4px solid var(--azul-mar);
+        }
+
+        .estado-bloque {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .estado-bloque h2,
+        .panel-ayuda h2 {
+            margin: 0;
+            color: var(--gris-pizarra);
+            font-size: 1.5rem;
+        }
+
+        .progreso-visual {
+            width: 100%;
+            height: 14px;
+            background-color: #e5edf3;
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progreso-visual span {
+            display: block;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--terracota) 0%, var(--verde-med) 100%);
+            border-radius: 999px;
+            transition: width 0.25s ease;
+        }
+
+        .lista-ayuda {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .lista-ayuda li + li {
+            margin-top: 8px;
+        }
+
+        .codigo-json {
+            display: block;
+            background-color: #0f2233;
+            color: #e8f2fa;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 0.92rem;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        .mensaje-error {
+            display: none;
+            background-color: #fff0eb;
+            color: #8d3e2d;
+            border-left: 5px solid var(--terracota);
+            border-radius: 12px;
+            padding: 16px 18px;
+        }
+
+        .mensaje-vacio {
+            display: none;
+            background-color: #f4f8fb;
+            border: 2px dashed var(--azul-mar);
+            border-radius: 14px;
+            padding: 26px;
+            text-align: center;
+        }
+
+        @media (max-width: 900px) {
+            .visor-flashcards {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 680px) {
+            .hero-flashcards h1 {
+                font-size: 2rem;
+            }
+
+            .flashcard {
+                min-height: 320px;
+                padding: 22px;
+            }
+
+            .flashcard h2 {
+                font-size: 1.55rem;
+            }
+
+            .btn-flash {
+                width: 100%;
+            }
+
+            .controles-tarjeta,
+            .acciones-filtros {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
+                <span class="header-logo-icon" aria-hidden="true">📐</span>
+                <span class="header-logo-texto">
+                    <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
+                </span>
+            </a>
+            <button class="header-hamburger" id="hamburger-btn"
+                    aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
+                <a href="index.html" class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+                <a href="proyecto.html" class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+                <a href="ruta.html" class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+                <a href="glosario.html" class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+                <a href="flashcards.html" class="header-link"><span aria-hidden="true">🃏</span> Flashcards</a>
+                <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor" id="contenido-principal" tabindex="-1">
+        <section class="hero-flashcards">
+            <h1>Flashcards del proyecto</h1>
+            <p>Repasa todo el contenido con tarjetas filtrables por bloque, sesión o categoría. Las preguntas se cargan desde <code>flashcards-data.json</code> para que puedas añadir, quitar o reorganizar tarjetas sin tocar la estructura de la página.</p>
+        </section>
+
+        <section class="resumen-barra" aria-label="Resumen de estudio">
+            <article class="dato-resumen">
+                <strong id="resumen-total">0</strong>
+                <span>tarjetas disponibles</span>
+            </article>
+            <article class="dato-resumen">
+                <strong id="resumen-activas">0</strong>
+                <span>tarjetas en el filtro actual</span>
+            </article>
+            <article class="dato-resumen">
+                <strong id="resumen-bloques">0</strong>
+                <span>bloques representados</span>
+            </article>
+        </section>
+
+        <section class="panel-filtros" aria-label="Filtros de flashcards">
+            <div class="filtros-grid">
+                <div class="campo">
+                    <label for="filtro-bloque">Bloque</label>
+                    <select id="filtro-bloque">
+                        <option value="">Todos los bloques</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="filtro-categoria">Categoría</label>
+                    <select id="filtro-categoria">
+                        <option value="">Todas las categorías</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="filtro-sesion">Sesión</label>
+                    <select id="filtro-sesion">
+                        <option value="">Todas las sesiones</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="filtro-texto">Buscar texto</label>
+                    <input id="filtro-texto" type="search" placeholder="Ej. perimetro, recta, grafica...">
+                </div>
+            </div>
+            <div class="acciones-filtros">
+                <button class="btn-flash btn-neutro" type="button" id="btn-limpiar">Limpiar filtros</button>
+                <button class="btn-flash btn-secundario" type="button" id="btn-aleatoria">Tarjeta aleatoria</button>
+            </div>
+        </section>
+
+        <div class="mensaje-error" id="mensaje-error" role="alert"></div>
+        <div class="mensaje-vacio" id="mensaje-vacio" role="status" aria-live="polite">
+            <p>No hay tarjetas que coincidan con el filtro actual.</p>
+            <p>Prueba con otro bloque, otra sesión o borra el texto de búsqueda.</p>
+        </div>
+
+        <section class="visor-flashcards" aria-label="Zona principal de estudio">
+            <div class="tarjeta-wrap">
+                <div class="tarjeta-meta">
+                    <span class="chip" id="meta-bloque">Bloque</span>
+                    <span class="chip" id="meta-sesion">Sesión</span>
+                    <span class="chip" id="meta-categoria">Categoría</span>
+                </div>
+
+                <article class="flashcard" id="flashcard" data-face="front" aria-live="polite">
+                    <div class="cara-frente">
+                        <h2>Pregunta</h2>
+                        <p class="texto-destacado" id="texto-pregunta">Cargando flashcards...</p>
+                    </div>
+                    <div class="cara-reverso">
+                        <h2>Respuesta</h2>
+                        <p class="texto-destacado" id="texto-respuesta"></p>
+                        <p id="texto-pista"></p>
+                    </div>
+                    <div class="pie-tarjeta">
+                        <div class="etiquetas" id="lista-etiquetas"></div>
+                        <span id="contador-tarjeta">0 / 0</span>
+                    </div>
+                </article>
+
+                <div class="controles-tarjeta">
+                    <button class="btn-flash btn-primario" type="button" id="btn-girar">Ver respuesta</button>
+                    <button class="btn-flash btn-neutro" type="button" id="btn-anterior">Anterior</button>
+                    <button class="btn-flash btn-secundario" type="button" id="btn-siguiente">Siguiente</button>
+                </div>
+            </div>
+
+            <aside class="estado-bloque">
+                <section class="panel-estado">
+                    <h2>Tu progreso</h2>
+                    <p id="texto-progreso">Tarjeta 0 de 0</p>
+                    <div class="progreso-visual" aria-hidden="true">
+                        <span id="barra-progreso"></span>
+                    </div>
+                    <p id="texto-id">ID: -</p>
+                </section>
+
+                <section class="panel-ayuda">
+                    <h2>Cómo añadir tarjetas</h2>
+                    <p>Solo tienes que duplicar un objeto dentro de <code>flashcards-data.json</code> siguiendo esta estructura:</p>
+                    <code class="codigo-json">{
+  "id": "bloque2-14",
+  "bloque": "Bloque 2",
+  "sesion": 8,
+  "categoria": "Area",
+  "pregunta": "Pregunta nueva",
+  "respuesta": "Respuesta nueva",
+  "pista": "Pista opcional",
+  "etiquetas": ["area", "repaso"]
+}</code>
+                    <ul class="lista-ayuda">
+                        <li><strong><code>id</code></strong> debe ser único.</li>
+                        <li><strong><code>bloque</code></strong>, <strong><code>sesion</code></strong> y <strong><code>categoria</code></strong> alimentan los filtros.</li>
+                        <li><strong><code>etiquetas</code></strong> permite organizar mejor el repaso.</li>
+                    </ul>
+                </section>
+            </aside>
+        </section>
+    </main>
+
+    <footer class="footer-sitio" role="contentinfo">
+        <div class="footer-contenido">
+            <div class="footer-autor">
+                <span class="footer-nombre">Juan Maria Gamez Ortiz</span>
+                <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Andalus</a>
+            </div>
+            <nav class="footer-idiomas" aria-label="Selector de idioma">
+                <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
+                <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">🇪🇸</span> ES</button>
+                <button class="btn-idioma" data-lang="en"><span aria-hidden="true">🇬🇧</span> EN</button>
+                <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">🇸🇦</span> AR</button>
+                <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">🇵🇱</span> PL</button>
+                <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">🇷🇺</span> RU</button>
+                <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">🇳🇱</span> NL</button>
+                <button class="btn-idioma" data-lang="de"><span aria-hidden="true">🇩🇪</span> DE</button>
+            </nav>
+            <div id="google_translate_element" aria-hidden="true"></div>
+            <div class="footer-copy">
+                © <span id="footer-año"></span> · Matemáticas 1.º ESO · Almería
+            </div>
+        </div>
+    </footer>
+    <div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+    <button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const state = {
+                cards: [],
+                filtered: [],
+                index: 0,
+                face: 'front'
+            };
+
+            const ui = {
+                flashcard: document.getElementById('flashcard'),
+                pregunta: document.getElementById('texto-pregunta'),
+                respuesta: document.getElementById('texto-respuesta'),
+                pista: document.getElementById('texto-pista'),
+                metaBloque: document.getElementById('meta-bloque'),
+                metaSesion: document.getElementById('meta-sesion'),
+                metaCategoria: document.getElementById('meta-categoria'),
+                etiquetas: document.getElementById('lista-etiquetas'),
+                contador: document.getElementById('contador-tarjeta'),
+                progreso: document.getElementById('texto-progreso'),
+                barra: document.getElementById('barra-progreso'),
+                textoId: document.getElementById('texto-id'),
+                resumenTotal: document.getElementById('resumen-total'),
+                resumenActivas: document.getElementById('resumen-activas'),
+                resumenBloques: document.getElementById('resumen-bloques'),
+                filtroBloque: document.getElementById('filtro-bloque'),
+                filtroCategoria: document.getElementById('filtro-categoria'),
+                filtroSesion: document.getElementById('filtro-sesion'),
+                filtroTexto: document.getElementById('filtro-texto'),
+                btnGirar: document.getElementById('btn-girar'),
+                btnAnterior: document.getElementById('btn-anterior'),
+                btnSiguiente: document.getElementById('btn-siguiente'),
+                btnAleatoria: document.getElementById('btn-aleatoria'),
+                btnLimpiar: document.getElementById('btn-limpiar'),
+                mensajeError: document.getElementById('mensaje-error'),
+                mensajeVacio: document.getElementById('mensaje-vacio')
+            };
+
+            const normalize = (value) => value
+                .toString()
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '');
+
+            function fillSelect(select, values, labeler = (value) => value) {
+                const previous = select.value;
+                const baseOption = select.querySelector('option');
+                select.innerHTML = '';
+                select.appendChild(baseOption);
+                values.forEach((value) => {
+                    const option = document.createElement('option');
+                    option.value = value;
+                    option.textContent = labeler(value);
+                    select.appendChild(option);
+                });
+                if ([...select.options].some((option) => option.value === previous)) {
+                    select.value = previous;
+                }
+            }
+
+            function setupFilters(cards) {
+                fillSelect(ui.filtroBloque, [...new Set(cards.map((card) => card.bloque))].sort());
+                fillSelect(ui.filtroCategoria, [...new Set(cards.map((card) => card.categoria))].sort());
+                fillSelect(
+                    ui.filtroSesion,
+                    [...new Set(cards.map((card) => String(card.sesion)))].sort((a, b) => Number(a) - Number(b)),
+                    (value) => Number(value) === 0 ? 'General' : `Sesion ${value}`
+                );
+            }
+
+            function applyFilters() {
+                const bloque = ui.filtroBloque.value;
+                const categoria = ui.filtroCategoria.value;
+                const sesion = ui.filtroSesion.value;
+                const texto = normalize(ui.filtroTexto.value.trim());
+
+                state.filtered = state.cards.filter((card) => {
+                    const matchesBlock = !bloque || card.bloque === bloque;
+                    const matchesCategory = !categoria || card.categoria === categoria;
+                    const matchesSesion = !sesion || String(card.sesion) === sesion;
+                    const searchable = normalize([
+                        card.pregunta,
+                        card.respuesta,
+                        card.pista,
+                        card.bloque,
+                        card.categoria,
+                        ...(card.etiquetas || [])
+                    ].join(' '));
+                    const matchesText = !texto || searchable.includes(texto);
+                    return matchesBlock && matchesCategory && matchesSesion && matchesText;
+                });
+
+                state.index = 0;
+                state.face = 'front';
+                render();
+            }
+
+            function render() {
+                ui.flashcard.dataset.face = state.face;
+                ui.btnGirar.textContent = state.face === 'front' ? 'Ver respuesta' : 'Ver pregunta';
+                ui.resumenTotal.textContent = String(state.cards.length);
+                ui.resumenActivas.textContent = String(state.filtered.length);
+                ui.resumenBloques.textContent = String(new Set(state.cards.map((card) => card.bloque)).size);
+
+                if (!state.filtered.length) {
+                    ui.mensajeVacio.style.display = 'block';
+                    ui.flashcard.style.display = 'none';
+                    ui.mensajeError.style.display = 'none';
+                    ui.contador.textContent = '0 / 0';
+                    ui.progreso.textContent = 'Tarjeta 0 de 0';
+                    ui.barra.style.width = '0%';
+                    return;
+                }
+
+                ui.mensajeVacio.style.display = 'none';
+                ui.flashcard.style.display = 'flex';
+
+                const card = state.filtered[state.index];
+                const current = state.index + 1;
+                const total = state.filtered.length;
+                const percentage = (current / total) * 100;
+
+                ui.metaBloque.textContent = card.bloque;
+                ui.metaSesion.textContent = Number(card.sesion) === 0 ? 'General' : `Sesion ${card.sesion}`;
+                ui.metaCategoria.textContent = card.categoria;
+                ui.pregunta.textContent = card.pregunta;
+                ui.respuesta.textContent = card.respuesta;
+                ui.pista.textContent = card.pista ? `Pista: ${card.pista}` : '';
+                ui.contador.textContent = `${current} / ${total}`;
+                ui.progreso.textContent = `Tarjeta ${current} de ${total}`;
+                ui.barra.style.width = `${percentage}%`;
+                ui.textoId.textContent = `ID: ${card.id}`;
+                ui.etiquetas.innerHTML = '';
+
+                (card.etiquetas || []).forEach((tag) => {
+                    const span = document.createElement('span');
+                    span.className = 'etiqueta';
+                    span.textContent = `#${tag}`;
+                    ui.etiquetas.appendChild(span);
+                });
+            }
+
+            function nextCard(step) {
+                if (!state.filtered.length) {
+                    return;
+                }
+                state.index = (state.index + step + state.filtered.length) % state.filtered.length;
+                state.face = 'front';
+                render();
+            }
+
+            function randomCard() {
+                if (!state.filtered.length) {
+                    return;
+                }
+                if (state.filtered.length === 1) {
+                    state.index = 0;
+                } else {
+                    let newIndex = state.index;
+                    while (newIndex === state.index) {
+                        newIndex = Math.floor(Math.random() * state.filtered.length);
+                    }
+                    state.index = newIndex;
+                }
+                state.face = 'front';
+                render();
+            }
+
+            try {
+                const response = await fetch('flashcards-data.json');
+                if (!response.ok) {
+                    throw new Error('No se pudo cargar el JSON de flashcards.');
+                }
+                const payload = await response.json();
+                state.cards = Array.isArray(payload.cards) ? payload.cards : [];
+                setupFilters(state.cards);
+                applyFilters();
+            } catch (error) {
+                ui.mensajeError.textContent = 'No se pudieron cargar las flashcards desde flashcards-data.json. Si estás abriendo la web como archivo local, prueba a servir la carpeta con un servidor local.';
+                ui.mensajeError.style.display = 'block';
+                ui.flashcard.style.display = 'none';
+            }
+
+            ui.btnGirar.addEventListener('click', () => {
+                state.face = state.face === 'front' ? 'back' : 'front';
+                render();
+            });
+            ui.btnAnterior.addEventListener('click', () => nextCard(-1));
+            ui.btnSiguiente.addEventListener('click', () => nextCard(1));
+            ui.btnAleatoria.addEventListener('click', randomCard);
+            ui.btnLimpiar.addEventListener('click', () => {
+                ui.filtroBloque.value = '';
+                ui.filtroCategoria.value = '';
+                ui.filtroSesion.value = '';
+                ui.filtroTexto.value = '';
+                applyFilters();
+            });
+
+            [ui.filtroBloque, ui.filtroCategoria, ui.filtroSesion].forEach((select) => {
+                select.addEventListener('change', applyFilters);
+            });
+            ui.filtroTexto.addEventListener('input', applyFilters);
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
