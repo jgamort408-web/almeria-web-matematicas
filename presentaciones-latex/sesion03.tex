@@ -4,7 +4,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  Compilar con:  pdflatex sesion03.tex  (dos pasadas)
 % ================================================================
-\documentclass[aspectratio=169, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 % ---------------------------------------------------------------
@@ -77,7 +77,7 @@
       \end{itemize}
       \vspace{4pt}
       \begin{notabox}[Regla de lectura]
-        \small
+        \AlmFontSmall
         \textbf{Primero la letra} (fila),
         \textbf{después el número} (columna):
         \quad B3 = fila B, columna 3.
@@ -95,18 +95,18 @@
           }
           % Etiquetas de filas (letras)
           \foreach \f/\ltr in {4/A, 3/B, 2/C, 1/D}{
-            \node[font=\small\bfseries, color=AlmAzul]
+            \node[font=\AlmFontSmall\bfseries, color=AlmAzul]
               at (-0.35, \f-0.5) {\ltr};
           }
           % Etiquetas de columnas (números)
           \foreach \c/\num in {1/1, 2/2, 3/3, 4/4}{
-            \node[font=\small\bfseries, color=AlmAzul]
+            \node[font=\AlmFontSmall\bfseries, color=AlmAzul]
               at (\c-0.5, 4.35) {\num};
           }
           % Celda destacada B3
           \fill[AlmAmbar!45, draw=AlmAmbar, line width=1.5pt]
             (2, 2) rectangle (3, 3);
-          \node[font=\small\bfseries, color=AlmAzul]
+          \node[font=\AlmFontSmall\bfseries, color=AlmAzul]
             at (2.5, 2.5) {B3};
           % Flechas indicadoras
           \draw[AlmTerra, ->, line width=1pt]
@@ -127,21 +127,21 @@
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \begin{pasobox}[1]
-        \small
+        \AlmFontSmall
         \textbf{Lee la letra.}\\
         Identifica la \textbf{fila horizontal}
         en el margen izquierdo del mapa.
       \end{pasobox}
       \vspace{6pt}
       \begin{pasobox}[2]
-        \small
+        \AlmFontSmall
         \textbf{Lee el número.}\\
         Identifica la \textbf{columna vertical}
         en el margen superior del mapa.
       \end{pasobox}
       \vspace{6pt}
       \begin{pasobox}[3]
-        \small
+        \AlmFontSmall
         \textbf{Marca la intersección.}\\
         El lugar está \emph{dentro de la celda}
         donde se cruzan esa fila y esa columna.
@@ -149,7 +149,7 @@
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \textbf{Código: C4}\\[4pt]
         \begin{enumerate}
           \item Busco la fila \textbf{C}
@@ -161,9 +161,9 @@
       \end{ejemplobox}
       \vspace{6pt}
       \begin{formulabox}[AlmAzulM]
-        \small
+        \AlmFontSmall
         Código \;=\; \textbf{letra} + \textbf{número}\\[4pt]
-        \large B3 \;=\; fila\,B\;,\;columna\,3
+        \AlmFontLarge B3 \;=\; fila\,B\;,\;columna\,3
       \end{formulabox}
     \end{column}
   \end{columns}
@@ -189,49 +189,49 @@
       }
       % ------- Etiquetas filas (A=top=fila 3, D=bottom=fila 0) -------
       \foreach \f/\ltr in {3/A, 2/B, 1/C, 0/D}{
-        \node[font=\small\bfseries, color=AlmAzul]
+        \node[font=\AlmFontSmall\bfseries, color=AlmAzul]
           at (-0.32, \f+0.5) {\ltr};
       }
       % ------- Etiquetas columnas -------
       \foreach \c in {1,...,5}{
-        \node[font=\small\bfseries, color=AlmAzul]
+        \node[font=\AlmFontSmall\bfseries, color=AlmAzul]
           at (\c-0.5, 4.28) {\c};
       }
       % ------- Puntos de interés -------
       % Plaza Catedral: B2 -> col 2, fila B(=2) -> (1.5, 2.5)
       \node[punto] (cat) at (1.5, 2.5) {};
-      \node[font=\tiny\bfseries, color=AlmAzulM, above right=-1pt and 1pt of cat]
+      \node[font=\AlmFontTiny\bfseries, color=AlmAzulM, above right=-1pt and 1pt of cat]
         {Catedral};
-      \node[font=\tiny, color=AlmGris, below right=-1pt and 1pt of cat]
+      \node[font=\AlmFontTiny, color=AlmGris, below right=-1pt and 1pt of cat]
         {B2};
       % Alcazaba: A2 -> col 2, fila A(=3) -> (1.5, 3.5)
       \node[puntot] (alc) at (1.5, 3.5) {};
-      \node[font=\tiny\bfseries, color=AlmTerra, above right=-1pt and 1pt of alc]
+      \node[font=\AlmFontTiny\bfseries, color=AlmTerra, above right=-1pt and 1pt of alc]
         {Alcazaba};
-      \node[font=\tiny, color=AlmGris, below right=-1pt and 1pt of alc]
+      \node[font=\AlmFontTiny, color=AlmGris, below right=-1pt and 1pt of alc]
         {A2};
       % Mercado Central: B3 -> col 3, fila B(=2) -> (2.5, 2.5)
       \node[puntov] (mer) at (2.5, 2.5) {};
-      \node[font=\tiny\bfseries, color=AlmVerde, above right=-1pt and 1pt of mer]
+      \node[font=\AlmFontTiny\bfseries, color=AlmVerde, above right=-1pt and 1pt of mer]
         {Mercado};
-      \node[font=\tiny, color=AlmGris, below right=-1pt and 1pt of mer]
+      \node[font=\AlmFontTiny, color=AlmGris, below right=-1pt and 1pt of mer]
         {B3};
       % Puerto: C4 -> col 4, fila C(=1) -> (3.5, 1.5)
       \node[punto, fill=BAplicar] (puer) at (3.5, 1.5) {};
-      \node[font=\tiny\bfseries, color=BAplicar!70!black,
+      \node[font=\AlmFontTiny\bfseries, color=BAplicar!70!black,
             above right=-1pt and 1pt of puer]
         {Puerto};
-      \node[font=\tiny, color=AlmGris, below right=-1pt and 1pt of puer]
+      \node[font=\AlmFontTiny, color=AlmGris, below right=-1pt and 1pt of puer]
         {C4};
       % Parque Nicolás Salmerón: C3 -> col 3, fila C(=1) -> (2.5, 1.5)
       \node[puntov] (par) at (2.5, 1.5) {};
-      \node[font=\tiny\bfseries, color=AlmVerde,
+      \node[font=\AlmFontTiny\bfseries, color=AlmVerde,
             above left=-1pt and 1pt of par]
         {P. Salmerón};
-      \node[font=\tiny, color=AlmGris, below left=-1pt and 1pt of par]
+      \node[font=\AlmFontTiny, color=AlmGris, below left=-1pt and 1pt of par]
         {C3};
       % ------- Leyenda -------
-      \node[font=\tiny, color=AlmAzul, align=left,
+      \node[font=\AlmFontTiny, color=AlmAzul, align=left,
             draw=AlmAzulC!50, fill=AlmBlanco!80,
             rounded corners=2pt, inner sep=3pt]
         at (4.35, 3.5)
@@ -253,7 +253,7 @@
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Para localizar un lugar en un plano cuadriculado:
         \begin{enumerate}
           \item Busca la \textbf{letra} en el margen izquierdo
@@ -269,7 +269,7 @@
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \textbf{Localizar: Puerto (C4)}\\[4pt]
         \begin{enumerate}
           \item Fila \textbf{C} $\rightarrow$ tercera fila.
@@ -280,7 +280,7 @@
       \end{ejemplobox}
       \vspace{6pt}
       \begin{notabox}[El código siempre es único]
-        \footnotesize
+        \AlmFontFootnote
         Dos lugares distintos \textbf{no pueden}
         tener el mismo código.\\
         Dos códigos distintos \textbf{nunca} señalan
@@ -296,7 +296,7 @@
 
 \begin{frame}{Cuadrantes · Coordenadas cartesianas · GPS}
   \begin{center}
-    \small
+    \AlmFontSmall
     \begin{tabular}{@{}p{3.0cm}p{3.4cm}p{3.4cm}p{3.4cm}@{}}
       \toprule
       \textbf{Aspecto}
@@ -329,7 +329,7 @@
   \end{center}
   \vspace{4pt}
   \begin{notabox}[Conclusión]
-    \footnotesize
+    \AlmFontFootnote
     Cada sistema tiene su contexto ideal. Para esta SA usaremos
     \textbf{cuadrantes} y \textbf{coordenadas cartesianas}.
   \end{notabox}
@@ -343,7 +343,7 @@
   \bloomtag{RECORDAR}\quad\dificultad{1}
   \vspace{4pt}
   \begin{recordarbox}
-    \small
+    \AlmFontSmall
     En tu cuaderno, \textbf{dibuja} una cuadrícula 4 × 4:
     \begin{itemize}
       \item Rotula las filas con las letras A, B, C, D
@@ -367,7 +367,7 @@
   \bloomtag{APLICAR}\quad\dificultad{3}
   \vspace{4pt}
   \begin{aplicarbox}
-    \footnotesize
+    \AlmFontFootnote
     Usa el mapa de Almería de la diapositiva anterior.\\[4pt]
     \textbf{Parte A — Dibujar desde códigos:}
     \begin{enumerate}
@@ -399,7 +399,7 @@
   \bloomtag{ANALIZAR}\quad\dificultad{4}
   \vspace{4pt}
   \begin{analizarbox}
-    \small
+    \AlmFontSmall
     Compara el sistema de \textbf{cuadrantes} con el de
     \textbf{coordenadas cartesianas}.\\[6pt]
     Escribe un argumento de \textbf{5--6 líneas} que responda:
@@ -445,11 +445,11 @@
         Leer el código en el \textbf{orden incorrecto}:
         número antes que letra.\\[8pt]
         \begin{center}
-          \large
+          \AlmFontLarge
           \textbf{\sout{3B}}~$\neq$~\textbf{B3}
         \end{center}
         \vspace{4pt}
-        \footnotesize
+        \AlmFontFootnote
         Si dices «3B» estás buscando la columna 3
         y la fila B, lo cual puede interpretarse
         de forma errónea y llevar a una celda
@@ -463,14 +463,14 @@
           \item 3B $\rightarrow$ orden incorrecto \incorrecto
         \end{itemize}
         \vspace{6pt}
-        \footnotesize
+        \AlmFontFootnote
         \textbf{Truco:} piensa en el alfabeto antes que en los números.
       \end{column}
     \end{columns}
   \end{errorbox}
   \vspace{6pt}
   \begin{notabox}[Analogía]
-    \small
+    \AlmFontSmall
     En una hoja de cálculo, la celda B3 está
     en la columna B y la fila 3 — el mismo orden.
   \end{notabox}
@@ -496,7 +496,7 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}
+    {\AlmFontSmall\color{AlmAzulM}
     \faArrowCircleRight\enskip
     \textbf{Próxima sesión:}
     Coordenadas cartesianas — leer y escribir pares $(x, y)$.}
@@ -504,3 +504,6 @@
 \end{frame}
 
 \end{document}
+
+
+

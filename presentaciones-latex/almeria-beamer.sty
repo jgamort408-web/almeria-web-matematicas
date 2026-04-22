@@ -67,6 +67,7 @@
 % map-marker-alt y comment-alt no están en FA5 Free → aliases
 \providecommand{\faMapMarkerAlt}{\faMapMarker}
 \providecommand{\faCommentAlt}{\faComment}
+\providecommand{\faFileAlt}{\faFile}
 \providecommand{\fastar}{\faStar}
 
 % Miscelánea
@@ -112,6 +113,18 @@
 %  Cambia estos valores para escalar el tema entero
 % ---------------------------------------------------------------
 % Escala base reutilizable
+\newcommand{\AlmFontTiny}{\tiny}
+\newcommand{\AlmFontScript}{\scriptsize}
+\newcommand{\AlmFontFootnote}{\footnotesize}
+\newcommand{\AlmFontSmall}{\small}
+\newcommand{\AlmFontNormal}{\normalsize}
+\newcommand{\AlmFontLarge}{\large}
+\newcommand{\AlmFontLargeUp}{\Large}
+\newcommand{\AlmFontLARGE}{\LARGE}
+\newcommand{\AlmFontHuge}{\huge}
+\newcommand{\AlmFontHugeUp}{\Huge}
+
+% Compatibilidad con la escala anterior
 \newcommand{\AlmSizeXS}{\tiny}
 \newcommand{\AlmSizeS}{\small}
 \newcommand{\AlmSizeM}{\normalsize}
@@ -120,7 +133,7 @@
 \newcommand{\AlmSizeXXL}{\Huge}
 
 % Texto general
-\newcommand{\AlmFontBody}{\AlmSizeS}
+\newcommand{\AlmFontBody}{\AlmFontSmall}
 
 % Elementos beamer
 \newcommand{\AlmFontTitle}{\AlmSizeXXL}
@@ -133,35 +146,35 @@
 \newcommand{\AlmFontTocSection}{\AlmSizeM}
 
 % Portada
-\newcommand{\AlmFontTitlePageProject}{\footnotesize}
-\newcommand{\AlmFontTitlePageTitle}{\LARGE}
-\newcommand{\AlmFontTitlePageMeta}{\small}
-\newcommand{\AlmFontTitlePageObjectiveLabel}{\tiny}
-\newcommand{\AlmFontTitlePageObjectiveText}{\small}
-\newcommand{\AlmFontTitlePageAuthor}{\tiny}
-\newcommand{\AlmFontTitlePageBadge}{\huge}
-\newcommand{\AlmFontTitlePageBadgeLabel}{\tiny}
-\newcommand{\AlmFontTitlePageBlockBadge}{\tiny}
+\newcommand{\AlmFontTitlePageProject}{\AlmFontFootnote}
+\newcommand{\AlmFontTitlePageTitle}{\AlmFontLARGE}
+\newcommand{\AlmFontTitlePageMeta}{\AlmFontSmall}
+\newcommand{\AlmFontTitlePageObjectiveLabel}{\AlmFontTiny}
+\newcommand{\AlmFontTitlePageObjectiveText}{\AlmFontSmall}
+\newcommand{\AlmFontTitlePageAuthor}{\AlmFontTiny}
+\newcommand{\AlmFontTitlePageBadge}{\AlmFontHuge}
+\newcommand{\AlmFontTitlePageBadgeLabel}{\AlmFontTiny}
+\newcommand{\AlmFontTitlePageBlockBadge}{\AlmFontTiny}
 
 % Sección
 \newcommand{\AlmFontSectionPage}{\AlmSizeXXL}
 
 % Cajas y comandos auxiliares
-\newcommand{\AlmFontBoxTitle}{\small}
-\newcommand{\AlmFontPasoTitle}{\scriptsize}
-\newcommand{\AlmFontFormulaBox}{\large}
-\newcommand{\AlmFontFormulaDest}{\Large}
-\newcommand{\AlmFontBloomTag}{\tiny}
-\newcommand{\AlmFontFuente}{\tiny}
-\newcommand{\AlmFontSesionTag}{\small}
+\newcommand{\AlmFontBoxTitle}{\AlmFontSmall}
+\newcommand{\AlmFontPasoTitle}{\AlmFontScript}
+\newcommand{\AlmFontFormulaBox}{\AlmFontLarge}
+\newcommand{\AlmFontFormulaDest}{\AlmFontLargeUp}
+\newcommand{\AlmFontBloomTag}{\AlmFontTiny}
+\newcommand{\AlmFontFuente}{\AlmFontTiny}
+\newcommand{\AlmFontSesionTag}{\AlmFontSmall}
 
 % Gráficas y TikZ
-\newcommand{\AlmFontPlotsTicks}{\small}
-\newcommand{\AlmFontPlotsLabels}{\small}
-\newcommand{\AlmFontPlotsTitle}{\small}
-\newcommand{\AlmFontPlotsLegend}{\tiny}
-\newcommand{\AlmFontPlotsNodes}{\tiny}
-\newcommand{\AlmFontTikzLabel}{\small}
+\newcommand{\AlmFontPlotsTicks}{\AlmFontSmall}
+\newcommand{\AlmFontPlotsLabels}{\AlmFontSmall}
+\newcommand{\AlmFontPlotsTitle}{\AlmFontSmall}
+\newcommand{\AlmFontPlotsLegend}{\AlmFontTiny}
+\newcommand{\AlmFontPlotsNodes}{\AlmFontTiny}
+\newcommand{\AlmFontTikzLabel}{\AlmFontSmall}
 
 
 % ---------------------------------------------------------------
@@ -170,17 +183,17 @@
 % ---------------------------------------------------------------
 
 % Frametitle
-\newcommand{\AlmFrameTitleHt}{0.64cm}
-\newcommand{\AlmFrameTitleDp}{0.20cm}
+\newcommand{\AlmFrameTitleHt}{0.58cm}
+\newcommand{\AlmFrameTitleDp}{0.16cm}
 \newcommand{\AlmFrameTitleLeftSkip}{0.45cm}
 \newcommand{\AlmFrameTitleRightSkip}{0.45cm}
-\newcommand{\AlmFrameTitleInnerVSpace}{0.03cm}
-\newcommand{\AlmFrameTitleRuleHeight}{2.2pt}
-\newcommand{\AlmFrameTitleAfterVSpace}{-1.5pt}
+\newcommand{\AlmFrameTitleInnerVSpace}{0.01cm}
+\newcommand{\AlmFrameTitleRuleHeight}{1.8pt}
+\newcommand{\AlmFrameTitleAfterVSpace}{-2pt}
 
 % Footline
-\newcommand{\AlmFootlineHt}{0.42cm}
-\newcommand{\AlmFootlineDp}{0.16cm}
+\newcommand{\AlmFootlineHt}{0.34cm}
+\newcommand{\AlmFootlineDp}{0.12cm}
 \newcommand{\AlmFootlineLeftSkip}{0.40cm}
 \newcommand{\AlmFootlineRightSkip}{0.40cm}
 
@@ -239,13 +252,18 @@
 \newcommand{\AlmSectionRuleGap}{0.30cm}
 
 % Cajas tcolorbox
-\newcommand{\AlmBoxArc}{4pt}
-\newcommand{\AlmBoxRule}{0.5pt}
-\newcommand{\AlmBoxLeftRule}{4pt}
+\newcommand{\AlmBoxArc}{3pt}
+\newcommand{\AlmBoxRule}{0.4pt}
+\newcommand{\AlmBoxLeftRule}{3pt}
 \newcommand{\AlmBoxTitleArc}{3pt}
-\newcommand{\AlmBoxTitleYShift}{-2.2mm}
-\newcommand{\AlmBoxTitleXShift}{4mm}
-\newcommand{\AlmBoxParSkip}{3pt}
+\newcommand{\AlmBoxTitleYShift}{-1.8mm}
+\newcommand{\AlmBoxTitleXShift}{3mm}
+\newcommand{\AlmBoxParSkip}{2pt}
+\newcommand{\AlmBoxTop}{3pt}
+\newcommand{\AlmBoxBottom}{3pt}
+\newcommand{\AlmBoxLeft}{4pt}
+\newcommand{\AlmBoxRight}{4pt}
+\newcommand{\AlmBoxSep}{3pt}
 
 \newcommand{\AlmPasoArc}{3pt}
 \newcommand{\AlmPasoRule}{0.3pt}
@@ -277,7 +295,7 @@
 
 \newcommand{\AlmSeparatorLineWidth}{1.2pt}
 \newcommand{\AlmSeparatorVSpace}{2pt}
-\newcommand{\AlmArrowSize}{\Large}
+\newcommand{\AlmArrowSize}{\AlmFontLargeUp}
 
 % PGFPLOTS
 \newcommand{\AlmPlotWidth}{0.95\linewidth}
@@ -558,6 +576,8 @@
 % --- Teoría ---
 \newtcolorbox{teoriabox}[1][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmAzul!6, colframe=AlmAzul,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faBook\enskip Teoría},
@@ -571,6 +591,8 @@
 % --- Definición (título personalizable) ---
 \newtcolorbox{definicionbox}[2][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmAzulM!8, colframe=AlmAzulM,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faInfoCircle\enskip #2},
@@ -583,6 +605,8 @@
 % --- Ejemplo en Almería ---
 \newtcolorbox{ejemplobox}[1][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmAmbar!10, colframe=AlmAmbar,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmAzulO},
   title={\faMapMarkerAlt\enskip Ejemplo en Almería},
@@ -595,6 +619,8 @@
 % --- RECORDAR ---
 \newtcolorbox{recordarbox}[1][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=BRecordar!7, colframe=BRecordar,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faBrain\enskip RECORDAR},
@@ -607,6 +633,8 @@
 % --- COMPRENDER ---
 \newtcolorbox{comprenderbox}[1][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=BComprender!7, colframe=BComprender,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faLightbulb\enskip COMPRENDER},
@@ -619,6 +647,8 @@
 % --- APLICAR ---
 \newtcolorbox{aplicarbox}[1][]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=BAplicar!9, colframe=BAplicar!80!black,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmNegro},
   title={\faTools\enskip APLICAR},
@@ -667,6 +697,8 @@
 % --- Error frecuente ---
 \newtcolorbox{errorbox}{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmTerra!7, colframe=AlmTerra,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faExclamationTriangle\enskip \textbf{¡Cuidado con este error!}},
@@ -678,6 +710,8 @@
 % --- Evidencia del día ---
 \newtcolorbox{evidenciabox}{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmVerde!7, colframe=AlmVerde,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faClipboardCheck\enskip Evidencia del día},
@@ -701,6 +735,8 @@
 % --- Resumen final de sesión ---
 \newtcolorbox{resumenbox}{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmAzul!6, colframe=AlmAzul,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmBlanco},
   title={\faCheckDouble\enskip Lo que hemos aprendido hoy},
@@ -712,6 +748,8 @@
 % --- Nota/Curiosidad ---
 \newtcolorbox{notabox}[1][Nota]{%
   enhanced,
+  top=\AlmBoxTop, bottom=\AlmBoxBottom,
+  left=\AlmBoxLeft, right=\AlmBoxRight, boxsep=\AlmBoxSep,
   colback=AlmAmbar!8, colframe=AlmAmbar!60!black,
   fonttitle=\bfseries\AlmFontBoxTitle\color{AlmAzulO},
   title={\faStickyNote\enskip #1},

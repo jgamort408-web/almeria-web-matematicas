@@ -3,7 +3,7 @@
 %  Rutas y distancias por Almería
 %  Bloque 2: Geometría urbana · Matemáticas 1.º ESO
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{10}
@@ -73,18 +73,18 @@
         \node[etiqueta, above right] at (B) {B};
         % Línea recta (euclídea)
         \draw[recto, AlmAzulM] (A) -- (B)
-          node[midway, below right, font=\tiny\bfseries, color=AlmAzulM]
+          node[midway, below right, font=\AlmFontTiny\bfseries, color=AlmAzulM]
           {distancia euclídea};
         % Ruta Manhattan
         \draw[rectot, dashed, line width=1.3pt]
           (A) -- (4.2,0.6) -- (B)
-          node[midway, right, font=\tiny, color=AlmTerra]
+          node[midway, right, font=\AlmFontTiny, color=AlmTerra]
           {ruta calles};
         % Acotaciones
         \draw[acota] (0.6,0.2) -- (4.2,0.2)
-          node[midway, below, font=\tiny] {$\Delta x$};
+          node[midway, below, font=\AlmFontTiny] {$\Delta x$};
         \draw[acota] (4.5,0.6) -- (4.5,3.0)
-          node[midway, right, font=\tiny] {$\Delta y$};
+          node[midway, right, font=\AlmFontTiny] {$\Delta y$};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -122,17 +122,17 @@
         \coordinate (A) at (3,0);
         \coordinate (B) at (0,2.2);
         \fill[zona] (O) -- (A) -- (B) -- cycle;
-        \draw[recto] (O) -- (A) node[midway, below, font=\small] {$a$};
-        \draw[recto] (O) -- (B) node[midway, left, font=\small] {$b$};
+        \draw[recto] (O) -- (A) node[midway, below, font=\AlmFontSmall] {$a$};
+        \draw[recto] (O) -- (B) node[midway, left, font=\AlmFontSmall] {$b$};
         \draw[rectot, line width=2pt] (A) -- (B)
-          node[midway, right, font=\small\bfseries, color=AlmTerra] {$c$};
+          node[midway, right, font=\AlmFontSmall\bfseries, color=AlmTerra] {$c$};
         % Ángulo recto
         \draw[rectoang] (0.28,0) -- (0.28,0.28) -- (0,0.28);
         % Cuadrados visuales
         \fill[AlmAzulC, opacity=0.25]
-          (0,-0.55) rectangle (3,-0.25) node[midway, font=\tiny, color=AlmAzul] {$a^2$};
+          (0,-0.55) rectangle (3,-0.25) node[midway, font=\AlmFontTiny, color=AlmAzul] {$a^2$};
         \fill[BRecordar, opacity=0.20]
-          (-0.6,0) rectangle (-0.3,2.2) node[midway, font=\tiny, color=BRecordar, rotate=90] {$b^2$};
+          (-0.6,0) rectangle (-0.3,2.2) node[midway, font=\AlmFontTiny, color=BRecordar, rotate=90] {$b^2$};
       \end{tikzpicture}
       \end{center}
       \vspace{4pt}
@@ -161,7 +161,7 @@
       \end{teoriabox}
       \vspace{6pt}
       \begin{notabox}[Tripletas pitagóricas]
-        \footnotesize
+        \AlmFontFootnote
         $3$-$4$-$5$;\quad $5$-$12$-$13$;\quad $8$-$15$-$17$\\
         ¡Útiles para comprobar resultados mentalmente!
       \end{notabox}
@@ -170,24 +170,24 @@
       \begin{tikzpicture}[scale=0.85]
         \draw[AlmFondo!80, step=1cm] (-0.5,-0.5) grid (5.5,5.5);
         \draw[->, AlmAzulM, line width=1pt] (-0.3,0) -- (5.3,0)
-          node[right, font=\small] {$x$};
+          node[right, font=\AlmFontSmall] {$x$};
         \draw[->, AlmAzulM, line width=1pt] (0,-0.3) -- (0,5.3)
-          node[above, font=\small] {$y$};
+          node[above, font=\AlmFontSmall] {$y$};
         \coordinate (A) at (1,1);
         \coordinate (B) at (4,5);
         \node[punto] at (A) {};
         \node[punto] at (B) {};
-        \node[etiqueta, below left, font=\small] at (A) {$A(1,1)$};
-        \node[etiqueta, above left, font=\small] at (B) {$B(4,5)$};
+        \node[etiqueta, below left, font=\AlmFontSmall] at (A) {$A(1,1)$};
+        \node[etiqueta, above left, font=\AlmFontSmall] at (B) {$B(4,5)$};
         % Triángulo auxiliar
         \coordinate (C) at (4,1);
         \draw[AlmGris, dashed] (A) -- (C) -- (B);
         \draw[rectoang] (3.72,1) -- (3.72,1.28) -- (4,1.28);
         \draw[rectot, line width=2pt] (A) -- (B);
         % Catetos
-        \node[below, font=\tiny, color=AlmGris] at (2.5,1) {$\Delta x=3$};
-        \node[right, font=\tiny, color=AlmGris] at (4,3) {$\Delta y=4$};
-        \node[above left, font=\small\bfseries, color=AlmTerra] at (2.5,3)
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (2.5,1) {$\Delta x=3$};
+        \node[right, font=\AlmFontTiny, color=AlmGris] at (4,3) {$\Delta y=4$};
+        \node[above left, font=\AlmFontSmall\bfseries, color=AlmTerra] at (2.5,3)
           {$c=5$};
       \end{tikzpicture}
     \end{column}
@@ -214,7 +214,7 @@
       En nuestro mapa de Almería usamos:
       \begin{center}
         \tcbox[colback=AlmAmbar!15, colframe=AlmAmbar,
-               fontupper=\bfseries\small, arc=4pt]{%
+               fontupper=\bfseries\AlmFontSmall, arc=4pt]{%
           \textbf{1 unidad} del plano $=$ \textbf{200 m} reales}
       \end{center}
     \end{column}
@@ -232,7 +232,7 @@
       \end{tabular}
       \vspace{8pt}
       \begin{ejemplobox}
-        \footnotesize
+        \AlmFontFootnote
         Dos puntos en el mapa distan 3 unidades.
         Con escala 1 u = 200 m:\\
         $d_{\text{real}} = 3 \times 200 = \mathbf{600\ \text{m}}$
@@ -252,9 +252,9 @@
       \begin{tikzpicture}[scale=0.82]
         \draw[AlmFondo!80, step=1cm] (0,0) grid (5,5);
         \draw[->, AlmAzulM, line width=0.8pt] (0,0)--(5.3,0)
-          node[right,font=\tiny]{$x$};
+          node[right,font=\AlmFontTiny]{$x$};
         \draw[->, AlmAzulM, line width=0.8pt] (0,0)--(0,5.3)
-          node[above,font=\tiny]{$y$};
+          node[above,font=\AlmFontTiny]{$y$};
         % Puntos
         \coordinate (Alc) at (1,4);
         \coordinate (Cat) at (2,2);
@@ -264,13 +264,13 @@
         \node[puntot] at (Cat) {};
         \node[puntov] at (Mer) {};
         \node[punto] at (Pto) {};
-        \node[font=\tiny\bfseries, above right, color=AlmAzulM] at (Alc)
+        \node[font=\AlmFontTiny\bfseries, above right, color=AlmAzulM] at (Alc)
           {Alcazaba (1,4)};
-        \node[font=\tiny\bfseries, above right, color=AlmTerra] at (Cat)
+        \node[font=\AlmFontTiny\bfseries, above right, color=AlmTerra] at (Cat)
           {Catedral (2,2)};
-        \node[font=\tiny\bfseries, above right, color=AlmVerde] at (Mer)
+        \node[font=\AlmFontTiny\bfseries, above right, color=AlmVerde] at (Mer)
           {Mercado (3,2)};
-        \node[font=\tiny\bfseries, below right, color=AlmAzulM] at (Pto)
+        \node[font=\AlmFontTiny\bfseries, below right, color=AlmAzulM] at (Pto)
           {Puerto (4,1)};
         % Ruta
         \draw[rectot, line width=2pt, ->] (Alc) -- (Cat);
@@ -280,7 +280,7 @@
     \end{column}
     \begin{column}{0.52\textwidth}
       \begin{pasobox}[1]
-        \footnotesize
+        \AlmFontFootnote
         $A(1,4)\to B(2,2)$:\\
         $\Delta x=1,\;\Delta y=-2$\\
         $d=\sqrt{1^2+2^2}=\sqrt{5}\approx 2{,}24\ \text{u}$\\
@@ -288,14 +288,14 @@
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[2]
-        \footnotesize
+        \AlmFontFootnote
         $B(2,2)\to C(3,2)$:\\
         $\Delta x=1,\;\Delta y=0$\\
         $d=\sqrt{1^2+0^2}=1\ \text{u} = \mathbf{200\ \text{m}}$
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[3]
-        \footnotesize
+        \AlmFontFootnote
         $C(3,2)\to D(4,1)$:\\
         $\Delta x=1,\;\Delta y=-1$\\
         $d=\sqrt{1^2+1^2}=\sqrt{2}\approx 1{,}41\ \text{u}$\\
@@ -303,7 +303,7 @@
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[4]
-        \footnotesize
+        \AlmFontFootnote
         \textbf{Distancia total:}
         $448+200+283 = \mathbf{931\ \text{m}}$\\[2pt]
         Tiempo a 5 km/h $= \frac{0{,}931}{5}\times 60
@@ -321,7 +321,7 @@
   \begin{columns}[T]
     \begin{column}{0.56\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \textbf{Puntos turísticos} (escala 1 u = 200 m):
         \begin{center}
         \begin{tabular}{lcc}
@@ -339,7 +339,7 @@
       \end{ejemplobox}
       \vspace{4pt}
       \begin{notabox}[Tiempo de paseo]
-        \footnotesize
+        \AlmFontFootnote
         Velocidad media turista: $\approx 4{,}5\ \text{km/h}$\\
         Fórmula: $t = \dfrac{d}{v}$\\
         (resultado en horas; $\times 60$ para minutos)
@@ -375,7 +375,7 @@
   \begin{columns}[T]
     \begin{column}{0.31\textwidth}
       \begin{aplicarbox}
-        \footnotesize\dificultad{2}\\[4pt]
+        \AlmFontFootnote\dificultad{2}\\[4pt]
         Calcula la distancia entre los pares de puntos:\\[3pt]
         $P(0,0)$ y $Q(3,4)$\\
         $R(1,2)$ y $S(4,6)$\\
@@ -386,7 +386,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{analizarbox}
-        \footnotesize\dificultad{3}\\[4pt]
+        \AlmFontFootnote\dificultad{3}\\[4pt]
         La Alcazaba está en $(1,4)$ y el
         faro del Cabo de Gata en $(8,0)$
         (escala 1 u = 1 km).\\[4pt]
@@ -400,7 +400,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{evaluarbox}
-        \footnotesize\dificultad{4}\\[4pt]
+        \AlmFontFootnote\dificultad{4}\\[4pt]
         Tienes \textbf{2 horas} y caminas a
         4 km/h. Diseña una ruta turística
         por Almería visitando \textbf{al menos
@@ -453,7 +453,7 @@
   \end{errorbox}
   \vspace{6pt}
   \begin{notabox}[Truco de comprobación]
-    \small
+    \AlmFontSmall
     La distancia siempre debe ser \textbf{mayor que cada cateto
     por separado} y \textbf{menor que su suma}.
     Si $a=3$ y $b=4$, entonces $3 < d < 7$. ¿Cumple $d=5$? ¡Sí!
@@ -478,7 +478,7 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    {\AlmFontSmall\color{AlmAzulM}\faArrowCircleRight\enskip
     \textbf{Próximo bloque:}
     Datos y gráficas (Sesiones 11--16)}
   \end{center}
@@ -486,3 +486,6 @@
 \end{frame}
 
 \end{document}
+
+
+

@@ -3,7 +3,7 @@
 %  Ensayo y mejora
 %  Bloque 4: Producto final · Matemáticas 1.º ESO
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{19}
@@ -68,8 +68,8 @@
         nodo/.style={
           rounded corners=5pt,
           draw=AlmAzulM, fill=AlmFondo,
-          font=\small\bfseries,
-          text width=2.2cm, align=center,
+          font=\AlmFontSmall\bfseries,
+          text width=1.5cm, align=center,
           inner sep=5pt
         },
         flecha/.style={->, AlmAmbar, line width=1.5pt, shorten >=2pt}
@@ -86,7 +86,7 @@
         \draw[flecha] (co) -- (v);
         \draw[flecha] (v)  -- (p);
         \draw[flecha, dashed] (r) to[bend left=20] (c)
-          node[midway, above right, font=\tiny, color=AlmGris]
+          node[midway, above right, font=\AlmFontTiny, color=AlmGris]
           {¿Todo bien?};
       \end{tikzpicture}
     \end{column}
@@ -97,16 +97,16 @@
 \seccionframe{2. Tipos de errores}
 % ---------------------------------------------------------------
 
-\begin{frame}{Cuatro tipos de errores a buscar}
+\begin{frame}{Cuatro tipos de errores a buscar (1/2)}
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{tcolorbox}[enhanced, colback=BRecordar!8,
-        colframe=BRecordar, fonttitle=\bfseries\small\color{AlmBlanco},
+        colframe=BRecordar, fonttitle=\bfseries\AlmFontSmall\color{AlmBlanco},
         title={\faCalculator\enskip Errores matemáticos},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=BRecordar, arc=3pt},
         arc=4pt, leftrule=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item Fórmula incorrecta ($A = b + h$ en vez de $b \times h$)
           \item Operación aritmética errónea
@@ -115,14 +115,15 @@
           \item Coordenadas invertidas $(y,x)$ en vez de $(x,y)$
         \end{itemize}
       \end{tcolorbox}
-      \vspace{6pt}
+    \end{column}
+    \begin{column}{0.48\textwidth}
       \begin{tcolorbox}[enhanced, colback=BAnalizar!8,
-        colframe=BAnalizar, fonttitle=\bfseries\small\color{AlmBlanco},
+        colframe=BAnalizar, fonttitle=\bfseries\AlmFontSmall\color{AlmBlanco},
         title={\faDatabase\enskip Errores de datos},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=BAnalizar, arc=3pt},
         arc=4pt, leftrule=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item Dato inventado sin fuente
           \item Dato obsoleto (más de 5 años)
@@ -131,14 +132,25 @@
         \end{itemize}
       \end{tcolorbox}
     \end{column}
+  \end{columns}
+  \vspace{6pt}
+  \begin{notabox}[Pista de revisión]
+    \AlmFontFootnote
+    Primero comprueba si el número está bien calculado;
+    después verifica si el dato es fiable y tiene fuente.
+  \end{notabox}
+\end{frame}
+
+\begin{frame}{Cuatro tipos de errores a buscar (2/2)}
+  \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{tcolorbox}[enhanced, colback=BComprender!8,
-        colframe=BComprender, fonttitle=\bfseries\small\color{AlmBlanco},
+        colframe=BComprender, fonttitle=\bfseries\AlmFontSmall\color{AlmBlanco},
         title={\faChartBar\enskip Errores de representación},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=BComprender, arc=3pt},
         arc=4pt, leftrule=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item Ejes sin etiqueta o sin unidades
           \item Escala no regular (saltos irregulares)
@@ -147,14 +159,15 @@
           \item Tabla no ordenada por $x$
         \end{itemize}
       \end{tcolorbox}
-      \vspace{6pt}
+    \end{column}
+    \begin{column}{0.48\textwidth}
       \begin{tcolorbox}[enhanced, colback=BEvaluar!8,
-        colframe=BEvaluar, fonttitle=\bfseries\small\color{AlmBlanco},
+        colframe=BEvaluar, fonttitle=\bfseries\AlmFontSmall\color{AlmBlanco},
         title={\faCommentAlt\enskip Errores de comunicación},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=BEvaluar, arc=3pt},
         arc=4pt, leftrule=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item Descripción sin datos numéricos
           \item Cálculo sin explicación de los pasos
@@ -164,6 +177,12 @@
       \end{tcolorbox}
     \end{column}
   \end{columns}
+  \vspace{6pt}
+  \begin{notabox}[Pista de revisión]
+    \AlmFontFootnote
+    Aunque los datos sean correctos, una gráfica mal rotulada
+    o una explicación vaga también cuentan como error.
+  \end{notabox}
 \end{frame}
 
 % ---------------------------------------------------------------
@@ -172,8 +191,8 @@
 
 \begin{frame}{Rúbrica de autoevaluación}
   \begin{center}
-  \footnotesize
-  \begin{tabular}{p{2.8cm} p{2.6cm} p{2.6cm} p{2.6cm} p{2.6cm}}
+  \AlmFontFootnote
+  \begin{tabular}{p{2cm} p{2.5cm} p{2.5cm} p{2.5cm} p{2.5cm}}
     \toprule
     \textbf{Criterio}
       & \textbf{4 — Excelente}
@@ -211,8 +230,8 @@
   \end{center}
   \vspace{4pt}
   \begin{center}
-    \small\textbf{Puntuación máxima: 20 puntos}\\
-    {\footnotesize 18--20: Sobresaliente · 14--17: Notable ·
+    \AlmFontSmall\textbf{Puntuación máxima: 20 puntos}\\
+    {\AlmFontFootnote 18--20: Sobresaliente · 14--17: Notable ·
     10--13: Bien · $<$10: Necesita revisión}
   \end{center}
 \end{frame}
@@ -308,7 +327,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{evaluarbox}
-        \footnotesize\dificultad{3}\\[4pt]
+        \AlmFontFootnote\dificultad{3}\\[4pt]
         Aplica la rúbrica de autoevaluación
         a \textbf{tu propia guía}.\\[4pt]
         \begin{enumerate}
@@ -322,7 +341,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{crearbox}
-        \footnotesize\dificultad{4}\\[4pt]
+        \AlmFontFootnote\dificultad{4}\\[4pt]
         Basándote en el \textbf{feedback del equipo revisor},
         aplica \textbf{3 mejoras concretas} a tu guía.\\[4pt]
         Para cada mejora documenta:
@@ -395,10 +414,13 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    {\AlmFontSmall\color{AlmAzulM}\faArrowCircleRight\enskip
     \textbf{Sesión 20 (última):}
     Exposición final y cierre del proyecto}
   \end{center}
 \end{frame}
 
 \end{document}
+
+
+

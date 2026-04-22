@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO · IES Al-Ándalus
 %  Compilar: pdflatex sesion17.tex
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{17}
@@ -71,22 +71,22 @@
       \begin{tikzpicture}[scale=0.9]
         % Triángulo de selección
         \node[draw=AlmAzul, fill=AlmAzulC!15, rounded corners=6pt,
-              minimum width=3.5cm, minimum height=0.65cm,
-              font=\scriptsize\bfseries, color=AlmAzul] (a) at (0, 2.2)
+              minimum width=6cm, minimum height=0.65cm,
+              font=\AlmFontScript\bfseries, color=AlmAzul] (a) at (0, 2.2)
           {Muchos datos (sesiones 1-16)};
         \node[draw=AlmAmbar!80!black, fill=AlmAmbar!15, rounded corners=6pt,
-              minimum width=2.6cm, minimum height=0.65cm,
-              font=\scriptsize\bfseries, color=AlmAzul] (b) at (0, 1.1)
+              minimum width=3.5cm, minimum height=0.65cm,
+              font=\AlmFontScript\bfseries, color=AlmAzul] (b) at (0, 1.1)
           {Datos candidatos};
         \node[draw=AlmVerde, fill=AlmVerde!15, rounded corners=6pt,
-              minimum width=2.0cm, minimum height=0.65cm,
-              font=\scriptsize\bfseries, color=AlmVerde] (c) at (0, 0)
+              minimum width=1cm, minimum height=0.65cm,
+              font=\AlmFontScript\bfseries, color=AlmVerde] (c) at (0, 0)
           {Datos seleccionados};
         \draw[->, thick, AlmAzulM] (a) -- (b);
         \draw[->, thick, AlmAmbar!70!black] (b) -- (c);
-        \node[right=0.1cm of a, font=\tiny, color=AlmGris] {100\%};
-        \node[right=0.1cm of b, font=\tiny, color=AlmGris] {50\%};
-        \node[right=0.1cm of c, font=\tiny, color=AlmGris] {25\%};
+        \node[right=0.1cm of a, font=\AlmFontTiny, color=AlmGris] {100\%};
+        \node[right=0.1cm of b, font=\AlmFontTiny, color=AlmGris] {50\%};
+        \node[right=0.1cm of c, font=\AlmFontTiny, color=AlmGris] {25\%};
       \end{tikzpicture}
       \end{center}
       \begin{notabox}[Principio]
@@ -193,14 +193,14 @@
   \begin{center}
   \begin{tikzpicture}[
     decision/.style={diamond, draw=AlmAzulM, fill=AlmAzulC!20,
-                     text width=2.6cm, align=center, font=\tiny\bfseries,
+                     text width=2.6cm, align=center, font=\AlmFontTiny\bfseries,
                      inner sep=1pt, aspect=1.8},
     result/.style={rounded corners=4pt, draw=AlmVerde, fill=AlmVerde!15,
-                   font=\tiny\bfseries, text width=2cm, align=center, inner sep=3pt},
+                   font=\AlmFontTiny\bfseries, text width=2cm, align=center, inner sep=3pt},
     reject/.style={rounded corners=4pt, draw=AlmTerra, fill=AlmTerra!10,
-                   font=\tiny\bfseries, text width=1.8cm, align=center, inner sep=3pt},
+                   font=\AlmFontTiny\bfseries, text width=1.8cm, align=center, inner sep=3pt},
     arr/.style={->, >=Stealth, thick, AlmAzulM},
-    scale=0.9, every node/.style={font=\tiny}
+    scale=0.9, every node/.style={font=\AlmFontTiny}
   ]
     \node[decision] (Q1) at (0,0) {¿Tiene fuente verificable?};
     \node[reject] (R1) at (-3.2,-1.5) {Descartar o buscar fuente};
@@ -210,12 +210,12 @@
     \node[reject] (R3) at (5.0,-3.0) {Descartar};
     \node[result] (OK) at (2.0,-4.5) {\correcto\ Incluir en la guía};
 
-    \draw[arr] (Q1) -- node[above,sloped]{\tiny No} (R1);
-    \draw[arr] (Q1) -- node[above]{\tiny Sí} (Q2);
-    \draw[arr] (Q2) -- node[above]{\tiny No} (R2);
-    \draw[arr] (Q2) -- node[right]{\tiny Sí} (Q3);
-    \draw[arr] (Q3) -- node[above]{\tiny No} (R3);
-    \draw[arr] (Q3) -- node[right]{\tiny Sí} (OK);
+    \draw[arr] (Q1) -- node[above,sloped]{\AlmFontTiny No} (R1);
+    \draw[arr] (Q1) -- node[above]{\AlmFontTiny Sí} (Q2);
+    \draw[arr] (Q2) -- node[above]{\AlmFontTiny No} (R2);
+    \draw[arr] (Q2) -- node[right]{\AlmFontTiny Sí} (Q3);
+    \draw[arr] (Q3) -- node[above]{\AlmFontTiny No} (R3);
+    \draw[arr] (Q3) -- node[right]{\AlmFontTiny Sí} (OK);
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -253,7 +253,7 @@
       5/Gráficas/BAnalizar,
       6/Glosario/BCrear}{
       \node[draw=\col, fill=\col!12, rounded corners=3pt,
-            font=\tiny\bfseries\color{\col}, inner sep=4pt,
+            font=\AlmFontTiny\bfseries\color{\col}, inner sep=4pt,
             minimum width=1.8cm, minimum height=0.55cm]
         at ({(\i-1)*2.2},0) {\cat};
     }
@@ -481,3 +481,6 @@
 \end{frame}
 
 \end{document}
+
+
+

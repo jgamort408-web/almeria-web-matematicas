@@ -3,7 +3,7 @@
 %  Comparar gráficas
 %  Bloque 3: Datos y gráficas · Matemáticas 1.º ESO
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{15}
@@ -65,7 +65,7 @@
       \end{teoriabox}
     \end{column}
     \begin{column}{0.44\textwidth}
-      \begin{tikzpicture}[every node/.style={font=\scriptsize}]
+      \begin{tikzpicture}[every node/.style={font=\AlmFontScript}]
         \begin{axis}[
           almeria line,
           width=6.5cm, height=4.5cm,
@@ -75,7 +75,7 @@
           ylabel={Valor (escalado)},
           xlabel={Mes},
           legend pos=north west,
-          legend style={font=\tiny},
+          legend style={font=\AlmFontTiny},
         ]
           \addplot[AlmTerra, line width=2pt, mark=*]
             coordinates {(1,2)(2,3)(3,5)(4,7)(5,9)(6,10)};
@@ -86,7 +86,7 @@
         \end{axis}
       \end{tikzpicture}
       \begin{center}
-        \small\color{AlmGris}
+        \AlmFontSmall\color{AlmGris}
         A sube, B baja → correlación \textbf{negativa}
       \end{center}
     \end{column}
@@ -115,7 +115,7 @@
           coordinates {(1,1.8)(2,3.5)(3,5.1)(4,6.8)(5,8.5)};
       \end{axis}
     \end{tikzpicture}\\[4pt]
-    \footnotesize Cuando $x$ $\uparrow$, también $y$ $\uparrow$\\
+    \AlmFontFootnote Cuando $x$ $\uparrow$, también $y$ $\uparrow$\\
     Ejemplo: temperatura $\uparrow$ → turistas $\uparrow$
     \end{column}
     \begin{column}{0.31\textwidth}
@@ -134,7 +134,7 @@
           coordinates {(1,8.2)(2,6.5)(3,4.9)(4,3.2)(5,1.5)};
       \end{axis}
     \end{tikzpicture}\\[4pt]
-    \footnotesize Cuando $x$ $\uparrow$, $y$ $\downarrow$\\
+    \AlmFontFootnote Cuando $x$ $\uparrow$, $y$ $\downarrow$\\
     Ejemplo: lluvia $\uparrow$ → aforo playa $\downarrow$
     \end{column}
     \begin{column}{0.31\textwidth}
@@ -154,7 +154,7 @@
           };
       \end{axis}
     \end{tikzpicture}\\[4pt]
-    \footnotesize Los puntos no siguen ningún patrón\\
+    \AlmFontFootnote Los puntos no siguen ningún patrón\\
     Ejemplo: n.º de farolas $\leftrightarrow$ turistas
     \end{column}
   \end{columns}
@@ -166,10 +166,10 @@
 
 \begin{frame}{Temperatura y turismo en Almería — dos ejes}
   \begin{columns}[c]
-    \begin{column}{0.62\textwidth}
+    \begin{column}{0.52\textwidth}
       \begin{tikzpicture}
         \begin{axis}[
-          width=10cm, height=5.8cm,
+          width=8cm, height=5.8cm,
           axis y line*=left,
           axis x line=bottom,
           xmin=1, xmax=12, ymin=8, ymax=33,
@@ -177,10 +177,10 @@
           xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
           ylabel={\color{AlmTerra}Temperatura (°C)},
           xlabel={Mes},
-          tick label style={font=\tiny},
-          label style={font=\small},
+          tick label style={font=\AlmFontTiny},
+          label style={font=\AlmFontSmall},
           title={Temperatura (°C) y turistas ($\times 10^4$)},
-          title style={font=\small\bfseries, color=AlmAzul},
+          title style={font=\AlmFontSmall\bfseries, color=AlmAzul},
           grid=both,
           grid style={line width=0.3pt, AlmAzulC!25},
         ]
@@ -190,16 +190,16 @@
               (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
               (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
             };
-          \addlegendentry{\footnotesize Temperatura}
+          \addlegendentry{\AlmFontFootnote Temperatura}
         \end{axis}
         \begin{axis}[
-          width=10cm, height=5.8cm,
+          width=8cm, height=5.8cm,
           axis y line*=right,
           axis x line=none,
           xmin=1, xmax=12, ymin=0, ymax=80,
           ylabel={\color{AlmAzulM}Turistas ($\times 10^4$/mes)},
-          tick label style={font=\tiny},
-          label style={font=\small},
+          tick label style={font=\AlmFontTiny},
+          label style={font=\AlmFontSmall},
           ytick={0,20,40,60,80},
         ]
           \addplot[AlmAzulM, line width=2.5pt, mark=square*,
@@ -208,7 +208,7 @@
               (1,6)(2,6.5)(3,8)(4,12)(5,15)(6,25)
               (7,50)(8,60)(9,30)(10,20)(11,10)(12,8)
             };
-          \addlegendentry{\footnotesize Turistas}
+          \addlegendentry{\AlmFontFootnote Turistas}
         \end{axis}
       \end{tikzpicture}
     \end{column}
@@ -223,7 +223,7 @@
       \end{itemize}
       \vspace{6pt}
       \begin{notabox}[Doble eje $y$]
-        \footnotesize
+        \AlmFontFootnote
         Se usan dos ejes $y$ cuando las
         variables tienen \textbf{escalas muy
         diferentes} (°C vs.\ decenas de miles).
@@ -251,7 +251,7 @@
           ymin=0, ymax=100,
           bar width=0.38cm,
           legend pos=north west,
-          legend style={font=\tiny},
+          legend style={font=\AlmFontTiny},
           nodes near coords=\empty,
         ]
           \addplot[fill=AlmAzulC!60, fill opacity=0.8]
@@ -282,7 +282,7 @@
       \end{itemize}
       \vspace{6pt}
       \begin{analizarbox}
-        \footnotesize
+        \AlmFontFootnote
         ¿La lluvia es la \textit{causa} de que
         las playas estén vacías, o existen
         otras variables explicativas?
@@ -310,7 +310,7 @@
       \end{errorbox}
       \vspace{6pt}
       \begin{notabox}[Variable oculta o confusora]
-        \footnotesize
+        \AlmFontFootnote
         Una \textbf{variable confusora} es aquella que
         influye en $x$ e $y$ simultáneamente, haciendo
         que parezca que $x$ causa $y$ cuando en realidad
@@ -323,8 +323,8 @@
       \begin{tikzpicture}[
         nodo/.style={
           rounded corners=4pt, draw=AlmAzulM,
-          fill=AlmFondo, font=\small, inner sep=5pt,
-          text width=2.5cm, align=center
+          fill=AlmFondo, font=\AlmFontSmall, inner sep=5pt,
+          text width=2cm, align=center
         },
         causa/.style={->, AlmTerra, line width=1.5pt}
       ]
@@ -334,12 +334,12 @@
         \draw[causa] (V) -- (T);
         \draw[causa] (V) -- (Tu);
         \draw[AlmGris, dashed, ->, line width=1pt] (T) -- (Tu)
-          node[midway, below, font=\tiny, color=AlmGris]
+          node[midway, below, font=\AlmFontTiny, color=AlmGris]
           {correlación\,$\neq$\,causa};
       \end{tikzpicture}
       \end{center}
       \vspace{4pt}
-      \footnotesize\color{AlmGris}
+      \AlmFontFootnote\color{AlmGris}
       Las vacaciones causan TANTO que haya mucha gente
       en la playa COMO que observemos días calurosos
       en los registros turísticos.
@@ -355,7 +355,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \centering
-      {\color{AlmTerra}\bfseries\small Gráfica «alarmista»}\\
+      {\color{AlmTerra}\bfseries\AlmFontSmall Gráfica «alarmista»}\\
       (eje $y$ truncado: 0 omitido)\\[4pt]
       \begin{tikzpicture}
         \begin{axis}[
@@ -366,9 +366,9 @@
           xtick={2020,2021,2022},
           ytick={2.7,2.8,2.9,3.0,3.1},
           xlabel={Año}, ylabel={Mill.},
-          tick label style={font=\tiny},
-          label style={font=\tiny},
-          title style={font=\tiny},
+          tick label style={font=\AlmFontTiny},
+          label style={font=\AlmFontTiny},
+          title style={font=\AlmFontTiny},
           title={¡Caída catastrófica!},
         ]
           \addplot[AlmTerra, line width=2.5pt, mark=*]
@@ -378,7 +378,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \centering
-      {\color{AlmVerde}\bfseries\small Gráfica honesta}\\
+      {\color{AlmVerde}\bfseries\AlmFontSmall Gráfica honesta}\\
       (eje $y$ desde 0)\\[4pt]
       \begin{tikzpicture}
         \begin{axis}[
@@ -389,9 +389,9 @@
           xtick={2020,2021,2022},
           ytick={0,1,2,3},
           xlabel={Año}, ylabel={Mill.},
-          tick label style={font=\tiny},
-          label style={font=\tiny},
-          title style={font=\tiny},
+          tick label style={font=\AlmFontTiny},
+          label style={font=\AlmFontTiny},
+          title style={font=\AlmFontTiny},
           title={Crecimiento moderado},
         ]
           \addplot[AlmVerde, line width=2.5pt, mark=*]
@@ -402,7 +402,7 @@
   \end{columns}
   \vspace{6pt}
   \begin{center}
-    \small ¡Los mismos datos, escalas diferentes,
+    \AlmFontSmall ¡Los mismos datos, escalas diferentes,
     impresiones \textbf{completamente distintas}!
     Siempre comprueba si el eje $y$ empieza en $0$.
   \end{center}
@@ -416,7 +416,7 @@
   \begin{columns}[T]
     \begin{column}{0.31\textwidth}
       \begin{analizarbox}
-        \footnotesize\dificultad{2}\\[4pt]
+        \AlmFontFootnote\dificultad{2}\\[4pt]
         Tienes un gráfico dual: temperatura (°C)
         y ventas de helados en Almería por mes.\\[4pt]
         \textbf{Analiza:}\\
@@ -428,7 +428,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{evaluarbox}
-        \footnotesize\dificultad{3}\\[4pt]
+        \AlmFontFootnote\dificultad{3}\\[4pt]
         Tienes tres comparaciones:\\[3pt]
         A: temperatura vs.\ turistas\\
         B: vacaciones escolares vs.\ turistas\\
@@ -441,7 +441,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{crearbox}
-        \footnotesize\dificultad{4}\\[4pt]
+        \AlmFontFootnote\dificultad{4}\\[4pt]
         Inventa \textbf{dos variables urbanas}
         de Almería que tengan:
         \begin{itemize}
@@ -509,9 +509,12 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    {\AlmFontSmall\color{AlmAzulM}\faArrowCircleRight\enskip
     \textbf{Sesión 16:} Relaciones funcionales y proporcionalidad directa}
   \end{center}
 \end{frame}
 
 \end{document}
+
+
+

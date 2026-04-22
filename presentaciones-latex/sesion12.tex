@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{12}
@@ -28,7 +28,7 @@
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Un \textbf{texto con datos} es difícil de analizar:
         \begin{itemize}
           \item Los números están dispersos entre palabras.
@@ -42,7 +42,7 @@
     \end{column}
     \begin{column}{0.44\textwidth}
       \begin{notabox}[Dato de Almería]
-        \small
+        \AlmFontSmall
         El Patronato de Turismo de Almería publica sus estadísticas
         en tablas mensuales.
         Sin esa organización, los datos serían ilegibles.
@@ -51,14 +51,14 @@
       \vspace{0.3cm}
       \begin{center}
       \begin{tikzpicture}
-        \node[font=\Large, color=AlmTerra] (texto) at (0,0)
+        \node[font=\AlmFontLargeUp, color=AlmTerra] (texto) at (0,0)
           {\faFileAlt};
-        \node[font=\small, color=AlmTerra, below=2pt of texto]
+        \node[font=\AlmFontSmall, color=AlmTerra, below=2pt of texto]
           {Texto disperso};
         \draw[-Stealth, AlmAzulM, line width=2pt] (0.6,0) -- (1.6,0);
-        \node[font=\Large, color=AlmVerde] (tabla) at (2.2,0)
+        \node[font=\AlmFontLargeUp, color=AlmVerde] (tabla) at (2.2,0)
           {\faTable};
-        \node[font=\small, color=AlmVerde, below=2pt of tabla]
+        \node[font=\AlmFontSmall, color=AlmVerde, below=2pt of tabla]
           {Tabla ordenada};
       \end{tikzpicture}
       \end{center}
@@ -71,15 +71,15 @@
 % ---------------------------------------------------------------
 \begin{frame}{Estructura de una tabla de datos}
   \begin{center}
-  \begin{tikzpicture}[font=\small, every node/.style={align=center}]
+  \begin{tikzpicture}[font=\AlmFontSmall, every node/.style={align=center}]
     % Tabla visual con anotaciones
     \draw[AlmAzulM, line width=1.5pt] (0,0) rectangle (8,3.4);
     % Cabecera
     \fill[AlmAzul!85] (0,2.8) rectangle (8,3.4);
-    \node[text=white, font=\bfseries\small] at (2.4,3.1)
+    \node[text=white, font=\bfseries\AlmFontSmall] at (2.4,3.1)
       {Encabezado col.~1};
     \draw[AlmAzulM, line width=1pt] (4.8,0) -- (4.8,3.4);
-    \node[text=white, font=\bfseries\small] at (6.4,3.1)
+    \node[text=white, font=\bfseries\AlmFontSmall] at (6.4,3.1)
       {Encabezado col.~2};
     % Filas
     \foreach \y/\col in {2.2/AlmFondo, 1.6/white, 1.0/AlmFondo, 0.4/white}{
@@ -91,25 +91,25 @@
     \node at (2.4,0.3) {\ldots};           \node at (6.4,0.3) {\ldots};
     % Anotaciones externas
     \draw[acota] (-0.7,2.8) -- (-0.7,3.4)
-      node[midway, left=2pt, font=\tiny\bfseries, color=AlmAzulM]
+      node[midway, left=2pt, font=\AlmFontTiny\bfseries, color=AlmAzulM]
       {\rotatebox{90}{Encabezados}};
     \draw[acota] (-0.7,0) -- (-0.7,2.8)
-      node[midway, left=2pt, font=\tiny\bfseries, color=AlmGris]
+      node[midway, left=2pt, font=\AlmFontTiny\bfseries, color=AlmGris]
       {\rotatebox{90}{Filas de datos}};
     \draw[<->, >=Stealth, AlmTerra, line width=0.8pt]
       (0,3.6) -- (4.7,3.6)
-      node[midway, above, font=\tiny\bfseries, color=AlmTerra]
+      node[midway, above, font=\AlmFontTiny\bfseries, color=AlmTerra]
       {Columna \(x\) independiente};
     \draw[<->, >=Stealth, AlmVerde, line width=0.8pt]
       (4.9,3.6) -- (8,3.6)
-      node[midway, above, font=\tiny\bfseries, color=AlmVerde]
+      node[midway, above, font=\AlmFontTiny\bfseries, color=AlmVerde]
       {Columna \(y\) dependiente};
   \end{tikzpicture}
   \end{center}
 
   \vspace{0.1cm}
   \begin{center}
-  \small
+  \AlmFontSmall
   \textbf{Regla:} columna izquierda = variable independiente \(x\);
   columna derecha = variable dependiente \(y\).
   \end{center}
@@ -122,32 +122,32 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[1]
-        \small Lee con atención y \textbf{subraya todos los números}.
+        \AlmFontSmall Lee con atención y \textbf{subraya todos los números}.
       \end{pasobox}
-      \vspace{4pt}
+
       \begin{pasobox}[2]
-        \small Identifica \textbf{qué representa cada número}
+        \AlmFontSmall Identifica \textbf{qué representa cada número}
         (¿es una fecha? ¿una cantidad? ¿una medida?).
       \end{pasobox}
-      \vspace{4pt}
+
       \begin{pasobox}[3]
-        \small Decide cuál es la \textbf{variable independiente \(x\)}
+        \AlmFontSmall Decide cuál es la \textbf{variable independiente \(x\)}
         y cuál la \textbf{dependiente \(y\)}.
       \end{pasobox}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[4]
-        \small Crea los \textbf{encabezados} con nombre claro y unidades
+        \AlmFontSmall Crea los \textbf{encabezados} con nombre claro y unidades
         entre paréntesis: \textit{Mes}, \textit{Visitantes (miles)}.
       \end{pasobox}
-      \vspace{4pt}
+
       \begin{pasobox}[5]
-        \small Rellena los valores en \textbf{orden creciente de \(x\)}
+        \AlmFontSmall Rellena los valores en \textbf{orden creciente de \(x\)}
         (de menor a mayor).
       \end{pasobox}
-      \vspace{4pt}
+
       \begin{pasobox}[6]
-        \small \textbf{Verifica}: ¿están todos los datos?
+        \AlmFontSmall \textbf{Verifica}: ¿están todos los datos?
         ¿son consistentes las unidades?
       \end{pasobox}
     \end{column}
@@ -155,7 +155,7 @@
 
   \vspace{0.2cm}
   \begin{notabox}[Clave]
-    \small
+    \AlmFontSmall
     Ordenar por \(x\) no es un capricho: facilita la lectura
     y es imprescindible para trazar una gráfica correcta después.
   \end{notabox}
@@ -168,7 +168,7 @@
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \begin{ejemplobox}
-        \small\itshape
+        \AlmFontSmall\itshape
         «En enero la Alcazaba recibió 8\,500 visitantes.
         En febrero, 9\,200. Marzo registró 12\,000 visitantes.
         En abril hubo 18\,500. En mayo la cifra llegó a 22\,000 personas.»
@@ -176,7 +176,7 @@
 
       \vspace{0.3cm}
       \begin{pasobox}[Análisis]
-        \small
+        \AlmFontSmall
         \begin{itemize}
           \item \(x\) = mes (cuantitativa discreta)
           \item \(y\) = visitantes (cuantitativa discreta)
@@ -206,7 +206,7 @@
       \end{center}
       \vspace{0.2cm}
       \begin{notabox}[Observa]
-        \small
+        \AlmFontSmall
         ¡Los datos estaban desordenados en el texto!
         La tabla los ordena por el mes.
       \end{notabox}
@@ -221,7 +221,7 @@
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \begin{ejemplobox}
-        \small\itshape
+        \AlmFontSmall\itshape
         «La bajada de bandera es 2{,}40\,€.
         Cada kilómetro recorrido cuesta 1{,}20\,€ adicionales.
         Calcula el precio para 1, 2, 3, 4 y 5\,km.»
@@ -229,11 +229,11 @@
 
       \vspace{0.25cm}
       \begin{formulabox}
-        y = 2{,}40 + 1{,}20 \cdot x
+        $y = 2{,}40 + 1{,}20 \cdot x$
       \end{formulabox}
 
       \vspace{0.2cm}
-      {\small $x$ = km recorridos \quad $y$ = precio total (€)}
+      {\AlmFontSmall $x$ = km recorridos \quad $y$ = precio total (€)}
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{center}
@@ -265,7 +265,7 @@
   \begin{columns}[T]
     \begin{column}{0.50\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Cuando hay \textbf{muchas repeticiones} del mismo valor,
         usamos una \textbf{tabla de frecuencias}:
         \begin{itemize}
@@ -278,7 +278,7 @@
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{center}
-      \small
+      \AlmFontSmall
       \textit{Ejemplo: tipo de transporte en Almería (encuesta a 30 alumnos)}\\[4pt]
       \renewcommand{\arraystretch}{1.25}
       \begin{tabular}{lcc}
@@ -316,7 +316,7 @@
       symbolic x coords={Enero,Febrero,Marzo,Abril,Mayo},
       xtick=data,
       ymin=0, ymax=26000,
-      nodes near coords style={font=\tiny\bfseries, color=AlmAzul},
+      nodes near coords style={font=\AlmFontTiny\bfseries, color=AlmAzul},
       bar width=0.6cm,
     ]
       \addplot[fill=AlmAzulM, draw=AlmAzul] coordinates {
@@ -330,7 +330,7 @@
   \end{tikzpicture}
   \end{center}
   \vspace{-0.2cm}
-  {\small\color{AlmGris} La tabla se convierte directamente en este gráfico
+  {\AlmFontSmall\color{AlmGris} La tabla se convierte directamente en este gráfico
   gracias al orden correcto de los datos.}
 \end{frame}
 
@@ -354,7 +354,7 @@
 
   \vspace{0.3cm}
   \begin{center}
-  \small
+  \AlmFontSmall
   \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l}
     \toprule
     Elemento & Descripción \\
@@ -378,7 +378,7 @@
 
     \vspace{0.25cm}
     \begin{center}
-    \small
+    \AlmFontSmall
     \begin{tabular}{cc}
       \toprule
       \rowcolor{AlmTerra!10}
@@ -410,7 +410,7 @@
     \begin{center}
     \begin{tcolorbox}[colback=AlmAmbar!12, colframe=AlmAmbar!60!black,
                       width=0.88\textwidth, arc=4pt, boxrule=0.8pt]
-      \small\itshape
+      \AlmFontSmall\itshape
       «El autobús urbano de Almería tarda 5 minutos en hacer 2 paradas.
       Para 4 paradas necesita 10 minutos.
       Con 6 paradas son 15 minutos.
@@ -440,7 +440,7 @@
       \begin{column}{0.44\textwidth}
         \incorrecto\; \textbf{Tabla desordenada}
         \vspace{4pt}
-        \small
+        \AlmFontSmall
         \begin{tabular}{cc}
           \toprule
           \rowcolor{AlmTerra!10}
@@ -456,7 +456,7 @@
       \begin{column}{0.44\textwidth}
         \correcto\; \textbf{Tabla ordenada}
         \vspace{4pt}
-        \small
+        \AlmFontSmall
         \begin{tabular}{cc}
           \toprule
           \rowcolor{AlmVerde!10}
@@ -472,7 +472,7 @@
     \end{columns}
 
     \vspace{0.25cm}
-    \small
+    \AlmFontSmall
     Una tabla desordenada \textbf{impide ver la tendencia} y genera gráficas
     con puntos conectados de forma caótica.
     Ordena siempre de menor a mayor valor de \(x\).
@@ -489,9 +489,9 @@
 
     \vspace{0.2cm}
     \begin{tcolorbox}[colback=AlmAmbar!10, colframe=AlmAmbar!60!black,
-                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\small,
+                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\AlmFontSmall,
                       title={Párrafo A — Temperaturas en Almería}]
-      \small\itshape
+      \AlmFontSmall\itshape
       «En enero la temperatura media es 12\,°C.
       En abril sube a 19\,°C. En julio alcanza 30\,°C.
       Octubre registra 21\,°C y diciembre baja a 13\,°C.»
@@ -499,15 +499,15 @@
 
     \vspace{0.2cm}
     \begin{tcolorbox}[colback=AlmAzulC!10, colframe=AlmAzulC!70!black,
-                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\small,
+                      arc=3pt, boxrule=0.8pt, fonttitle=\bfseries\AlmFontSmall,
                       title={Párrafo B — Precio del taxi}]
-      \small\itshape
+      \AlmFontSmall\itshape
       «Un taxi en Almería cobra 1{,}80\,€/km con bajada de bandera de 3\,€.
       Calcula el precio total para 1, 3, 5, 7 y 10\,km.»
     \end{tcolorbox}
 
     \vspace{0.2cm}
-    \small
+    \AlmFontSmall
     Cada tabla debe tener: \textbf{encabezados con unidades},
     \textbf{orden correcto de \(x\)} y \textbf{5 filas de datos}.
   \end{evidenciabox}
@@ -520,6 +520,7 @@
   \begin{resumenbox}
     \begin{columns}[T]
       \begin{column}{0.50\textwidth}
+      \vspace{0.15cm}
         \textbf{Estructura de una tabla:}
         \begin{itemize}
           \item Encabezados con nombre y unidades
@@ -531,7 +532,7 @@
       \begin{column}{0.46\textwidth}
         \textbf{6 pasos para construir la tabla:}
         \begin{enumerate}
-          \small
+          \AlmFontSmall
           \item Subraya todos los números
           \item Identifica qué representa cada uno
           \item Decide \(x\) e \(y\)
@@ -545,7 +546,7 @@
     \vspace{0.2cm}
     \separador
     \vspace{0.15cm}
-    \small
+    \AlmFontSmall
     \textbf{Error a evitar:}
     datos en orden aleatorio dificultan la lectura y hacen
     imposible trazar una gráfica correcta.
@@ -560,3 +561,5 @@
 \end{frame}
 
 \end{document}
+
+

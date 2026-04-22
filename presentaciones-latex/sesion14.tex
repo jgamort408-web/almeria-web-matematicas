@@ -3,7 +3,7 @@
 %  Leer e interpretar gráficas
 %  Bloque 3: Datos y gráficas · Matemáticas 1.º ESO
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{14}
@@ -50,25 +50,25 @@
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
       \begin{pasobox}[1]
-        \footnotesize
+        \AlmFontFootnote
         Localiza el valor de \textbf{$x$} que te interesa
         en el eje horizontal.
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[2]
-        \footnotesize
+        \AlmFontFootnote
         Sube en vertical hasta tocar la
         \textbf{curva o barra}.
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[3]
-        \footnotesize
+        \AlmFontFootnote
         Desplázate en horizontal hacia el
         \textbf{eje vertical} y lee el valor $y$.
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[4]
-        \footnotesize
+        \AlmFontFootnote
         Escribe el resultado con sus
         \textbf{unidades} (no olvides el eje $y$).
       \end{pasobox}
@@ -82,7 +82,7 @@
           xtick={1,2,3,4,5,6},
           xticklabels={Ene,Feb,Mar,Abr,May,Jun},
           ytick={0,10,20,30},
-          ylabel={Temperatura (°C)},
+          ylabel={Temperatura ($^\circ$C)},
           xlabel={Mes},
         ]
           \addplot[AlmTerra, line width=2pt, mark=*]
@@ -91,10 +91,10 @@
           \draw[AlmVerde, dashed, line width=1pt]
             (axis cs:4,0) -- (axis cs:4,19) -- (axis cs:0,19);
           \node[fill=AlmVerde!20, draw=AlmVerde, rounded corners,
-                font=\tiny\bfseries, inner sep=2pt]
-            at (axis cs:2.5,19) {$y=19\,°C$};
+                font=\AlmFontTiny\bfseries, inner sep=2pt]
+            at (axis cs:2.5,19) {$y=19\,^\circ\mathrm{C}$};
           \node[fill=AlmVerde!20, draw=AlmVerde, rounded corners,
-                font=\tiny\bfseries, inner sep=2pt]
+                font=\AlmFontTiny\bfseries, inner sep=2pt]
             at (axis cs:4,5) {$x=\text{Abr}$};
         \end{axis}
       \end{tikzpicture}
@@ -108,33 +108,33 @@
 
 \begin{frame}{Máximo, mínimo, tendencia y punto de inflexión}
   \begin{columns}[T]
-    \begin{column}{0.42\textwidth}
+    \begin{column}{0.50\textwidth}
       \begin{definicionbox}{Valor máximo}
         Punto más alto de la gráfica.
         Mayor valor de $y$.
       \end{definicionbox}
-      \vspace{5pt}
+
       \begin{definicionbox}{Valor mínimo}
         Punto más bajo de la gráfica.
         Menor valor de $y$.
       \end{definicionbox}
-      \vspace{5pt}
+
       \begin{definicionbox}{Tendencia}
         Dirección general de la curva:\\
         $\nearrow$ creciente \quad
         $\searrow$ decreciente \quad
         $\rightarrow$ constante
       \end{definicionbox}
-      \vspace{5pt}
+
       \begin{definicionbox}{Punto de inflexión}
         Donde la tendencia cambia de sentido.
       \end{definicionbox}
     \end{column}
-    \begin{column}{0.54\textwidth}
+    \begin{column}{0.50\textwidth}
       \begin{tikzpicture}
         \begin{axis}[
           almeria line,
-          width=8.5cm, height=5.5cm,
+          width=7cm, height=5.5cm,
           xmin=1, xmax=12, ymin=10, ymax=33,
           xtick={1,2,3,4,5,6,7,8,9,10,11,12},
           xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
@@ -148,20 +148,20 @@
               (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
             };
           % Máximo
-          \node[above, font=\tiny\bfseries, color=AlmTerra]
+          \node[above, font=\AlmFontTiny\bfseries, color=AlmTerra]
             at (axis cs:7.5,30) {\faArrowUp\ Máx: 30°C};
           % Mínimo
-          \node[below right, font=\tiny\bfseries, color=AlmAzulM]
+          \node[below right, font=\AlmFontTiny\bfseries, color=AlmAzulM]
             at (axis cs:1,12) {\faArrowDown\ Mín: 12°C};
           % Tendencia creciente
           \draw[->, AlmVerde, line width=1.2pt]
             (axis cs:2,14) -- (axis cs:6,26)
-            node[midway, above left, font=\tiny, color=AlmVerde]
+            node[midway, above left, font=\AlmFontTiny, color=AlmVerde]
             {creciente};
           % Tendencia decreciente
           \draw[->, BEvaluar, line width=1.2pt]
             (axis cs:8,29) -- (axis cs:11,17)
-            node[midway, above right, font=\tiny, color=BEvaluar]
+            node[midway, above right, font=\AlmFontTiny, color=BEvaluar]
             {decreciente};
         \end{axis}
       \end{tikzpicture}
@@ -203,17 +203,17 @@
           % Pendiente pronunciada
           \addplot[AlmTerra, line width=2pt]
             coordinates {(0,0)(1,4)(2,8)(3,12)};
-          \node[right, font=\tiny\bfseries, color=AlmTerra]
+          \node[right, font=\AlmFontTiny\bfseries, color=AlmTerra]
             at (axis cs:3,12) {pronunciada};
           % Pendiente suave
           \addplot[AlmVerde, line width=2pt]
             coordinates {(0,0)(1,1.5)(2,3)(3,4.5)(5,7.5)};
-          \node[right, font=\tiny\bfseries, color=AlmVerde]
+          \node[right, font=\AlmFontTiny\bfseries, color=AlmVerde]
             at (axis cs:5,7.5) {suave};
           % Horizontal
           \addplot[AlmAzulM, line width=2pt, dashed]
             coordinates {(0,2)(5,2)};
-          \node[right, font=\tiny\bfseries, color=AlmAzulM]
+          \node[right, font=\AlmFontTiny\bfseries, color=AlmAzulM]
             at (axis cs:4,2.5) {constante};
         \end{axis}
       \end{tikzpicture}
@@ -231,7 +231,7 @@
       \begin{tikzpicture}
         \begin{axis}[
           almeria line,
-          width=9cm, height=5.5cm,
+          width=7.5cm, height=5.5cm,
           xmin=1, xmax=12, ymin=8, ymax=34,
           xtick={1,...,12},
           xticklabels={E,F,M,A,M,J,J,A,S,O,N,D},
@@ -249,8 +249,8 @@
           % Línea de referencia 20°C
           \addplot[AlmAmbar!70, dashed, line width=1pt]
             coordinates {(1,20)(12,20)}
-            node[right, font=\tiny, color=AlmAmbar!80!black]
-            {20°C};
+            node[right, font=\AlmFontTiny, color=AlmAmbar!80!black]
+            {20$^\circ$C};
         \end{axis}
       \end{tikzpicture}
     \end{column}
@@ -267,7 +267,7 @@
       \end{itemize}
       \vspace{6pt}
       \begin{notabox}
-        \footnotesize
+        \AlmFontFootnote
         Almería tiene uno de los climas
         más cálidos y secos de Europa.
         ¡Más de 3\,000 horas de sol al año!
@@ -286,14 +286,14 @@
       \begin{tikzpicture}
         \begin{axis}[
           almeria bar,
-          width=9.5cm, height=5.5cm,
+          width=9cm, height=5.5cm,
           symbolic x coords={2017,2018,2019,2020,2021,2022},
           xtick=data,
           ylabel={Visitantes (millones)},
           xlabel={Año},
           title={Visitantes a Almería (millones)},
           ymin=0, ymax=3.5,
-          nodes near coords style={font=\tiny\bfseries},
+          nodes near coords style={font=\AlmFontTiny\bfseries},
           bar width=0.55cm,
         ]
           \addplot[fill=AlmAzulM, fill opacity=0.85]
@@ -301,10 +301,6 @@
               (2017,2.5)(2018,2.7)(2019,2.9)
               (2020,1.2)(2021,1.8)(2022,2.8)
             };
-          % Línea de tendencia general
-          \addplot[AlmTerra, line width=1.5pt, dashed, no marks]
-            coordinates {(2017,2.5)(2018,2.7)(2019,2.9)
-                          (2020,1.2)(2021,1.8)(2022,2.8)};
         \end{axis}
       \end{tikzpicture}
     \end{column}
@@ -315,14 +311,14 @@
         \item Mínimo: 2020 → 1,2 M
         \item Caída 2019→2020:\\
           $\dfrac{2{,}9-1{,}2}{2{,}9}\times 100
-          \approx \mathbf{59\,\%}$
+          \approx \mathbf{59\,\text{\%}}$
         \item Recuperación 2021→2022:\\
           $\dfrac{2{,}8-1{,}8}{1{,}8}\times 100
-          \approx \mathbf{56\,\%}$
+          \approx \mathbf{56\,\text{\%}}$
       \end{itemize}
       \vspace{6pt}
       \begin{analizarbox}
-        \footnotesize
+        \AlmFontFootnote
         ¿Qué evento de 2020 explica
         la caída drástica de visitantes?
         ¿Qué nos indica la recuperación
@@ -370,7 +366,7 @@
       \end{itemize}
       \vspace{8pt}
       \begin{notabox}[Consejo]
-        \footnotesize
+        \AlmFontFootnote
         Siempre lee el \textbf{título}, los
         \textbf{ejes} y la \textbf{unidad} antes
         de responder cualquier pregunta.
@@ -387,7 +383,7 @@
   \begin{columns}[T]
     \begin{column}{0.31\textwidth}
       \begin{comprenderbox}
-        \footnotesize\dificultad{1}\\[4pt]
+        \AlmFontFootnote\dificultad{1}\\[4pt]
         Usando la gráfica de temperatura de Almería:\\[4pt]
         (a) ¿Temperatura en abril?\\
         (b) ¿Mes más caluroso?\\
@@ -398,7 +394,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{aplicarbox}
-        \footnotesize\dificultad{2}\\[4pt]
+        \AlmFontFootnote\dificultad{2}\\[4pt]
         Con la gráfica de visitantes:\\[4pt]
         (a) Mejor año y número de visitantes.\\
         (b) Peor año y número de visitantes.\\
@@ -409,7 +405,7 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{analizarbox}
-        \footnotesize\dificultad{3}\\[4pt]
+        \AlmFontFootnote\dificultad{3}\\[4pt]
         La gráfica muestra el número de terrazas
         abiertas en Almería por mes: máximo en
         agosto, mínimo en enero.\\[4pt]
@@ -487,9 +483,11 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    {\AlmFontSmall\color{AlmAzulM}\faArrowCircleRight\enskip
     \textbf{Sesión 15:} Comparar gráficas y detectar correlaciones}
   \end{center}
 \end{frame}
 
 \end{document}
+
+

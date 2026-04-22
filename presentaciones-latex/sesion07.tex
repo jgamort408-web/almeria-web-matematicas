@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{07}
@@ -74,7 +74,7 @@
 
       \vspace{0.4cm}
       \begin{notabox}[Analogía]
-        \small El perímetro es como la \textbf{valla} que rodea un parque:
+        \AlmFontSmall El perímetro es como la \textbf{valla} que rodea un parque:
         mides cuánta valla necesitas, no cuánto césped hay dentro.
       \end{notabox}
 
@@ -92,13 +92,13 @@
         \draw[AlmTerra, line width=3pt] (0,0) rectangle (3.2,2.0);
         % Césped interior
         \fill[AlmVerde!20] (0.1,0.1) rectangle (3.1,1.9);
-        \node[font=\small\bfseries, color=AlmVerde] at (1.6,1.0) {ÁREA};
-        \node[font=\small\bfseries, color=AlmTerra] at (1.6,-0.35) {PERÍMETRO (valla)};
+        \node[font=\AlmFontSmall\bfseries, color=AlmVerde] at (1.6,1.0) {ÁREA};
+        \node[font=\AlmFontSmall\bfseries, color=AlmTerra] at (1.6,-0.35) {PERÍMETRO (valla)};
         % Flechas de las dimensiones
         \draw[acota] (0,-0.6) -- (3.2,-0.6)
-          node[midway, below, font=\scriptsize] {$l$};
+          node[midway, below, font=\AlmFontScript] {$l$};
         \draw[acota] (3.6,0) -- (3.6,2.0)
-          node[midway, right, font=\scriptsize] {$w$};
+          node[midway, right, font=\AlmFontScript] {$w$};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -121,7 +121,7 @@
       \formuladest[BAnalizar]{P_{\text{reg.}} = n \cdot s}
       \vspace{0.1cm}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Donde $n$ = número de lados y $s$ = longitud de cada lado.\\[6pt]
         Para cualquier polígono:
         \[P = \sum_i l_i\]
@@ -160,7 +160,7 @@
       \end{pasobox}
       \vspace{0.3cm}
       \begin{notabox}[Nunca olvides]
-        \small La unidad del perímetro es de
+        \AlmFontSmall La unidad del perímetro es de
         \textbf{una sola dimensión}: m, no m².
       \end{notabox}
     \end{column}
@@ -178,7 +178,7 @@
   \begin{columns}[t]
     \begin{column}{0.50\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \textbf{Parque Nicolás Salmerón}
         (rectángulo aprox. 400 m $\times$ 80 m):
         \[P = 2(400 + 80) = 2 \times 480 = \mathbf{960\ m}\]
@@ -198,19 +198,19 @@
       \begin{tikzpicture}[scale=0.70]
         % Rectángulo (parque)
         \draw[zona] (0,0) rectangle (4.0,0.8);
-        \node[above, font=\tiny\bfseries, color=AlmAzulM] at (2.0,0.8) {Parque};
+        \node[above, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (2.0,0.8) {Parque};
         \draw[acota] (0,-0.35) -- (4.0,-0.35)
-          node[midway,below,font=\tiny]{400 m};
+          node[midway,below,font=\AlmFontTiny]{400 m};
         \draw[acota] (4.3,0) -- (4.3,0.8)
-          node[midway,right,font=\tiny]{80 m};
+          node[midway,right,font=\AlmFontTiny]{80 m};
         % Triángulo
         \draw[zonat] (0,1.5) -- (2.2,1.5) -- (1.5,2.5) -- cycle;
-        \node[above, font=\tiny\bfseries, color=AlmTerra] at (1.1,2.5) {Plaza $\blacktriangle$};
-        \node[below, font=\tiny, color=AlmGris] at (1.1,1.45) {120 m};
+        \node[above, font=\AlmFontTiny\bfseries, color=AlmTerra] at (1.1,2.5) {Plaza $\blacktriangle$};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (1.1,1.45) {120 m};
         % Cuadrado
         \draw[rectov, fill=AlmVerde!15] (2.8,1.5) rectangle (4.0,2.7);
-        \node[above, font=\tiny\bfseries, color=AlmVerde] at (3.4,2.7) {Plaza $\square$};
-        \node[below, font=\tiny, color=AlmGris] at (3.4,1.45) {60 m};
+        \node[above, font=\AlmFontTiny\bfseries, color=AlmVerde] at (3.4,2.7) {Plaza $\square$};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (3.4,1.45) {60 m};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -222,7 +222,7 @@
 % ---------------------------------------------------------------
 \begin{frame}{Problema resuelto: manzana de Almería}
   \begin{definicionbox}{Enunciado}
-    \small Una manzana rectangular del centro de Almería mide
+    \AlmFontSmall Una manzana rectangular del centro de Almería mide
     \textbf{180 m} de largo y \textbf{120 m} de ancho.
     Calcula su perímetro y el tiempo necesario para darle
     la vuelta caminando a 5 km/h.
@@ -232,23 +232,23 @@
   \begin{columns}[t]
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[1]
-        \small Identificar la fórmula:
+        \AlmFontSmall Identificar la fórmula:
         \[P = 2(l + w)\]
       \end{pasobox}
       \vspace{0.2cm}
       \begin{pasobox}[2]
-        \small Sustituir valores:
+        \AlmFontSmall Sustituir valores:
         \[P = 2(180 + 120) = 2 \times 300 = \mathbf{600\ m}\]
       \end{pasobox}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[3]
-        \small Convertir a km para calcular el tiempo:
+        \AlmFontSmall Convertir a km para calcular el tiempo:
         \[600\ \text{m} = 0{,}6\ \text{km}\]
       \end{pasobox}
       \vspace{0.2cm}
       \begin{pasobox}[4]
-        \small Calcular el tiempo:
+        \AlmFontSmall Calcular el tiempo:
         \[t = \frac{d}{v} = \frac{0{,}6\ \text{km}}{5\ \text{km/h}}
           = 0{,}12\ \text{h} = \mathbf{7{,}2\ \text{min}}\]
       \end{pasobox}
@@ -269,7 +269,7 @@
       ylabel={Perímetro (m)},
       symbolic x coords={Parque Salmerón, Plaza cuadrada, Plaza triangular},
       xtick=data,
-      xticklabel style={font=\scriptsize, align=center, text width=2.5cm},
+      xticklabel style={font=\AlmFontScript, align=center, text width=2.5cm},
       ytick={0,200,400,600,800,1000},
       bar width=1.2cm,
     ]
@@ -283,7 +283,7 @@
   \end{center}
   \vspace{-0.2cm}
   \begin{notabox}[Observa]
-    \small El Parque Nicolás Salmerón tiene el mayor perímetro (960 m)
+    \AlmFontSmall El Parque Nicolás Salmerón tiene el mayor perímetro (960 m)
     porque sus dimensiones totales son mucho mayores, aunque su forma
     sea rectangular.
   \end{notabox}
@@ -313,9 +313,9 @@
       \begin{tikzpicture}[scale=0.7]
         \draw[zona] (0,0) rectangle (2.4,1.5);
         \draw[acota] (0,-0.45) -- (2.4,-0.45)
-          node[midway,below,font=\tiny]{8 cm};
+          node[midway,below,font=\AlmFontTiny]{8 cm};
         \draw[acota] (2.75,0) -- (2.75,1.5)
-          node[midway,right,font=\tiny]{5 cm};
+          node[midway,right,font=\AlmFontTiny]{5 cm};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -324,7 +324,7 @@
       \begin{tikzpicture}[scale=0.7]
         \draw[rectov, fill=AlmVerde!15] (0,0) rectangle (1.8,1.8);
         \draw[acota] (0,-0.45) -- (1.8,-0.45)
-          node[midway,below,font=\tiny]{7 m};
+          node[midway,below,font=\AlmFontTiny]{7 m};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -332,9 +332,9 @@
       \begin{center}
       \begin{tikzpicture}[scale=0.7]
         \draw[zonat] (0,0) -- (2.4,0) -- (1.8,1.5) -- cycle;
-        \node[below,font=\tiny,color=AlmGris] at (1.2,-0.1) {6 m};
-        \node[right,font=\tiny,color=AlmGris] at (2.1,0.75) {8 m};
-        \node[left,font=\tiny,color=AlmGris] at (0.9,0.75) {10 m};
+        \node[below,font=\AlmFontTiny,color=AlmGris] at (1.2,-0.1) {6 m};
+        \node[right,font=\AlmFontTiny,color=AlmGris] at (2.1,0.75) {8 m};
+        \node[left,font=\AlmFontTiny,color=AlmGris] at (0.9,0.75) {10 m};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -367,19 +367,19 @@
     \begin{column}{0.46\textwidth}
       \begin{tikzpicture}[scale=0.7]
         \draw[zona] (0,0) rectangle (3.2,1.6);
-        \node[font=\scriptsize\bfseries, color=AlmAzulM] at (1.6,0.8) {Parque A};
+        \node[font=\AlmFontScript\bfseries, color=AlmAzulM] at (1.6,0.8) {Parque A};
         \draw[acota] (0,-0.4) -- (3.2,-0.4)
-          node[midway,below,font=\tiny]{200 m};
+          node[midway,below,font=\AlmFontTiny]{200 m};
         \draw[acota] (3.55,0) -- (3.55,1.6)
-          node[midway,right,font=\tiny]{100 m};
+          node[midway,right,font=\AlmFontTiny]{100 m};
       \end{tikzpicture}
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{tikzpicture}[scale=0.7]
         \draw[rectov, fill=AlmVerde!15] (0,0) rectangle (2.4,2.4);
-        \node[font=\scriptsize\bfseries, color=AlmVerde] at (1.2,1.2) {Parque B};
+        \node[font=\AlmFontScript\bfseries, color=AlmVerde] at (1.2,1.2) {Parque B};
         \draw[acota] (0,-0.4) -- (2.4,-0.4)
-          node[midway,below,font=\tiny]{150 m};
+          node[midway,below,font=\AlmFontTiny]{150 m};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -394,7 +394,7 @@
 % ---------------------------------------------------------------
 \begin{frame}{Ejercicio 3 — APLICAR \dificultad{3}}
   \begin{aplicarbox}
-    \small El \textbf{Parque de las Familias} de Almería tiene forma
+    \AlmFontSmall El \textbf{Parque de las Familias} de Almería tiene forma
     de polígono irregular de 6 lados con las medidas:
     \textbf{250 m, 180 m, 300 m, 200 m, 150 m, 220 m}.
 
@@ -414,23 +414,23 @@
         \draw[zona]
           (0,1.5) -- (2.5,0) -- (5.5,0.3) --
           (6.5,2.0) -- (5.0,3.5) -- (1.5,3.2) -- cycle;
-        \node[font=\tiny, color=AlmGris] at (1.25,0.55) {250 m};
-        \node[font=\tiny, color=AlmGris] at (4.0,-0.25) {300 m};
-        \node[font=\tiny, color=AlmGris] at (6.25,1.15) {180 m};
-        \node[font=\tiny, color=AlmGris] at (5.95,2.85) {200 m};
-        \node[font=\tiny, color=AlmGris] at (3.15,3.55) {150 m};
-        \node[font=\tiny, color=AlmGris] at (0.45,2.45) {220 m};
-        \node[font=\scriptsize\bfseries, color=AlmAzulM] at (3.25,1.75) {Parque};
+        \node[font=\AlmFontTiny, color=AlmGris] at (1.25,0.55) {250 m};
+        \node[font=\AlmFontTiny, color=AlmGris] at (4.0,-0.25) {300 m};
+        \node[font=\AlmFontTiny, color=AlmGris] at (6.25,1.15) {180 m};
+        \node[font=\AlmFontTiny, color=AlmGris] at (5.95,2.85) {200 m};
+        \node[font=\AlmFontTiny, color=AlmGris] at (3.15,3.55) {150 m};
+        \node[font=\AlmFontTiny, color=AlmGris] at (0.45,2.45) {220 m};
+        \node[font=\AlmFontScript\bfseries, color=AlmAzulM] at (3.25,1.75) {Parque};
       \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.44\textwidth}
       \begin{pasobox}[1]
-        \scriptsize $P = 250 + 180 + 300 + 200 + 150 + 220 = ?$
+        \AlmFontScript $P = 250 + 180 + 300 + 200 + 150 + 220 = ?$
       \end{pasobox}
       \vspace{0.2cm}
       \begin{pasobox}[2]
-        \scriptsize Convertir 2 km a metros: $2\ \text{km} = 2000\ \text{m}$
+        \AlmFontScript Convertir 2 km a metros: $2\ \text{km} = 2000\ \text{m}$
         \\Vueltas $= 2000 \div P$
       \end{pasobox}
     \end{column}
@@ -514,3 +514,6 @@
 \end{frame}
 
 \end{document}
+
+
+

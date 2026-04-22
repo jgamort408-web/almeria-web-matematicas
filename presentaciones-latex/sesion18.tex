@@ -3,7 +3,7 @@
 %  Construimos la guía — Almería en Cifras y Formas
 %  Bloque 4: Producto final · Matemáticas 1.º ESO
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{18}
@@ -46,37 +46,57 @@
 \seccionframe{1. Estructura de la guía}
 % ---------------------------------------------------------------
 
-\begin{frame}{Las 7 secciones de vuestra guía}
+\begin{frame}{Las 7 secciones de vuestra guía (1/2)}
   \begin{columns}[T]
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.48\textwidth}
       \begin{enumerate}
         \item[\faBookOpen] \textbf{Portada}\\
-          {\footnotesize Título, autores, estadística llamativa, miniatura del mapa}
-        \vspace{3pt}
+          {\AlmFontFootnote Título, autores, estadística llamativa, miniatura del mapa}
+        \vspace{4pt}
         \item[\faMapMarkerAlt] \textbf{Mapa con coordenadas}\\
-          {\footnotesize $\geq 10$ puntos turísticos con $(x,y)$, escala, rosa de los vientos}
-        \vspace{3pt}
-        \item[\faTable] \textbf{Monumentos en cifras}\\
-          {\footnotesize Tabla: nombre, coordenadas, área/altura, visitantes/año}
-        \vspace{3pt}
-        \item[\faRoute] \textbf{Rutas matemáticas}\\
-          {\footnotesize 2--3 rutas: distancias calculadas, tiempo estimado}
+          {\AlmFontFootnote $\geq 10$ puntos turísticos con $(x,y)$, escala y rosa de los vientos}
       \end{enumerate}
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.48\textwidth}
       \begin{enumerate}
+        \setcounter{enumi}{2}
+        \item[\faTable] \textbf{Monumentos en cifras}\\
+          {\AlmFontFootnote Tabla: nombre, coordenadas, área/altura y visitantes por año}
+        \vspace{4pt}
+        \item[\faRoute] \textbf{Rutas matemáticas}\\
+          {\AlmFontFootnote 2--3 rutas con distancias calculadas y tiempo estimado}
+      \end{enumerate}
+    \end{column}
+  \end{columns}
+  \vspace{8pt}
+  \begin{notabox}[Consejo]
+    \AlmFontFootnote
+    Estas cuatro partes construyen el esqueleto de la guía:
+    portada, mapa, tabla y rutas.
+  \end{notabox}
+\end{frame}
+
+\begin{frame}{Las 7 secciones de vuestra guía (2/2)}
+  \begin{columns}[T]
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{4}
         \item[\faChartLine] \textbf{Gráficas de Almería}\\
-          {\footnotesize $\geq 2$ gráficas (temperatura, turismo\ldots) con análisis}
-        \vspace{3pt}
+          {\AlmFontFootnote $\geq 2$ gráficas (temperatura, turismo\ldots) con análisis}
+        \vspace{4pt}
         \item[\faLightbulb] \textbf{Datos curiosos}\\
-          {\footnotesize 5--8 hechos matemáticos sorprendentes de Almería}
-        \vspace{3pt}
+          {\AlmFontFootnote 5--8 hechos matemáticos sorprendentes de Almería}
+      \end{enumerate}
+    \end{column}
+    \begin{column}{0.48\textwidth}
+      \begin{enumerate}
+        \setcounter{enumi}{6}
         \item[\faBook] \textbf{Glosario matemático}\\
-          {\footnotesize $\geq 10$ términos usados en la guía con definición}
+          {\AlmFontFootnote $\geq 10$ términos usados en la guía con definición}
       \end{enumerate}
       \vspace{8pt}
       \begin{notabox}[Extensión orientativa]
-        \footnotesize
+        \AlmFontFootnote
         Mínimo 8 páginas (papel o digital).\\
         Cada sección debe llevar título claro
         y numeración de página.
@@ -93,20 +113,20 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{teoriabox}
-        \textbf{4 principios de diseño}\\[4pt]
+        \textbf{4 principios de diseño}
         \begin{enumerate}
           \item \textbf{Coherencia visual}\\
             Mismos colores, misma tipografía\\
             en todos los apartados.
-          \vspace{4pt}
+
           \item \textbf{Equilibrio texto--imagen}\\
             Aprox.\ 50\% texto, 50\% figuras
             (mapas, tablas, gráficas).
-          \vspace{4pt}
+
           \item \textbf{Jerarquía de información}\\
             Título $>$ subtítulo $>$ cuerpo de texto\\
             (tamaños distintos, negrita).
-          \vspace{4pt}
+
           \item \textbf{Accesibilidad}\\
             Ejes etiquetados, unidades presentes,
             fórmulas explicadas.
@@ -115,32 +135,32 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       % Maqueta esquemática de doble página
-      \begin{tikzpicture}[scale=0.62]
+      \begin{tikzpicture}[scale=0.55]
         % Página izquierda
         \fill[AlmAzul] (0,8) rectangle (6,8.6);
-        \node[text=AlmBlanco, font=\tiny\bfseries] at (3,8.3)
+        \node[text=AlmBlanco, font=\AlmFontTiny\bfseries] at (3,8.3)
           {ALMERÍA EN CIFRAS Y FORMAS};
         \fill[AlmAmbar!30, rounded corners=2pt]
           (0.3,5.8) rectangle (5.7,7.8);
-        \node[font=\tiny, text=AlmNegro, align=center] at (3,6.8)
+        \node[font=\AlmFontTiny, text=AlmNegro, align=center] at (3,6.8)
           {MAPA DE COORDENADAS\\(10+ puntos etiquetados)};
         \foreach \y in {5.1,4.7,4.3,3.9}{
           \fill[AlmGris!20] (0.3,\y) rectangle (5.7,\y+0.25);
         }
-        \node[font=\tiny, color=AlmGris] at (3,3.6) {texto · texto · texto};
+        \node[font=\AlmFontTiny, color=AlmGris] at (3,3.6) {texto · texto · texto};
         % Página derecha
         \fill[AlmAzul!12] (6.5,3.5) rectangle (12.5,8.6);
         \fill[AlmAzulC!25, rounded corners=2pt]
           (6.8,5.5) rectangle (12.2,8.3);
-        \node[font=\tiny, text=AlmAzul, align=center] at (9.5,6.9)
+        \node[font=\AlmFontTiny, text=AlmAzul, align=center] at (9.5,6.9)
           {GRÁFICA: turistas/mes\\(pgfplots / mano)};
         \foreach \y in {4.8,4.4,4.0,3.7}{
           \fill[AlmGris!20] (6.8,\y) rectangle (12.2,\y+0.22);
         }
         % Títulos de sección
-        \node[font=\tiny\bfseries, color=AlmAzul] at (3,8.0)
+        \node[font=\AlmFontTiny\bfseries, color=AlmAzul] at (3,8.0)
           {Sección 2: Mapa};
-        \node[font=\tiny\bfseries, color=AlmAzul] at (9.5,8.0)
+        \node[font=\AlmFontTiny\bfseries, color=AlmAzul] at (9.5,8.0)
           {Sección 5: Gráficas};
       \end{tikzpicture}
     \end{column}
@@ -162,7 +182,7 @@
         \item[\faCheck] \textbf{$\geq 10$ puntos} con nombre
               y coordenadas $(x,y)$
         \item[\faCheck] \textbf{Código de color} por tipo:\\
-          {\footnotesize
+          {\AlmFontFootnote
           \textcolor{AlmAzulM}{$\bullet$} Monumentos \quad
           \textcolor{AlmAzulC}{$\bullet$} Playas \\
           \textcolor{AlmVerde}{$\bullet$} Parques \quad
@@ -175,8 +195,8 @@
     \begin{column}{0.44\textwidth}
       \begin{tikzpicture}[scale=0.75]
         \draw[AlmFondo!70, step=1cm] (0,0) grid (6,5.5);
-        \draw[->, AlmAzulM] (0,0)--(6.4,0) node[right,font=\tiny]{$x$};
-        \draw[->, AlmAzulM] (0,0)--(0,5.8) node[above,font=\tiny]{$y$};
+        \draw[->, AlmAzulM] (0,0)--(6.4,0) node[right,font=\AlmFontTiny]{$x$};
+        \draw[->, AlmAzulM] (0,0)--(0,5.8) node[above,font=\AlmFontTiny]{$y$};
         % Puntos
         \foreach \x/\y/\c/\n in {
           1/4/AlmAzulM/Alcazaba,
@@ -186,16 +206,16 @@
           5/2/AlmAzulC/Playa,
           1/2/AlmVerde/Parque}{
           \node[circle,fill=\c,inner sep=2pt] at (\x,\y) {};
-          \node[font=\tiny, above, color=\c] at (\x,\y) {\n};
+          \node[font=\AlmFontTiny, above, color=\c] at (\x,\y) {\n};
         }
         % Ruta
         \draw[AlmAmbar, line width=1.2pt, ->]
           (1,4)--(2,2)--(3,2)--(4,1)--(5,2);
         % Escala
         \draw[acota] (0,-0.5) -- (1,-0.5)
-          node[midway,below,font=\tiny]{200 m};
+          node[midway,below,font=\AlmFontTiny]{200 m};
         % Norte
-        \node[font=\large, color=AlmAzulM] at (5.5,5.2) {$\uparrow$N};
+        \node[font=\AlmFontLarge, color=AlmAzulM] at (5.5,5.2) {$\uparrow$N};
       \end{tikzpicture}
     \end{column}
   \end{columns}
@@ -241,7 +261,7 @@
       \end{itemize}
       \vspace{6pt}
       \begin{notabox}[Recuerda]
-        \footnotesize
+        \AlmFontFootnote
         Variables discretas → diagrama de \textbf{barras}\\
         Variables continuas / tiempo → gráfica \textbf{lineal}\\
         Partes de un todo → diagrama de \textbf{sectores}
@@ -260,11 +280,11 @@
       \begin{tcolorbox}[
         enhanced, colback=AlmVerde!8, colframe=AlmVerde,
         title={\faCheckDouble\enskip Verificación matemática},
-        fonttitle=\bfseries\small\color{AlmBlanco},
+        fonttitle=\bfseries\AlmFontSmall\color{AlmBlanco},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=AlmVerde, arc=3pt, boxrule=0pt},
         arc=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item[$\square$] Todas las \textbf{distancias} calculadas con
                 $d=\sqrt{\Delta x^2+\Delta y^2}$
@@ -286,11 +306,11 @@
       \begin{tcolorbox}[
         enhanced, colback=AlmAmbar!10, colframe=AlmAmbar!70!black,
         title={\faStickyNote\enskip Verificación de presentación},
-        fonttitle=\bfseries\small\color{AlmAzul},
+        fonttitle=\bfseries\AlmFontSmall\color{AlmAzul},
         attach boxed title to top left={yshift=-2.2mm, xshift=4mm},
         boxed title style={colback=AlmAmbar, coltext=AlmAzul, arc=3pt},
         arc=4pt]
-        \footnotesize
+        \AlmFontFootnote
         \begin{itemize}
           \item[$\square$] Portada con título, autores y estadística
           \item[$\square$] Todas las páginas numeradas
@@ -338,7 +358,7 @@
                 tiene \SI{38000}{ha}.
           \item Almería recibe $\approx$\,\SI{3}{millones}
                 de turistas al año.
-          \item La temperatura media anual es \SI{18.5}{\celsius}.
+          \item La temperatura media anual es \ensuremath{18{,}5\,^\circ\mathrm{C}}.
         \end{itemize}
       \end{notabox}
     \end{column}
@@ -353,7 +373,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{aplicarbox}
-        \footnotesize
+        \AlmFontFootnote
         \textbf{Sección «Monumentos en cifras»}\\[4pt]
         Completa la tabla con \textbf{5 monumentos} de Almería.
         Para cada uno indica:
@@ -368,7 +388,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{crearbox}
-        \footnotesize
+        \AlmFontFootnote
         \textbf{Sección «Ruta de 3 horas»}\\[4pt]
         Diseña una ruta turística visitando
         \textbf{6 lugares} del mapa. Para cada tramo:
@@ -409,12 +429,12 @@
     \textbf{Una guía matemática no es solo una guía con números.}\\[6pt]
     \incorrecto\ «La Alcazaba es un monumento histórico muy bonito
     situado en Almería. Tiene muchas salas y vistas preciosas.»\\
-    {\footnotesize ← Esto es una guía turística clásica, no matemática.}\\[8pt]
+    {\AlmFontFootnote ← Esto es una guía turística clásica, no matemática.}\\[8pt]
     \correcto\ «La Alcazaba (coordenadas $(1,4)$ en nuestro mapa,
     escala 1\,u = 200\,m) ocupa \SI{43000}{m^2} $\approx$ \SI{4.3}{ha}
     y registra \num{300000} visitantes anuales. Su muro de mayor altura
     mide aproximadamente \SI{15}{m}.»\\
-    {\footnotesize ← Mismo lugar, pero con contenido matemático real.}
+    {\AlmFontFootnote ← Mismo lugar, pero con contenido matemático real.}
   \end{errorbox}
 \end{frame}
 
@@ -435,9 +455,11 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}\faArrowCircleRight\enskip
+    {\AlmFontSmall\color{AlmAzulM}\faArrowCircleRight\enskip
     \textbf{Sesión 19:} Revisión entre pares y mejora del borrador}
   \end{center}
 \end{frame}
 
 \end{document}
+
+

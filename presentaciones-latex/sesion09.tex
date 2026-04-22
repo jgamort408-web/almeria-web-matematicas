@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{09}
@@ -66,15 +66,16 @@
 % ---------------------------------------------------------------
 \begin{frame}{Perímetro vs. Área: tabla comparativa}
   \begin{center}
-  \small
+  \AlmFontSmall
   \begin{tabular}{|>{\bfseries\color{AlmAzulM}}l|>{\centering\arraybackslash}p{3.8cm}|>{\centering\arraybackslash}p{3.8cm}|}
     \hline
     \rowcolor{AlmAzul!20}
     & \textbf{\color{AlmTerra}Perímetro} & \textbf{\color{AlmVerde}Área} \\
     \hline
     ¿Qué mide? &
-      El \textbf{contorno}\\(la valla) &
-      La \textbf{superficie}\\(el césped) \\
+      El \textbf{contorno} &
+      La \textbf{superficie}\\ &
+      (la valla) &(el césped) \\
     \hline
     Dimensión &
       \textbf{1D} (lineal) &
@@ -89,15 +90,15 @@
       $A = l \times w$ \\
     \hline
     Uso &
-      Vallas, bordes,\\caminos &
-      Suelos, pinturas,\\césped \\
+      Vallas, bordes, caminos &
+      Suelos, pinturas, césped \\
     \hline
   \end{tabular}
   \end{center}
 
   \vspace{0.2cm}
   \begin{notabox}[Idea clave]
-    \small Perímetro y área miden cosas \textbf{completamente distintas}.
+    \AlmFontSmall Perímetro y área miden cosas \textbf{completamente distintas}.
     Una puede ser grande mientras la otra es pequeña.
   \end{notabox}
 \end{frame}
@@ -114,31 +115,31 @@
         \fill[AlmTerra!12] (0,0) rectangle (4.8,1.6);
         \draw[rectot, line width=1.8pt] (0,0) rectangle (4.8,1.6);
         \draw[acota] (0,-0.55) -- (4.8,-0.55)
-          node[midway,below,font=\scriptsize]{6};
+          node[midway,below,font=\AlmFontScript]{6};
         \draw[acota] (5.15,0) -- (5.15,1.6)
-          node[midway,right,font=\scriptsize]{2};
-        \node[font=\scriptsize\bfseries, color=AlmTerra] at (2.4,0.8)
+          node[midway,right,font=\AlmFontScript]{2};
+        \node[font=\AlmFontScript\bfseries, color=AlmTerra] at (2.4,0.8)
           {$P = 16$ \quad $A = 12$};
 
         % Rectángulo 4x4 (más abajo)
         \fill[AlmVerde!15] (0,-3.0) rectangle (3.2,-3.0+3.2);
         \draw[rectov, line width=1.8pt] (0,-3.0) rectangle (3.2,-3.0+3.2);
         \draw[acota] (0,-3.6) -- (3.2,-3.6)
-          node[midway,below,font=\scriptsize]{4};
+          node[midway,below,font=\AlmFontScript]{4};
         \draw[acota] (3.55,-3.0) -- (3.55,-3.0+3.2)
-          node[midway,right,font=\scriptsize]{4};
-        \node[font=\scriptsize\bfseries, color=AlmVerde] at (1.6,-1.4)
+          node[midway,right,font=\AlmFontScript]{4};
+        \node[font=\AlmFontScript\bfseries, color=AlmVerde] at (1.6,-1.4)
           {$P = 16$ \quad $A = 16$};
 
         % Etiqueta
-        \node[font=\scriptsize\bfseries, color=AlmAmbar!80!black]
+        \node[font=\AlmFontScript\bfseries, color=AlmAmbar!80!black]
           at (2.5,-0.1) {};
       \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.34\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Ambos rectángulos tienen
         $P = 16$ unidades.
         \\[6pt]
@@ -152,7 +153,7 @@
         de \textbf{mayor área} para
         un perímetro fijo.
         \\[4pt]
-        \scriptsize(Problema isoperimérico)
+        \AlmFontScript(Problema isoperimérico)
       \end{teoriabox}
     \end{column}
   \end{columns}
@@ -170,10 +171,10 @@
         \fill[AlmAzulC!18] (0,0) rectangle (2.4,3.2);
         \draw[zona, line width=1.8pt] (0,0) rectangle (2.4,3.2);
         \draw[acota] (0,-0.55) -- (2.4,-0.55)
-          node[midway,below,font=\scriptsize]{3};
+          node[midway,below,font=\AlmFontScript]{3};
         \draw[acota] (2.75,0) -- (2.75,3.2)
-          node[midway,right,font=\scriptsize]{4};
-        \node[font=\scriptsize\bfseries, color=AlmAzulM] at (1.2,1.6)
+          node[midway,right,font=\AlmFontScript]{4};
+        \node[font=\AlmFontScript\bfseries, color=AlmAzulM] at (1.2,1.6)
           {$P = 14$\quad$A = 12$};
 
         % Rectángulo 6x2 → A=12, P=16
@@ -181,17 +182,17 @@
         \draw[AlmAmbar!70!black, line width=1.8pt]
           (4.2,0.8) rectangle (4.2+4.8,0.8+1.6);
         \draw[acota] (4.2,0.25) -- (9.0,0.25)
-          node[midway,below,font=\scriptsize]{6};
+          node[midway,below,font=\AlmFontScript]{6};
         \draw[acota] (9.35,0.8) -- (9.35,2.4)
-          node[midway,right,font=\scriptsize]{2};
-        \node[font=\scriptsize\bfseries, color=AlmAmbar!80!black] at (6.6,1.6)
+          node[midway,right,font=\AlmFontScript]{2};
+        \node[font=\AlmFontScript\bfseries, color=AlmAmbar!80!black] at (6.6,1.6)
           {$P = 16$\quad$A = 12$};
       \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.34\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Ambos rectángulos tienen
         $A = 12$ unidades cuadradas.
         \\[6pt]
@@ -215,8 +216,8 @@
 \begin{frame}{¿Cuándo usar cada medida?}
   \begin{columns}[t]
     \begin{column}{0.48\textwidth}
-      \begin{definicionbox}{\color{AlmTerra}Necesitas el PERÍMETRO}
-        \small
+      \begin{definicionbox}{Necesitas el PERÍMETRO}
+        \AlmFontSmall
         \begin{itemize}
           \item Colocar una \textbf{valla} alrededor de un parque.
           \item Poner \textbf{bordillo} en el borde de una acera.
@@ -226,8 +227,8 @@
       \end{definicionbox}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{definicionbox}{\color{AlmVerde}Necesitas el ÁREA}
-        \small
+      \begin{definicionbox}{Necesitas el ÁREA}
+        \AlmFontSmall
         \begin{itemize}
           \item Comprar \textbf{baldosas} para pavimentar.
           \item Calcular el \textbf{césped} a sembrar.
@@ -239,7 +240,7 @@
   \end{columns}
   \vspace{0.3cm}
   \begin{notabox}[Resumen]
-    \small \textbf{Valla, bordillo, camino} $\rightarrow$ Perímetro (metros).
+    \AlmFontSmall \textbf{Valla, bordillo, camino} $\rightarrow$ Perímetro (metros).
     \quad
     \textbf{Suelo, césped, pintura} $\rightarrow$ Área (m$^2$).
   \end{notabox}
@@ -256,7 +257,7 @@
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
       \begin{ejemplobox}
-        \small La \textbf{Rambla de Almería} es aproximadamente
+        \AlmFontSmall La \textbf{Rambla de Almería} es aproximadamente
         rectangular con \textbf{370 m} de largo y \textbf{50 m}
         de ancho.
         \begin{align*}
@@ -279,14 +280,14 @@
         % Árboles (zona verde interior simplificada)
         \fill[AlmVerde!20] (0.2,0.1) rectangle (5.3,0.65);
         \draw[acota] (0,-0.5) -- (5.5,-0.5)
-          node[midway,below,font=\tiny]{370 m};
+          node[midway,below,font=\AlmFontTiny]{370 m};
         \draw[acota] (5.9,0) -- (5.9,0.75)
-          node[midway,right,font=\tiny]{50 m};
-        \node[font=\tiny\bfseries, color=AlmVerde!70!black] at (2.75,0.375)
+          node[midway,right,font=\AlmFontTiny]{50 m};
+        \node[font=\AlmFontTiny\bfseries, color=AlmVerde!70!black] at (2.75,0.375)
           {Rambla de Almería};
-        \node[font=\tiny\bfseries, color=AlmTerra] at (2.75,-0.95)
+        \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (2.75,-0.95)
           {$P = 840$ m};
-        \node[font=\tiny\bfseries, color=AlmVerde!70!black] at (2.75,-1.35)
+        \node[font=\AlmFontTiny\bfseries, color=AlmVerde!70!black] at (2.75,-1.35)
           {$A = 18{.}500$ m$^2$};
       \end{tikzpicture}
       \end{center}
@@ -318,11 +319,11 @@
     \fill[AlmAzulC!12] (0,0) rectangle (4.8,2.0);
     \draw[zona, line width=1.8pt] (0,0) rectangle (4.8,2.0);
     \draw[acota] (0,-0.55) -- (4.8,-0.55)
-      node[midway,below,font=\scriptsize]{12 m};
+      node[midway,below,font=\AlmFontScript]{12 m};
     \draw[acota] (5.15,0) -- (5.15,2.0)
-      node[midway,right,font=\scriptsize]{5 m};
-    \node[font=\small, color=AlmTerra] at (1.8,1.0) {$P = ?$\ m};
-    \node[font=\small, color=AlmVerde] at (3.4,1.0) {$A = ?$\ m$^2$};
+      node[midway,right,font=\AlmFontScript]{5 m};
+    \node[font=\AlmFontSmall, color=AlmTerra] at (1.8,1.0) {$P = ?$\ m};
+    \node[font=\AlmFontSmall, color=AlmVerde] at (3.4,1.0) {$A = ?$\ m$^2$};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -341,7 +342,7 @@
     la que da \textbf{mayor área}:
 
     \vspace{0.15cm}
-    \small
+    \AlmFontSmall
     \begin{center}
     \begin{tabular}{|c|c|c|c|}
       \hline
@@ -371,7 +372,7 @@
 % ---------------------------------------------------------------
 \begin{frame}{Ejercicio 3 — APLICAR \dificultad{3}}
   \begin{aplicarbox}
-    \small Un urbanista de Almería necesita:
+    \AlmFontSmall Un urbanista de Almería necesita:
     \begin{enumerate}
       \item \textbf{Vallar} un parque rectangular de 80 m $\times$ 60 m
             (precio: 45 €/m de valla).
@@ -389,14 +390,14 @@
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \begin{pasobox}[1]
-        \scriptsize $P = 2(80 + 60) = ?$ m
+        \AlmFontScript $P = 2(80 + 60) = ?$ m
         \\
         Coste valla $= P \times 45$~€
       \end{pasobox}
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{pasobox}[2]
-        \scriptsize $A = 80 \times 60 = ?$~m$^2$
+        \AlmFontScript $A = 80 \times 60 = ?$~m$^2$
         \\
         Coste gravilla $= A \times 12$~€
       \end{pasobox}
@@ -413,42 +414,42 @@
     % --- Caso 1: 6x2, P=16, A=12 ---
     \fill[AlmTerra!12] (0,0) rectangle (4.8,1.6);
     \draw[rectot, line width=1.5pt] (0,0) rectangle (4.8,1.6);
-    \node[above, font=\tiny\bfseries, color=AlmTerra] at (2.4,1.6)
+    \node[above, font=\AlmFontTiny\bfseries, color=AlmTerra] at (2.4,1.6)
       {$6 \times 2$};
-    \node[font=\tiny, color=AlmTerra] at (2.4,0.8) {$P=16$};
-    \node[font=\tiny, color=AlmTerra] at (2.4,0.3) {$A=12$};
+    \node[font=\AlmFontTiny, color=AlmTerra] at (2.4,0.8) {$P=16$};
+    \node[font=\AlmFontTiny, color=AlmTerra] at (2.4,0.3) {$A=12$};
 
     % --- Caso 2: 4x4, P=16, A=16 ---
     \fill[AlmVerde!15] (5.8,0) rectangle (5.8+3.2,3.2);
     \draw[rectov, line width=1.5pt] (5.8,0) rectangle (5.8+3.2,3.2);
-    \node[above, font=\tiny\bfseries, color=AlmVerde] at (7.4,3.2)
+    \node[above, font=\AlmFontTiny\bfseries, color=AlmVerde] at (7.4,3.2)
       {$4 \times 4$};
-    \node[font=\tiny, color=AlmVerde] at (7.4,1.8) {$P=16$};
-    \node[font=\tiny, color=AlmVerde] at (7.4,1.2) {$A=16$};
+    \node[font=\AlmFontTiny, color=AlmVerde] at (7.4,1.8) {$P=16$};
+    \node[font=\AlmFontTiny, color=AlmVerde] at (7.4,1.2) {$A=16$};
 
     % Flecha entre 1 y 2
     \draw[->, AlmAmbar!80!black, line width=1.2pt]
       (5.0,0.8) -- (5.6,0.8);
-    \node[above, font=\tiny\bfseries, color=AlmAmbar!80!black]
+    \node[above, font=\AlmFontTiny\bfseries, color=AlmAmbar!80!black]
       at (5.3,0.8) {P igual};
 
     % --- Caso 3: 3x4, P=14, A=12 ---
     \fill[AlmAzulC!18] (0,-3.5) rectangle (2.4,-3.5+3.2);
     \draw[zona, line width=1.5pt] (0,-3.5) rectangle (2.4,-3.5+3.2);
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (1.2,-3.5)
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (1.2,-3.5)
       {$3 \times 4$};
-    \node[font=\tiny, color=AlmAzulM] at (1.2,-2.0) {$P=14$};
-    \node[font=\tiny, color=AlmAzulM] at (1.2,-2.5) {$A=12$};
+    \node[font=\AlmFontTiny, color=AlmAzulM] at (1.2,-2.0) {$P=14$};
+    \node[font=\AlmFontTiny, color=AlmAzulM] at (1.2,-2.5) {$A=12$};
 
     % Flecha entre 3 y 1 (misma A)
     \draw[->, AlmGris, dashed, line width=1.0pt]
       (2.6,-2.1) -- (4.4,-0.5);
-    \node[right, font=\tiny\bfseries, color=AlmGris]
+    \node[right, font=\AlmFontTiny\bfseries, color=AlmGris]
       at (3.5,-1.4) {A igual};
   \end{tikzpicture}
   \end{center}
   \begin{notabox}[Conclusión]
-    \small Si cambias la forma de un rectángulo manteniendo el mismo
+    \AlmFontSmall Si cambias la forma de un rectángulo manteniendo el mismo
     perímetro, el área cambia. Y viceversa.
   \end{notabox}
 \end{frame}
@@ -532,3 +533,6 @@
 \end{frame}
 
 \end{document}
+
+
+

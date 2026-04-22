@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO · IES Al-Ándalus
 %  Compilar: pdflatex sesion16.tex
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{16}
@@ -77,29 +77,29 @@
     \node[draw=AlmAzulM, ellipse, minimum width=1.2cm, minimum height=2.2cm,
           fill=AlmAzulC!15] at (0,0) {};
     \foreach \v/\y in {2/0.6, 4/0, 6/-0.6}
-      \node[font=\small] at (0,\y) {\v};
+      \node[font=\AlmFontSmall] at (0,\y) {\v};
     \node[draw=AlmAzulM, ellipse, minimum width=1.2cm, minimum height=2.8cm,
           fill=AlmAzulC!15] at (2.8,0) {};
     \foreach \v/\y in {-2/0.9, 1/0.3, 2/-0.3, 3/-0.9}
-      \node[font=\small] at (2.8,\y) {\v};
+      \node[font=\AlmFontSmall] at (2.8,\y) {\v};
     \draw[->, AlmAzulM, thick] (0.6, 0.6) -- (2.2, 0.9);
     \draw[->, AlmAzulM, thick] (0.6, 0.6) -- (2.2,-0.3);
     \draw[->, AlmAzulM, thick] (0.6, 0) -- (2.2, 0.3);
     \draw[->, AlmTerra, thick] (0.6,-0.6) -- (2.2, -0.9);
-    \node[above, font=\tiny\bfseries, color=AlmGris] at (1.4,1.4) {RELACIÓN};
+    \node[above, font=\AlmFontTiny\bfseries, color=AlmGris] at (1.4,1.4) {RELACIÓN};
     % FUNCIÓN (der)
     \node[draw=AlmVerde, ellipse, minimum width=1.2cm, minimum height=2.2cm,
           fill=AlmVerde!10] at (5.4,0) {};
     \foreach \v/\y in {1/0.6, 2/0, 3/-0.6}
-      \node[font=\small] at (5.4,\y) {\v};
+      \node[font=\AlmFontSmall] at (5.4,\y) {\v};
     \node[draw=AlmVerde, ellipse, minimum width=1.2cm, minimum height=2.2cm,
           fill=AlmVerde!10] at (8.2,0) {};
     \foreach \v/\y in {3/0.6, 6/0, 9/-0.6}
-      \node[font=\small] at (8.2,\y) {\v};
+      \node[font=\AlmFontSmall] at (8.2,\y) {\v};
     \draw[->, AlmVerde, thick] (6.0, 0.6) -- (7.6, 0.6);
     \draw[->, AlmVerde, thick] (6.0, 0.0) -- (7.6, 0.0);
     \draw[->, AlmVerde, thick] (6.0,-0.6) -- (7.6,-0.6);
-    \node[above, font=\tiny\bfseries, color=AlmGris] at (6.8,1.4) {FUNCIÓN};
+    \node[above, font=\AlmFontTiny\bfseries, color=AlmGris] at (6.8,1.4) {FUNCIÓN};
   \end{tikzpicture}
   \end{center}
 \end{frame}
@@ -138,7 +138,7 @@
   \begin{center}
     \begin{tikzpicture}
       \node[draw=AlmAzulM, fill=AlmAzulC!12, rounded corners=5pt,
-            font=\small\bfseries, inner sep=6pt] {
+            font=\AlmFontSmall\bfseries, inner sep=6pt] {
         La gráfica es una \textcolor{AlmTerra}{recta que pasa por el origen} $(0,0)$};
     \end{tikzpicture}
   \end{center}
@@ -167,10 +167,10 @@
     \begin{column}{0.42\textwidth}
       \begin{ejemplobox}
         \textbf{Taxi en Almería:}\\
-        \SI{2}{\km} cuestan \SI{5.00}{\euro}\\[4pt]
-        $k = \dfrac{5{,}00}{2} = \SI{2{,}50}{\euro/\km}$\\[4pt]
+        2\,km cuestan 5{,}00\,€\\[4pt]
+        $k = \dfrac{5{,}00\,\text{€}}{2\,\text{km}} = 2{,}50\,\text{€}/\text{km}$\\[4pt]
         Verificamos con $x=4$:\\
-        $y = 2{,}50 \times 4 = \SI{10{,}00}{\euro}$ \correcto
+        $y = 2{,}50 \times 4 = 10{,}00\,\text{€}$ \correcto
       \end{ejemplobox}
     \end{column}
   \end{columns}
@@ -188,7 +188,7 @@
           xmin=0, xmax=5.5,
           ymin=0, ymax=15,
           xlabel={Distancia (km)},
-          ylabel={Coste (\euro)},
+          ylabel={Coste (€)},
           title={Tarifa taxi Almería: $y = 2{,}5x$},
           xtick={0,1,2,3,4,5},
           ytick={0,2.5,5,7.5,10,12.5},
@@ -200,23 +200,23 @@
           \addplot[only marks, mark=*, mark size=3pt, AlmAzulM]
             coordinates {(0,0)(1,2.5)(2,5)(3,7.5)(4,10)(5,12.5)};
           % etiqueta de la recta
-          \node[font=\tiny\bfseries, color=AlmTerra, anchor=west]
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra, anchor=west]
             at (axis cs: 3.5, 10.5) {$y = 2{,}5\,x$};
           % pendiente k
           \draw[<->, AlmVerde, thick]
             (axis cs: 2, 5) -- (axis cs: 3, 5)
-            node[midway, below, font=\tiny\bfseries, color=AlmVerde] {$\Delta x = 1$};
+            node[midway, below, font=\AlmFontTiny\bfseries, color=AlmVerde] {$\Delta x = 1$};
           \draw[<->, AlmVerde, thick]
             (axis cs: 3, 5) -- (axis cs: 3, 7.5)
-            node[midway, right, font=\tiny\bfseries, color=AlmVerde] {$k = 2{,}5$};
+            node[midway, right, font=\AlmFontTiny\bfseries, color=AlmVerde] {$k = 2{,}5$};
         \end{axis}
       \end{tikzpicture}
     \end{column}
     \begin{column}{0.38\textwidth}
-      \small
+      \AlmFontSmall
       \begin{tabular}{@{}cc@{}}
         \toprule
-        \textbf{km} & \textbf{\euro} \\
+        \textbf{km} & \textbf{€} \\
         \midrule
         0 & 0{,}00 \\
         1 & 2{,}50 \\
@@ -232,7 +232,7 @@
         $k = \dfrac{y}{x} = 2{,}5$
       \end{formulabox}
       \vspace{0.2cm}
-      {\tiny La recta \textbf{pasa por el origen} y tiene pendiente $k = 2{,}5$.}
+      {\AlmFontTiny La recta \textbf{pasa por el origen} y tiene pendiente $k = 2{,}5$.}
     \end{column}
   \end{columns}
 \end{frame}
@@ -243,9 +243,9 @@
     \begin{column}{0.32\textwidth}
       \begin{ejemplobox}
         \textbf{\faMapMarkerAlt\ Bus urbano}\\[4pt]
-        3 viajes $= 3 \times 1{,}40 = \SI{4{,}20}{\euro}$\\[4pt]
+        3 viajes $= 3 \times 1{,}40 = 4{,}20\,\text{€}$\\[4pt]
         \[y = 1{,}40\,x\]
-        $k = \SI{1{,}40}{\euro/\text{viaje}}$
+        $k = 1{,}40\,\text{€}/\text{viaje}$
       \end{ejemplobox}
     \end{column}
     \begin{column}{0.32\textwidth}
@@ -269,7 +269,7 @@
   \begin{center}
     \begin{tikzpicture}
       \node[draw=AlmAmbar, fill=AlmAmbar!10, rounded corners=4pt,
-            font=\small, inner sep=8pt, text width=10cm, align=center] {
+            font=\AlmFontSmall, inner sep=8pt, text width=10cm, align=center] {
         En todos los casos: si $x$ se multiplica por $n$, $y$ también se multiplica por $n$,\\
         y el cociente $y/x$ es siempre la misma constante $k$.
       };
@@ -285,7 +285,7 @@
       \begin{tabular}{|>{\bfseries\color{AlmAzulM}}c|c|c|}
         \hline
         \rowcolor{AlmAzul!15}
-        \textbf{Viajes ($x$)} & \textbf{Coste ($y$, \euro)} & \textbf{$y/x$} \\
+        \textbf{Viajes ($x$)} & \textbf{Coste ($y$, €)} & \textbf{$y/x$} \\
         \hline
         1  & 1{,}40  & 1{,}40 \\
         2  & 2{,}80  & 1{,}40 \\
@@ -317,7 +317,7 @@
 \begin{frame}{Proporcional vs.\ lineal: ¡no confundir!}
   \begin{columns}[c]
     \begin{column}{0.48\textwidth}
-      \begin{block}{\correcto\ Proporcional: $y = 2{,}5\,x$}
+      \begin{block}{\normalsize\correcto Proporcional: $y = 2{,}5\,x$}
         Taxi \textbf{sin tarifa de bajada:}\\
         $y = 2{,}5\,x$
         \begin{itemize}
@@ -325,28 +325,27 @@
           \item $y/x = 2{,}5$ (constante)
         \end{itemize}
       \end{block}
+      
+            \begin{alertblock}{\normalsize\incorrecto Lineal (no proporcional): $y = 2{,}40 + 1{,}20\,x$}
+              Taxi \textbf{con tarifa de bajada} €2{,}40:
+              \begin{itemize}
+                \item \textbf{No} pasa por el origen
+                \item $y/x \neq$ constante
+                \item Sí es lineal (recta)
+              \end{itemize}
+            \end{alertblock}
     \end{column}
     \begin{column}{0.48\textwidth}
-      \begin{alertblock}{\incorrecto\ Lineal (no proporcional): $y = 2{,}40 + 1{,}20\,x$}
-        Taxi \textbf{con tarifa de bajada} €2{,}40:
-        \begin{itemize}
-          \item \textbf{No} pasa por el origen
-          \item $y/x \neq$ constante
-          \item Sí es lineal (recta)
-        \end{itemize}
-      \end{alertblock}
-    \end{column}
-  \end{columns}
-  \vspace{0.3cm}
+
   \begin{center}
-  \begin{tikzpicture}[scale=0.85]
+  \begin{tikzpicture}[scale=1]
     \begin{axis}[
       almeria,
-      width=0.65\linewidth,
-      height=0.38\linewidth,
+      width=\linewidth,
+      height=\linewidth,
       xmin=0, xmax=5.5,
       ymin=0, ymax=12,
-      xlabel={km}, ylabel={\euro},
+      xlabel={km}, ylabel={€},
       title={Comparación de tarifas},
       legend pos=north west,
       xtick={0,1,2,3,4,5},
@@ -358,6 +357,9 @@
     \end{axis}
   \end{tikzpicture}
   \end{center}
+  
+      \end{column}
+    \end{columns}
 \end{frame}
 
 % ── FRAME 10: Propiedades clave ────────────────────────────────────
@@ -526,16 +528,16 @@
         \begin{center}
           \correcto\; \textbf{Proporcionalidad directa}\\[4pt]
           $y = 3x$\\[4pt]
-          {\small Pasa por el origen $(0,0)$}\\
-          {\small $y/x = 3$ siempre}
+          {\AlmFontSmall Pasa por el origen $(0,0)$}\\
+          {\AlmFontSmall $y/x = 3$ siempre}
         \end{center}
       \end{column}
       \begin{column}{0.47\textwidth}
         \begin{center}
           \incorrecto\; \textbf{Solo lineal (no proporcional)}\\[4pt]
           $y = 3x + 5$\\[4pt]
-          {\small No pasa por el origen}\\
-          {\small $y/x \neq$ constante}
+          {\AlmFontSmall No pasa por el origen}\\
+          {\AlmFontSmall $y/x \neq$ constante}
         \end{center}
       \end{column}
     \end{columns}
@@ -606,3 +608,5 @@
 \end{frame}
 
 \end{document}
+
+

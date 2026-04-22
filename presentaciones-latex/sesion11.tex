@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{11}
@@ -35,7 +35,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \begin{itemize}
           \item \textbf{Temperatura} de cada día de julio en Almería
           \item \textbf{Número de visitantes} al Alcázar cada mes
@@ -46,7 +46,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{notabox}[Dato curioso]
-        \small
+        \AlmFontSmall
         El término \textit{variable} viene del latín \textit{variabilis}:
         \textbf{que puede cambiar}.
         En estadística, cada columna de una tabla de datos
@@ -62,7 +62,7 @@
 \begin{frame}{Tipos de variables: árbol de clasificación}
   \begin{center}
   \begin{tikzpicture}[
-      every node/.style={font=\small},
+      every node/.style={font=\AlmFontSmall},
       nodo/.style={rounded corners=4pt, draw, align=center,
                    inner sep=4pt, text width=2.8cm},
       nodov/.style={nodo, fill=AlmAzul!15, draw=AlmAzul, text=AlmAzul},
@@ -74,22 +74,22 @@
     % Raíz
     \node[nodov] (var) at (0,0) {\textbf{VARIABLE}};
     % Hijos nivel 1
-    \node[nodoc] (cual) at (-3.5,-1.6) {Cualitativa\\\small(describe una\\cualidad)};
-    \node[nodoc] (cuant) at (3.5,-1.6) {Cuantitativa\\\small(valor numérico)};
+    \node[nodoc] (cual) at (-3.5,-1.6) {Cualitativa\\\AlmFontSmall(describe una\\cualidad)};
+    \node[nodoc] (cuant) at (3.5,-1.6) {Cuantitativa\\\AlmFontSmall(valor numérico)};
     % Hijos nivel 2
-    \node[nodod] (disc) at (2.0,-3.4) {Discreta\\\small números enteros,\\\small contables};
-    \node[nodod] (cont) at (5.0,-3.4) {Continua\\\small cualquier valor\\\small en un intervalo};
+    \node[nodod] (disc) at (2.0,-3.4) {Discreta\\\AlmFontSmall números enteros,\\\AlmFontSmall contables};
+    \node[nodod] (cont) at (5.0,-3.4) {Continua\\\AlmFontSmall cualquier valor\\\AlmFontSmall en un intervalo};
     % Flechas
     \draw[flecha] (var) -- (cual);
     \draw[flecha] (var) -- (cuant);
     \draw[flecha] (cuant) -- (disc);
     \draw[flecha] (cuant) -- (cont);
     % Ejemplos
-    \node[font=\tiny, text=AlmGris, align=center] at (-3.5,-2.9)
+    \node[font=\AlmFontTiny, text=AlmGris, align=center] at (-3.5,-2.9)
       {barrio, tipo de\\monumento, medio\\de transporte};
-    \node[font=\tiny, text=AlmGris, align=center] at (2.0,-4.5)
+    \node[font=\AlmFontTiny, text=AlmGris, align=center] at (2.0,-4.5)
       {turistas/día,\\nº de autobuses};
-    \node[font=\tiny, text=AlmGris, align=center] at (5.0,-4.5)
+    \node[font=\AlmFontTiny, text=AlmGris, align=center] at (5.0,-4.5)
       {temperatura,\\altura, distancia};
   \end{tikzpicture}
   \end{center}
@@ -102,7 +102,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{definicionbox}{Variable cualitativa}
-        \small
+        \AlmFontSmall
         Describe una \textbf{cualidad o categoría}.
         \textbf{No es un número} (aunque a veces se codifique con números).\\[4pt]
         \textit{Ejemplos en Almería:}
@@ -116,7 +116,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{definicionbox}{Variable cuantitativa}
-        \small
+        \AlmFontSmall
         Toma \textbf{valores numéricos} con los que tiene sentido operar.\\[4pt]
         \begin{itemize}\setlength\itemsep{2pt}
           \item \textbf{Discreta}: valores enteros y contables\\
@@ -128,9 +128,9 @@
     \end{column}
   \end{columns}
 
-  \vspace{0.3cm}
+  \vspace{0.15cm}
   \begin{notabox}[Truco para distinguirlas]
-    \small
+    \AlmFontSmall
     Pregúntate: \textbf{«¿Tiene sentido calcular la media?»}
     Si sí (media de temperatura = 24{,}3\,°C \correcto),
     es cuantitativa.
@@ -152,28 +152,26 @@
     \end{itemize}
   \end{teoriabox}
 
-  \vspace{0.3cm}
   \begin{center}
   \begin{tikzpicture}
     \node[rounded corners=5pt, fill=AlmAzulM!15, draw=AlmAzulM,
-          minimum width=3.2cm, minimum height=1cm, font=\bfseries\small,
+          minimum width=3.2cm, minimum height=1cm, font=\bfseries\AlmFontSmall,
           align=center, text width=3cm]
-      (xi) at (0,0) {Mes del año\\\small var.\ $x$};
+      (xi) at (0,0) {Mes del año\\\AlmFontSmall var.\ $x$};
     \node[rounded corners=5pt, fill=AlmAmbar!25, draw=AlmAmbar!70!black,
-          minimum width=3.6cm, minimum height=1cm, font=\bfseries\small,
+          minimum width=3.6cm, minimum height=1cm, font=\bfseries\AlmFontSmall,
           align=center, text width=3.4cm]
-      (yi) at (7,0) {N.º de turistas\\\small var.\ $y$};
-    \draw[-Stealth, AlmTerra, line width=2pt] (xi.east) -- node[above,font=\small,color=AlmTerra]
+      (yi) at (7,0) {N.º de turistas\\\AlmFontSmall var.\ $y$};
+    \draw[-Stealth, AlmTerra, line width=2pt] (xi.east) -- node[above,font=\AlmFontSmall,color=AlmTerra]
       {\textit{determina}} (yi.west);
   \end{tikzpicture}
   \end{center}
 
-  \vspace{0.2cm}
   \begin{columns}[T]
     \begin{column}{0.55\textwidth}
       \begin{ejemplobox}
-        \small
-        \textbf{Pregunta clave}: ¿Qué \textit{causa} a qué?\\
+        \AlmFontSmall
+        \textbf{Pregunta clave}: ¿Qué \textit{causa} a qué?
         \begin{itemize}
           \item «A más temperatura \textrightarrow\ más consumo de agua»\\
             $x$ = temperatura; $y$ = consumo
@@ -184,7 +182,7 @@
     \end{column}
     \begin{column}{0.42\textwidth}
       \begin{notabox}[Fórmula mental]
-        \small
+        \AlmFontSmall
         $\text{Cuanto más } x \;\Rightarrow\; \text{más/menos } y$
         Si tiene sentido, \(x\) es la independiente.
       \end{notabox}
@@ -197,7 +195,7 @@
 % ---------------------------------------------------------------
 \begin{frame}{Variables urbanas de Almería: tabla de ejemplos}
   \begin{center}
-  \small
+  \AlmFontSmall
   \renewcommand{\arraystretch}{1.25}
   \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l l l}
     \toprule
@@ -219,7 +217,7 @@
 
   \vspace{0.2cm}
   \begin{notabox}[Observa]
-    \small
+    \AlmFontSmall
     Una variable puede ser \textbf{independiente en un par}
     y \textbf{dependiente en otro}.
     El rol depende de la \textit{relación} que estudiamos.
@@ -260,15 +258,15 @@
         (6,250) (7,500) (8,600) (9,300) (10,200)
         (11,100) (12,80)
       };
-      \node[font=\tiny\bfseries, color=AlmTerra, above] at (axis cs:8,600)
+      \node[font=\AlmFontTiny\bfseries, color=AlmTerra, above] at (axis cs:8,600)
         {Máximo: agosto};
-      \node[font=\tiny\bfseries, color=AlmAzulM, below right] at (axis cs:1,60)
+      \node[font=\AlmFontTiny\bfseries, color=AlmAzulM, below right] at (axis cs:1,60)
         {Mínimo: enero};
     \end{axis}
   \end{tikzpicture}
   \end{center}
   \vspace{-0.1cm}
-  {\small $x$ = mes (variable independiente) \quad $y$ = turistas en miles (variable dependiente)}
+  {\AlmFontSmall $x$ = mes (variable independiente) \quad $y$ = turistas en miles (variable dependiente)}
 \end{frame}
 
 % ---------------------------------------------------------------
@@ -295,9 +293,8 @@
     \end{tabular}
   \end{recordarbox}
 
-  \vspace{0.2cm}
   \begin{notabox}[Pista]
-    \small
+    \AlmFontSmall
     Pregunta 1: la altura puede ser 98{,}36\,m → admite decimales → \textbf{continua}.
     Para las demás, aplica el mismo razonamiento.
   \end{notabox}
@@ -328,7 +325,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{notabox}[Para reflexionar]
-        \small
+        \AlmFontSmall
         ¿Podría ser que las ventas de helados
         \textit{causaran} el aumento de temperatura?
         ¿Tiene sentido invertir el par?
@@ -336,7 +333,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{notabox}[Vocabulario]
-        \small
+        \AlmFontSmall
         «A mayor temperatura, mayores ventas» →
         relación \textbf{directa} o \textbf{positiva}.
       \end{notabox}
@@ -368,7 +365,7 @@
 
   \vspace{0.2cm}
   \begin{ejemplobox}
-    \small
+    \AlmFontSmall
     \textbf{Ejemplo de Par A}: $x$ = mes del año (cuantitativa discreta);
     $y$ = litros de agua consumidos (cuantitativa continua).\\
     Predicción: «En verano, a mayor calor, mayor consumo».
@@ -385,7 +382,7 @@
 
     \vspace{0.2cm}
     \begin{center}
-    \small
+    \AlmFontSmall
     \begin{tabular}{cc}
       \toprule
       \textbf{Año (\(x\))} & \textbf{Turistas agosto (\(y\))} \\
@@ -421,24 +418,24 @@
     \begin{center}
     \begin{tikzpicture}
       \node[rounded corners=4pt, fill=AlmTerra!15, draw=AlmTerra,
-            text width=5cm, align=center, font=\small] (mal)
+            text width=5cm, align=center, font=\AlmFontSmall] (mal)
         at (0,0) {«El \textbf{número de turistas}\\
                   hace que \textbf{cambie el mes}»};
-      \node[right=0.5cm of mal, font=\Large, color=AlmTerra] {\incorrecto};
+      \node[right=0.5cm of mal, font=\AlmFontLargeUp, color=AlmTerra] {\incorrecto};
     \end{tikzpicture}
 
     \vspace{0.4cm}
     \begin{tikzpicture}
       \node[rounded corners=4pt, fill=AlmVerde!12, draw=AlmVerde,
-            text width=5cm, align=center, font=\small] (bien)
+            text width=5cm, align=center, font=\AlmFontSmall] (bien)
         at (0,0) {«El \textbf{mes del año}\\
                   influye en el \textbf{número de turistas}»};
-      \node[right=0.5cm of bien, font=\Large, color=AlmVerde] {\correcto};
+      \node[right=0.5cm of bien, font=\AlmFontLargeUp, color=AlmVerde] {\correcto};
     \end{tikzpicture}
     \end{center}
 
     \vspace{0.3cm}
-    \small
+    \AlmFontSmall
     El \textbf{tiempo} (mes, año, hora) siempre es la variable
     \textit{independiente}: el tiempo avanza solo, no lo controla
     ningún dato de la tabla.
@@ -469,7 +466,7 @@
     \end{tabular}
 
     \vspace{0.3cm}
-    \small
+    \AlmFontSmall
     Indica con \textbf{una flecha} la dirección de la dependencia:
     $x \longrightarrow y$.
     Escribe una frase prediciendo la relación («a mayor $x$\ldots»).
@@ -503,7 +500,7 @@
     \vspace{0.3cm}
     \separador
     \vspace{0.2cm}
-    \small
+    \AlmFontSmall
     \textbf{Contexto de Almería:} mes del año ($x$) \textrightarrow\ turistas ($y$);
     temperatura ($x$) \textrightarrow\ consumo de agua ($y$);
     barrio ($x$) \textrightarrow\ precio vivienda ($y$).
@@ -519,3 +516,6 @@
 \end{frame}
 
 \end{document}
+
+
+

@@ -4,7 +4,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  Compilar con:  pdflatex sesion01.tex  (dos pasadas)
 % ================================================================
-\documentclass[aspectratio=169, 11pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 % ---------------------------------------------------------------
@@ -67,13 +67,13 @@
         lugares de interés de una ciudad o región:
         monumentos, museos, rutas, horarios, precios\ldots
       \end{definicionbox}
-      {6pt}
+      
       \begin{itemize}
         \item Cuenta \textbf{qué} hay y \textbf{cómo llegar}.
         \item Usa palabras, fotos y mapas.
         \item Va dirigida al \textbf{turista}.
       \end{itemize}
-      {4pt}
+      
       \begin{notabox}[Ejemplos conocidos]
         
         Lonely Planet · Guía Repsol · Tripadvisor
@@ -177,7 +177,7 @@
       \end{definicionbox}
     \end{column}
   \end{columns}
-  {10pt}
+  
   \begin{center}
     \begin{tabular}{lll}
       \toprule
@@ -200,7 +200,7 @@
     \begin{column}{0.6\textwidth}
       Cualquier elemento urbano esconde información
       matemática. Hay que saber \textbf{hacer preguntas}:
-      {6pt}
+      
       \begin{tabular}{@{}p{2.8cm}p{5cm}@{}}
         \toprule
         \textbf{Lugar} & \textbf{Preguntas matemáticas}\\
@@ -224,7 +224,7 @@
         $35\times 10\,000 = 350\,000\ \text{m}^2$.
         ¡Más de 49 campos de fútbol!
       \end{notabox}
-      {6pt}
+      
       \begin{tikzpicture}[scale=0.75]
         \fill[AlmAzulC!30, rounded corners=3pt]
           (0,0) rectangle (3.8,2.2);
@@ -248,33 +248,35 @@
 \begin{frame}{El Cable Inglés — Ejemplo paso a paso}
 
   \framesubtitle{Longitud 1,1 km · Velocidad media de paseo 5 km/h}
+  
+        \begin{ejemplobox}
+          
+          El Cable Inglés es un viaducto de hierro de
+          $1{,}1\ \text{km}$ de longitud que cruza la
+          desembocadura de la Rambla.\\[4pt]
+          \textbf{Pregunta:} ¿Cuánto tarda en cruzarlo
+          un peatón a $5\ \text{km/h}$?
+        \end{ejemplobox}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
-      \begin{ejemplobox}
-        
-        El Cable Inglés es un viaducto de hierro de
-        $1{,}1\ \text{km}$ de longitud que cruza la
-        desembocadura de la Rambla.\\[4pt]
-        \textbf{Pregunta:} ¿Cuánto tarda en cruzarlo
-        un peatón a $5\ \text{km/h}$?
-      \end{ejemplobox}
-      {6pt}
+      
       \begin{pasobox}[1]
         
         \textbf{Datos:}
         $d = 1{,}1\ \text{km}$;\quad
         $v = 5\ \text{km/h}$
       \end{pasobox}
+      
+            \begin{pasobox}[2]
+              
+              \textbf{Fórmula tiempo--distancia--velocidad:}
+              \[
+                t = \frac{d}{v}
+              \]
+            \end{pasobox}
     \end{column}
     \begin{column}{0.46\textwidth}
-      \begin{pasobox}[2]
-        
-        \textbf{Fórmula tiempo--distancia--velocidad:}
-        \[
-          t = \frac{d}{v}
-        \]
-      \end{pasobox}
-      {4pt}
+      
       \begin{pasobox}[3]
         
         \textbf{Sustitución:}
@@ -283,7 +285,7 @@
             = 0{,}22\ \text{h}
         \]
       \end{pasobox}
-      {4pt}
+      
       \begin{pasobox}[4]
         
         \textbf{Conversión a minutos:}
@@ -305,7 +307,7 @@
       \begin{recordarbox}
         
         \textbf{Define} con tus palabras qué es
-        una guía turística.\par{4pt}
+        una guía turística.\par
         Escribe \textbf{3 monumentos} de Almería
         y anota 2 datos matemáticos que podrías
         buscar de cada uno.
@@ -315,7 +317,7 @@
       \begin{comprenderbox}
         
         El Paseo de Almería mide $370\ \text{m}$
-        y se recorre a $4\ \text{km/h}$.\par{4pt}
+        y se recorre a $4\ \text{km/h}$.\par
         \textbf{Explica} qué tipo de información es
         cada dato y calcula cuántos minutos dura
         el paseo.
@@ -324,10 +326,10 @@
     \begin{column}{0.31\textwidth}
       \begin{analizarbox}
         
-        Observa tres monumentos de tu elección.\par{4pt}
+        Observa tres monumentos de tu elección.\par
         \textbf{Extrae} al menos 2 preguntas
         matemáticas que podrían incluirse en
-        una guía turística para cada uno.\par{4pt}
+        una guía turística para cada uno.\par
         ¿Qué tipo de matemáticas necesitarías
         para responderlas?
       \end{analizarbox}
@@ -379,7 +381,6 @@
     \end{minipage}
     % -------------------------------------------------------
   \end{errorbox}
-  {8pt}
   \begin{notabox}[Recuerda]
     
     Todo lo que se puede \textbf{medir, contar, localizar
@@ -405,7 +406,7 @@
             $t = \dfrac{d}{v}$ al Cable Inglés.
     \end{itemize}
   \end{resumenbox}
-  {6pt}
+  
   \begin{center}
     {\color{AlmAzulM}
     \faArrowCircleRight\enskip
@@ -415,3 +416,5 @@
 \end{frame}
 
 \end{document}
+
+

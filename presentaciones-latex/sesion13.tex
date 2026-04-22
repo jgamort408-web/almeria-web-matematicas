@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{13}
@@ -28,7 +28,7 @@
   \begin{columns}[T]
     \begin{column}{0.52\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Una tabla muestra los datos con \textbf{precisión},
         pero una gráfica los hace \textbf{visibles}:
         \begin{itemize}
@@ -41,12 +41,12 @@
     \end{column}
     \begin{column}{0.44\textwidth}
       \begin{notabox}[Datos → Gráfica → Conclusión]
-        \small
+        \AlmFontSmall
         \begin{center}
         \begin{tikzpicture}[node distance=0.7cm,
             caja/.style={rounded corners=4pt, draw=AlmAzulM,
                          fill=AlmFondo, text width=2.2cm,
-                         align=center, font=\tiny\bfseries}]
+                         align=center, font=\AlmFontTiny\bfseries}]
           \node[caja] (d) {Tabla\\de datos};
           \node[caja, below=of d] (g) {Gráfica\\adecuada};
           \node[caja, below=of g] (c) {Conclusión\\estadística};
@@ -63,7 +63,7 @@
 %  FRAME 2 — Tipos de gráficas y cuándo usarlas
 % ---------------------------------------------------------------
 \begin{frame}{Tipos de gráficas y cuándo usarlas}
-  \small
+  \AlmFontSmall
   \renewcommand{\arraystretch}{1.4}
   \begin{tabular}{>{\bfseries\color{AlmAzulM}}l l l}
     \toprule
@@ -89,7 +89,7 @@
 
   \vspace{0.3cm}
   \begin{notabox}[Regla práctica]
-    \small
+    \AlmFontSmall
     Si $x$ son \textbf{categorías o meses} que comparo → barras.\\
     Si $x$ es \textbf{tiempo continuo} y quiero ver la evolución → línea.
   \end{notabox}
@@ -102,12 +102,12 @@
   \begin{columns}[T]
     \begin{column}{0.54\textwidth}
       \begin{center}
-      \begin{tikzpicture}[font=\scriptsize, scale=0.88]
+      \begin{tikzpicture}[font=\AlmFontScript, scale=0.88]
         % Ejes
         \draw[AlmAzulM, line width=1.2pt, -Stealth] (0,0)--(6.2,0)
-          node[right, color=AlmAzulM, font=\tiny\bfseries] {Mes ($x$)};
+          node[right, color=AlmAzulM, font=\AlmFontTiny\bfseries] {Mes ($x$)};
         \draw[AlmAzulM, line width=1.2pt, -Stealth] (0,0)--(0,4.2)
-          node[above, color=AlmAzulM, font=\tiny\bfseries,
+          node[above, color=AlmAzulM, font=\AlmFontTiny\bfseries,
                xshift=-0.3cm, rotate=90] {Visitantes ($y$)};
         % Barras de muestra
         \foreach \x/\h/\c in {
@@ -116,12 +116,12 @@
           \fill[\c, opacity=0.7] (\x,0) rectangle (\x+0.5,\h);
         }
         % Título
-        \node[color=AlmAzul, font=\tiny\bfseries] at (3.0,4.0)
+        \node[color=AlmAzul, font=\AlmFontTiny\bfseries] at (3.0,4.0)
           {Visitantes mensuales a la Alcazaba};
         % Escala y
         \foreach \h/\v in {1.0/10000, 2.0/20000, 3.0/30000}{
           \draw[AlmGris!40, line width=0.4pt] (0,\h)--(5.8,\h);
-          \node[left, color=AlmGris, font=\tiny] at (0,\h) {\v};
+          \node[left, color=AlmGris, font=\AlmFontTiny] at (0,\h) {\v};
         }
         % Etiquetas x
         \foreach \x/\l in {0.85/E, 1.45/F, 2.05/M, 2.65/A, 3.25/M}{
@@ -129,21 +129,21 @@
         }
         % Anotaciones externas
         \draw[-Stealth, AlmTerra, thin] (5.4,3.8) -- (4.6,2.8)
-          node[above right, color=AlmTerra, font=\tiny\bfseries,
+          node[above right, color=AlmTerra, font=\AlmFontTiny\bfseries,
                xshift=8pt, yshift=4pt] {Título};
         \draw[-Stealth, AlmVerde, thin] (5.4,0.5) -- (0.7,0.5)
-          node[above right, color=AlmVerde, font=\tiny\bfseries,
+          node[above right, color=AlmVerde, font=\AlmFontTiny\bfseries,
                xshift=-24pt, yshift=6pt] {Barra};
-        \node[AlmAzulM, font=\tiny\bfseries] at (-1.1,2.0)
+        \node[AlmAzulM, font=\AlmFontTiny\bfseries] at (-1.1,2.0)
           {\rotatebox{90}{Escala $y$}};
-        \node[AlmAzulM, font=\tiny\bfseries] at (3.2,-0.5)
+        \node[AlmAzulM, font=\AlmFontTiny\bfseries] at (3.2,-0.5)
           {Etiquetas $x$};
       \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.42\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         Todo gráfico debe tener:
         \begin{itemize}
           \item \textbf{Eje $x$}: variable independiente + unidad
@@ -164,36 +164,36 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[1]
-        \small Decide el \textbf{tipo} de gráfica
+        \AlmFontSmall Decide el \textbf{tipo} de gráfica
         (¿barras o línea?).
       \end{pasobox}\vspace{3pt}
       \begin{pasobox}[2]
-        \small Dibuja los \textbf{ejes} $x$ (horizontal) e $y$ (vertical).
+        \AlmFontSmall Dibuja los \textbf{ejes} $x$ (horizontal) e $y$ (vertical).
       \end{pasobox}\vspace{3pt}
       \begin{pasobox}[3]
-        \small \textbf{Etiqueta} cada eje: variable + unidad.
+        \AlmFontSmall \textbf{Etiqueta} cada eje: variable + unidad.
       \end{pasobox}\vspace{3pt}
       \begin{pasobox}[4]
-        \small Elige la \textbf{escala}: mayor valor $\times\;1{,}1$
+        \AlmFontSmall Elige la \textbf{escala}: mayor valor $\times\;1{,}1$
         para el máximo del eje.
       \end{pasobox}
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{pasobox}[5]
-        \small \textbf{Representa} cada par $(x,y)$
+        \AlmFontSmall \textbf{Representa} cada par $(x,y)$
         de la tabla como punto.
       \end{pasobox}\vspace{3pt}
       \begin{pasobox}[6]
-        \small \textbf{Une} los puntos con línea (gráfica lineal)
+        \AlmFontSmall \textbf{Une} los puntos con línea (gráfica lineal)
         o rellena barras (diagrama de barras).
       \end{pasobox}\vspace{3pt}
       \begin{pasobox}[7]
-        \small Añade el \textbf{título} descriptivo.
+        \AlmFontSmall Añade el \textbf{título} descriptivo.
       \end{pasobox}
 
-      \vspace{0.25cm}
+      \vspace{0.15cm}
       \begin{notabox}[Clave del paso 4]
-        \small
+        \AlmFontSmall
         El eje $y$ \textbf{siempre empieza en 0}
         salvo razón justificada.
       \end{notabox}
@@ -215,11 +215,11 @@
       ylabel={Turistas},
       symbolic x coords={Enero,Febrero,Marzo,Abril,Mayo,Junio},
       xtick=data,
-      xticklabel style={font=\tiny, rotate=15, anchor=north east},
+      xticklabel style={font=\AlmFontTiny, rotate=15, anchor=north east},
       ymin=0, ymax=330000,
       ytick={0,50000,100000,150000,200000,250000,300000},
       yticklabels={0,50\,k,100\,k,150\,k,200\,k,250\,k,300\,k},
-      nodes near coords style={font=\tiny\bfseries, color=AlmAzul,
+      nodes near coords style={font=\AlmFontTiny\bfseries, color=AlmAzul,
                                 rotate=90, anchor=west},
     ]
       \addplot[fill=AlmAzulM!75, draw=AlmAzul, fill opacity=0.85] coordinates {
@@ -233,7 +233,7 @@
     \end{axis}
   \end{tikzpicture}
   \end{center}
-  {\small\color{AlmGris}
+  {\AlmFontSmall\color{AlmGris}
    Usamos barras porque los meses son \textbf{categorías discretas}
    que queremos \textit{comparar}.}
 \end{frame}
@@ -262,14 +262,14 @@
         (1,12)(2,13)(3,16)(4,19)(5,23)(6,27)
         (7,30)(8,30)(9,26)(10,21)(11,16)(12,13)
       };
-      \node[font=\tiny\bfseries, color=AlmTerra, above=4pt] at (axis cs:7,30)
+      \node[font=\AlmFontTiny\bfseries, color=AlmTerra, above=4pt] at (axis cs:7,30)
         {30\,°C};
-      \node[font=\tiny\bfseries, color=AlmAzulM, below=4pt] at (axis cs:1,12)
+      \node[font=\AlmFontTiny\bfseries, color=AlmAzulM, below=4pt] at (axis cs:1,12)
         {12\,°C};
     \end{axis}
   \end{tikzpicture}
   \end{center}
-  {\small\color{AlmGris}
+  {\AlmFontSmall\color{AlmGris}
    Usamos línea porque la temperatura varía de forma \textbf{continua}
    a lo largo del tiempo y queremos ver la \textit{tendencia}.}
 \end{frame}
@@ -281,7 +281,7 @@
   \begin{columns}[T]
     \begin{column}{0.48\textwidth}
       \begin{definicionbox}{Diagrama de barras — úsalo cuando:}
-        \small
+        \AlmFontSmall
         \begin{itemize}
           \item $x$ son \textbf{categorías separadas}\\
                 (tipos, barrios, meses como etiquetas)
@@ -294,7 +294,7 @@
     \end{column}
     \begin{column}{0.48\textwidth}
       \begin{definicionbox}{Gráfica lineal — úsala cuando:}
-        \small
+        \AlmFontSmall
         \begin{itemize}
           \item $x$ es \textbf{continua o temporal}
                 (tiempo, distancia, temperatura)
@@ -309,7 +309,7 @@
 
   \vspace{0.3cm}
   \begin{notabox}[¿Y si tengo dudas?]
-    \small
+    \AlmFontSmall
     Pregúntate: «¿Tendría sentido un valor \textit{entre} dos puntos del eje $x$?»
     Si sí → línea. Si no → barras.
   \end{notabox}
@@ -328,7 +328,7 @@
     \end{enumerate}
 
     \vspace{0.2cm}
-    \small
+    \AlmFontSmall
     \renewcommand{\arraystretch}{1.3}
     \begin{tabular}{lcc}
       \toprule
@@ -355,7 +355,7 @@
 
     \vspace{0.2cm}
     \begin{center}
-    \small
+    \AlmFontSmall
     \begin{tabular}{cc}
       \toprule
       \rowcolor{AlmAzul!12}
@@ -391,7 +391,7 @@
 
     \vspace{0.2cm}
     \begin{center}
-    \small
+    \AlmFontSmall
     \begin{tabular}{cc}
       \toprule
       \rowcolor{AlmAzul!12}
@@ -437,20 +437,20 @@
             xtick={1,2,3}, xticklabels={E,F,M},
             ytick={95000,100000,105000},
             yticklabels={95k,100k,105k},
-            tick label style={font=\tiny},
-            label style={font=\tiny},
-            ylabel style={font=\tiny},
+            tick label style={font=\AlmFontTiny},
+            label style={font=\AlmFontTiny},
+            ylabel style={font=\AlmFontTiny},
             ylabel={Visitantes},
             xlabel={Mes},
             ybar, bar width=0.4cm,
-            nodes near coords, nodes near coords style={font=\tiny},
+            nodes near coords, nodes near coords style={font=\AlmFontTiny},
           ]
             \addplot[fill=AlmTerra!60] coordinates
               {(1,97000)(2,100000)(3,104000)};
           \end{axis}
         \end{tikzpicture}
         \end{center}
-        \small\color{AlmTerra}
+        \AlmFontSmall\color{AlmTerra}
         ¡Parece que la diferencia es enorme!
       \end{column}
       \begin{column}{0.46\textwidth}
@@ -463,20 +463,20 @@
             xtick={1,2,3}, xticklabels={E,F,M},
             ytick={0,50000,100000},
             yticklabels={0,50k,100k},
-            tick label style={font=\tiny},
-            label style={font=\tiny},
-            ylabel style={font=\tiny},
+            tick label style={font=\AlmFontTiny},
+            label style={font=\AlmFontTiny},
+            ylabel style={font=\AlmFontTiny},
             ylabel={Visitantes},
             xlabel={Mes},
             ybar, bar width=0.4cm,
-            nodes near coords, nodes near coords style={font=\tiny},
+            nodes near coords, nodes near coords style={font=\AlmFontTiny},
           ]
             \addplot[fill=AlmVerde!60] coordinates
               {(1,97000)(2,100000)(3,104000)};
           \end{axis}
         \end{tikzpicture}
         \end{center}
-        \small\color{AlmVerde}
+        \AlmFontSmall\color{AlmVerde}
         La diferencia es real pero pequeña.
       \end{column}
     \end{columns}
@@ -495,7 +495,7 @@
     \begin{enumerate}
       \item \textbf{Gráfica A} — Temperaturas medias de Almería:
             \begin{itemize}
-              \small
+              \AlmFontSmall
               \item Elige el tipo correcto (barras o línea).
               \item Etiqueta los ejes: «Mes» y «Temperatura (°C)».
               \item Escala: 0–35\,°C.
@@ -503,7 +503,7 @@
             \end{itemize}
       \item \textbf{Gráfica B} — Precio del taxi en Almería:
             \begin{itemize}
-              \small
+              \AlmFontSmall
               \item Elige el tipo correcto.
               \item Etiqueta: «Km recorridos» y «Precio (€)».
               \item Escala acorde al máximo de la tabla.
@@ -511,7 +511,7 @@
     \end{enumerate}
 
     \vspace{0.15cm}
-    \small
+    \AlmFontSmall
     Para cada gráfica: justifica en una frase por qué elegiste
     ese tipo de representación.
   \end{evidenciabox}
@@ -546,7 +546,7 @@
     \vspace{0.25cm}
     \separador
     \vspace{0.15cm}
-    \small
+    \AlmFontSmall
     \textbf{Error crítico:} empezar el eje $y$ en un valor
     distinto de cero distorsiona visualmente las diferencias y
     puede ser \textit{engañoso}.
@@ -561,3 +561,6 @@
 \end{frame}
 
 \end{document}
+
+
+

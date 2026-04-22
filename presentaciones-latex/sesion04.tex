@@ -4,7 +4,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  Compilar con:  pdflatex sesion04.tex  (dos pasadas)
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 % ---------------------------------------------------------------
@@ -73,7 +73,7 @@
       \end{definicionbox}
       \vspace{6pt}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         \textbf{Regla mnemotécnica:}\\
         «Primero camina por la \textbf{calle} (eje X),
         luego sube o baja en el \textbf{ascensor} (eje Y).»
@@ -84,9 +84,9 @@
         \begin{tikzpicture}[scale=0.72]
           % Ejes
           \draw[recto, ->] (-3.4,0) -- (3.6,0)
-            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+            node[right, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$x$};
           \draw[recto, ->] (0,-3.4) -- (0,3.6)
-            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+            node[above, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$y$};
           % Cuadrícula ligera
           \foreach \i in {-3,-2,-1,1,2,3}{
             \draw[AlmAzulC!25, line width=0.3pt]
@@ -100,19 +100,19 @@
               (\i,-0.08) -- (\i,0.08);
             \draw[AlmAzulM, line width=0.6pt]
               (-0.08,\i) -- (0.08,\i);
-            \node[font=\tiny, color=AlmGris] at (\i,-0.28) {\i};
-            \node[font=\tiny, color=AlmGris] at (-0.28,\i) {\i};
+            \node[font=\AlmFontTiny, color=AlmGris] at (\i,-0.28) {\i};
+            \node[font=\AlmFontTiny, color=AlmGris] at (-0.28,\i) {\i};
           }
           % Origen
-          \node[font=\tiny, color=AlmGris] at (-0.28,-0.28) {0};
+          \node[font=\AlmFontTiny, color=AlmGris] at (-0.28,-0.28) {0};
           % Indicadores de dirección
-          \node[font=\tiny\bfseries, color=AlmTerra] at (2.2,-0.45)
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (2.2,-0.45)
             {$+$};
-          \node[font=\tiny\bfseries, color=AlmTerra] at (-2.2,-0.45)
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (-2.2,-0.45)
             {$-$};
-          \node[font=\tiny\bfseries, color=AlmTerra] at (0.35,2.3)
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (0.35,2.3)
             {$+$};
-          \node[font=\tiny\bfseries, color=AlmTerra] at (0.35,-2.3)
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (0.35,-2.3)
             {$-$};
         \end{tikzpicture}
       \end{center}
@@ -141,7 +141,7 @@
       \end{definicionbox}
       \vspace{6pt}
       \begin{pasobox}[1]
-        \footnotesize
+        \AlmFontFootnote
         Para el punto $A(3,\,2)$:\\
         \quad$x = 3$: muévete 3 unidades a la \textbf{derecha}.\\
         \quad$y = 2$: muévete 2 unidades hacia \textbf{arriba}.
@@ -152,9 +152,9 @@
         \begin{tikzpicture}[scale=0.75]
           % Ejes
           \draw[recto, ->] (-0.5,0) -- (4.5,0)
-            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+            node[right, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$x$};
           \draw[recto, ->] (0,-0.5) -- (0,3.5)
-            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+            node[above, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$y$};
           % Cuadrícula
           \foreach \i in {1,2,3,4}{
             \draw[AlmAzulC!25, line width=0.3pt] (\i,-0.4)--(\i,3.3);
@@ -164,24 +164,24 @@
           }
           % Marcas
           \foreach \i in {1,2,3,4}{
-            \node[font=\tiny, color=AlmGris] at (\i,-0.25) {\i};
+            \node[font=\AlmFontTiny, color=AlmGris] at (\i,-0.25) {\i};
           }
           \foreach \j in {1,2,3}{
-            \node[font=\tiny, color=AlmGris] at (-0.22,\j) {\j};
+            \node[font=\AlmFontTiny, color=AlmGris] at (-0.22,\j) {\j};
           }
-          \node[font=\tiny, color=AlmGris] at (-0.22,-0.22) {0};
+          \node[font=\AlmFontTiny, color=AlmGris] at (-0.22,-0.22) {0};
           % Punto A(3,2)
           \node[punto] (A) at (3,2) {};
-          \node[font=\small\bfseries, color=AlmAzulM, above right=1pt]
+          \node[font=\AlmFontSmall\bfseries, color=AlmAzulM, above right=1pt]
             at (A) {$A(3,\,2)$};
           % Flechas de desplazamiento
           \draw[AlmTerra, ->, line width=1.2pt, dashed]
             (0,0) -- (3,0)
-            node[midway, below, font=\tiny\bfseries, color=AlmTerra]
+            node[midway, below, font=\AlmFontTiny\bfseries, color=AlmTerra]
             {$x=3$};
           \draw[AlmVerde, ->, line width=1.2pt, dashed]
             (3,0) -- (3,2)
-            node[midway, right, font=\tiny\bfseries, color=AlmVerde]
+            node[midway, right, font=\AlmFontTiny\bfseries, color=AlmVerde]
             {$y=2$};
         \end{tikzpicture}
       \end{center}
@@ -205,35 +205,35 @@
           \fill[AlmVerde!18] (0,-2.8) rectangle (2.8,0);  % IV
           % Ejes
           \draw[recto, ->] (-3.1,0) -- (3.2,0)
-            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+            node[right, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$x$};
           \draw[recto, ->] (0,-3.1) -- (0,3.2)
-            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+            node[above, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$y$};
           % Etiquetas de cuadrante
-          \node[font=\normalsize\bfseries, color=AlmAzul]
+          \node[font=\AlmFontNormal\bfseries, color=AlmAzul]
             at (1.5, 1.5)  {I};
-          \node[font=\normalsize\bfseries, color=AlmAmbar!80!black]
+          \node[font=\AlmFontNormal\bfseries, color=AlmAmbar!80!black]
             at (-1.5, 1.5) {II};
-          \node[font=\normalsize\bfseries, color=AlmTerra]
+          \node[font=\AlmFontNormal\bfseries, color=AlmTerra]
             at (-1.5,-1.5) {III};
-          \node[font=\normalsize\bfseries, color=AlmVerde]
+          \node[font=\AlmFontNormal\bfseries, color=AlmVerde]
             at (1.5,-1.5)  {IV};
           % Signos en cuadrantes
-          \node[font=\tiny, color=AlmAzul]
+          \node[font=\AlmFontTiny, color=AlmAzul]
             at (1.5, 0.9) {$(+,+)$};
-          \node[font=\tiny, color=AlmAmbar!80!black]
+          \node[font=\AlmFontTiny, color=AlmAmbar!80!black]
             at (-1.5, 0.9) {$(-,+)$};
-          \node[font=\tiny, color=AlmTerra]
+          \node[font=\AlmFontTiny, color=AlmTerra]
             at (-1.5,-0.9) {$(-,-)$};
-          \node[font=\tiny, color=AlmVerde]
+          \node[font=\AlmFontTiny, color=AlmVerde]
             at (1.5,-0.9)  {$(+,-)$};
           % Origen
-          \node[font=\tiny, color=AlmGris] at (-0.22,-0.22) {O};
+          \node[font=\AlmFontTiny, color=AlmGris] at (-0.22,-0.22) {O};
         \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.52\textwidth}
       \vspace{4pt}
-      {\small
+      {\AlmFontSmall
       \begin{tabular}{@{}cllc@{}}
         \toprule
         \textbf{Cuadrante} & \textbf{Signo $x$}
@@ -251,7 +251,7 @@
       \end{tabular}}
       \vspace{8pt}
       \begin{notabox}[Truco para memorizar]
-        \small
+        \AlmFontSmall
         Empieza en el \textbf{cuadrante I} (arriba-derecha)
         y gira en sentido \textbf{contrario a las agujas del reloj}:
         I → II → III → IV.
@@ -281,45 +281,45 @@
           }
           % Ejes
           \draw[recto, ->] (-4.5,0) -- (5.5,0)
-            node[right, font=\small\bfseries, color=AlmAzulM] {$x$};
+            node[right, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$x$};
           \draw[recto, ->] (0,-3.8) -- (0,4.8)
-            node[above, font=\small\bfseries, color=AlmAzulM] {$y$};
+            node[above, font=\AlmFontSmall\bfseries, color=AlmAzulM] {$y$};
           % Marcas numéricas
           \foreach \i in {-4,-3,-2,-1,1,2,3,4,5}{
-            \node[font=\tiny, color=AlmGris] at (\i,-0.3) {\i};
+            \node[font=\AlmFontTiny, color=AlmGris] at (\i,-0.3) {\i};
           }
           \foreach \j in {-3,-2,-1,1,2,3,4}{
-            \node[font=\tiny, color=AlmGris] at (-0.3,\j) {\j};
+            \node[font=\AlmFontTiny, color=AlmGris] at (-0.3,\j) {\j};
           }
-          \node[font=\tiny, color=AlmGris] at (-0.28,-0.28) {0};
+          \node[font=\AlmFontTiny, color=AlmGris] at (-0.28,-0.28) {0};
           % Punto A(3,2)
           \node[punto] (A) at (3,2) {};
-          \node[font=\scriptsize\bfseries, color=AlmAzulM,
+          \node[font=\AlmFontScript\bfseries, color=AlmAzulM,
                 above right=0pt] at (A) {$A(3,2)$};
           % Punto B(-4,1)
           \node[puntot] (B) at (-4,1) {};
-          \node[font=\scriptsize\bfseries, color=AlmTerra,
+          \node[font=\AlmFontScript\bfseries, color=AlmTerra,
                 above right=0pt] at (B) {$B(-4,1)$};
           % Punto C(-2,-3)
           \node[puntov] (C) at (-2,-3) {};
-          \node[font=\scriptsize\bfseries, color=AlmVerde,
+          \node[font=\AlmFontScript\bfseries, color=AlmVerde,
                 above right=0pt] at (C) {$C(-2,-3)$};
           % Punto D(5,-1)
           \node[circle, fill=BCrear, inner sep=2.2pt,
                 draw=AlmBlanco, line width=0.8pt] (D) at (5,-1) {};
-          \node[font=\scriptsize\bfseries, color=BCrear,
+          \node[font=\AlmFontScript\bfseries, color=BCrear,
                 above left=0pt] at (D) {$D(5,-1)$};
           % Punto E(0,4)
           \node[circle, fill=BAplicar, inner sep=2.2pt,
                 draw=AlmBlanco, line width=0.8pt] (E) at (0,4) {};
-          \node[font=\scriptsize\bfseries, color=BAplicar!80!black,
+          \node[font=\AlmFontScript\bfseries, color=BAplicar!80!black,
                 right=2pt] at (E) {$E(0,4)$};
         \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.46\textwidth}
       \vspace{4pt}
-      {\small
+      {\AlmFontSmall
       \begin{tabular}{@{}clcc@{}}
         \toprule
         \textbf{Punto} & \textbf{Coordenadas}
@@ -334,7 +334,7 @@
       \end{tabular}}
       \vspace{8pt}
       \begin{notabox}[Punto en el eje]
-        \footnotesize
+        \AlmFontFootnote
         Si $x = 0$, el punto está \textbf{sobre el eje Y}.\\
         Si $y = 0$, el punto está \textbf{sobre el eje X}.\\
         No pertenece a ningún cuadrante.
@@ -351,7 +351,7 @@
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
       \begin{teoriabox}
-        \small
+        \AlmFontSmall
         En nuestro \textbf{mapa de Almería},
         asignamos la escala:
         \[
@@ -365,7 +365,7 @@
       \end{teoriabox}
       \vspace{6pt}
       \begin{ejemplobox}
-        \footnotesize
+        \AlmFontFootnote
         La \textbf{Alcazaba} de Almería tiene
         coordenadas GPS reales:\\
         \[
@@ -390,32 +390,32 @@
           }
           % Ejes
           \draw[recto, ->] (0,0)--(4.5,0)
-            node[right,font=\tiny\bfseries, color=AlmAzulM]{$x$};
+            node[right,font=\AlmFontTiny\bfseries, color=AlmAzulM]{$x$};
           \draw[recto, ->] (0,0)--(0,3.8)
-            node[above,font=\tiny\bfseries, color=AlmAzulM]{$y$};
+            node[above,font=\AlmFontTiny\bfseries, color=AlmAzulM]{$y$};
           % Marcas
           \foreach \i in {1,2,3,4}{
-            \node[font=\tiny, color=AlmGris] at (\i,-0.22) {\i};
+            \node[font=\AlmFontTiny, color=AlmGris] at (\i,-0.22) {\i};
           }
           \foreach \j in {1,2,3}{
-            \node[font=\tiny, color=AlmGris] at (-0.22,\j) {\j};
+            \node[font=\AlmFontTiny, color=AlmGris] at (-0.22,\j) {\j};
           }
-          \node[font=\tiny, color=AlmGris] at (-0.18,-0.18){0};
+          \node[font=\AlmFontTiny, color=AlmGris] at (-0.18,-0.18){0};
           % Punto P(3,2) — Alcazaba aprox.
           \node[puntot] (P) at (3,2) {};
-          \node[font=\tiny\bfseries, color=AlmTerra, above right=0pt]
+          \node[font=\AlmFontTiny\bfseries, color=AlmTerra, above right=0pt]
             at (P) {Alcazaba};
-          \node[font=\tiny, color=AlmTerra, below right=0pt]
+          \node[font=\AlmFontTiny, color=AlmTerra, below right=0pt]
             at (P) {$(3,2)$};
           % Acotación x
           \draw[acota] (0,-0.48) -- (3,-0.48);
-          \node[font=\tiny, color=AlmAzulM] at (1.5,-0.72) {$300\ \text{m}$};
+          \node[font=\AlmFontTiny, color=AlmAzulM] at (1.5,-0.72) {$300\ \text{m}$};
           % Acotación y
           \draw[acota] (3.5,0) -- (3.5,2);
-          \node[font=\tiny, color=AlmAzulM, rotate=90, anchor=south]
+          \node[font=\AlmFontTiny, color=AlmAzulM, rotate=90, anchor=south]
             at (3.75,1) {$200\ \text{m}$};
           % Escala
-          \node[font=\tiny, color=AlmGris, align=center]
+          \node[font=\AlmFontTiny, color=AlmGris, align=center]
             at (2.1,3.3) {escala: 1 ud = 100 m};
         \end{tikzpicture}
       \end{center}
@@ -431,7 +431,7 @@
   \bloomtag{COMPRENDER}\quad\dificultad{2}
   \vspace{4pt}
   \begin{comprenderbox}
-    \small
+    \AlmFontSmall
     Responde razonando cada respuesta:
     \begin{enumerate}
       \item ¿Qué significa el par $(-3,\,4)$?
@@ -452,7 +452,7 @@
   \bloomtag{APLICAR}\quad\dificultad{3}
   \vspace{4pt}
   \begin{aplicarbox}
-    \footnotesize
+    \AlmFontFootnote
     \textbf{Parte A — Representa los puntos:}\\
     Dibuja un sistema de ejes de $-2$ a $6$ en $x$
     y de $0$ a $6$ en $y$. Sitúa los puntos:
@@ -477,7 +477,7 @@
   \bloomtag{EVALUAR}\quad\dificultad{4}
   \vspace{4pt}
   \begin{evaluarbox}
-    \small
+    \AlmFontSmall
     \textbf{Debate y argumenta:}\\[6pt]
     El Ayuntamiento de Almería quiere crear una nueva
     guía turística digital.\\[4pt]
@@ -495,7 +495,7 @@
   \end{evaluarbox}
   \vspace{4pt}
   \begin{notabox}[Pista]
-    \footnotesize
+    \AlmFontFootnote
     Piensa en el público de la guía: ¿turistas con smartphone,
     escolares con papel, o profesionales de cartografía?
   \end{notabox}
@@ -533,24 +533,24 @@
         \incorrecto\ \textbf{Error frecuente}\\[6pt]
         Confundir la coordenada $x$ con la $y$:
         \begin{center}
-          \large
+          \AlmFontLarge
           $B(1,\,-4) \;\neq\; B(-4,\,1)$
         \end{center}
-        \footnotesize
+        \AlmFontFootnote
         Si marcas el punto $B(-4,\,1)$ en la posición
         de $B(1,\,-4)$, estarás a \textbf{cientos de metros}
         del lugar real en el mapa de Almería.
       \end{column}
       \begin{column}{0.46\textwidth}
         \correcto\ \textbf{Correcto}\\[6pt]
-        \small
+        \AlmFontSmall
         \textbf{Recuerda el orden estricto:}
         \begin{enumerate}
           \item \textbf{Primera} $\to$ eje $x$ (horizontal).
           \item \textbf{Segunda} $\to$ eje $y$ (vertical).
         \end{enumerate}
         \vspace{4pt}
-        \footnotesize
+        \AlmFontFootnote
         $B(-4,\,1)$:\\
         \quad$x = -4$: 4 unidades a la \textbf{izquierda}.\\
         \quad$y = 1$: 1 unidad hacia \textbf{arriba}.
@@ -559,7 +559,7 @@
   \end{errorbox}
   \vspace{6pt}
   \begin{notabox}[Regla de oro]
-    \small
+    \AlmFontSmall
     «Primero la \textbf{calle} ($x$ horizontal),
     luego el \textbf{piso} ($y$ vertical).»
   \end{notabox}
@@ -586,7 +586,7 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}
+    {\AlmFontSmall\color{AlmAzulM}
     \faArrowCircleRight\enskip
     \textbf{Próxima sesión:}
     Rectas, segmentos y ángulos en la ciudad.}
@@ -594,3 +594,6 @@
 \end{frame}
 
 \end{document}
+
+
+

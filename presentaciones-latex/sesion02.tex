@@ -4,7 +4,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  Compilar con:  pdflatex sesion02.tex  (dos pasadas)
 % ================================================================
-\documentclass[aspectratio=169, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 % ---------------------------------------------------------------
@@ -79,7 +79,7 @@
         \begin{tikzpicture}[scale=0.88,
             nodo/.style={rounded corners=5pt, minimum width=2.5cm,
                          minimum height=0.7cm, align=center,
-                         font=\small\bfseries}]
+                         font=\AlmFontSmall\bfseries}]
           % Nodo raíz
           \node[nodo, fill=AlmAzul, text=AlmBlanco]
             (inf) at (0,2.8) {Información\\matemática};
@@ -98,11 +98,11 @@
           \draw[AlmAmbar, line width=1.4pt, ->]
             (inf) -- (dat);
           % Ejemplos pequeños
-          \node[font=\tiny, color=AlmGris, align=center]
+          \node[font=\AlmFontTiny, color=AlmGris, align=center]
             at (-2.6,0.45) {coordenadas\\referencias};
-          \node[font=\tiny, color=AlmGris, align=center]
+          \node[font=\AlmFontTiny, color=AlmGris, align=center]
             at (0,0.45)    {longitud\\superficie\\masa};
-          \node[font=\tiny, color=AlmGris, align=center]
+          \node[font=\AlmFontTiny, color=AlmGris, align=center]
             at (2.6,0.45)  {población\\temperatura\\turistas};
         \end{tikzpicture}
       \end{center}
@@ -115,7 +115,7 @@
   \begin{columns}[T]
     \begin{column}{0.32\textwidth}
       \begin{definicionbox}{Ubicación}
-        \footnotesize
+        \AlmFontFootnote
         Indica \textbf{dónde} se encuentra algo
         mediante coordenadas o referencias espaciales.\\[4pt]
         Ejemplo en Almería:\\
@@ -124,7 +124,7 @@
     \end{column}
     \begin{column}{0.32\textwidth}
       \begin{definicionbox}{Medida}
-        \footnotesize
+        \AlmFontFootnote
         Expresa una \textbf{magnitud física} con un valor
         \emph{fijo} (no cambia con el tiempo).\\[4pt]
         Ejemplo en Almería:\\
@@ -134,7 +134,7 @@
     \end{column}
     \begin{column}{0.32\textwidth}
       \begin{definicionbox}{Dato}
-        \footnotesize
+        \AlmFontFootnote
         Información numérica \textbf{variable}: puede
         cambiar según el momento o el año.\\[4pt]
         Ejemplo en Almería:\\
@@ -145,7 +145,7 @@
   \end{columns}
   \vspace{8pt}
   \begin{notabox}[Clave para distinguirlos]
-    \small
+    \AlmFontSmall
     \correcto\ La \textbf{medida} no cambia: la longitud de la Rambla
     siempre es 370 m.\\
     \correcto\ El \textbf{dato} cambia: la temperatura de mañana puede ser distinta.
@@ -172,14 +172,14 @@
       \end{teoriabox}
       \vspace{6pt}
       \begin{notabox}[Regla de oro]
-        \small
+        \AlmFontSmall
         Nunca escribas un resultado \textbf{sin unidades}.\\
         «370» no significa nada; «$370\ \text{m}$» sí.
       \end{notabox}
     \end{column}
     \begin{column}{0.44\textwidth}
       \vspace{4pt}
-      {\small
+      {\AlmFontSmall
       \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Magnitud} & \textbf{Unidad base} & \textbf{Símbolo}\\
@@ -193,7 +193,7 @@
       \end{tabular}}
       \vspace{8pt}
       \begin{ejemplobox}
-        \footnotesize
+        \AlmFontFootnote
         La \textbf{Catedral de Almería} tiene
         55 \unidad{m} de altura. Su torre mide
         un \textbf{tiempo} de sombra diferente
@@ -211,7 +211,7 @@
   \begin{columns}[c]
     \begin{column}{0.56\textwidth}
       \begin{center}
-        {\small
+        {\AlmFontSmall
         \begin{tabular}{@{}llll@{}}
           \toprule
           \textbf{Magnitud} & \textbf{Unidad} & \textbf{Equivalencia}\\
@@ -238,7 +238,7 @@
     \end{column}
     \begin{column}{0.40\textwidth}
       \begin{formulabox}[AlmAzulM]
-        \small
+        \AlmFontSmall
         \[
           1\ \text{ha} = 10\,000\ \text{m}^2
         \]
@@ -255,15 +255,18 @@
         \foreach \i/\lbl/\col in {%
           0/{mm}/AlmGris,
           1/{cm}/AlmAzulC,
-          2/{m}/AlmAzulM,
-          3/{km}/AlmAzul}{
+          2/{dm}/AlmAzulC,
+          3/{m}/AlmAzulM,
+          4/{dam}/AlmAzulM,
+          5/{hm}/AlmAzulM,
+          6/{km}/AlmAzul}{
           \fill[\col, rounded corners=2pt]
             (\i*0.82, \i*0.38)
             rectangle (\i*0.82+2.6, \i*0.38+0.34);
-          \node[font=\tiny\bfseries, text=white]
+          \node[font=\AlmFontTiny\bfseries, text=white]
             at (\i*0.82+1.3, \i*0.38+0.17) {\lbl};
         }
-        \node[font=\tiny, color=AlmGris] at (1.3,-0.28)
+        \node[font=\AlmFontTiny, color=AlmGris] at (1.3,-0.28)
           {$\times 10$\quad $\times 100$\quad $\times 1000$};
       \end{tikzpicture}
     \end{column}
@@ -279,7 +282,7 @@
   \begin{columns}[c]
     \begin{column}{0.52\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         La \textbf{Rambla de Almería} es el paseo central
         de la ciudad.\\[6pt]
         \datoalm{Longitud}{370 m}\\
@@ -289,22 +292,22 @@
       \end{ejemplobox}
       \vspace{6pt}
       \begin{pasobox}[1]
-        \footnotesize
+        \AlmFontFootnote
         Convertir longitud a kilómetros:
         \[
           370\ \text{m} \div 1\,000 = \mathbf{0{,}37\ \text{km}}
         \]
       \end{pasobox}
-      \vspace{4pt}
-      \begin{pasobox}[2]
-        \footnotesize
-        Estimar área (rectángulo aproximado):
-        \[
-          A \approx 370 \times 50 = \mathbf{18\,500\ \text{m}^2}
-        \]
-      \end{pasobox}
     \end{column}
     \begin{column}{0.44\textwidth}
+    
+          \begin{pasobox}[2]
+            \AlmFontFootnote
+            Estimar área (rectángulo aproximado):
+            \[
+              A \approx 370 \times 50 = \mathbf{18\,500\ \text{m}^2}
+            \]
+          \end{pasobox}
       \begin{center}
         \begin{tikzpicture}[scale=0.82]
           % Representación esquemática de la Rambla
@@ -314,24 +317,24 @@
             (0.12,0.12) rectangle (5.08,1.28);
           % Acotación longitud
           \draw[acota] (0,-0.28) -- (5.2,-0.28);
-          \node[font=\tiny\bfseries, color=AlmAzulM]
+          \node[font=\AlmFontTiny\bfseries, color=AlmAzulM]
             at (2.6,-0.52) {370 m};
           % Acotación anchura
           \draw[acota] (5.38,0) -- (5.38,1.4);
-          \node[font=\tiny\bfseries, color=AlmAzulM,
+          \node[font=\AlmFontTiny\bfseries, color=AlmAzulM,
                 rotate=90, anchor=south]
             at (5.62,0.7) {50 m};
           % Etiqueta
-          \node[font=\scriptsize\bfseries, color=AlmAzul]
+          \node[font=\AlmFontScript\bfseries, color=AlmAzul]
             at (2.6,0.7) {Rambla de Almería};
           % Flecha norte
-          \node[font=\tiny, color=AlmGris] at (0.35,1.15)
+          \node[font=\AlmFontTiny, color=AlmGris] at (0.35,1.15)
             {N$\uparrow$};
         \end{tikzpicture}
       \end{center}
       \vspace{4pt}
       \begin{notabox}[Tipo de información]
-        \footnotesize
+        \AlmFontFootnote
         \textbf{Longitud} (370 m) $\rightarrow$ \emph{Medida}\\
         \textbf{Anchura} (50 m) $\rightarrow$ \emph{Medida}\\
         \textbf{Visitantes diarios} $\rightarrow$ \emph{Dato}
@@ -345,7 +348,7 @@
   \begin{columns}[c]
     \begin{column}{0.50\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         El \textbf{Puerto de Almería} ocupa
         \textbf{35 ha} de superficie.\\[6pt]
         ¿Cuántos metros cuadrados son?\\
@@ -353,7 +356,7 @@
       \end{ejemplobox}
       \vspace{6pt}
       \begin{pasobox}[1]
-        \footnotesize
+        \AlmFontFootnote
         Convertir a \textbf{m\textsuperscript{2}}:
         \[
           35\ \text{ha} \times 10\,000 = \mathbf{350\,000\ \text{m}^2}
@@ -361,7 +364,7 @@
       \end{pasobox}
       \vspace{4pt}
       \begin{pasobox}[2]
-        \footnotesize
+        \AlmFontFootnote
         Convertir a \textbf{km\textsuperscript{2}}:
         \[
           350\,000\ \text{m}^2 \div 1\,000\,000 = \mathbf{0{,}35\ \text{km}^2}
@@ -374,28 +377,28 @@
           % Cuadrado grande = Puerto (35 ha)
           \fill[AlmAzulC!30, rounded corners=4pt]
             (0,0) rectangle (4.5,4.5);
-          \node[font=\scriptsize\bfseries, color=AlmAzul]
+          \node[font=\AlmFontScript\bfseries, color=AlmAzul]
             at (2.25,4.1) {Puerto de Almería};
-          \node[font=\small\bfseries, color=AlmAzulM]
+          \node[font=\AlmFontSmall\bfseries, color=AlmAzulM]
             at (2.25,2.4) {35 ha};
-          \node[font=\footnotesize, color=AlmGris]
+          \node[font=\AlmFontFootnote, color=AlmGris]
             at (2.25,1.85) {$= 350\,000\ \text{m}^2$};
-          \node[font=\footnotesize, color=AlmGris]
+          \node[font=\AlmFontFootnote, color=AlmGris]
             at (2.25,1.3)  {$= 0{,}35\ \text{km}^2$};
           % Cuadradito = campo de fútbol ~0,7 ha
           \fill[AlmVerde!50, rounded corners=2pt]
             (0.15,0.15) rectangle (1.35,1.0);
-          \node[font=\tiny, color=AlmVerde!70!black]
+          \node[font=\AlmFontTiny, color=AlmVerde!70!black]
             at (0.75,0.57) {\(\approx\)campo};
           % Acotación
           \draw[acota] (0,-0.28) -- (4.5,-0.28);
-          \node[font=\tiny, color=AlmGris] at (2.25,-0.52)
+          \node[font=\AlmFontTiny, color=AlmGris] at (2.25,-0.52)
             {escala aprox.};
         \end{tikzpicture}
       \end{center}
       \vspace{2pt}
       \begin{notabox}[Curiosidad]
-        \footnotesize
+        \AlmFontFootnote
         35 ha equivalen a unos
         \textbf{49 campos de fútbol}.
       \end{notabox}
@@ -411,7 +414,7 @@
   \bloomtag{RECORDAR}\quad\dificultad{1}
   \vspace{4pt}
   \begin{recordarbox}
-    \small
+    \AlmFontSmall
     \textbf{Tarea:} Completa la siguiente tabla de memoria
     (o con tus apuntes).\\[6pt]
     \begin{tabular}{@{}lll@{}}
@@ -434,7 +437,7 @@
   \bloomtag{COMPRENDER}\quad\dificultad{2}
   \vspace{4pt}
   \begin{comprenderbox}
-    \small
+    \AlmFontSmall
     La \textbf{playa de El Zapillo} mide 2,5 km de longitud.\\[6pt]
     Responde razonando cada respuesta:
     \begin{enumerate}
@@ -450,7 +453,7 @@
   \end{comprenderbox}
   \vspace{4pt}
   \begin{notabox}[Pista]
-    \footnotesize
+    \AlmFontFootnote
     Longitud $\times$ anchura $=$ superficie (si es rectangular).
   \end{notabox}
 \end{frame}
@@ -459,7 +462,7 @@
   \bloomtag{APLICAR}\quad\dificultad{3}
   \vspace{4pt}
   \begin{aplicarbox}
-    \footnotesize
+    \AlmFontFootnote
     Clasifica cada dato de la tabla como \textbf{Ubicación},
     \textbf{Medida} o \textbf{Dato}. Convierte las unidades
     cuando se indique.\\[4pt]
@@ -494,7 +497,7 @@
     una fila por elemento:
     \vspace{6pt}
     \begin{center}
-      \small
+      \AlmFontSmall
       \begin{tabular}{@{}lll@{}}
         \toprule
         \textbf{Tipo (Ubicación / Medida / Dato)}
@@ -543,7 +546,7 @@
   \end{errorbox}
   \vspace{8pt}
   \begin{notabox}[Regla rápida]
-    \small
+    \AlmFontSmall
     ¿Cambiaría si volvemos a medirlo mañana?
     \correcto\;Sí $\Rightarrow$ \textbf{dato}.\quad
     \correcto\;No $\Rightarrow$ \textbf{medida}.
@@ -573,7 +576,7 @@
   \end{resumenbox}
   \vspace{6pt}
   \begin{center}
-    {\small\color{AlmAzulM}
+    {\AlmFontSmall\color{AlmAzulM}
     \faArrowCircleRight\enskip
     \textbf{Próxima sesión:}
     Plano por cuadrantes — localizar lugares con letra y número.}
@@ -581,3 +584,6 @@
 \end{frame}
 
 \end{document}
+
+
+

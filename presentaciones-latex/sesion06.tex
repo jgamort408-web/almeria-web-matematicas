@@ -3,7 +3,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  IES Al-Ándalus · 2025-2026
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 10pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 \renewcommand{\SessionNumber}{06}
@@ -92,17 +92,17 @@
           (1.3,2.2)/D/above,
           (-0.4,1.3)/E/left}{
           \node[punto] at \p {};
-          \node[\pos, font=\bfseries\scriptsize, color=AlmAzulM] at \p {\lbl};
+          \node[\pos, font=\bfseries\AlmFontScript, color=AlmAzulM] at \p {\lbl};
         }
         % etiqueta lados
-        \node[color=AlmTerra, font=\tiny\bfseries] at (1,-0.3) {lado};
+        \node[color=AlmTerra, font=\AlmFontTiny\bfseries] at (1,-0.3) {lado};
         % etiqueta vértice
         \draw[->, AlmTerra, thin] (0.6,-0.5) -- (-0.05,-0.05);
-        \node[color=AlmTerra, font=\tiny\bfseries] at (0.9,-0.55) {vértice};
+        \node[color=AlmTerra, font=\AlmFontTiny\bfseries] at (0.9,-0.55) {vértice};
       \end{tikzpicture}
       \end{center}
       \begin{notabox}[Clave]
-        \scriptsize Un círculo \textbf{NO} es un polígono:
+        \AlmFontScript Un círculo \textbf{NO} es un polígono:
         no tiene lados rectos.
       \end{notabox}
     \end{column}
@@ -117,49 +117,49 @@
   \begin{tikzpicture}[scale=0.78]
     % ---- Triángulo ----
     \draw[zona] (0,0) -- (1.2,0) -- (0.6,1.0) -- cycle;
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (0.6,-0.12) {Triángulo};
-    \node[below, font=\tiny, color=AlmGris] at (0.6,-0.38) {3 lados / 180°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (0.6,-0.12) {Triángulo};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (0.6,-0.38) {3 lados / 180°};
     % ---- Cuadrilátero ----
     \draw[zona] (1.7,0) -- (3.1,0) -- (3.1,1.0) -- (1.7,1.0) -- cycle;
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.4,-0.12) {Cuadrilátero};
-    \node[below, font=\tiny, color=AlmGris] at (2.4,-0.38) {4 lados / 360°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (2.4,-0.12) {Cuadrilátero};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (2.4,-0.38) {4 lados / 360°};
     % ---- Pentágono ----
     \begin{scope}[shift={(4.0,0.5)}]
       \draw[zona] \foreach \i in {0,1,2,3,4}{
         -- ({cos(90+\i*72)*0.6},{sin(90+\i*72)*0.6})
       } -- cycle;
     \end{scope}
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (4.0,-0.12) {Pentágono};
-    \node[below, font=\tiny, color=AlmGris] at (4.0,-0.38) {5 lados / 540°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (4.0,-0.12) {Pentágono};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (4.0,-0.38) {5 lados / 540°};
     % ---- Hexágono ----
     \begin{scope}[shift={(5.7,0.5)}]
       \draw[zona] \foreach \i in {0,1,2,3,4,5}{
         -- ({cos(90+\i*60)*0.6},{sin(90+\i*60)*0.6})
       } -- cycle;
     \end{scope}
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (5.7,-0.12) {Hexágono};
-    \node[below, font=\tiny, color=AlmGris] at (5.7,-0.38) {6 lados / 720°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (5.7,-0.12) {Hexágono};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (5.7,-0.38) {6 lados / 720°};
     % ---- Heptágono ----
     \begin{scope}[shift={(7.4,0.5)}]
       \draw[zona] \foreach \i in {0,1,2,3,4,5,6}{
         -- ({cos(90+\i*51.43)*0.6},{sin(90+\i*51.43)*0.6})
       } -- cycle;
     \end{scope}
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (7.4,-0.12) {Heptágono};
-    \node[below, font=\tiny, color=AlmGris] at (7.4,-0.38) {7 lados / 900°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (7.4,-0.12) {Heptágono};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (7.4,-0.38) {7 lados / 900°};
     % ---- Octógono ----
     \begin{scope}[shift={(9.1,0.5)}]
       \draw[zona] \foreach \i in {0,1,2,3,4,5,6,7}{
         -- ({cos(90+\i*45)*0.6},{sin(90+\i*45)*0.6})
       } -- cycle;
     \end{scope}
-    \node[below, font=\tiny\bfseries, color=AlmAzulM] at (9.1,-0.12) {Octógono};
-    \node[below, font=\tiny, color=AlmGris] at (9.1,-0.38) {8 lados / 1080°};
+    \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (9.1,-0.12) {Octógono};
+    \node[below, font=\AlmFontTiny, color=AlmGris] at (9.1,-0.38) {8 lados / 1080°};
   \end{tikzpicture}
   \end{center}
   \vspace{0.15cm}
   \begin{teoriabox}
-    \small\textbf{Regla clave:} en todo polígono, el número de lados
+    \AlmFontSmall\textbf{Regla clave:} en todo polígono, el número de lados
     $=$ número de vértices $=$ número de ángulos interiores.
     La suma de ángulos interiores de un polígono de $n$ lados es
     $(n-2)\times 180°$.
@@ -185,11 +185,11 @@
           \draw[rectov, fill=AlmVerde!15] \foreach \i in {0,1,2}{
             -- ({cos(90+\i*120)*0.7},{sin(90+\i*120)*0.7})
           } -- cycle;
-          \node[below, font=\scriptsize\bfseries, color=AlmVerde] at (0,-0.8) {Regular};
+          \node[below, font=\AlmFontScript\bfseries, color=AlmVerde] at (0,-0.8) {Regular};
         \end{scope}
         \begin{scope}[shift={(1.9,0)}]
           \draw[rectov, fill=AlmVerde!15] (0,0) -- (1.2,0) -- (1.2,1.2) -- (0,1.2) -- cycle;
-          \node[below, font=\scriptsize\bfseries, color=AlmVerde] at (0.6,-0.12) {Regular};
+          \node[below, font=\AlmFontScript\bfseries, color=AlmVerde] at (0.6,-0.12) {Regular};
         \end{scope}
       \end{tikzpicture}
       \end{center}
@@ -206,12 +206,12 @@
         \begin{scope}[shift={(0,0)}]
           \draw[rectot, fill=AlmTerra!12]
             (0,0) -- (1.4,0) -- (1.0,0.8) -- (0.3,1.1) -- cycle;
-          \node[below, font=\scriptsize\bfseries, color=AlmTerra] at (0.7,-0.12) {Irregular};
+          \node[below, font=\AlmFontScript\bfseries, color=AlmTerra] at (0.7,-0.12) {Irregular};
         \end{scope}
         \begin{scope}[shift={(2.2,0)}]
           \draw[rectot, fill=AlmTerra!12]
             (0,0.3) -- (1.1,0) -- (1.3,0.9) -- (0.8,1.3) -- (0.1,1.0) -- cycle;
-          \node[below, font=\scriptsize\bfseries, color=AlmTerra] at (0.65,-0.12) {Irregular};
+          \node[below, font=\AlmFontScript\bfseries, color=AlmTerra] at (0.65,-0.12) {Irregular};
         \end{scope}
       \end{tikzpicture}
       \end{center}
@@ -224,7 +224,7 @@
 % ---------------------------------------------------------------
 \begin{frame}{Cuadriláteros especiales}
   \begin{center}
-  \begin{tikzpicture}[scale=0.78, every node/.style={font=\tiny}]
+  \begin{tikzpicture}[scale=0.78, every node/.style={font=\AlmFontTiny}]
     % Rectángulo
     \draw[zona] (0,0) rectangle (1.8,1.0);
     \node[below=2pt] at (0.9,-0.0) {\textbf{Rectángulo}};
@@ -254,7 +254,7 @@
   \end{center}
   \vspace{0.1cm}
   \begin{notabox}[Jerarquía]
-    \small Cuadrado $\subset$ Rectángulo $\subset$ Paralelogramo $\subset$ Cuadrilátero
+    \AlmFontSmall Cuadrado $\subset$ Rectángulo $\subset$ Paralelogramo $\subset$ Cuadrilátero
   \end{notabox}
 \end{frame}
 
@@ -271,18 +271,18 @@
         % Equilátero
         \draw[rectov, fill=AlmVerde!12]
           (0,0) -- (1.0,0) -- (0.5,0.87) -- cycle;
-        \node[below, font=\tiny\bfseries, color=AlmVerde] at (0.5,-0.05) {Equilátero};
-        \node[below, font=\tiny, color=AlmGris] at (0.5,-0.25) {3 lados iguales};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmVerde] at (0.5,-0.05) {Equilátero};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (0.5,-0.25) {3 lados iguales};
         % Isósceles
         \draw[zona]
           (1.8,0) -- (3.2,0) -- (2.5,1.1) -- cycle;
-        \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.5,-0.05) {Isósceles};
-        \node[below, font=\tiny, color=AlmGris] at (2.5,-0.25) {2 lados iguales};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (2.5,-0.05) {Isósceles};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (2.5,-0.25) {2 lados iguales};
         % Escaleno
         \draw[rectot, fill=AlmTerra!10]
           (4.0,0) -- (5.6,0) -- (5.2,1.0) -- cycle;
-        \node[below, font=\tiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Escaleno};
-        \node[below, font=\tiny, color=AlmGris] at (4.9,-0.25) {todos distintos};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Escaleno};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (4.9,-0.25) {todos distintos};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -294,19 +294,19 @@
         % Acutángulo
         \draw[rectov, fill=AlmVerde!12]
           (0,0) -- (1.4,0) -- (0.8,1.0) -- cycle;
-        \node[below, font=\tiny\bfseries, color=AlmVerde] at (0.7,-0.05) {Acutángulo};
-        \node[below, font=\tiny, color=AlmGris] at (0.7,-0.25) {todos $<$ 90°};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmVerde] at (0.7,-0.05) {Acutángulo};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (0.7,-0.25) {todos $<$ 90°};
         % Rectángulo
         \draw[zona]
           (1.9,0) -- (3.3,0) -- (1.9,1.0) -- cycle;
         \draw[rectoang] (1.9,0) -- (2.2,0) -- (2.2,0.3) -- (1.9,0.3);
-        \node[below, font=\tiny\bfseries, color=AlmAzulM] at (2.6,-0.05) {Rectángulo};
-        \node[below, font=\tiny, color=AlmGris] at (2.6,-0.25) {un ángulo $=90°$};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmAzulM] at (2.6,-0.05) {Rectángulo};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (2.6,-0.25) {un ángulo $=90°$};
         % Obtusángulo
         \draw[rectot, fill=AlmTerra!10]
           (4.0,0.5) -- (5.6,0) -- (4.3,1.1) -- cycle;
-        \node[below, font=\tiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Obtusángulo};
-        \node[below, font=\tiny, color=AlmGris] at (4.9,-0.25) {un ángulo $>90°$};
+        \node[below, font=\AlmFontTiny\bfseries, color=AlmTerra] at (4.9,-0.05) {Obtusángulo};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (4.9,-0.25) {un ángulo $>90°$};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -330,7 +330,7 @@
   \begin{columns}[t]
     \begin{column}{0.50\textwidth}
       \begin{ejemplobox}
-        \small
+        \AlmFontSmall
         \begin{itemize}
           \item \textbf{Catedral de Almería:} fachada con rectángulos,
                 arcos y triángulos en las cornisas.
@@ -356,12 +356,12 @@
         % Tejado triangular
         \draw[rectot, fill=AlmTerra!20] (0,1.8) -- (1.8,2.8) -- (3.6,1.8) -- cycle;
         % Hexágono (ventana especial)
-        \node[font=\tiny\bfseries, color=AlmAzul] at (1.8,0.2) {Rectángulos};
-        \node[font=\tiny\bfseries, color=AlmTerra] at (1.8,2.55) {Triángulo};
+        \node[font=\AlmFontTiny\bfseries, color=AlmAzul] at (1.8,0.2) {Rectángulos};
+        \node[font=\AlmFontTiny\bfseries, color=AlmTerra] at (1.8,2.55) {Triángulo};
       \end{tikzpicture}
       \end{center}
       \begin{notabox}[Dato]
-        \scriptsize La Catedral de Almería (s. XVI) es una de las
+        \AlmFontScript La Catedral de Almería (s. XVI) es una de las
         pocas catedrales-fortaleza de España: sus muros combinan
         rectángulos y arcos de medio punto.
       \end{notabox}
@@ -385,7 +385,7 @@
 
       \vspace{0.2cm}
       \begin{center}
-      \small
+      \AlmFontSmall
       \begin{tabular}{|>{\bfseries\color{AlmAzulM}}l|c|c|c|}
         \hline
         \rowcolor{AlmAzul!15}
@@ -408,7 +408,7 @@
   \end{recordarbox}
   \vspace{0.15cm}
   \begin{notabox}[Pista]
-    \small Suma de ángulos $= (n-2)\times 180°$, donde $n$ es el número de lados.
+    \AlmFontSmall Suma de ángulos $= (n-2)\times 180°$, donde $n$ es el número de lados.
   \end{notabox}
 \end{frame}
 
@@ -459,7 +459,7 @@
     de Almería y clasifícalos (regular/irregular):
 
     \vspace{0.15cm}
-    \small
+    \AlmFontSmall
     \begin{tabular}{@{}p{3.2cm}p{3.5cm}p{2.8cm}@{}}
       \toprule
       \textbf{Elemento} & \textbf{Polígono(s)} & \textbf{Reg. / Irreg.} \\
@@ -474,7 +474,7 @@
   \end{aplicarbox}
   \vspace{0.15cm}
   \begin{notabox}[Recuerda]
-    \small Cuenta los lados visibles. Comprueba si todos los lados
+    \AlmFontSmall Cuenta los lados visibles. Comprueba si todos los lados
     y ángulos son iguales para determinar si es regular.
   \end{notabox}
 \end{frame}
@@ -505,8 +505,8 @@
       \begin{tikzpicture}[scale=0.65]
         \draw[zona] (0,0) rectangle (1.4,1.4);
         \draw[rectoang] (0,0) -- (0.25,0) -- (0.25,0.25) -- (0,0.25);
-        \node[below, font=\tiny\bfseries] at (0.7,-0.1) {Cuadrado};
-        \node[below, font=\tiny, color=AlmGris] at (0.7,-0.35) {$l = l$};
+        \node[below, font=\AlmFontTiny\bfseries] at (0.7,-0.1) {Cuadrado};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (0.7,-0.35) {$l = l$};
       \end{tikzpicture}
       \end{center}
     \end{column}
@@ -515,13 +515,13 @@
       \begin{tikzpicture}[scale=0.65]
         \draw[zona] (0,0) rectangle (2.0,1.1);
         \draw[rectoang] (0,0) -- (0.25,0) -- (0.25,0.25) -- (0,0.25);
-        \node[below, font=\tiny\bfseries] at (1.0,-0.1) {Rectángulo};
-        \node[below, font=\tiny, color=AlmGris] at (1.0,-0.35) {$l \neq w$};
+        \node[below, font=\AlmFontTiny\bfseries] at (1.0,-0.1) {Rectángulo};
+        \node[below, font=\AlmFontTiny, color=AlmGris] at (1.0,-0.35) {$l \neq w$};
       \end{tikzpicture}
       \end{center}
     \end{column}
     \begin{column}{0.34\textwidth}
-      \small\color{AlmAzulM}
+      \AlmFontSmall\color{AlmAzulM}
       Ambos: 4 lados, 4 vértices, 360°. \\[4pt]
       Diferencia: ¿todos los lados iguales?
     \end{column}
@@ -600,3 +600,6 @@
 \end{frame}
 
 \end{document}
+
+
+
