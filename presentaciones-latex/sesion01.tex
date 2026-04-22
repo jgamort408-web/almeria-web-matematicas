@@ -4,7 +4,7 @@
 %  Almería en Cifras y Formas · Matemáticas 1.º ESO
 %  Compilar con:  pdflatex sesion01.tex  (dos pasadas)
 % ================================================================
-\documentclass[aspectratio=169, 12pt, spanish]{beamer}
+\documentclass[aspectratio=169, 11pt, spanish]{beamer}
 \usepackage{almeria-beamer}
 
 % ---------------------------------------------------------------
@@ -67,15 +67,15 @@
         lugares de interés de una ciudad o región:
         monumentos, museos, rutas, horarios, precios\ldots
       \end{definicionbox}
-      \vspace{6pt}
+      {6pt}
       \begin{itemize}
         \item Cuenta \textbf{qué} hay y \textbf{cómo llegar}.
         \item Usa palabras, fotos y mapas.
         \item Va dirigida al \textbf{turista}.
       \end{itemize}
-      \vspace{4pt}
+      {4pt}
       \begin{notabox}[Ejemplos conocidos]
-        \footnotesize
+        
         Lonely Planet · Guía Repsol · Tripadvisor
       \end{notabox}
     \end{column}
@@ -87,17 +87,17 @@
             (0,0) rectangle (3.2,4.4);
           \fill[AlmAmbar]
             (0.15,3.6) rectangle (3.05,4.2);
-          \node[text=AlmBlanco, font=\tiny\bfseries] at (1.6,3.9)
+          \node[text=AlmBlanco, font=\bfseries] at (1.6,3.9)
             {ALMERÍA};
           \fill[AlmAzulC!40]
             (0.15,2.1) rectangle (3.05,3.5);
-          \node[text=AlmAzul, font=\tiny] at (1.6,2.8)
+          \node[text=AlmAzul, font=] at (1.6,2.8)
             {mapa de la ciudad};
           \foreach \y in {1.2,0.85,0.5}{
             \fill[AlmBlanco!30, rounded corners=1pt]
               (0.3,\y) rectangle (2.8,\y+0.22);
           }
-          \node[text=AlmAmbar, font=\tiny\bfseries] at (1.6,0.05)
+          \node[text=AlmAmbar, font=\bfseries] at (1.6,0.05)
             {Guía Turística};
         \end{tikzpicture}
       \end{center}
@@ -119,7 +119,7 @@
         permiten \textit{analizar} y \textit{comparar}
         la realidad de la ciudad.
       \end{teoriabox}
-      \vspace{8pt}
+      {8pt}
       ¿Qué puede aparecer?
       \begin{itemize}
         \item \textbf{Coordenadas} de monumentos
@@ -130,19 +130,19 @@
       \end{itemize}
     \end{column}
     \begin{column}{0.42\textwidth}
-      \begin{tikzpicture}[every node/.style={font=\scriptsize}]
+      \begin{tikzpicture}[every node/.style={font=}]
         % Diagrama Venn
         \fill[AlmAzulC!25, opacity=0.7] (-0.6,0) ellipse (2cm and 1.4cm);
         \fill[AlmAmbar!35, opacity=0.7] (0.6,0) ellipse (2cm and 1.4cm);
-        \node[text=AlmAzul, font=\tiny\bfseries, align=center] at (-1.4,0) {Guía\\clásica};
-        \node[text=AlmAzul, font=\tiny\bfseries] at (2.0,0) {Matemáticas};
-        \node[text=AlmNegro, font=\tiny\bfseries, align=center] at (0,0)
+        \node[text=AlmAzul, align=center] at (-1.4,0) {Guía\\clásica};
+        \node[text=AlmAzul] at (2.0,0) {Matemáticas};
+        \node[text=AlmNegro, align=center] at (0,0)
           {Guía\\matemática};
-        \node[text=AlmGris, font=\tiny, align=center] at (-1.5,-0.55)
+        \node[text=AlmGris, font=, align=center] at (-1.5,-0.55)
           {fotos\\textos};
-        \node[text=AlmGris, font=\tiny, align=center] at (1.6,-0.55)
+        \node[text=AlmGris, font=, align=center] at (1.6,-0.55)
           {cálculos\\gráficas};
-        \node[text=AlmAzul, font=\tiny, align=center] at (0,0.55)
+        \node[text=AlmAzul, font=, align=center] at (0,0.55)
           {datos\\medidas};
       \end{tikzpicture}
     \end{column}
@@ -177,7 +177,7 @@
       \end{definicionbox}
     \end{column}
   \end{columns}
-  \vspace{10pt}
+  {10pt}
   \begin{center}
     \begin{tabular}{lll}
       \toprule
@@ -200,7 +200,7 @@
     \begin{column}{0.6\textwidth}
       Cualquier elemento urbano esconde información
       matemática. Hay que saber \textbf{hacer preguntas}:
-      \vspace{6pt}
+      {6pt}
       \begin{tabular}{@{}p{2.8cm}p{5cm}@{}}
         \toprule
         \textbf{Lugar} & \textbf{Preguntas matemáticas}\\
@@ -218,23 +218,23 @@
     \end{column}
     \begin{column}{0.37\textwidth}
       \begin{notabox}[¿Sabías que\ldots?]
-        \footnotesize
+        
         El \textbf{Puerto de Almería} ocupa
         \textbf{35 ha}, lo que equivale a
         $35\times 10\,000 = 350\,000\ \text{m}^2$.
         ¡Más de 49 campos de fútbol!
       \end{notabox}
-      \vspace{6pt}
+      {6pt}
       \begin{tikzpicture}[scale=0.75]
         \fill[AlmAzulC!30, rounded corners=3pt]
           (0,0) rectangle (3.8,2.2);
         \fill[AlmVerde!40]
           (0.2,0.2) rectangle (1.6,0.6);
-        \node[font=\tiny, color=AlmAzul] at (0.9,0.4)
+        \node[font=, color=AlmAzul] at (0.9,0.4)
           {campo fútbol};
-        \node[font=\scriptsize\bfseries, color=AlmAzul] at (1.9,1.2)
+        \node[font=\bfseries, color=AlmAzul] at (1.9,1.2)
           {$35\ \text{ha}$};
-        \node[font=\tiny, color=AlmGris] at (1.9,0.7)
+        \node[font=, color=AlmGris] at (1.9,0.7)
           {Puerto};
       \end{tikzpicture}
     \end{column}
@@ -246,20 +246,21 @@
 % ---------------------------------------------------------------
 
 \begin{frame}{El Cable Inglés — Ejemplo paso a paso}
+
   \framesubtitle{Longitud 1,1 km · Velocidad media de paseo 5 km/h}
   \begin{columns}[c]
     \begin{column}{0.5\textwidth}
       \begin{ejemplobox}
-        \small
+        
         El Cable Inglés es un viaducto de hierro de
         $1{,}1\ \text{km}$ de longitud que cruza la
         desembocadura de la Rambla.\\[4pt]
         \textbf{Pregunta:} ¿Cuánto tarda en cruzarlo
         un peatón a $5\ \text{km/h}$?
       \end{ejemplobox}
-      \vspace{6pt}
+      {6pt}
       \begin{pasobox}[1]
-        \footnotesize
+        
         \textbf{Datos:}
         $d = 1{,}1\ \text{km}$;\quad
         $v = 5\ \text{km/h}$
@@ -267,24 +268,24 @@
     \end{column}
     \begin{column}{0.46\textwidth}
       \begin{pasobox}[2]
-        \footnotesize
+        
         \textbf{Fórmula tiempo--distancia--velocidad:}
         \[
           t = \frac{d}{v}
         \]
       \end{pasobox}
-      \vspace{4pt}
+      {4pt}
       \begin{pasobox}[3]
-        \footnotesize
+        
         \textbf{Sustitución:}
         \[
           t = \frac{1{,}1\ \text{km}}{5\ \text{km/h}}
             = 0{,}22\ \text{h}
         \]
       \end{pasobox}
-      \vspace{4pt}
+      {4pt}
       \begin{pasobox}[4]
-        \footnotesize
+        
         \textbf{Conversión a minutos:}
         \[
           t = 0{,}22 \times 60 \approx \mathbf{13\ \text{min}}
@@ -302,9 +303,9 @@
   \begin{columns}[T]
     \begin{column}{0.31\textwidth}
       \begin{recordarbox}
-        \footnotesize
+        
         \textbf{Define} con tus palabras qué es
-        una guía turística.\par\vspace{4pt}
+        una guía turística.\par{4pt}
         Escribe \textbf{3 monumentos} de Almería
         y anota 2 datos matemáticos que podrías
         buscar de cada uno.
@@ -312,9 +313,9 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{comprenderbox}
-        \footnotesize
+        
         El Paseo de Almería mide $370\ \text{m}$
-        y se recorre a $4\ \text{km/h}$.\par\vspace{4pt}
+        y se recorre a $4\ \text{km/h}$.\par{4pt}
         \textbf{Explica} qué tipo de información es
         cada dato y calcula cuántos minutos dura
         el paseo.
@@ -322,11 +323,11 @@
     \end{column}
     \begin{column}{0.31\textwidth}
       \begin{analizarbox}
-        \footnotesize
-        Observa tres monumentos de tu elección.\par\vspace{4pt}
+        
+        Observa tres monumentos de tu elección.\par{4pt}
         \textbf{Extrae} al menos 2 preguntas
         matemáticas que podrían incluirse en
-        una guía turística para cada uno.\par\vspace{4pt}
+        una guía turística para cada uno.\par{4pt}
         ¿Qué tipo de matemáticas necesitarías
         para responderlas?
       \end{analizarbox}
@@ -378,9 +379,9 @@
     \end{minipage}
     % -------------------------------------------------------
   \end{errorbox}
-  \vspace{8pt}
+  {8pt}
   \begin{notabox}[Recuerda]
-    \small
+    
     Todo lo que se puede \textbf{medir, contar, localizar
     o comparar} en una ciudad es material matemático.
   \end{notabox}
@@ -404,9 +405,9 @@
             $t = \dfrac{d}{v}$ al Cable Inglés.
     \end{itemize}
   \end{resumenbox}
-  \vspace{6pt}
+  {6pt}
   \begin{center}
-    {\small\color{AlmAzulM}
+    {\color{AlmAzulM}
     \faArrowCircleRight\enskip
     \textbf{Próxima sesión:}
     ¿Qué se puede medir y representar en una ciudad?}

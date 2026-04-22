@@ -10,7 +10,6 @@ $oacute  = [char]0x00F3   # o with accent (sesion, presentacion)
 $iacute  = [char]0x00ED   # i with accent (guia, almeria)
 $eacute  = [char]0x00E9   # e with accent
 $aacute  = [char]0x00E1   # a with accent
-$Oacute  = [char]0x00D3   # O cap accent (not needed)
 $mdot    = [char]0x00B7   # middle dot
 $mdash   = [char]0x2014   # em dash
 $arrdown = [char]0x2B07   # downwards arrow
@@ -54,7 +53,20 @@ foreach ($item in $sessionMap) {
         }
     }
 
-    # ── 2. REPLACE PDF SECTION WITH CLEAN UTF-8 ──────────────────────────
+    # ── 2. FIX GARBLED CSS COMMENT ───────────────────────────────────────
+    $cssCommentStart = '/* SECCI'
+    $cssCommentEnd   = '*/'
+    $cssIdx = $content.IndexOf($cssCommentStart)
+    if ($cssIdx -ge 0) {
+        $cssEndIdx = $content.IndexOf($cssCommentEnd, $cssIdx + $cssCommentStart.Length)
+        if ($cssEndIdx -ge 0) {
+            $cssEndIdx += $cssCommentEnd.Length
+            $content = $content.Substring(0, $cssIdx) + '/* SECCION 0 - PRESENTACION BEAMER (PDF) */' + $content.Substring($cssEndIdx)
+            Write-Host "sesion${nn}: comentario CSS recodificado"
+        }
+    }
+
+    # ── 3. REPLACE PDF SECTION WITH CLEAN UTF-8 ──────────────────────────
     # Build text strings from char codes so file stays ASCII
     $presTitle  = "Presentaci${oacute}n de la sesi${oacute}n ${n}"
     $presDesc   = "Gu${iacute}a te${oacute}rica ${mdot} ejemplos resueltos ${mdot} ejercicios multinivel (Bloom)"
@@ -101,7 +113,7 @@ foreach ($item in $sessionMap) {
         }
     }
 
-    # ── 3. WRITE UTF-8 NO BOM ────────────────────────────────────────────
+    # ── 4. WRITE UTF-8 NO BOM ────────────────────────────────────────────
     [System.IO.File]::WriteAllText($path, $content, $enc)
     Write-Host "sesion${nn}: guardado"
 }

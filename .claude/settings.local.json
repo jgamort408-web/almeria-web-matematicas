@@ -56,7 +56,9 @@
       "Bash(find '/c/Program Files' -maxdepth 3 -name pdflatex*)",
       "Bash(find '/c/Program Files/texstudio' -name pdflatex*)",
       "Bash(find '/c/Users/Medion PC/AppData/Local/MiKTeX/2.9' -name pdflatex*)",
-      "Bash(cat /c/Users/Medion PC/AppData/Roaming/MiKTeX/miktex/config/*.ini)"
+      "Bash(cat /c/Users/Medion PC/AppData/Roaming/MiKTeX/miktex/config/*.ini)",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"/c/Users/Medion PC/Desktop/almeria-web-matematicas/fix_html.ps1\")",
+      "PowerShell(Set-Location \"C:\\\\Users\\\\Medion PC\\\\Desktop\\\\almeria-web-matematicas\"; powershell.exe -NonInteractive -File \".\\\\fix_html.ps1\")"
     ]
   }
 }
