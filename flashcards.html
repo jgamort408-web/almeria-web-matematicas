@@ -723,10 +723,11 @@
                         <p id="detalle-guardado">En cuanto empieces a estudiar, se guardarán tus IDs activos, tu posición y tus tarjetas sabidas o pendientes.</p>
                     </div>
                     <div class="acciones-memoria">
-                        <button class="btn-flash btn-secundario" type="button" id="btn-guardar">Guardar ahora</button>
-                        <button class="btn-flash btn-neutro" type="button" id="btn-continuar">Recuperar sesión</button>
+                        <button class="btn-flash btn-secundario" type="button" id="btn-guardar">Descargar sesión</button>
+                        <button class="btn-flash btn-neutro" type="button" id="btn-continuar">Cargar sesión</button>
                         <button class="btn-flash btn-suave" type="button" id="btn-reiniciar">Reiniciar progreso</button>
                     </div>
+                    <input type="file" id="input-sesion" accept="application/json,.json" hidden>
                 </section>
             </aside>
         </section>
@@ -760,7 +761,6 @@
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const STORAGE_KEY = 'almeria_flashcards_progress_v2';
-            const SESSION_KEY = 'almeria_flashcards_session_v2';
             const BLOCK_STYLES = {
                 'Proyecto': { icon: '🧭', label: 'Proyecto' },
                 'Bloque 1': { icon: '📍', label: 'Mapa y coordenadas' },
@@ -776,8 +776,7 @@
                 reviewQueue: [],
                 index: 0,
                 face: 'front',
-                progress: loadProgress(),
-                restoredSession: null
+                progress: loadProgress()
             };
 
             const ui = {
@@ -814,6 +813,7 @@
                 btnGuardar: document.getElementById('btn-guardar'),
                 btnContinuar: document.getElementById('btn-continuar'),
                 btnReiniciar: document.getElementById('btn-reiniciar'),
+                inputSesion: document.getElementById('input-sesion'),
                 mensajeError: document.getElementById('mensaje-error'),
                 mensajeVacio: document.getElementById('mensaje-vacio'),
                 estadoModo: document.getElementById('estado-modo'),
@@ -847,37 +847,53 @@
                 localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
             }
 
-            function saveSession() {
-                const payload = {
-                    ids: state.filtered.map((card) => card.id),
-                    reviewQueue: state.reviewQueue,
-                    index: state.index,
-                    face: state.face,
-                    filters: {
-                        bloque: ui.filtroBloque.value,
-                        categoria: ui.filtroCategoria.value,
-                        sesion: ui.filtroSesion.value,
-                        modo: ui.filtroModo.value,
-                        texto: ui.filtroTexto.value
-                    },
-                    savedAt: new Date().toISOString()
+            function buildSessionPayload() {
+                return {
+                    fileType: 'almeria-flashcards-session',
+                    version: 1,
+                    purpose: 'Este archivo sirve para guardar y recuperar una sesión de estudio de las flashcards de Almería en cifras y formas.',
+                    howToUse: [
+                        '1. Guarda este archivo JSON en tu dispositivo.',
+                        '2. Abre la página de flashcards.',
+                        '3. Pulsa "Cargar sesión" y selecciona este mismo archivo.',
+                        '4. Se restaurarán filtros, progreso, cola de repaso y posición.'
+                    ],
+                    exportedAt: new Date().toISOString(),
+                    state: {
+                        knownIds: state.progress.knownIds,
+                        failedIds: state.progress.failedIds,
+                        ids: state.filtered.map((card) => card.id),
+                        reviewQueue: state.reviewQueue,
+                        index: state.index,
+                        face: state.face,
+                        filters: {
+                            bloque: ui.filtroBloque.value,
+                            categoria: ui.filtroCategoria.value,
+                            sesion: ui.filtroSesion.value,
+                            modo: ui.filtroModo.value,
+                            texto: ui.filtroTexto.value
+                        }
+                    }
                 };
-                localStorage.setItem(SESSION_KEY, JSON.stringify(payload));
+            }
+
+            function downloadSessionFile() {
+                const payload = buildSessionPayload();
+                const stamp = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+                const filename = `almeria-flashcards-sesion-guardada-para-recuperar-${stamp}.json`;
+                const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
                 updateSavedState(payload);
             }
 
-            function loadSession() {
-                try {
-                    const raw = localStorage.getItem(SESSION_KEY);
-                    return raw ? JSON.parse(raw) : null;
-                } catch {
-                    return null;
-                }
-            }
-
-            function clearSession() {
-                localStorage.removeItem(SESSION_KEY);
-                state.restoredSession = null;
+            function clearSessionInfo() {
                 updateSavedState(null);
             }
 
@@ -996,7 +1012,6 @@
                     state.face = 'front';
                 }
                 render();
-                saveSession();
             }
 
             function queueNextFailedCard() {
@@ -1011,19 +1026,20 @@
                 return false;
             }
 
-            function updateSavedState(sessionPayload = loadSession()) {
-                if (!sessionPayload || !Array.isArray(sessionPayload.ids) || !sessionPayload.ids.length) {
-                    ui.estadoGuardado.textContent = 'Sesión no guardada todavía.';
-                    ui.detalleGuardado.textContent = 'En cuanto empieces a estudiar, se guardarán tus IDs activos, tu posición y tus tarjetas sabidas o pendientes.';
+            function updateSavedState(sessionPayload = null) {
+                const activeState = sessionPayload?.state || sessionPayload;
+                if (!activeState || !Array.isArray(activeState.ids) || !activeState.ids.length) {
+                    ui.estadoGuardado.textContent = 'No has exportado ninguna sesión todavía.';
+                    ui.detalleGuardado.textContent = 'Pulsa "Descargar sesión" para generar un JSON reutilizable. Después podrás recuperarlo con "Cargar sesión".';
                     return;
                 }
 
-                const date = new Date(sessionPayload.savedAt);
+                const date = new Date(sessionPayload.exportedAt || activeState.savedAt || Date.now());
                 const readable = Number.isNaN(date.getTime())
                     ? 'fecha desconocida'
                     : date.toLocaleString('es-ES');
-                ui.estadoGuardado.textContent = `Sesión guardada con ${sessionPayload.ids.length} IDs activos.`;
-                ui.detalleGuardado.textContent = `Último guardado: ${readable}. Puedes recuperar el mazo, la posición y la cola de repaso.`;
+                ui.estadoGuardado.textContent = `Sesión preparada con ${activeState.ids.length} IDs activos.`;
+                ui.detalleGuardado.textContent = `Última exportación o carga: ${readable}. El archivo JSON sirve para restaurar filtros, progreso, cola de repaso y posición.`;
             }
 
             async function renderMath() {
@@ -1116,7 +1132,6 @@
                     state.index = (state.index + step + state.filtered.length) % state.filtered.length;
                 }
                 render();
-                saveSession();
             }
 
             function jumpRandom() {
@@ -1134,7 +1149,6 @@
                 }
                 state.face = 'front';
                 render();
-                saveSession();
             }
 
             function shuffleDeck() {
@@ -1145,17 +1159,18 @@
                 state.index = 0;
                 state.face = 'front';
                 render();
-                saveSession();
             }
 
-            function restoreSession() {
-                const saved = loadSession();
+            function restoreSessionFromPayload(payload) {
+                const saved = payload?.state;
                 if (!saved || !Array.isArray(saved.ids) || !saved.ids.length) {
                     updateSavedState(null);
                     return;
                 }
 
-                state.restoredSession = saved;
+                state.progress.knownIds = Array.isArray(saved.knownIds) ? saved.knownIds.filter((id) => getCardById(id)) : [];
+                state.progress.failedIds = Array.isArray(saved.failedIds) ? saved.failedIds.filter((id) => getCardById(id)) : [];
+                saveProgress();
                 ui.filtroBloque.value = saved.filters?.bloque || '';
                 ui.filtroCategoria.value = saved.filters?.categoria || '';
                 ui.filtroSesion.value = saved.filters?.sesion || '';
@@ -1169,7 +1184,7 @@
                 state.index = Math.min(saved.index || 0, Math.max(state.filtered.length - 1, 0));
                 state.face = saved.face === 'back' ? 'back' : 'front';
                 render();
-                updateSavedState(saved);
+                updateSavedState(payload);
             }
 
             async function boot() {
@@ -1182,7 +1197,7 @@
                     state.cards = Array.isArray(payload.cards) ? payload.cards : [];
                     setupFilters(state.cards);
                     applyFilters();
-                    updateSavedState();
+                    updateSavedState(null);
                 } catch (error) {
                     ui.mensajeError.textContent = 'No se pudieron cargar las flashcards. Si estás abriendo la web como archivo local, prueba a servir la carpeta con un servidor local.';
                     ui.mensajeError.style.display = 'block';
@@ -1193,7 +1208,6 @@
             ui.btnGirar.addEventListener('click', () => {
                 state.face = state.face === 'front' ? 'back' : 'front';
                 render();
-                saveSession();
             });
 
             ui.btnNoSe.addEventListener('click', () => {
@@ -1227,14 +1241,33 @@
                 ui.filtroTexto.value = '';
                 applyFilters();
             });
-            ui.btnGuardar.addEventListener('click', saveSession);
-            ui.btnContinuar.addEventListener('click', restoreSession);
+            ui.btnGuardar.addEventListener('click', downloadSessionFile);
+            ui.btnContinuar.addEventListener('click', () => ui.inputSesion.click());
             ui.btnReiniciar.addEventListener('click', () => {
                 state.progress = { knownIds: [], failedIds: [], savedAt: null };
                 state.reviewQueue = [];
                 localStorage.removeItem(STORAGE_KEY);
-                clearSession();
+                clearSessionInfo();
                 applyFilters();
+            });
+            ui.inputSesion.addEventListener('change', async (event) => {
+                const file = event.target.files?.[0];
+                if (!file) {
+                    return;
+                }
+                try {
+                    const text = await file.text();
+                    const payload = JSON.parse(text);
+                    if (payload.fileType !== 'almeria-flashcards-session' || !payload.state) {
+                        throw new Error('Formato no válido');
+                    }
+                    restoreSessionFromPayload(payload);
+                } catch {
+                    ui.mensajeError.textContent = 'El archivo de sesión no es válido o no pertenece a estas flashcards.';
+                    ui.mensajeError.style.display = 'block';
+                } finally {
+                    ui.inputSesion.value = '';
+                }
             });
 
             [ui.filtroBloque, ui.filtroCategoria, ui.filtroSesion, ui.filtroModo].forEach((select) => {
