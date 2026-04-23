@@ -654,9 +654,9 @@
                 ui.metaBloque.textContent = card.bloque;
                 ui.metaSesion.textContent = Number(card.sesion) === 0 ? 'General' : `Sesion ${card.sesion}`;
                 ui.metaCategoria.textContent = card.categoria;
-                ui.pregunta.textContent = card.pregunta;
-                ui.respuesta.textContent = card.respuesta;
-                ui.pista.textContent = card.pista ? `Pista: ${card.pista}` : '';
+                ui.pregunta.innerHTML = card.pregunta;
+                ui.respuesta.innerHTML = card.respuesta;
+                ui.pista.innerHTML = card.pista ? `Pista: ${card.pista}` : '';
                 ui.contador.textContent = `${current} / ${total}`;
                 ui.progreso.textContent = `Tarjeta ${current} de ${total}`;
                 ui.barra.style.width = `${percentage}%`;
@@ -700,7 +700,7 @@
             }
 
             try {
-                const response = await fetch('flashcards-data.json');
+                const response = await fetch('flashcards-data.json?v=4');
                 if (!response.ok) {
                     throw new Error('No se pudo cargar el JSON de flashcards.');
                 }
