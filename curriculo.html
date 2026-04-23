@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧩</text></svg>">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Competencias específicas, criterios de evaluación y saberes básicos de 1.º ESO relacionados con la situación de aprendizaje Almería en cifras y formas.">
+    <title>Currículo Vinculado - Almería en cifras y formas</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top right, rgba(211, 110, 90, 0.14), transparent 24%),
+                radial-gradient(circle at left center, rgba(0, 90, 140, 0.12), transparent 28%),
+                linear-gradient(180deg, #f8fbfd 0%, #eef5f8 100%);
+            color: var(--texto-principal);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .hero-curriculo {
+            background:
+                radial-gradient(circle at top right, rgba(244, 235, 208, 0.28), transparent 24%),
+                linear-gradient(135deg, #0b3858 0%, #005a8c 100%);
+            color: var(--blanco);
+            border-radius: 22px;
+            padding: 42px 30px;
+            box-shadow: 0 14px 34px rgba(0, 63, 99, 0.18);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-curriculo::after {
+            content: "";
+            position: absolute;
+            right: -40px;
+            top: -50px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: rgba(244, 235, 208, 0.14);
+        }
+
+        .hero-curriculo h1 {
+            margin: 0 0 14px;
+            font-size: 2.6rem;
+            letter-spacing: 0.4px;
+        }
+
+        .hero-curriculo p {
+            margin: 0;
+            max-width: 860px;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 1.08rem;
+        }
+
+        .hero-curriculo strong {
+            color: #ffe4a1;
+        }
+
+        .resumen-curricular {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            gap: 14px;
+        }
+
+        .resumen-card {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow: 0 8px 24px rgba(0, 63, 99, 0.08);
+            border: 1px solid rgba(0, 63, 99, 0.08);
+        }
+
+        .resumen-card strong {
+            display: block;
+            font-size: 1.8rem;
+            color: var(--azul-oscuro);
+            line-height: 1.1;
+        }
+
+        .resumen-card span {
+            font-size: 0.95rem;
+            color: var(--gris-pizarra);
+        }
+
+        .panel-herramientas,
+        .panel-intro {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 18px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 63, 99, 0.08);
+            border: 1px solid rgba(0, 63, 99, 0.08);
+        }
+
+        .panel-herramientas {
+            border-top: 6px solid var(--terracota);
+        }
+
+        .panel-intro {
+            border-top: 6px solid var(--azul-mar);
+        }
+
+        .panel-intro h2,
+        .panel-herramientas h2 {
+            margin: 0 0 12px;
+            color: var(--azul-oscuro);
+            font-size: 1.5rem;
+        }
+
+        .panel-herramientas p,
+        .panel-intro p {
+            margin: 0;
+        }
+
+        .leyenda-curricular {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+            gap: 14px;
+        }
+
+        .leyenda-item {
+            background: rgba(255, 255, 255, 0.94);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow: 0 8px 24px rgba(0, 63, 99, 0.08);
+            border: 1px solid rgba(0, 63, 99, 0.08);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .leyenda-icono {
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--blanco);
+            background: linear-gradient(135deg, var(--azul-mar) 0%, var(--terracota) 100%);
+            box-shadow: 0 8px 18px rgba(0, 90, 140, 0.16);
+            flex-shrink: 0;
+        }
+
+        .leyenda-item strong {
+            display: block;
+            color: var(--azul-oscuro);
+            margin-bottom: 2px;
+        }
+
+        .leyenda-item span {
+            color: var(--gris-pizarra);
+            font-size: 0.94rem;
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .chip-filtro {
+            border: none;
+            border-radius: 999px;
+            padding: 11px 16px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            background: #eaf1f6;
+            color: #365164;
+        }
+
+        .chip-filtro:hover,
+        .chip-filtro:focus {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(0, 63, 99, 0.14);
+            outline: 3px solid rgba(0, 90, 140, 0.14);
+            outline-offset: 2px;
+        }
+
+        .chip-filtro.activo {
+            background: linear-gradient(135deg, var(--terracota) 0%, #ba5d4a 100%);
+            color: var(--blanco);
+        }
+
+        .filtro-texto {
+            width: 100%;
+            box-sizing: border-box;
+            margin-top: 16px;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 2px solid #d7e4eb;
+            font-size: 1rem;
+        }
+
+        .filtro-texto:focus {
+            outline: none;
+            border-color: var(--azul-mar);
+            box-shadow: 0 0 0 4px rgba(0, 90, 140, 0.12);
+        }
+
+        .seccion-titulo {
+            color: var(--azul-oscuro);
+            font-size: 2rem;
+            margin: 0 0 8px;
+        }
+
+        .seccion-subtitulo {
+            margin: 0;
+            color: var(--gris-pizarra);
+        }
+
+        .curriculo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(330px, 100%), 1fr));
+            gap: 20px;
+        }
+
+        .competencia-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 22px;
+            padding: 24px;
+            box-shadow: 0 12px 28px rgba(0, 63, 99, 0.08);
+            border: 1px solid rgba(0, 63, 99, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .competencia-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--azul-mar) 0%, var(--terracota) 100%);
+        }
+
+        .competencia-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .competencia-id {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #e8f2f8;
+            color: var(--azul-oscuro);
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            width: fit-content;
+        }
+
+        .competencia-card h3 {
+            margin: 0;
+            color: var(--azul-oscuro);
+            font-size: 1.25rem;
+            line-height: 1.3;
+        }
+
+        .tag-relacion {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 8px 12px;
+            font-size: 0.82rem;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .rel-alta {
+            background: #e6f4ea;
+            color: #2f6a4c;
+        }
+
+        .rel-media {
+            background: #fff3da;
+            color: #926716;
+        }
+
+        .rel-baja {
+            background: #f6ebf7;
+            color: #7a497e;
+        }
+
+        .competencia-card p {
+            margin: 0;
+        }
+
+        .bloque-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .subbloque {
+            background: #f7fafc;
+            border-radius: 16px;
+            padding: 16px;
+            border: 1px solid rgba(0, 63, 99, 0.06);
+        }
+
+        .subbloque h4 {
+            margin: 0 0 8px;
+            color: var(--gris-pizarra);
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+        }
+
+        .subbloque ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .subbloque li + li {
+            margin-top: 8px;
+        }
+
+        .nota-relacion {
+            background: linear-gradient(135deg, #eef7fb 0%, #f8fbfd 100%);
+            border-radius: 16px;
+            padding: 14px 16px;
+            color: #466274;
+            border-left: 4px solid var(--azul-mar);
+        }
+
+        .inter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: 18px;
+        }
+
+        .materia-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 22px;
+            padding: 22px;
+            box-shadow: 0 12px 28px rgba(0, 63, 99, 0.08);
+            border: 1px solid rgba(0, 63, 99, 0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .materia-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--verde-med) 0%, var(--terracota) 100%);
+        }
+
+        .materia-head {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .materia-icono {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--azul-mar) 0%, var(--terracota) 100%);
+            color: var(--blanco);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 8px 18px rgba(0, 90, 140, 0.16);
+        }
+
+        .materia-card h3 {
+            margin: 0;
+            color: var(--azul-oscuro);
+            font-size: 1.2rem;
+        }
+
+        .fase-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #edf4e9;
+            color: #41654d;
+            border-radius: 999px;
+            padding: 7px 11px;
+            font-size: 0.84rem;
+            font-weight: bold;
+            width: fit-content;
+        }
+
+        .materia-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        .materia-card li + li {
+            margin-top: 8px;
+        }
+
+        .mensaje-vacio {
+            display: none;
+            background: #f5fbfe;
+            border: 2px dashed var(--azul-mar);
+            border-radius: 18px;
+            padding: 22px;
+            text-align: center;
+            color: var(--gris-pizarra);
+        }
+
+        @media (max-width: 680px) {
+            .hero-curriculo h1 {
+                font-size: 2rem;
+            }
+
+            .competencia-head,
+            .materia-head {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a class="skip-link" href="#contenido-principal">Saltar al contenido principal</a>
+
+    <header class="site-header" role="banner">
+        <div class="header-inner">
+            <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
+                <span class="header-logo-icon" aria-hidden="true">📐</span>
+                <span class="header-logo-texto">
+                    <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
+                </span>
+            </a>
+            <button class="header-hamburger" id="hamburger-btn"
+                    aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+                <span></span><span></span><span></span>
+            </button>
+            <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
+                <a href="index.html" class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
+                <a href="proyecto.html" class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
+                <a href="ruta.html" class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
+                <a href="glosario.html" class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
+                <a href="flashcards.html" class="header-link"><span aria-hidden="true">🃏</span> Flashcards</a>
+                <a href="curriculo.html" class="header-link"><span aria-hidden="true">🧩</span> Currículo</a>
+                <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluación</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="contenedor" id="contenido-principal" tabindex="-1">
+        <section class="hero-curriculo">
+            <h1>Currículo vinculado a la situación</h1>
+            <p>Esta página convierte el documento curricular en una vista útil para programar y coordinar la situación de aprendizaje <strong>“Almería en cifras y formas”</strong>. Se señalan las competencias específicas, criterios de evaluación y saberes básicos de <strong>Matemáticas 1.º ESO</strong> con distinta intensidad de relación, y después se proponen entradas interdisciplinares con el resto de materias del nivel.</p>
+        </section>
+
+        <section class="resumen-curricular" aria-label="Resumen curricular">
+            <article class="resumen-card">
+                <strong>10</strong>
+                <span>competencias específicas visibles</span>
+            </article>
+            <article class="resumen-card">
+                <strong>7</strong>
+                <span>competencias con relación alta</span>
+            </article>
+            <article class="resumen-card">
+                <strong>12</strong>
+                <span>materias y vías de colaboración</span>
+            </article>
+            <article class="resumen-card">
+                <strong>20</strong>
+                <span>sesiones donde se puede conectar</span>
+            </article>
+        </section>
+
+        <section class="panel-intro">
+            <h2>Cómo leer esta página</h2>
+            <p>La selección se apoya en el PDF que has compartido y prioriza lo más directamente activado por la situación: modelización del entorno, geometría urbana, representación de datos, comunicación matemática y trabajo cooperativo. Las competencias con <strong>relación alta</strong> son las nucleares del proyecto; las de <strong>relación media</strong> amplían y enriquecen la propuesta; y las de <strong>relación baja</strong> aparecen como apoyo o transferencia.</p>
+        </section>
+
+        <section class="leyenda-curricular" aria-label="Claves visuales de lectura">
+            <article class="leyenda-item">
+                <span class="leyenda-icono" aria-hidden="true">🎯</span>
+                <div>
+                    <strong>Relación alta</strong>
+                    <span>Competencias que sostienen el corazón matemático del proyecto.</span>
+                </div>
+            </article>
+            <article class="leyenda-item">
+                <span class="leyenda-icono" aria-hidden="true">🧭</span>
+                <div>
+                    <strong>Relación media</strong>
+                    <span>Amplían, enriquecen y ayudan a transferir lo aprendido a nuevos contextos.</span>
+                </div>
+            </article>
+            <article class="leyenda-item">
+                <span class="leyenda-icono" aria-hidden="true">🤝</span>
+                <div>
+                    <strong>Interdisciplinariedad</strong>
+                    <span>Ideas de entrada real para otras materias según fase, momento y producto.</span>
+                </div>
+            </article>
+        </section>
+
+        <section class="panel-herramientas">
+            <h2>Filtrar por nivel de relación</h2>
+            <p>Puedes centrarte en el núcleo del proyecto o abrir la mirada a conexiones más amplias del currículo.</p>
+            <div class="toolbar" role="toolbar" aria-label="Filtros de relación">
+                <button class="chip-filtro activo" type="button" data-filter="todas">Ver todas</button>
+                <button class="chip-filtro" type="button" data-filter="alta">Relación alta</button>
+                <button class="chip-filtro" type="button" data-filter="media">Relación media</button>
+                <button class="chip-filtro" type="button" data-filter="baja">Relación baja</button>
+            </div>
+            <input class="filtro-texto" id="filtro-curriculo" type="search" placeholder="Buscar por código, competencia, criterio o saber...">
+        </section>
+
+        <section aria-labelledby="titulo-curriculo">
+            <h2 class="seccion-titulo" id="titulo-curriculo">Competencias, criterios y saberes relacionados</h2>
+            <p class="seccion-subtitulo">Vista interactiva del currículo de Matemáticas 1.º ESO conectado con esta situación de aprendizaje.</p>
+            <div class="mensaje-vacio" id="mensaje-vacio-curriculo" role="status" aria-live="polite">
+                No hay resultados con ese filtro. Prueba otro nivel de relación o cambia el texto de búsqueda.
+            </div>
+            <div class="curriculo-grid" id="curriculo-grid"></div>
+        </section>
+
+        <section aria-labelledby="titulo-interdisciplinar">
+            <h2 class="seccion-titulo" id="titulo-interdisciplinar">Colaboraciones interdisciplinares posibles</h2>
+            <p class="seccion-subtitulo">Ideas concretas para abrir la situación a otras materias de 1.º ESO sin perder el hilo matemático del proyecto.</p>
+            <div class="inter-grid" id="inter-grid"></div>
+        </section>
+    </main>
+
+    <footer class="footer-sitio" role="contentinfo">
+        <div class="footer-contenido">
+            <div class="footer-autor">
+                <span class="footer-nombre">Juan María Gámez Ortiz</span>
+                <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
+            </div>
+            <nav class="footer-idiomas" aria-label="Selector de idioma">
+                <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
+                <button class="btn-idioma activo" data-lang="es"><span aria-hidden="true">🇪🇸</span> ES</button>
+                <button class="btn-idioma" data-lang="en"><span aria-hidden="true">🇬🇧</span> EN</button>
+                <button class="btn-idioma" data-lang="ar"><span aria-hidden="true">🇸🇦</span> AR</button>
+                <button class="btn-idioma" data-lang="pl"><span aria-hidden="true">🇵🇱</span> PL</button>
+                <button class="btn-idioma" data-lang="ru"><span aria-hidden="true">🇷🇺</span> RU</button>
+                <button class="btn-idioma" data-lang="nl"><span aria-hidden="true">🇳🇱</span> NL</button>
+                <button class="btn-idioma" data-lang="de"><span aria-hidden="true">🇩🇪</span> DE</button>
+            </nav>
+            <div id="google_translate_element" aria-hidden="true"></div>
+            <div class="footer-copy">
+                © <span id="footer-año"></span> · Matemáticas 1.º ESO · Almería
+            </div>
+        </div>
+    </footer>
+    <div class="toast-idioma" id="toast-idioma" role="alert" aria-live="polite"></div>
+    <button class="btn-top" id="btn-top" aria-label="Volver arriba" title="Volver arriba">↑</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const competencias = [
+                {
+                    codigo: 'MAT.1.1',
+                    relacion: 'alta',
+                    titulo: 'Interpretar, modelizar y resolver problemas del entorno cotidiano.',
+                    explicacion: 'Es el corazón de la situación: partir de la ciudad real, leer datos, plantear preguntas matemáticas y producir soluciones con sentido.',
+                    criterios: [
+                        'MAT.1.1.1 Iniciarse en la interpretación de problemas sencillos, reconociendo datos, relaciones y preguntas formuladas.',
+                        'MAT.1.1.2 Aplicar estrategias como descomposición, tanteo, ensayo y error o búsqueda de patrones en contextos cercanos.',
+                        'MAT.1.1.3 Obtener soluciones activando conocimientos previos y aceptando el error como parte del proceso.'
+                    ],
+                    saberes: [
+                        'MAT.1.B.1.2 Estrategias de elección de unidades y operaciones adecuadas en problemas de medida.',
+                        'MAT.1.A.2.2 Realización de estimaciones con la precisión requerida.',
+                        'MAT.1.E.1.2 Análisis e interpretación de tablas y gráficos estadísticos en contextos reales.'
+                    ],
+                    nota: 'Se activa de forma directa cuando el alumnado trabaja con calles, planos, distancias, escalas, áreas, datos y decisiones justificadas sobre la ciudad.'
+                },
+                {
+                    codigo: 'MAT.1.2',
+                    relacion: 'alta',
+                    titulo: 'Analizar la validez y la idoneidad de las soluciones.',
+                    explicacion: 'La situación no se queda en calcular: obliga a comprobar si un resultado es coherente con el plano, con las medidas y con el contexto urbano.',
+                    criterios: [
+                        'MAT.1.2.1 Comprobar de forma razonada la corrección de soluciones usando calculadora, hoja de cálculo u otras herramientas.',
+                        'MAT.1.2.2 Validar soluciones mediante lectura comprensiva y coherencia con el contexto planteado.'
+                    ],
+                    saberes: [
+                        'MAT.1.A.3.5 Propiedades de las operaciones para calcular de manera eficiente.',
+                        'MAT.1.B.2.1 Toma de decisiones justificada sobre el grado de precisión requerido.',
+                        'MAT.1.F.3.2 Contribución de las matemáticas a distintos ámbitos del conocimiento desde una perspectiva de género.'
+                    ],
+                    nota: 'Resulta especialmente pertinente en tareas como comparar rutas, revisar escalas, justificar medidas y decidir qué representación es la más adecuada.'
+                },
+                {
+                    codigo: 'MAT.1.3',
+                    relacion: 'media',
+                    titulo: 'Formular conjeturas y variantes de problemas.',
+                    explicacion: 'El proyecto permite abrir preguntas nuevas: cambiar un dato del plano, comparar otra ruta, modificar una escala o plantear otra representación.',
+                    criterios: [
+                        'MAT.1.3.1 Formular y comprobar conjeturas sencillas analizando patrones, propiedades y relaciones.',
+                        'MAT.1.3.2 Plantear variantes de un problema modificando datos o condiciones.',
+                        'MAT.1.3.3 Emplear herramientas tecnológicas para investigar o comprobar conjeturas.'
+                    ],
+                    saberes: [
+                        'MAT.1.B.1.1 Atributos mensurables de objetos físicos y matemáticos.',
+                        'MAT.1.D.4.2 Relaciones lineales y cuadráticas: identificación y comparación de representaciones.',
+                        'MAT.1.E.2.2 Selección y presentación de información relevante en investigaciones estadísticas.'
+                    ],
+                    nota: 'Tiene sentido sobre todo en ampliaciones, tareas abiertas, preguntas de investigación y rediseños del producto final.'
+                },
+                {
+                    codigo: 'MAT.1.4',
+                    relacion: 'media',
+                    titulo: 'Aplicar pensamiento computacional para organizar datos y resolver problemas.',
+                    explicacion: 'Aparece cuando se descomponen tareas, se secuencian pasos del proyecto, se ordenan datos o se diseñan procedimientos repetibles.',
+                    criterios: [
+                        'MAT.1.4.1 Reconocer patrones, organizar datos y descomponer problemas en partes simples.',
+                        'MAT.1.4.2 Modelizar situaciones del entorno e interpretar o modificar algoritmos sencillos.'
+                    ],
+                    saberes: [
+                        'MAT.1.A.1.1 Estrategias variadas de recuento sistemático.',
+                        'MAT.1.D.1.1 Observación y determinación de reglas de formación.',
+                        'MAT.1.D.2.1 Modelización de situaciones cotidianas usando representaciones matemáticas y lenguaje algebraico.'
+                    ],
+                    nota: 'Encaja muy bien cuando el alumnado crea rutinas de recogida de datos, estructura tablas o sigue protocolos de resolución.'
+                },
+                {
+                    codigo: 'MAT.1.5',
+                    relacion: 'alta',
+                    titulo: 'Reconocer conexiones entre ideas matemáticas.',
+                    explicacion: 'La situación une coordenadas, geometría, medida, datos, representación y comunicación en un solo producto integrado.',
+                    criterios: [
+                        'MAT.1.5.1 Reconocer y usar relaciones entre saberes de distintos bloques para resolver problemas del entorno.',
+                        'MAT.1.5.2 Realizar conexiones entre procesos matemáticos sencillos enlazando ideas previas y nuevas.'
+                    ],
+                    saberes: [
+                        'MAT.1.A.3.2 Operaciones con números en situaciones contextualizadas.',
+                        'MAT.1.A.2.5 Interpretación del significado de las variaciones porcentuales.',
+                        'MAT.1.A.4.1 Factores, múltiplos y divisores en resolución de problemas.'
+                    ],
+                    nota: 'Es una de las competencias más transversales del proyecto: la guía final obliga a conectar bloques de saberes que normalmente se trabajan por separado.'
+                },
+                {
+                    codigo: 'MAT.1.6',
+                    relacion: 'alta',
+                    titulo: 'Identificar las matemáticas presentes en otras materias, en el entorno y en situaciones reales.',
+                    explicacion: 'La ciudad de Almería funciona como contexto real y además abre conexiones con historia, ciencias, lengua, digitalización o educación artística.',
+                    criterios: [
+                        'MAT.1.6.1 Reconocer situaciones del entorno susceptibles de resolverse con herramientas matemáticas.',
+                        'MAT.1.6.2 Analizar conexiones coherentes entre ideas matemáticas y otras materias.',
+                        'MAT.1.6.3 Reconocer la aportación de las matemáticas al progreso de la humanidad y a los retos actuales.'
+                    ],
+                    saberes: [
+                        'MAT.1.A.5.1 Razones y proporciones.',
+                        'MAT.1.A.5.2 Porcentajes: comprensión y resolución de problemas.',
+                        'MAT.1.E.1.1 Estrategias de recogida y organización de datos de situaciones cotidianas.'
+                    ],
+                    nota: 'Es la competencia más directamente vinculada con el carácter contextualizado e interdisciplinar de toda la situación de aprendizaje.'
+                },
+                {
+                    codigo: 'MAT.1.7',
+                    relacion: 'alta',
+                    titulo: 'Representar conceptos, procedimientos e información matemática con diferentes tecnologías.',
+                    explicacion: 'Todo el producto final exige representar: planos, tablas, gráficos, coordenadas, croquis, esquemas y fichas visuales.',
+                    criterios: [
+                        'MAT.1.7.1 Representar conceptos, procedimientos, información y resultados con herramientas digitales sencillas.',
+                        'MAT.1.7.2 Esbozar representaciones matemáticas que ayuden a resolver una situación problematizada.'
+                    ],
+                    saberes: [
+                        'MAT.1.E.1.2 Análisis e interpretación de tablas y gráficos estadísticos.',
+                        'MAT.1.E.1.3 Gráficos estadísticos mediante diferentes tecnologías.',
+                        'MAT.1.A.5.3 Situaciones de proporcionalidad: escalas, velocidad y tiempo, etc.'
+                    ],
+                    nota: 'Tiene una relación muy alta porque la situación es eminentemente visual: mapas, gráficas y diseños de guía hacen visible el pensamiento matemático.'
+                },
+                {
+                    codigo: 'MAT.1.8',
+                    relacion: 'alta',
+                    titulo: 'Comunicar conceptos, procedimientos y argumentos matemáticos con precisión.',
+                    explicacion: 'La guía y la presentación final no solo muestran resultados: requieren explicar, justificar y usar vocabulario matemático con rigor.',
+                    criterios: [
+                        'MAT.1.8.1 Comunicar ideas, conceptos y procesos usando lenguaje matemático apropiado, oralmente y por escrito.',
+                        'MAT.1.8.2 Reconocer y emplear lenguaje matemático presente en contextos cotidianos.'
+                    ],
+                    saberes: [
+                        'MAT.1.D.3.1 Variable: comprensión del concepto en sus diferentes naturalezas.',
+                        'MAT.1.A.4.2 Selección de la representación adecuada para una misma cantidad.'
+                    ],
+                    nota: 'Es esencial en las exposiciones, en la redacción de fichas y en la defensa oral del producto final.'
+                },
+                {
+                    codigo: 'MAT.1.9',
+                    relacion: 'media',
+                    titulo: 'Desarrollar destrezas personales y gestionar emociones en el aprendizaje matemático.',
+                    explicacion: 'El proyecto propone tareas abiertas, trabajo sostenido y revisión del error, por lo que activa la perseverancia y el autoconcepto matemático.',
+                    criterios: [
+                        'MAT.1.9.1 Gestionar emociones propias y generar expectativas positivas ante retos matemáticos.',
+                        'MAT.1.9.2 Mostrar una actitud positiva y perseverante, aceptando la crítica razonada y buscando ayuda.'
+                    ],
+                    saberes: [
+                        'MAT.1.F.1.1 Gestión emocional en el aprendizaje de las matemáticas.',
+                        'MAT.1.F.1.2 Estrategias de curiosidad, iniciativa, perseverancia y resiliencia.',
+                        'MAT.1.F.1.3 Flexibilidad cognitiva y transformación del error en oportunidad de aprendizaje.'
+                    ],
+                    nota: 'Su relación es clara en la metodología, aunque no tanto en el contenido matemático explícito.'
+                },
+                {
+                    codigo: 'MAT.1.10',
+                    relacion: 'alta',
+                    titulo: 'Desarrollar destrezas sociales y colaborar activamente en proyectos matemáticos.',
+                    explicacion: 'La situación está planteada como un proyecto cooperativo con reparto de tareas, decisiones compartidas y construcción conjunta del producto final.',
+                    criterios: [
+                        'MAT.1.10.1 Colaborar activamente y construir relaciones saludables en equipos heterogéneos.',
+                        'MAT.1.10.2 Participar en el reparto de tareas aportando valor y respetando normas de convivencia.'
+                    ],
+                    saberes: [
+                        'MAT.1.F.2.1 Técnicas cooperativas para optimizar el trabajo en equipo.',
+                        'MAT.1.F.2.2 Conductas empáticas y estrategias de gestión de conflictos.',
+                        'MAT.1.F.3.1 Actitudes inclusivas y aceptación de la diversidad.'
+                    ],
+                    nota: 'La cooperación no es un añadido: es parte estructural del proyecto y de la forma en que se construye la guía.'
+                }
+            ];
+
+            const colaboraciones = [
+                {
+                    materia: 'Geografía e Historia',
+                    icono: '🗺️',
+                    fase: 'Inicio del proyecto',
+                    cuando: 'Bloque 1 y arranque del bloque 2',
+                    ideas: [
+                        'Interpretar el plano urbano, la evolución de barrios y la localización de lugares de interés de Almería.',
+                        'Relacionar el trazado de calles, plazas y monumentos con procesos históricos de la ciudad.',
+                        'Diseñar pequeñas paradas patrimoniales para justificar por qué ciertos espacios se incorporan a la guía.'
+                    ]
+                },
+                {
+                    materia: 'Lengua Castellana y Literatura',
+                    icono: '✍️',
+                    fase: 'Producción escrita y oral',
+                    cuando: 'Bloque 4, aunque puede entrar desde el principio',
+                    ideas: [
+                        'Trabajar la redacción clara de fichas, leyendas, descripciones y explicaciones matemáticas.',
+                        'Revisar conectores, cohesión y adecuación del lenguaje en la guía final.',
+                        'Preparar la exposición oral: guion, argumentación, uso del vocabulario específico y defensa del proyecto.'
+                    ]
+                },
+                {
+                    materia: 'Biología y Geología',
+                    icono: '🌿',
+                    fase: 'Contextualización del entorno',
+                    cuando: 'Bloque 3 y parte del producto final',
+                    ideas: [
+                        'Recoger datos de temperatura, clima, vegetación urbana o espacios naturales de la ciudad.',
+                        'Relacionar gráficos y tablas con fenómenos ambientales observables en Almería.',
+                        'Añadir una capa de análisis sobre sostenibilidad urbana y uso responsable del entorno.'
+                    ]
+                },
+                {
+                    materia: 'Tecnología y Digitalización',
+                    icono: '💻',
+                    fase: 'Tratamiento de datos y maquetación',
+                    cuando: 'Bloque 3 y bloque 4',
+                    ideas: [
+                        'Usar hoja de cálculo para tablas, porcentajes, escalas y gráficos.',
+                        'Diseñar la maqueta digital de la guía o de la presentación final.',
+                        'Aplicar pensamiento computacional en la organización del proyecto y en la automatización de tareas simples.'
+                    ]
+                },
+                {
+                    materia: 'Educación Plástica, Visual y Audiovisual',
+                    icono: '🎨',
+                    fase: 'Diseño visual',
+                    cuando: 'Bloque 2, bloque 4 y cierre del proyecto',
+                    ideas: [
+                        'Diseñar iconografía, paleta de color y composición visual de mapas y paneles.',
+                        'Trabajar la lectura de formas geométricas presentes en la arquitectura y el urbanismo.',
+                        'Crear una presentación final más potente visualmente, con jerarquía gráfica y claridad comunicativa.'
+                    ]
+                },
+                {
+                    materia: 'Inglés',
+                    icono: '🌍',
+                    fase: 'Difusión o versión bilingüe',
+                    cuando: 'Producto final o tareas de ampliación',
+                    ideas: [
+                        'Traducir títulos, leyendas y descripciones breves de la guía.',
+                        'Preparar una mini ruta turística matemática en inglés para visitantes.',
+                        'Comparar vocabulario espacial, geométrico y estadístico en ambas lenguas.'
+                    ]
+                },
+                {
+                    materia: 'Francés',
+                    icono: '🗼',
+                    fase: 'Ampliación comunicativa',
+                    cuando: 'Producto final o actividades puntuales',
+                    ideas: [
+                        'Crear una versión breve de la guía con expresiones básicas de orientación y presentación de lugares.',
+                        'Trabajar la comunicación de datos sencillos en otra lengua.',
+                        'Usar el proyecto como contexto motivador para vocabulario funcional.'
+                    ]
+                },
+                {
+                    materia: 'Música',
+                    icono: '🎵',
+                    fase: 'Narrativa y ambientación',
+                    cuando: 'Presentación final',
+                    ideas: [
+                        'Ambientar la exposición con selección musical relacionada con la ciudad o con los espacios elegidos.',
+                        'Explorar ritmos o patrones como apoyo para introducir la idea matemática de secuencia y estructura.',
+                        'Diseñar una banda sonora breve para el producto audiovisual si la guía se presenta en formato digital.'
+                    ]
+                },
+                {
+                    materia: 'Educación Física',
+                    icono: '🏃',
+                    fase: 'Rutas y desplazamientos',
+                    cuando: 'Bloque 2 y producto final',
+                    ideas: [
+                        'Convertir algunas rutas matemáticas en recorridos reales con medición de tiempos y distancias.',
+                        'Comparar trayectos según esfuerzo, duración y orientación espacial.',
+                        'Trabajar la lectura del espacio urbano y la toma de decisiones en movimiento.'
+                    ]
+                },
+                {
+                    materia: 'Atención Educativa o Proyecto interdisciplinar de centro',
+                    icono: '🤝',
+                    fase: 'Sentido social del proyecto',
+                    cuando: 'A lo largo de toda la situación',
+                    ideas: [
+                        'Debatir qué espacios de la ciudad son accesibles, inclusivos o sostenibles.',
+                        'Introducir miradas de equidad, convivencia y uso social del entorno urbano.',
+                        'Relacionar la toma de decisiones matemáticas con criterios éticos y ciudadanos.'
+                    ]
+                },
+                {
+                    materia: 'Tutoría',
+                    icono: '🧭',
+                    fase: 'Organización del equipo',
+                    cuando: 'Antes y durante el trabajo cooperativo',
+                    ideas: [
+                        'Acordar roles de equipo, tiempos de trabajo y normas de comunicación.',
+                        'Revisar cómo se reparten tareas y cómo se gestionan conflictos o bloqueos.',
+                        'Usar el proyecto como ocasión para trabajar autonomía, responsabilidad y cohesión grupal.'
+                    ]
+                },
+                {
+                    materia: 'Patrimonio local y entorno andaluz',
+                    icono: '🏛️',
+                    fase: 'Profundización contextual',
+                    cuando: 'Especialmente en bloques 1, 2 y producto final',
+                    ideas: [
+                        'Incorporar monumentos, barrios, costumbres y referencias andalusíes o contemporáneas de Almería.',
+                        'Relacionar la historia local con medidas, planos, escalas y organización del espacio.',
+                        'Dar más identidad territorial a la guía y conectarla con la cultura andaluza.'
+                    ]
+                }
+            ];
+
+            const grid = document.getElementById('curriculo-grid');
+            const interGrid = document.getElementById('inter-grid');
+            const filtroTexto = document.getElementById('filtro-curriculo');
+            const chips = [...document.querySelectorAll('.chip-filtro')];
+            const mensajeVacio = document.getElementById('mensaje-vacio-curriculo');
+
+            let filtroRelacion = 'todas';
+
+            function claseRelacion(relacion) {
+                return {
+                    alta: 'rel-alta',
+                    media: 'rel-media',
+                    baja: 'rel-baja'
+                }[relacion] || 'rel-media';
+            }
+
+            function etiquetaRelacion(relacion) {
+                return {
+                    alta: 'Relación alta',
+                    media: 'Relación media',
+                    baja: 'Relación baja'
+                }[relacion] || 'Relación media';
+            }
+
+            function renderCompetencias() {
+                const texto = filtroTexto.value.trim().toLowerCase();
+                const cards = competencias.filter((item) => {
+                    const coincideRelacion = filtroRelacion === 'todas' || item.relacion === filtroRelacion;
+                    const corpus = [
+                        item.codigo,
+                        item.titulo,
+                        item.explicacion,
+                        item.nota,
+                        ...item.criterios,
+                        ...item.saberes
+                    ].join(' ').toLowerCase();
+                    const coincideTexto = !texto || corpus.includes(texto);
+                    return coincideRelacion && coincideTexto;
+                });
+
+                grid.innerHTML = cards.map((item) => `
+                    <article class="competencia-card">
+                        <div class="competencia-head">
+                            <div>
+                                <span class="competencia-id">🧠 ${item.codigo}</span>
+                                <h3>${item.titulo}</h3>
+                            </div>
+                            <span class="tag-relacion ${claseRelacion(item.relacion)}">${etiquetaRelacion(item.relacion)}</span>
+                        </div>
+                        <p>${item.explicacion}</p>
+                        <div class="bloque-lista">
+                            <section class="subbloque">
+                                <h4>Criterios de evaluación conectados</h4>
+                                <ul>${item.criterios.map((criterio) => `<li>${criterio}</li>`).join('')}</ul>
+                            </section>
+                            <section class="subbloque">
+                                <h4>Saberes básicos asociados</h4>
+                                <ul>${item.saberes.map((saber) => `<li>${saber}</li>`).join('')}</ul>
+                            </section>
+                        </div>
+                        <div class="nota-relacion"><strong>Relación con la situación:</strong> ${item.nota}</div>
+                    </article>
+                `).join('');
+
+                mensajeVacio.style.display = cards.length ? 'none' : 'block';
+            }
+
+            function renderInterdisciplinar() {
+                interGrid.innerHTML = colaboraciones.map((item) => `
+                    <article class="materia-card">
+                        <div class="materia-head">
+                            <span class="materia-icono" aria-hidden="true">${item.icono}</span>
+                            <div>
+                                <h3>${item.materia}</h3>
+                                <span class="fase-chip">📍 ${item.fase}</span>
+                            </div>
+                        </div>
+                        <p><strong>Cuándo puede intervenir:</strong> ${item.cuando}</p>
+                        <ul>${item.ideas.map((idea) => `<li>${idea}</li>`).join('')}</ul>
+                    </article>
+                `).join('');
+            }
+
+            chips.forEach((chip) => {
+                chip.addEventListener('click', () => {
+                    filtroRelacion = chip.dataset.filter;
+                    chips.forEach((btn) => btn.classList.toggle('activo', btn === chip));
+                    renderCompetencias();
+                });
+            });
+
+            filtroTexto.addEventListener('input', renderCompetencias);
+
+            renderCompetencias();
+            renderInterdisciplinar();
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+</body>
+</html>
