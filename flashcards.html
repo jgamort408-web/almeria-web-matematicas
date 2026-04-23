@@ -5,8 +5,8 @@
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📐</text></svg>">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Flashcards de repaso de todo el proyecto Almeria en cifras y formas, cargadas desde un archivo JSON editable.">
-    <title>Flashcards - Almeria en cifras y formas</title>
+    <meta name="description" content="Flashcards visuales para repasar todo el proyecto Almería en cifras y formas con progreso guardado y repaso inteligente.">
+    <title>Flashcards - Almería en cifras y formas</title>
     <script>
         window.MathJax = {
             tex: {
@@ -21,9 +21,23 @@
     </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
+        :root {
+            --flash-navy: #0f3554;
+            --flash-sea: #1d6fa3;
+            --flash-gold: #f0bb41;
+            --flash-sand: #f6ecd2;
+            --flash-coral: #d96d58;
+            --flash-mint: #4d8b69;
+            --flash-ice: #eef7fb;
+            --flash-shadow: 0 16px 36px rgba(8, 32, 50, 0.16);
+        }
+
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: var(--fondo-cuerpo);
+            background:
+                radial-gradient(circle at top right, rgba(240, 187, 65, 0.16), transparent 26%),
+                radial-gradient(circle at left center, rgba(29, 111, 163, 0.12), transparent 25%),
+                linear-gradient(180deg, #f9fcfe 0%, #eef5f8 100%);
             color: var(--texto-principal);
             margin: 0;
             padding: 20px 10px;
@@ -32,61 +46,91 @@
         }
 
         .hero-flashcards {
-            background: linear-gradient(135deg, var(--gris-pizarra) 0%, var(--azul-mar) 100%);
+            background:
+                radial-gradient(circle at top right, rgba(240, 187, 65, 0.3), transparent 28%),
+                linear-gradient(135deg, var(--flash-navy) 0%, var(--flash-sea) 100%);
             color: var(--blanco);
-            padding: 42px 28px;
-            border-radius: 18px;
-            box-shadow: 0 10px 24px rgba(0, 66, 102, 0.18);
+            padding: 38px 28px;
+            border-radius: 28px;
+            box-shadow: var(--flash-shadow);
         }
 
         .hero-flashcards h1 {
-            margin: 0 0 10px;
-            font-size: 2.5rem;
+            margin: 0 0 12px;
+            font-size: 2.6rem;
+            letter-spacing: 0.4px;
         }
 
         .hero-flashcards p {
             margin: 0;
-            max-width: 760px;
-            color: var(--arena-clara);
+            max-width: 780px;
             font-size: 1.08rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hero-flashcards strong {
+            color: #ffe4a3;
         }
 
         .resumen-barra {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr));
             gap: 14px;
         }
 
         .dato-resumen {
-            background-color: var(--blanco);
-            border-radius: 14px;
-            padding: 18px 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            border-top: 4px solid var(--terracota);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(8px);
+            border-radius: 22px;
+            padding: 20px;
+            box-shadow: 0 10px 24px rgba(15, 53, 84, 0.08);
+            border: 1px solid rgba(15, 53, 84, 0.08);
         }
 
         .dato-resumen strong {
             display: block;
-            color: var(--azul-mar);
-            font-size: 1.45rem;
+            color: var(--flash-navy);
+            font-size: 1.7rem;
+            line-height: 1.1;
+        }
+
+        .dato-resumen span {
+            color: #536273;
+            font-size: 0.96rem;
         }
 
         .panel-filtros,
-        .panel-ayuda,
         .panel-estado {
-            background-color: var(--blanco);
-            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.92);
+            border-radius: 24px;
             padding: 24px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 24px rgba(15, 53, 84, 0.08);
+            border: 1px solid rgba(15, 53, 84, 0.08);
         }
 
         .panel-filtros {
-            border-top: 4px solid var(--verde-med);
+            border-top: 6px solid var(--flash-gold);
+        }
+
+        .panel-estado {
+            border-top: 6px solid var(--flash-sea);
+        }
+
+        .panel-filtros h2,
+        .panel-estado h2 {
+            margin: 0 0 14px;
+            color: var(--flash-navy);
+            font-size: 1.4rem;
+        }
+
+        .panel-filtros p,
+        .panel-estado p {
+            margin: 0;
         }
 
         .filtros-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
             gap: 16px;
             align-items: end;
         }
@@ -95,7 +139,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
-            color: var(--gris-pizarra);
+            color: var(--flash-navy);
         }
 
         .campo select,
@@ -103,20 +147,23 @@
             width: 100%;
             box-sizing: border-box;
             padding: 12px 14px;
-            border: 2px solid #d8dee5;
-            border-radius: 10px;
+            border: 2px solid #dce7ef;
+            border-radius: 14px;
             font-size: 1rem;
             background-color: #fff;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
         .campo select:focus,
         .campo input:focus {
             outline: none;
-            border-color: var(--terracota);
-            box-shadow: 0 0 0 4px rgba(211, 110, 90, 0.14);
+            border-color: var(--flash-coral);
+            box-shadow: 0 0 0 4px rgba(217, 109, 88, 0.14);
         }
 
-        .acciones-filtros {
+        .acciones-filtros,
+        .acciones-estudio,
+        .acciones-memoria {
             display: flex;
             flex-wrap: wrap;
             gap: 12px;
@@ -124,76 +171,101 @@
 
         .btn-flash {
             border: none;
-            border-radius: 10px;
+            border-radius: 14px;
             padding: 12px 18px;
             font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
         }
 
         .btn-flash:hover,
         .btn-flash:focus {
             transform: translateY(-2px);
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
-            outline: 3px solid rgba(0, 90, 140, 0.18);
+            box-shadow: 0 10px 18px rgba(15, 53, 84, 0.16);
+            outline: 3px solid rgba(29, 111, 163, 0.18);
             outline-offset: 2px;
         }
 
-        .btn-primario {
-            background-color: var(--terracota);
+        .btn-principal {
+            background: linear-gradient(135deg, var(--flash-coral) 0%, #c75643 100%);
             color: var(--blanco);
         }
 
         .btn-secundario {
-            background-color: var(--azul-mar);
+            background: linear-gradient(135deg, var(--flash-sea) 0%, #16577f 100%);
             color: var(--blanco);
         }
 
+        .btn-acierto {
+            background: linear-gradient(135deg, var(--flash-mint) 0%, #38664d 100%);
+            color: var(--blanco);
+        }
+
+        .btn-fallo {
+            background: linear-gradient(135deg, var(--flash-gold) 0%, #db9b14 100%);
+            color: #25313b;
+        }
+
         .btn-neutro {
-            background-color: var(--arena-clara);
-            color: var(--texto-principal);
+            background: var(--flash-sand);
+            color: #57431b;
+        }
+
+        .btn-suave {
+            background: #edf3f7;
+            color: #385062;
         }
 
         .visor-flashcards {
             display: grid;
-            grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+            grid-template-columns: minmax(0, 1.75fr) minmax(290px, 0.9fr);
             gap: 24px;
             align-items: start;
         }
 
-        .tarjeta-wrap {
+        .tarjeta-wrap,
+        .estado-bloque {
             display: flex;
             flex-direction: column;
             gap: 18px;
         }
 
-        .tarjeta-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
+        .estado-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .chip {
-            background-color: #e9f1f7;
-            color: var(--azul-mar);
-            padding: 8px 12px;
-            border-radius: 999px;
+        .estado-chip {
+            background: var(--flash-ice);
+            border-radius: 18px;
+            padding: 14px;
+            border: 1px solid rgba(29, 111, 163, 0.08);
+        }
+
+        .estado-chip strong {
+            display: block;
+            color: var(--flash-navy);
+            font-size: 1.2rem;
+        }
+
+        .estado-chip span {
+            color: #557084;
             font-size: 0.92rem;
-            font-weight: bold;
         }
 
         .flashcard {
-            background: linear-gradient(160deg, #ffffff 0%, #f8fbfd 100%);
-            min-height: 360px;
-            border-radius: 24px;
+            position: relative;
+            background:
+                radial-gradient(circle at top right, rgba(240, 187, 65, 0.22), transparent 20%),
+                linear-gradient(160deg, #ffffff 0%, #f8fbfd 100%);
+            min-height: 540px;
+            border-radius: 34px;
             padding: 28px;
-            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(0, 66, 102, 0.08);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            gap: 18px;
+            box-shadow: var(--flash-shadow);
+            overflow: hidden;
+            border: 1px solid rgba(15, 53, 84, 0.08);
         }
 
         .flashcard[data-face="front"] .cara-reverso,
@@ -201,27 +273,136 @@
             display: none;
         }
 
-        .flashcard h2 {
-            margin: 0;
-            color: var(--azul-mar);
-            font-size: 1.9rem;
-            line-height: 1.2;
+        .flashcard::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(135deg, rgba(29, 111, 163, 0.06), transparent 40%),
+                linear-gradient(300deg, rgba(240, 187, 65, 0.08), transparent 30%);
+            pointer-events: none;
         }
 
-        .flashcard p {
-            margin: 0;
-            font-size: 1.12rem;
+        .flashcard-inner {
+            position: relative;
+            z-index: 1;
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            justify-content: space-between;
         }
 
-        .flashcard .texto-destacado {
-            font-size: 1.18rem;
-        }
-
-        .pie-tarjeta {
+        .tarjeta-encabezado {
             display: flex;
             justify-content: space-between;
+            gap: 16px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .tarjeta-sello {
+            display: inline-flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
+            background: rgba(15, 53, 84, 0.07);
+            padding: 10px 14px;
+            border-radius: 999px;
+            color: var(--flash-navy);
+            font-weight: bold;
+        }
+
+        .sello-icono {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.15rem;
+            color: var(--blanco);
+            background: linear-gradient(135deg, var(--flash-sea) 0%, var(--flash-navy) 100%);
+            box-shadow: 0 8px 16px rgba(29, 111, 163, 0.22);
+        }
+
+        .tarjeta-rastro {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: flex-end;
+        }
+
+        .meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 999px;
+            padding: 9px 12px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            background: #edf4f8;
+            color: #385469;
+        }
+
+        .meta-pill[data-kind="bloque"] {
+            background: #e2f1f9;
+            color: #0d4a70;
+        }
+
+        .meta-pill[data-kind="sesion"] {
+            background: #fff1d6;
+            color: #8b6113;
+        }
+
+        .meta-pill[data-kind="categoria"] {
+            background: #e7f4eb;
+            color: #2e6949;
+        }
+
+        .tarjeta-centro {
+            flex: 1;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .tarjeta-centro h2 {
+            margin: 0 0 16px;
+            font-size: 1rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #6e8191;
+        }
+
+        .tarjeta-centro .texto-principal {
+            margin: 0 auto;
+            max-width: 760px;
+            font-size: 2rem;
+            line-height: 1.35;
+            color: var(--flash-navy);
+            font-weight: 700;
+        }
+
+        .cara-reverso .texto-principal {
+            font-size: 1.75rem;
+        }
+
+        .tarjeta-pista {
+            margin-top: 16px;
+            display: inline-block;
+            background: rgba(240, 187, 65, 0.18);
+            border-radius: 16px;
+            padding: 12px 14px;
+            color: #6d5317;
+            font-size: 1rem;
+        }
+
+        .tarjeta-pie {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: flex-end;
             flex-wrap: wrap;
         }
 
@@ -232,40 +413,30 @@
         }
 
         .etiqueta {
-            background-color: #f7ecde;
-            color: #865b12;
-            padding: 6px 10px;
+            background: #f5ece1;
+            color: #815b16;
+            padding: 7px 11px;
             border-radius: 999px;
-            font-size: 0.85rem;
+            font-size: 0.84rem;
+            font-weight: bold;
         }
 
-        .controles-tarjeta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
+        .tarjeta-progreso {
+            text-align: right;
+            color: #607789;
+            font-weight: bold;
         }
 
-        .panel-estado {
-            border-top: 4px solid var(--azul-mar);
-        }
-
-        .estado-bloque {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-        }
-
-        .estado-bloque h2,
-        .panel-ayuda h2 {
-            margin: 0;
-            color: var(--gris-pizarra);
-            font-size: 1.5rem;
+        .tarjeta-progreso strong {
+            display: block;
+            color: var(--flash-navy);
+            font-size: 1.1rem;
         }
 
         .progreso-visual {
             width: 100%;
             height: 14px;
-            background-color: #e5edf3;
+            background: #dfebf2;
             border-radius: 999px;
             overflow: hidden;
         }
@@ -274,50 +445,58 @@
             display: block;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, var(--terracota) 0%, var(--verde-med) 100%);
+            background: linear-gradient(90deg, var(--flash-coral) 0%, var(--flash-gold) 48%, var(--flash-mint) 100%);
             border-radius: 999px;
             transition: width 0.25s ease;
         }
 
-        .lista-ayuda {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .lista-ayuda li + li {
-            margin-top: 8px;
-        }
-
-        .codigo-json {
-            display: block;
-            background-color: #0f2233;
-            color: #e8f2fa;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 0.92rem;
-            overflow-x: auto;
-            white-space: pre;
+        .mensaje-error,
+        .mensaje-vacio {
+            display: none;
+            border-radius: 20px;
+            padding: 18px 20px;
         }
 
         .mensaje-error {
-            display: none;
-            background-color: #fff0eb;
+            background: #fff0eb;
             color: #8d3e2d;
-            border-left: 5px solid var(--terracota);
-            border-radius: 12px;
-            padding: 16px 18px;
+            border-left: 6px solid var(--flash-coral);
         }
 
         .mensaje-vacio {
-            display: none;
-            background-color: #f4f8fb;
-            border: 2px dashed var(--azul-mar);
-            border-radius: 14px;
-            padding: 26px;
+            background: #edf7fb;
+            border: 2px dashed var(--flash-sea);
             text-align: center;
         }
 
-        @media (max-width: 900px) {
+        .sesion-guardada {
+            background: linear-gradient(135deg, #edf8ff 0%, #f7fbfd 100%);
+            border: 1px solid rgba(29, 111, 163, 0.12);
+            border-radius: 18px;
+            padding: 16px;
+            color: #456176;
+        }
+
+        .sesion-guardada strong {
+            color: var(--flash-navy);
+        }
+
+        .mini-leyenda {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .mini-badge {
+            background: #eff5f8;
+            color: #496475;
+            border-radius: 999px;
+            padding: 7px 10px;
+            font-size: 0.84rem;
+            font-weight: bold;
+        }
+
+        @media (max-width: 980px) {
             .visor-flashcards {
                 grid-template-columns: 1fr;
             }
@@ -329,21 +508,31 @@
             }
 
             .flashcard {
-                min-height: 320px;
+                min-height: 480px;
                 padding: 22px;
+                border-radius: 26px;
             }
 
-            .flashcard h2 {
-                font-size: 1.55rem;
+            .tarjeta-centro .texto-principal {
+                font-size: 1.5rem;
+            }
+
+            .cara-reverso .texto-principal {
+                font-size: 1.35rem;
+            }
+
+            .acciones-filtros,
+            .acciones-estudio,
+            .acciones-memoria {
+                flex-direction: column;
             }
 
             .btn-flash {
                 width: 100%;
             }
 
-            .controles-tarjeta,
-            .acciones-filtros {
-                flex-direction: column;
+            .estado-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -354,49 +543,54 @@
 
     <header class="site-header" role="banner">
         <div class="header-inner">
-            <a href="index.html" class="header-logo" aria-label="Almeria en cifras y formas - Inicio">
+            <a href="index.html" class="header-logo" aria-label="Almería en cifras y formas - Inicio">
                 <span class="header-logo-icon" aria-hidden="true">📐</span>
                 <span class="header-logo-texto">
-                    <strong>Almeria</strong><span class="header-logo-sub"> en cifras y formas</span>
+                    <strong>Almería</strong><span class="header-logo-sub"> en cifras y formas</span>
                 </span>
             </a>
             <button class="header-hamburger" id="hamburger-btn"
-                    aria-label="Abrir menu" aria-expanded="false" aria-controls="main-nav">
+                    aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
                 <span></span><span></span><span></span>
             </button>
-            <nav class="header-nav" id="main-nav" aria-label="Navegacion principal">
+            <nav class="header-nav" id="main-nav" aria-label="Navegación principal">
                 <a href="index.html" class="header-link"><span aria-hidden="true">🏠</span> Inicio</a>
                 <a href="proyecto.html" class="header-link"><span aria-hidden="true">📌</span> Proyecto</a>
                 <a href="ruta.html" class="header-link"><span aria-hidden="true">🗺️</span> Ruta</a>
                 <a href="glosario.html" class="header-link"><span aria-hidden="true">📖</span> Glosario</a>
                 <a href="flashcards.html" class="header-link"><span aria-hidden="true">🃏</span> Flashcards</a>
-                <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluacion</a>
+                <a href="evaluacion.html" class="header-link"><span aria-hidden="true">✅</span> Evaluación</a>
             </nav>
         </div>
     </header>
 
     <main class="contenedor" id="contenido-principal" tabindex="-1">
         <section class="hero-flashcards">
-            <h1>Flashcards del proyecto</h1>
-            <p>Repasa todo el contenido con tarjetas filtrables por bloque, sesión o categoría. Las preguntas se cargan desde <code>flashcards-data.json</code> para que puedas añadir, quitar o reorganizar tarjetas sin tocar la estructura de la página.</p>
+            <h1>Flashcards para estudiar de verdad</h1>
+            <p>Repasa el proyecto con una dinámica clara: <strong>marca las que ya sabes</strong>, haz que reaparezcan las que todavía fallas y retoma tu progreso más tarde con la sesión guardada.</p>
         </section>
 
-        <section class="resumen-barra" aria-label="Resumen de estudio">
+        <section class="resumen-barra" aria-label="Resumen general">
             <article class="dato-resumen">
                 <strong id="resumen-total">0</strong>
-                <span>tarjetas disponibles</span>
+                <span>flashcards totales</span>
             </article>
             <article class="dato-resumen">
-                <strong id="resumen-activas">0</strong>
-                <span>tarjetas en el filtro actual</span>
+                <strong id="resumen-pendientes">0</strong>
+                <span>pendientes por consolidar</span>
             </article>
             <article class="dato-resumen">
-                <strong id="resumen-bloques">0</strong>
-                <span>bloques representados</span>
+                <strong id="resumen-dominadas">0</strong>
+                <span>marcadas como sabidas</span>
+            </article>
+            <article class="dato-resumen">
+                <strong id="resumen-repaso">0</strong>
+                <span>en cola de repaso</span>
             </article>
         </section>
 
-        <section class="panel-filtros" aria-label="Filtros de flashcards">
+        <section class="panel-filtros" aria-label="Filtros y modos de estudio">
+            <h2>Elige tu zona de estudio</h2>
             <div class="filtros-grid">
                 <div class="campo">
                     <label for="filtro-bloque">Bloque</label>
@@ -417,81 +611,122 @@
                     </select>
                 </div>
                 <div class="campo">
-                    <label for="filtro-texto">Buscar texto</label>
-                    <input id="filtro-texto" type="search" placeholder="Ej. perimetro, recta, grafica...">
+                    <label for="filtro-modo">Modo</label>
+                    <select id="filtro-modo">
+                        <option value="pendientes">Solo pendientes</option>
+                        <option value="todas">Todas</option>
+                        <option value="repaso">Solo repaso</option>
+                        <option value="sabidas">Solo sabidas</option>
+                    </select>
+                </div>
+                <div class="campo">
+                    <label for="filtro-texto">Buscar</label>
+                    <input id="filtro-texto" type="search" placeholder="Ej. perímetro, recta, gráfica...">
                 </div>
             </div>
             <div class="acciones-filtros">
                 <button class="btn-flash btn-neutro" type="button" id="btn-limpiar">Limpiar filtros</button>
-                <button class="btn-flash btn-secundario" type="button" id="btn-aleatoria">Tarjeta aleatoria</button>
+                <button class="btn-flash btn-suave" type="button" id="btn-barajar">Barajar mazo</button>
+                <button class="btn-flash btn-secundario" type="button" id="btn-aleatoria">Ir a una aleatoria</button>
             </div>
         </section>
 
         <div class="mensaje-error" id="mensaje-error" role="alert"></div>
         <div class="mensaje-vacio" id="mensaje-vacio" role="status" aria-live="polite">
-            <p>No hay tarjetas que coincidan con el filtro actual.</p>
-            <p>Prueba con otro bloque, otra sesión o borra el texto de búsqueda.</p>
+            <p>No hay tarjetas en este modo con el filtro actual.</p>
+            <p>Prueba otro bloque, cambia el modo de estudio o limpia la búsqueda.</p>
         </div>
 
-        <section class="visor-flashcards" aria-label="Zona principal de estudio">
+        <section class="visor-flashcards" aria-label="Zona principal de repaso">
             <div class="tarjeta-wrap">
-                <div class="tarjeta-meta">
-                    <span class="chip" id="meta-bloque">Bloque</span>
-                    <span class="chip" id="meta-sesion">Sesión</span>
-                    <span class="chip" id="meta-categoria">Categoría</span>
-                </div>
-
                 <article class="flashcard" id="flashcard" data-face="front" aria-live="polite">
-                    <div class="cara-frente">
-                        <h2>Pregunta</h2>
-                        <p class="texto-destacado" id="texto-pregunta">Cargando flashcards...</p>
-                    </div>
-                    <div class="cara-reverso">
-                        <h2>Respuesta</h2>
-                        <p class="texto-destacado" id="texto-respuesta"></p>
-                        <p id="texto-pista"></p>
-                    </div>
-                    <div class="pie-tarjeta">
-                        <div class="etiquetas" id="lista-etiquetas"></div>
-                        <span id="contador-tarjeta">0 / 0</span>
+                    <div class="flashcard-inner">
+                        <div class="tarjeta-encabezado">
+                            <div class="tarjeta-sello">
+                                <span class="sello-icono" id="bloque-icono" aria-hidden="true">📘</span>
+                                <span id="texto-cabecera">Flashcard activa</span>
+                            </div>
+                            <div class="tarjeta-rastro">
+                                <span class="meta-pill" data-kind="bloque" id="meta-bloque">Bloque</span>
+                                <span class="meta-pill" data-kind="sesion" id="meta-sesion">Sesión</span>
+                                <span class="meta-pill" data-kind="categoria" id="meta-categoria">Categoría</span>
+                            </div>
+                        </div>
+
+                        <div class="tarjeta-centro cara-frente">
+                            <div>
+                                <h2>Pregunta</h2>
+                                <div class="texto-principal" id="texto-pregunta">Cargando flashcards...</div>
+                            </div>
+                        </div>
+
+                        <div class="tarjeta-centro cara-reverso">
+                            <div>
+                                <h2>Respuesta</h2>
+                                <div class="texto-principal" id="texto-respuesta"></div>
+                                <div class="tarjeta-pista" id="texto-pista"></div>
+                            </div>
+                        </div>
+
+                        <div class="tarjeta-pie">
+                            <div class="etiquetas" id="lista-etiquetas"></div>
+                            <div class="tarjeta-progreso">
+                                <strong id="contador-tarjeta">0 / 0</strong>
+                                <span id="texto-id">ID: -</span>
+                            </div>
+                        </div>
                     </div>
                 </article>
 
-                <div class="controles-tarjeta">
-                    <button class="btn-flash btn-primario" type="button" id="btn-girar">Ver respuesta</button>
-                    <button class="btn-flash btn-neutro" type="button" id="btn-anterior">Anterior</button>
-                    <button class="btn-flash btn-secundario" type="button" id="btn-siguiente">Siguiente</button>
+                <div class="acciones-estudio">
+                    <button class="btn-flash btn-principal" type="button" id="btn-girar">Ver respuesta</button>
+                    <button class="btn-flash btn-fallo" type="button" id="btn-no-se">No la sé</button>
+                    <button class="btn-flash btn-acierto" type="button" id="btn-si-se">La sé</button>
+                    <button class="btn-flash btn-suave" type="button" id="btn-saltar">Saltar</button>
                 </div>
             </div>
 
             <aside class="estado-bloque">
                 <section class="panel-estado">
-                    <h2>Tu progreso</h2>
-                    <p id="texto-progreso">Tarjeta 0 de 0</p>
+                    <h2>Tu sesión</h2>
+                    <div class="estado-grid">
+                        <div class="estado-chip">
+                            <strong id="texto-progreso">Tarjeta 0 de 0</strong>
+                            <span>posición en el mazo activo</span>
+                        </div>
+                        <div class="estado-chip">
+                            <strong id="estado-modo">Pendientes</strong>
+                            <span>modo de estudio actual</span>
+                        </div>
+                        <div class="estado-chip">
+                            <strong id="estado-fallos">0</strong>
+                            <span>tarjetas en repaso</span>
+                        </div>
+                        <div class="estado-chip">
+                            <strong id="estado-sabidas">0</strong>
+                            <span>tarjetas que ya sabes</span>
+                        </div>
+                    </div>
                     <div class="progreso-visual" aria-hidden="true">
                         <span id="barra-progreso"></span>
                     </div>
-                    <p id="texto-id">ID: -</p>
+                    <div class="mini-leyenda">
+                        <span class="mini-badge" id="texto-filtro">Filtro actual: todos</span>
+                        <span class="mini-badge" id="texto-cola">Reapariciones: 0</span>
+                    </div>
                 </section>
 
-                <section class="panel-ayuda">
-                    <h2>Cómo añadir tarjetas</h2>
-                        <p>Solo tienes que duplicar un objeto dentro de <code>flashcards-data.json</code> siguiendo esta estructura:</p>
-                    <code class="codigo-json">{
-  "id": "bloque2-14",
-  "bloque": "Bloque 2",
-  "sesion": 8,
-  "categoria": "Area",
-  "pregunta": "¿Pregunta nueva con formula $A=b \\cdot h$?",
-  "respuesta": "Respuesta nueva con LaTeX: $A=l^2$",
-  "pista": "Pista opcional",
-  "etiquetas": ["area", "repaso"]
-}</code>
-                    <ul class="lista-ayuda">
-                        <li><strong><code>id</code></strong> debe ser único.</li>
-                        <li><strong><code>bloque</code></strong>, <strong><code>sesion</code></strong> y <strong><code>categoria</code></strong> alimentan los filtros.</li>
-                        <li><strong><code>etiquetas</code></strong> permite organizar mejor el repaso.</li>
-                    </ul>
+                <section class="panel-estado">
+                    <h2>Continuar más tarde</h2>
+                    <div class="sesion-guardada">
+                        <p><strong id="estado-guardado">Sesión no guardada todavía.</strong></p>
+                        <p id="detalle-guardado">En cuanto empieces a estudiar, se guardarán tus IDs activos, tu posición y tus tarjetas sabidas o pendientes.</p>
+                    </div>
+                    <div class="acciones-memoria">
+                        <button class="btn-flash btn-secundario" type="button" id="btn-guardar">Guardar ahora</button>
+                        <button class="btn-flash btn-neutro" type="button" id="btn-continuar">Recuperar sesión</button>
+                        <button class="btn-flash btn-suave" type="button" id="btn-reiniciar">Reiniciar progreso</button>
+                    </div>
                 </section>
             </aside>
         </section>
@@ -500,8 +735,8 @@
     <footer class="footer-sitio" role="contentinfo">
         <div class="footer-contenido">
             <div class="footer-autor">
-                <span class="footer-nombre">Juan Maria Gamez Ortiz</span>
-                <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Andalus</a>
+                <span class="footer-nombre">Juan María Gámez Ortiz</span>
+                <a href="https://iesalandalus.org/joomla/" class="footer-centro">I.E.S. Al-Ándalus</a>
             </div>
             <nav class="footer-idiomas" aria-label="Selector de idioma">
                 <span class="footer-idiomas-label"><span aria-hidden="true">🌐</span> Idioma:</span>
@@ -524,11 +759,25 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
+            const STORAGE_KEY = 'almeria_flashcards_progress_v2';
+            const SESSION_KEY = 'almeria_flashcards_session_v2';
+            const BLOCK_STYLES = {
+                'Proyecto': { icon: '🧭', label: 'Proyecto' },
+                'Bloque 1': { icon: '📍', label: 'Mapa y coordenadas' },
+                'Bloque 2': { icon: '📐', label: 'Geometría urbana' },
+                'Bloque 3': { icon: '📊', label: 'Datos y funciones' },
+                'Bloque 4': { icon: '🎤', label: 'Producto final' },
+                'Glosario': { icon: '📖', label: 'Glosario' }
+            };
+
             const state = {
                 cards: [],
                 filtered: [],
+                reviewQueue: [],
                 index: 0,
-                face: 'front'
+                face: 'front',
+                progress: loadProgress(),
+                restoredSession: null
             };
 
             const ui = {
@@ -539,45 +788,154 @@
                 metaBloque: document.getElementById('meta-bloque'),
                 metaSesion: document.getElementById('meta-sesion'),
                 metaCategoria: document.getElementById('meta-categoria'),
+                bloqueIcono: document.getElementById('bloque-icono'),
+                textoCabecera: document.getElementById('texto-cabecera'),
                 etiquetas: document.getElementById('lista-etiquetas'),
                 contador: document.getElementById('contador-tarjeta'),
                 progreso: document.getElementById('texto-progreso'),
                 barra: document.getElementById('barra-progreso'),
                 textoId: document.getElementById('texto-id'),
                 resumenTotal: document.getElementById('resumen-total'),
-                resumenActivas: document.getElementById('resumen-activas'),
-                resumenBloques: document.getElementById('resumen-bloques'),
+                resumenPendientes: document.getElementById('resumen-pendientes'),
+                resumenDominadas: document.getElementById('resumen-dominadas'),
+                resumenRepaso: document.getElementById('resumen-repaso'),
                 filtroBloque: document.getElementById('filtro-bloque'),
                 filtroCategoria: document.getElementById('filtro-categoria'),
                 filtroSesion: document.getElementById('filtro-sesion'),
+                filtroModo: document.getElementById('filtro-modo'),
                 filtroTexto: document.getElementById('filtro-texto'),
                 btnGirar: document.getElementById('btn-girar'),
-                btnAnterior: document.getElementById('btn-anterior'),
-                btnSiguiente: document.getElementById('btn-siguiente'),
+                btnNoSe: document.getElementById('btn-no-se'),
+                btnSiSe: document.getElementById('btn-si-se'),
+                btnSaltar: document.getElementById('btn-saltar'),
                 btnAleatoria: document.getElementById('btn-aleatoria'),
+                btnBarajar: document.getElementById('btn-barajar'),
                 btnLimpiar: document.getElementById('btn-limpiar'),
+                btnGuardar: document.getElementById('btn-guardar'),
+                btnContinuar: document.getElementById('btn-continuar'),
+                btnReiniciar: document.getElementById('btn-reiniciar'),
                 mensajeError: document.getElementById('mensaje-error'),
-                mensajeVacio: document.getElementById('mensaje-vacio')
+                mensajeVacio: document.getElementById('mensaje-vacio'),
+                estadoModo: document.getElementById('estado-modo'),
+                estadoFallos: document.getElementById('estado-fallos'),
+                estadoSabidas: document.getElementById('estado-sabidas'),
+                textoFiltro: document.getElementById('texto-filtro'),
+                textoCola: document.getElementById('texto-cola'),
+                estadoGuardado: document.getElementById('estado-guardado'),
+                detalleGuardado: document.getElementById('detalle-guardado')
             };
 
-            const normalize = (value) => value
-                .toString()
-                .toLowerCase()
-                .normalize('NFD')
-                .replace(/[\u0300-\u036f]/g, '');
-
-            async function renderMath() {
-                if (!window.MathJax || typeof window.MathJax.typesetPromise !== 'function') {
-                    return;
+            function loadProgress() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (!raw) {
+                        return { knownIds: [], failedIds: [], savedAt: null };
+                    }
+                    const parsed = JSON.parse(raw);
+                    return {
+                        knownIds: Array.isArray(parsed.knownIds) ? parsed.knownIds : [],
+                        failedIds: Array.isArray(parsed.failedIds) ? parsed.failedIds : [],
+                        savedAt: parsed.savedAt || null
+                    };
+                } catch {
+                    return { knownIds: [], failedIds: [], savedAt: null };
                 }
-                await window.MathJax.typesetPromise([ui.flashcard]);
+            }
+
+            function saveProgress() {
+                state.progress.savedAt = new Date().toISOString();
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state.progress));
+            }
+
+            function saveSession() {
+                const payload = {
+                    ids: state.filtered.map((card) => card.id),
+                    reviewQueue: state.reviewQueue,
+                    index: state.index,
+                    face: state.face,
+                    filters: {
+                        bloque: ui.filtroBloque.value,
+                        categoria: ui.filtroCategoria.value,
+                        sesion: ui.filtroSesion.value,
+                        modo: ui.filtroModo.value,
+                        texto: ui.filtroTexto.value
+                    },
+                    savedAt: new Date().toISOString()
+                };
+                localStorage.setItem(SESSION_KEY, JSON.stringify(payload));
+                updateSavedState(payload);
+            }
+
+            function loadSession() {
+                try {
+                    const raw = localStorage.getItem(SESSION_KEY);
+                    return raw ? JSON.parse(raw) : null;
+                } catch {
+                    return null;
+                }
+            }
+
+            function clearSession() {
+                localStorage.removeItem(SESSION_KEY);
+                state.restoredSession = null;
+                updateSavedState(null);
+            }
+
+            function normalize(value) {
+                return value
+                    .toString()
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '');
+            }
+
+            function unique(values) {
+                return [...new Set(values)];
+            }
+
+            function modeLabel(mode) {
+                return {
+                    pendientes: 'Pendientes',
+                    todas: 'Todas',
+                    repaso: 'Repaso',
+                    sabidas: 'Sabidas'
+                }[mode] || 'Pendientes';
+            }
+
+            function isKnown(id) {
+                return state.progress.knownIds.includes(id);
+            }
+
+            function isFailed(id) {
+                return state.progress.failedIds.includes(id);
+            }
+
+            function markKnown(id) {
+                state.progress.failedIds = state.progress.failedIds.filter((item) => item !== id);
+                if (!state.progress.knownIds.includes(id)) {
+                    state.progress.knownIds.push(id);
+                }
+                saveProgress();
+            }
+
+            function markFailed(id) {
+                state.progress.knownIds = state.progress.knownIds.filter((item) => item !== id);
+                if (!state.progress.failedIds.includes(id)) {
+                    state.progress.failedIds.push(id);
+                }
+                state.reviewQueue.push(id);
+                saveProgress();
+            }
+
+            function getCardById(id) {
+                return state.cards.find((card) => card.id === id);
             }
 
             function fillSelect(select, values, labeler = (value) => value) {
                 const previous = select.value;
-                const baseOption = select.querySelector('option');
+                const firstOption = select.querySelector('option');
                 select.innerHTML = '';
-                select.appendChild(baseOption);
+                select.appendChild(firstOption);
                 values.forEach((value) => {
                     const option = document.createElement('option');
                     option.value = value;
@@ -590,22 +948,23 @@
             }
 
             function setupFilters(cards) {
-                fillSelect(ui.filtroBloque, [...new Set(cards.map((card) => card.bloque))].sort());
-                fillSelect(ui.filtroCategoria, [...new Set(cards.map((card) => card.categoria))].sort());
+                fillSelect(ui.filtroBloque, unique(cards.map((card) => card.bloque)).sort());
+                fillSelect(ui.filtroCategoria, unique(cards.map((card) => card.categoria)).sort());
                 fillSelect(
                     ui.filtroSesion,
-                    [...new Set(cards.map((card) => String(card.sesion)))].sort((a, b) => Number(a) - Number(b)),
-                    (value) => Number(value) === 0 ? 'General' : `Sesion ${value}`
+                    unique(cards.map((card) => String(card.sesion))).sort((a, b) => Number(a) - Number(b)),
+                    (value) => Number(value) === 0 ? 'General' : `Sesión ${value}`
                 );
             }
 
-            function applyFilters() {
+            function applyFilters(options = {}) {
                 const bloque = ui.filtroBloque.value;
                 const categoria = ui.filtroCategoria.value;
                 const sesion = ui.filtroSesion.value;
+                const modo = ui.filtroModo.value;
                 const texto = normalize(ui.filtroTexto.value.trim());
 
-                state.filtered = state.cards.filter((card) => {
+                let cards = state.cards.filter((card) => {
                     const matchesBlock = !bloque || card.bloque === bloque;
                     const matchesCategory = !categoria || card.categoria === categoria;
                     const matchesSesion = !sesion || String(card.sesion) === sesion;
@@ -621,17 +980,75 @@
                     return matchesBlock && matchesCategory && matchesSesion && matchesText;
                 });
 
-                state.index = 0;
-                state.face = 'front';
+                if (modo === 'pendientes') {
+                    cards = cards.filter((card) => !isKnown(card.id));
+                } else if (modo === 'repaso') {
+                    cards = cards.filter((card) => isFailed(card.id));
+                } else if (modo === 'sabidas') {
+                    cards = cards.filter((card) => isKnown(card.id));
+                }
+
+                state.filtered = cards;
+                if (!options.keepIndex) {
+                    state.index = 0;
+                }
+                if (!options.keepFace) {
+                    state.face = 'front';
+                }
                 render();
+                saveSession();
+            }
+
+            function queueNextFailedCard() {
+                while (state.reviewQueue.length) {
+                    const nextId = state.reviewQueue.shift();
+                    const index = state.filtered.findIndex((card) => card.id === nextId);
+                    if (index >= 0) {
+                        state.index = index;
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            function updateSavedState(sessionPayload = loadSession()) {
+                if (!sessionPayload || !Array.isArray(sessionPayload.ids) || !sessionPayload.ids.length) {
+                    ui.estadoGuardado.textContent = 'Sesión no guardada todavía.';
+                    ui.detalleGuardado.textContent = 'En cuanto empieces a estudiar, se guardarán tus IDs activos, tu posición y tus tarjetas sabidas o pendientes.';
+                    return;
+                }
+
+                const date = new Date(sessionPayload.savedAt);
+                const readable = Number.isNaN(date.getTime())
+                    ? 'fecha desconocida'
+                    : date.toLocaleString('es-ES');
+                ui.estadoGuardado.textContent = `Sesión guardada con ${sessionPayload.ids.length} IDs activos.`;
+                ui.detalleGuardado.textContent = `Último guardado: ${readable}. Puedes recuperar el mazo, la posición y la cola de repaso.`;
+            }
+
+            async function renderMath() {
+                if (!window.MathJax || typeof window.MathJax.typesetPromise !== 'function') {
+                    return;
+                }
+                await window.MathJax.typesetPromise([ui.flashcard]);
             }
 
             async function render() {
-                ui.flashcard.dataset.face = state.face;
-                ui.btnGirar.textContent = state.face === 'front' ? 'Ver respuesta' : 'Ver pregunta';
                 ui.resumenTotal.textContent = String(state.cards.length);
-                ui.resumenActivas.textContent = String(state.filtered.length);
-                ui.resumenBloques.textContent = String(new Set(state.cards.map((card) => card.bloque)).size);
+                ui.resumenPendientes.textContent = String(state.cards.filter((card) => !isKnown(card.id)).length);
+                ui.resumenDominadas.textContent = String(state.progress.knownIds.length);
+                ui.resumenRepaso.textContent = String(state.progress.failedIds.length);
+                ui.estadoModo.textContent = modeLabel(ui.filtroModo.value);
+                ui.estadoFallos.textContent = String(state.progress.failedIds.length);
+                ui.estadoSabidas.textContent = String(state.progress.knownIds.length);
+
+                const filtroTexto = [
+                    ui.filtroBloque.value || 'todos los bloques',
+                    ui.filtroCategoria.value || 'todas las categorías',
+                    ui.filtroSesion.value ? `sesión ${ui.filtroSesion.value}` : 'todas las sesiones'
+                ].join(' · ');
+                ui.textoFiltro.textContent = `Filtro actual: ${filtroTexto}`;
+                ui.textoCola.textContent = `Reapariciones: ${state.reviewQueue.length}`;
 
                 if (!state.filtered.length) {
                     ui.mensajeVacio.style.display = 'block';
@@ -640,23 +1057,34 @@
                     ui.contador.textContent = '0 / 0';
                     ui.progreso.textContent = 'Tarjeta 0 de 0';
                     ui.barra.style.width = '0%';
+                    ui.textoId.textContent = 'ID: -';
                     return;
                 }
 
                 ui.mensajeVacio.style.display = 'none';
-                ui.flashcard.style.display = 'flex';
+                ui.flashcard.style.display = 'block';
+
+                if (state.index >= state.filtered.length) {
+                    state.index = 0;
+                }
 
                 const card = state.filtered[state.index];
                 const current = state.index + 1;
                 const total = state.filtered.length;
                 const percentage = (current / total) * 100;
+                const blockStyle = BLOCK_STYLES[card.bloque] || BLOCK_STYLES['Proyecto'];
 
+                ui.flashcard.dataset.face = state.face;
+                ui.btnGirar.textContent = state.face === 'front' ? 'Ver respuesta' : 'Ver pregunta';
+                ui.bloqueIcono.textContent = blockStyle.icon;
+                ui.textoCabecera.textContent = blockStyle.label;
                 ui.metaBloque.textContent = card.bloque;
-                ui.metaSesion.textContent = Number(card.sesion) === 0 ? 'General' : `Sesion ${card.sesion}`;
+                ui.metaSesion.textContent = Number(card.sesion) === 0 ? 'General' : `Sesión ${card.sesion}`;
                 ui.metaCategoria.textContent = card.categoria;
                 ui.pregunta.innerHTML = card.pregunta;
                 ui.respuesta.innerHTML = card.respuesta;
                 ui.pista.innerHTML = card.pista ? `Pista: ${card.pista}` : '';
+                ui.pista.style.display = card.pista ? 'inline-block' : 'none';
                 ui.contador.textContent = `${current} / ${total}`;
                 ui.progreso.textContent = `Tarjeta ${current} de ${total}`;
                 ui.barra.style.width = `${percentage}%`;
@@ -664,75 +1092,157 @@
                 ui.etiquetas.innerHTML = '';
 
                 (card.etiquetas || []).forEach((tag) => {
-                    const span = document.createElement('span');
-                    span.className = 'etiqueta';
-                    span.textContent = `#${tag}`;
-                    ui.etiquetas.appendChild(span);
+                    const badge = document.createElement('span');
+                    badge.className = 'etiqueta';
+                    badge.textContent = `#${tag}`;
+                    ui.etiquetas.appendChild(badge);
                 });
+
+                if (isKnown(card.id)) {
+                    ui.etiquetas.insertAdjacentHTML('afterbegin', '<span class="etiqueta">✔ sabida</span>');
+                } else if (isFailed(card.id)) {
+                    ui.etiquetas.insertAdjacentHTML('afterbegin', '<span class="etiqueta">↺ repaso</span>');
+                }
 
                 await renderMath();
             }
 
-            function nextCard(step) {
+            function nextCard(step = 1) {
                 if (!state.filtered.length) {
                     return;
                 }
-                state.index = (state.index + step + state.filtered.length) % state.filtered.length;
                 state.face = 'front';
+                if (!queueNextFailedCard()) {
+                    state.index = (state.index + step + state.filtered.length) % state.filtered.length;
+                }
                 render();
+                saveSession();
             }
 
-            function randomCard() {
+            function jumpRandom() {
                 if (!state.filtered.length) {
                     return;
                 }
                 if (state.filtered.length === 1) {
                     state.index = 0;
                 } else {
-                    let newIndex = state.index;
-                    while (newIndex === state.index) {
-                        newIndex = Math.floor(Math.random() * state.filtered.length);
+                    let candidate = state.index;
+                    while (candidate === state.index) {
+                        candidate = Math.floor(Math.random() * state.filtered.length);
                     }
-                    state.index = newIndex;
+                    state.index = candidate;
                 }
                 state.face = 'front';
                 render();
+                saveSession();
             }
 
-            try {
-                const response = await fetch('flashcards-data.json?v=4');
-                if (!response.ok) {
-                    throw new Error('No se pudo cargar el JSON de flashcards.');
+            function shuffleDeck() {
+                for (let i = state.filtered.length - 1; i > 0; i -= 1) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [state.filtered[i], state.filtered[j]] = [state.filtered[j], state.filtered[i]];
                 }
-                const payload = await response.json();
-                state.cards = Array.isArray(payload.cards) ? payload.cards : [];
-                setupFilters(state.cards);
-                applyFilters();
-            } catch (error) {
-                ui.mensajeError.textContent = 'No se pudieron cargar las flashcards desde flashcards-data.json. Si estás abriendo la web como archivo local, prueba a servir la carpeta con un servidor local.';
-                ui.mensajeError.style.display = 'block';
-                ui.flashcard.style.display = 'none';
+                state.index = 0;
+                state.face = 'front';
+                render();
+                saveSession();
+            }
+
+            function restoreSession() {
+                const saved = loadSession();
+                if (!saved || !Array.isArray(saved.ids) || !saved.ids.length) {
+                    updateSavedState(null);
+                    return;
+                }
+
+                state.restoredSession = saved;
+                ui.filtroBloque.value = saved.filters?.bloque || '';
+                ui.filtroCategoria.value = saved.filters?.categoria || '';
+                ui.filtroSesion.value = saved.filters?.sesion || '';
+                ui.filtroModo.value = saved.filters?.modo || 'pendientes';
+                ui.filtroTexto.value = saved.filters?.texto || '';
+                applyFilters({ keepIndex: true, keepFace: true });
+
+                const ids = saved.ids;
+                state.filtered = ids.map(getCardById).filter(Boolean);
+                state.reviewQueue = Array.isArray(saved.reviewQueue) ? saved.reviewQueue.filter((id) => getCardById(id)) : [];
+                state.index = Math.min(saved.index || 0, Math.max(state.filtered.length - 1, 0));
+                state.face = saved.face === 'back' ? 'back' : 'front';
+                render();
+                updateSavedState(saved);
+            }
+
+            async function boot() {
+                try {
+                    const response = await fetch('flashcards-data.json?v=5');
+                    if (!response.ok) {
+                        throw new Error('No se pudo cargar el JSON de flashcards.');
+                    }
+                    const payload = await response.json();
+                    state.cards = Array.isArray(payload.cards) ? payload.cards : [];
+                    setupFilters(state.cards);
+                    applyFilters();
+                    updateSavedState();
+                } catch (error) {
+                    ui.mensajeError.textContent = 'No se pudieron cargar las flashcards. Si estás abriendo la web como archivo local, prueba a servir la carpeta con un servidor local.';
+                    ui.mensajeError.style.display = 'block';
+                    ui.flashcard.style.display = 'none';
+                }
             }
 
             ui.btnGirar.addEventListener('click', () => {
                 state.face = state.face === 'front' ? 'back' : 'front';
                 render();
+                saveSession();
             });
-            ui.btnAnterior.addEventListener('click', () => nextCard(-1));
-            ui.btnSiguiente.addEventListener('click', () => nextCard(1));
-            ui.btnAleatoria.addEventListener('click', randomCard);
+
+            ui.btnNoSe.addEventListener('click', () => {
+                if (!state.filtered.length) {
+                    return;
+                }
+                markFailed(state.filtered[state.index].id);
+                nextCard(1);
+            });
+
+            ui.btnSiSe.addEventListener('click', () => {
+                if (!state.filtered.length) {
+                    return;
+                }
+                markKnown(state.filtered[state.index].id);
+                if (ui.filtroModo.value === 'pendientes' || ui.filtroModo.value === 'repaso') {
+                    applyFilters();
+                } else {
+                    nextCard(1);
+                }
+            });
+
+            ui.btnSaltar.addEventListener('click', () => nextCard(1));
+            ui.btnAleatoria.addEventListener('click', jumpRandom);
+            ui.btnBarajar.addEventListener('click', shuffleDeck);
             ui.btnLimpiar.addEventListener('click', () => {
                 ui.filtroBloque.value = '';
                 ui.filtroCategoria.value = '';
                 ui.filtroSesion.value = '';
+                ui.filtroModo.value = 'pendientes';
                 ui.filtroTexto.value = '';
                 applyFilters();
             });
-
-            [ui.filtroBloque, ui.filtroCategoria, ui.filtroSesion].forEach((select) => {
-                select.addEventListener('change', applyFilters);
+            ui.btnGuardar.addEventListener('click', saveSession);
+            ui.btnContinuar.addEventListener('click', restoreSession);
+            ui.btnReiniciar.addEventListener('click', () => {
+                state.progress = { knownIds: [], failedIds: [], savedAt: null };
+                state.reviewQueue = [];
+                localStorage.removeItem(STORAGE_KEY);
+                clearSession();
+                applyFilters();
             });
-            ui.filtroTexto.addEventListener('input', applyFilters);
+
+            [ui.filtroBloque, ui.filtroCategoria, ui.filtroSesion, ui.filtroModo].forEach((select) => {
+                select.addEventListener('change', () => applyFilters());
+            });
+            ui.filtroTexto.addEventListener('input', () => applyFilters());
+
+            boot();
         });
     </script>
 
