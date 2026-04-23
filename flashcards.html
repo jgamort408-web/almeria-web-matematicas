@@ -7,6 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flashcards de repaso de todo el proyecto Almeria en cifras y formas, cargadas desde un archivo JSON editable.">
     <title>Flashcards - Almeria en cifras y formas</title>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true
+            },
+            options: {
+                skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -463,14 +476,14 @@
 
                 <section class="panel-ayuda">
                     <h2>Cómo añadir tarjetas</h2>
-                    <p>Solo tienes que duplicar un objeto dentro de <code>flashcards-data.json</code> siguiendo esta estructura:</p>
+                        <p>Solo tienes que duplicar un objeto dentro de <code>flashcards-data.json</code> siguiendo esta estructura:</p>
                     <code class="codigo-json">{
   "id": "bloque2-14",
   "bloque": "Bloque 2",
   "sesion": 8,
   "categoria": "Area",
-  "pregunta": "Pregunta nueva",
-  "respuesta": "Respuesta nueva",
+  "pregunta": "¿Pregunta nueva con formula $A=b \\cdot h$?",
+  "respuesta": "Respuesta nueva con LaTeX: $A=l^2$",
   "pista": "Pista opcional",
   "etiquetas": ["area", "repaso"]
 }</code>
@@ -553,6 +566,13 @@
                 .normalize('NFD')
                 .replace(/[\u0300-\u036f]/g, '');
 
+            async function renderMath() {
+                if (!window.MathJax || typeof window.MathJax.typesetPromise !== 'function') {
+                    return;
+                }
+                await window.MathJax.typesetPromise([ui.flashcard]);
+            }
+
             function fillSelect(select, values, labeler = (value) => value) {
                 const previous = select.value;
                 const baseOption = select.querySelector('option');
@@ -606,7 +626,7 @@
                 render();
             }
 
-            function render() {
+            async function render() {
                 ui.flashcard.dataset.face = state.face;
                 ui.btnGirar.textContent = state.face === 'front' ? 'Ver respuesta' : 'Ver pregunta';
                 ui.resumenTotal.textContent = String(state.cards.length);
@@ -649,6 +669,8 @@
                     span.textContent = `#${tag}`;
                     ui.etiquetas.appendChild(span);
                 });
+
+                await renderMath();
             }
 
             function nextCard(step) {
