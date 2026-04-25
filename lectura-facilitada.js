@@ -4,13 +4,13 @@
     var STORAGE_KEY = 'almeria_lectura_facilitada_v1';
     var AUTOOPEN_KEY = 'almeria_lectura_facilitada_open';
     var LANGUAGE_OPTIONS = [
-        { code: 'es', label: 'Español', voicePrefix: 'es' },
-        { code: 'en', label: 'English', voicePrefix: 'en' },
-        { code: 'ar', label: 'العربية', voicePrefix: 'ar' },
-        { code: 'pl', label: 'Polski', voicePrefix: 'pl' },
-        { code: 'ru', label: 'Русский', voicePrefix: 'ru' },
-        { code: 'nl', label: 'Nederlands', voicePrefix: 'nl' },
-        { code: 'de', label: 'Deutsch', voicePrefix: 'de' }
+        { code: 'es', label: 'Español', voicePrefix: 'es', locale: 'es-ES' },
+        { code: 'en', label: 'English', voicePrefix: 'en', locale: 'en-US' },
+        { code: 'ar', label: 'العربية', voicePrefix: 'ar', locale: 'ar-SA' },
+        { code: 'pl', label: 'Polski', voicePrefix: 'pl', locale: 'pl-PL' },
+        { code: 'ru', label: 'Русский', voicePrefix: 'ru', locale: 'ru-RU' },
+        { code: 'nl', label: 'Nederlands', voicePrefix: 'nl', locale: 'nl-NL' },
+        { code: 'de', label: 'Deutsch', voicePrefix: 'de', locale: 'de-DE' }
     ];
     var state = {
         overlay: null,
@@ -68,6 +68,12 @@
             localStorage.setItem(AUTOOPEN_KEY, '1');
         } catch (e) {}
 
+        var pageButton = document.querySelector('.btn-idioma[data-lang="' + lang + '"]');
+        if (pageButton) {
+            pageButton.click();
+            return;
+        }
+
         if (lang === 'es') {
             clearGoogleTranslateCookie();
         } else {
@@ -116,12 +122,19 @@
         } catch (e) {}
     }
 
-    function getVoiceLangPrefix() {
+    function getLanguageOption() {
         var current = readActiveLanguage();
-        var option = LANGUAGE_OPTIONS.find(function (item) {
+        return LANGUAGE_OPTIONS.find(function (item) {
             return item.code === current;
-        });
-        return option ? option.voicePrefix : 'es';
+        }) || LANGUAGE_OPTIONS[0];
+    }
+
+    function getVoiceLangPrefix() {
+        return getLanguageOption().voicePrefix;
+    }
+
+    function getSpeechLocale() {
+        return getLanguageOption().locale;
     }
 
     function getPageTitle() {
@@ -294,7 +307,7 @@
         if (cardEl) cardEl.classList.add('en-lectura');
 
         var utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = getVoiceLangPrefix();
+        utterance.lang = getSpeechLocale();
         utterance.rate = Number(state.settings.rate || 0.95);
 
         if (state.settings.voiceURI) {
@@ -347,6 +360,11 @@
     }
 
     function renderOverlay() {
+        if (state.overlay && state.overlay.parentNode) {
+            state.overlay.parentNode.removeChild(state.overlay);
+            state.overlay = null;
+        }
+
         var data = extractContent();
         var overlay = createElement('div', 'lf-overlay');
         overlay.setAttribute('aria-hidden', 'true');
@@ -541,7 +559,7 @@
     }
 
     function openOverlay() {
-        if (!state.overlay) renderOverlay();
+        renderOverlay();
         state.overlay.classList.add('abierto');
         state.overlay.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
@@ -569,11 +587,12 @@
     function init() {
         loadSettings();
         createTrigger();
-        renderOverlay();
         try {
             if (localStorage.getItem(AUTOOPEN_KEY) === '1') {
                 localStorage.removeItem(AUTOOPEN_KEY);
-                openOverlay();
+                window.addEventListener('load', function () {
+                    window.setTimeout(openOverlay, 1400);
+                });
             }
         } catch (e) {}
     }
