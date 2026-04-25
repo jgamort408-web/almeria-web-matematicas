@@ -294,6 +294,17 @@
         return el;
     }
 
+    function getSpeakableTextFromElement(element) {
+        if (!element) return '';
+
+        var clone = element.cloneNode(true);
+        clone.querySelectorAll('button').forEach(function (btn) {
+            btn.remove();
+        });
+
+        return safeText(clone.innerText || clone.textContent || '');
+    }
+
     function speakText(text, cardEl) {
         if (!('speechSynthesis' in window)) {
             alert('Tu navegador no permite lectura en voz en esta página.');
@@ -449,7 +460,7 @@
             var readBtn = createElement('button', 'lf-inline-btn', 'Escuchar este bloque');
             readBtn.type = 'button';
             readBtn.addEventListener('click', function () {
-                var combined = [card.title].concat(card.paragraphs, card.listItems).join('. ');
+                var combined = getSpeakableTextFromElement(article);
                 speakText(combined, article);
             });
             actions.appendChild(readBtn);
@@ -526,9 +537,16 @@
         });
 
         overlay.querySelector('[data-action="read-all"]').addEventListener('click', function () {
-            var text = [data.title, data.summary].concat(data.cards.map(function (card) {
-                return [card.title].concat(card.paragraphs, card.listItems).join('. ');
-            })).join('. ');
+            var parts = [];
+            var titleEl = overlay.querySelector('.lf-title');
+            var summaryEl = overlay.querySelector('.lf-summary');
+            if (titleEl) parts.push(getSpeakableTextFromElement(titleEl));
+            if (summaryEl) parts.push(getSpeakableTextFromElement(summaryEl));
+            overlay.querySelectorAll('.lf-card').forEach(function (cardEl) {
+                var text = getSpeakableTextFromElement(cardEl);
+                if (text) parts.push(text);
+            });
+            var text = parts.join('. ');
             speakText(text, null);
         });
 
