@@ -1,0 +1,327 @@
+.lf-trigger {
+    position: fixed;
+    right: 20px;
+    bottom: 78px;
+    z-index: 9997;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #f0bb41 0%, #d36e5a 100%);
+    color: #142633;
+    font: 700 0.95rem/1 "Segoe UI", Arial, sans-serif;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lf-trigger:hover,
+.lf-trigger:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.26);
+    outline: 3px solid rgba(255, 255, 255, 0.6);
+    outline-offset: 3px;
+}
+
+.lf-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10050;
+    display: none;
+    background:
+        radial-gradient(circle at top right, rgba(240, 187, 65, 0.18), transparent 24%),
+        linear-gradient(180deg, #f7fbfd 0%, #eaf2f7 100%);
+    color: #1b2f3f;
+}
+
+.lf-overlay.abierto {
+    display: block;
+}
+
+.lf-shell {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    height: 100%;
+}
+
+.lf-panel {
+    padding: 28px 22px 22px;
+    background: linear-gradient(180deg, #0d3b5b 0%, #15557f 100%);
+    color: #fff;
+    overflow-y: auto;
+}
+
+.lf-brand {
+    margin-bottom: 20px;
+}
+
+.lf-brand h2 {
+    margin: 0 0 8px;
+    font-size: 1.4rem;
+}
+
+.lf-brand p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.lf-controls {
+    display: grid;
+    gap: 18px;
+}
+
+.lf-control-group {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 18px;
+    padding: 16px;
+}
+
+.lf-control-group h3 {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+    letter-spacing: 0.02em;
+}
+
+.lf-button-row,
+.lf-toggle-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.lf-btn,
+.lf-chip {
+    border: none;
+    border-radius: 14px;
+    font: 700 0.92rem/1 "Segoe UI", Arial, sans-serif;
+    cursor: pointer;
+}
+
+.lf-btn {
+    padding: 11px 14px;
+    background: #f4ebd0;
+    color: #163247;
+    min-height: 42px;
+}
+
+.lf-btn.secundario {
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+}
+
+.lf-btn.cerrar {
+    background: #d36e5a;
+    color: #fff;
+    width: 100%;
+    justify-content: center;
+}
+
+.lf-chip {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.lf-chip.activo {
+    background: #f0bb41;
+    color: #142633;
+}
+
+.lf-select,
+.lf-range {
+    width: 100%;
+}
+
+.lf-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.lf-range-output {
+    display: inline-block;
+    margin-top: 8px;
+    font-weight: 700;
+    color: #ffe7a7;
+}
+
+.lf-main {
+    padding: 30px 32px;
+    overflow-y: auto;
+}
+
+.lf-main-inner {
+    max-width: 920px;
+    margin: 0 auto;
+}
+
+.lf-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.lf-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #dcecf7;
+    color: #0d3b5b;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.lf-title {
+    margin: 0 0 14px;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1.15;
+    color: #0d3b5b;
+}
+
+.lf-summary {
+    margin: 0 0 24px;
+    font-size: 1.12rem;
+    line-height: 1.75;
+    color: #2d4758;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(13, 59, 91, 0.08);
+    border-radius: 22px;
+    padding: 18px 20px;
+}
+
+.lf-cards {
+    display: grid;
+    gap: 18px;
+}
+
+.lf-card {
+    background: rgba(255, 255, 255, 0.94);
+    border-radius: 24px;
+    padding: 22px 24px;
+    border: 1px solid rgba(13, 59, 91, 0.08);
+    box-shadow: 0 12px 26px rgba(13, 59, 91, 0.08);
+}
+
+.lf-card[data-tone="objetivo"] { border-left: 8px solid #1d6fa3; }
+.lf-card[data-tone="pasos"] { border-left: 8px solid #f0bb41; }
+.lf-card[data-tone="clave"] { border-left: 8px solid #4a7c59; }
+.lf-card[data-tone="ejercicio"] { border-left: 8px solid #d36e5a; }
+.lf-card[data-tone="recurso"] { border-left: 8px solid #7b63b8; }
+
+.lf-card.en-lectura {
+    box-shadow: 0 0 0 4px rgba(240, 187, 65, 0.42), 0 18px 32px rgba(13, 59, 91, 0.12);
+    transform: translateY(-1px);
+}
+
+.lf-card h3 {
+    margin: 0 0 12px;
+    font-size: 1.3rem;
+    color: #0d3b5b;
+}
+
+.lf-card p,
+.lf-card li {
+    font-size: var(--lf-font-size, 1.12rem);
+    line-height: var(--lf-line-height, 1.8);
+    color: #253847;
+}
+
+.lf-card p {
+    margin: 0 0 10px;
+}
+
+.lf-card ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.lf-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+}
+
+.lf-inline-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 10px 12px;
+    background: #eef5f8;
+    color: #0d3b5b;
+    font: 700 0.9rem/1 "Segoe UI", Arial, sans-serif;
+    cursor: pointer;
+}
+
+.lf-help {
+    margin-top: 24px;
+    padding: 18px 20px;
+    border-radius: 20px;
+    background: #fff7e6;
+    border: 1px solid rgba(240, 187, 65, 0.36);
+}
+
+.lf-help h3 {
+    margin: 0 0 10px;
+    color: #77520d;
+}
+
+.lf-help p {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #5c4818;
+}
+
+.lf-overlay[data-contrast="alto"] {
+    background: #fffefb;
+    color: #111;
+}
+
+.lf-overlay[data-contrast="alto"] .lf-main {
+    background: #fffefb;
+}
+
+.lf-overlay[data-contrast="alto"] .lf-card {
+    background: #fff;
+    border-color: #111;
+    box-shadow: none;
+}
+
+.lf-overlay[data-size="grande"] {
+    --lf-font-size: 1.2rem;
+    --lf-line-height: 1.9;
+}
+
+.lf-overlay[data-size="muy-grande"] {
+    --lf-font-size: 1.34rem;
+    --lf-line-height: 2;
+}
+
+@media (max-width: 920px) {
+    .lf-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .lf-panel {
+        max-height: 42vh;
+    }
+
+    .lf-main {
+        padding: 24px 16px 34px;
+    }
+
+    .lf-trigger {
+        right: 16px;
+        bottom: 74px;
+        padding: 11px 15px;
+    }
+}
