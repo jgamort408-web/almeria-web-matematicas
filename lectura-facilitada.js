@@ -69,18 +69,19 @@
             localStorage.setItem(AUTOOPEN_KEY, '1');
         } catch (e) {}
 
+        if (lang === 'es') {
+            clearGoogleTranslateCookie();
+            window.location.reload();
+            return;
+        }
+
         var pageButton = document.querySelector('.btn-idioma[data-lang="' + lang + '"]');
         if (pageButton) {
             pageButton.click();
             return;
         }
 
-        if (lang === 'es') {
-            clearGoogleTranslateCookie();
-        } else {
-            setGoogleTranslateCookie('/es/' + lang);
-        }
-
+        setGoogleTranslateCookie('/es/' + lang);
         window.location.reload();
     }
 
@@ -138,28 +139,47 @@
         return getLanguageOption().locale;
     }
 
+    function isSpeechBlockedForLanguage() {
+        return getLanguageOption().code === 'ar';
+    }
+
     function hasCompatibleVoice() {
-        return state.voices && state.voices.length > 0;
+        return !isSpeechBlockedForLanguage() && state.voices && state.voices.length > 0;
+    }
+
+    function updateSpeechControlsState() {
+        if (!state.overlay) return;
+
+        var disabled = isSpeechBlockedForLanguage() || !hasCompatibleVoice();
+        state.overlay.querySelectorAll('[data-speech-control], .lf-inline-btn').forEach(function (button) {
+            button.disabled = disabled;
+            button.setAttribute('aria-disabled', disabled ? 'true' : 'false');
+            button.style.opacity = disabled ? '0.55' : '';
+            button.style.cursor = disabled ? 'not-allowed' : '';
+        });
     }
 
     function updateVoiceWarning() {
         if (!state.warningBox) return;
 
         var lang = getLanguageOption();
-        if (lang.code === 'ar' && !hasCompatibleVoice()) {
+        if (lang.code === 'ar') {
             state.warningBox.hidden = false;
-            state.warningBox.textContent = 'No hay una voz árabe compatible instalada en este navegador o en este dispositivo. Por eso la lectura en voz no se activa para árabe, aunque el texto sí se traduzca.';
+            state.warningBox.textContent = 'La lectura en voz está desactivada para árabe en esta vista. El texto puede traducirse al árabe, pero la voz del navegador no está dando aquí un resultado fiable.';
+            updateSpeechControlsState();
             return;
         }
 
         if (!hasCompatibleVoice()) {
             state.warningBox.hidden = false;
             state.warningBox.textContent = 'No hay una voz compatible disponible para el idioma actual en este navegador. La vista de lectura sigue funcionando, pero la lectura en voz puede no estar disponible.';
+            updateSpeechControlsState();
             return;
         }
 
         state.warningBox.hidden = true;
         state.warningBox.textContent = '';
+        updateSpeechControlsState();
     }
 
     function getPageTitle() {
@@ -336,7 +356,7 @@
             return;
         }
 
-        if (!hasCompatibleVoice()) {
+        if (isSpeechBlockedForLanguage() || !hasCompatibleVoice()) {
             updateVoiceWarning();
             return;
         }
@@ -454,10 +474,10 @@
             + '  <div class="lf-control-group">'
             + '    <h3>Lectura en voz</h3>'
             + '    <div class="lf-button-row">'
-            + '      <button type="button" class="lf-btn" data-action="read-all">Leer todo</button>'
-            + '      <button type="button" class="lf-btn secundario" data-action="pause">Pausa</button>'
-            + '      <button type="button" class="lf-btn secundario" data-action="resume">Continuar</button>'
-            + '      <button type="button" class="lf-btn secundario" data-action="stop">Detener</button>'
+            + '      <button type="button" class="lf-btn" data-action="read-all" data-speech-control="true">Leer todo</button>'
+            + '      <button type="button" class="lf-btn secundario" data-action="pause" data-speech-control="true">Pausa</button>'
+            + '      <button type="button" class="lf-btn secundario" data-action="resume" data-speech-control="true">Continuar</button>'
+            + '      <button type="button" class="lf-btn secundario" data-action="stop" data-speech-control="true">Detener</button>'
             + '    </div>'
             + '  </div>'
             + '  <div class="lf-control-group">'
@@ -633,6 +653,8 @@
                 closeOverlay();
             }
         });
+
+        updateVoiceWarning();
     }
 
     function openOverlay() {
