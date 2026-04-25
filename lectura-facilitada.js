@@ -362,12 +362,34 @@
             state.voiceSelect.appendChild(option);
         });
 
-        if (state.settings.voiceURI) {
+        if (state.settings.voiceURI && state.voices.some(function (voice) { return voice.voiceURI === state.settings.voiceURI; })) {
             state.voiceSelect.value = state.settings.voiceURI;
         } else {
             state.settings.voiceURI = state.voiceSelect.value || '';
             saveSettings();
         }
+    }
+
+    function waitForTranslationReady(callback) {
+        if (readActiveLanguage() === 'es') {
+            callback();
+            return;
+        }
+
+        var attempts = 0;
+        var maxAttempts = 20;
+        var interval = window.setInterval(function () {
+            attempts += 1;
+
+            var translatedBody = /translated-/.test(document.body.className || '');
+            var translatedNodes = document.querySelectorAll('font font, .goog-text-highlight, .skiptranslate').length > 0;
+            var ready = translatedBody || translatedNodes || attempts >= maxAttempts;
+
+            if (ready) {
+                window.clearInterval(interval);
+                window.setTimeout(callback, 350);
+            }
+        }, 250);
     }
 
     function renderOverlay() {
@@ -577,10 +599,12 @@
     }
 
     function openOverlay() {
-        renderOverlay();
-        state.overlay.classList.add('abierto');
-        state.overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
+        waitForTranslationReady(function () {
+            renderOverlay();
+            state.overlay.classList.add('abierto');
+            state.overlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        });
     }
 
     function closeOverlay() {
@@ -609,7 +633,7 @@
             if (localStorage.getItem(AUTOOPEN_KEY) === '1') {
                 localStorage.removeItem(AUTOOPEN_KEY);
                 window.addEventListener('load', function () {
-                    window.setTimeout(openOverlay, 1400);
+                    window.setTimeout(openOverlay, 1800);
                 });
             }
         } catch (e) {}
