@@ -19,6 +19,7 @@
         voiceSelect: null,
         speedRange: null,
         speedOutput: null,
+        warningBox: null,
         currentUtterance: null,
         voices: [],
         settings: {
@@ -135,6 +136,30 @@
 
     function getSpeechLocale() {
         return getLanguageOption().locale;
+    }
+
+    function hasCompatibleVoice() {
+        return state.voices && state.voices.length > 0;
+    }
+
+    function updateVoiceWarning() {
+        if (!state.warningBox) return;
+
+        var lang = getLanguageOption();
+        if (lang.code === 'ar' && !hasCompatibleVoice()) {
+            state.warningBox.hidden = false;
+            state.warningBox.textContent = 'No hay una voz árabe compatible instalada en este navegador o en este dispositivo. Por eso la lectura en voz no se activa para árabe, aunque el texto sí se traduzca.';
+            return;
+        }
+
+        if (!hasCompatibleVoice()) {
+            state.warningBox.hidden = false;
+            state.warningBox.textContent = 'No hay una voz compatible disponible para el idioma actual en este navegador. La vista de lectura sigue funcionando, pero la lectura en voz puede no estar disponible.';
+            return;
+        }
+
+        state.warningBox.hidden = true;
+        state.warningBox.textContent = '';
     }
 
     function getPageTitle() {
@@ -311,6 +336,11 @@
             return;
         }
 
+        if (!hasCompatibleVoice()) {
+            updateVoiceWarning();
+            return;
+        }
+
         window.speechSynthesis.cancel();
         document.querySelectorAll('.lf-card.en-lectura').forEach(function (el) {
             el.classList.remove('en-lectura');
@@ -352,6 +382,9 @@
             option.value = '';
             option.textContent = 'Voz por defecto del navegador';
             state.voiceSelect.appendChild(option);
+            state.settings.voiceURI = '';
+            saveSettings();
+            updateVoiceWarning();
             return;
         }
 
@@ -368,6 +401,8 @@
             state.settings.voiceURI = state.voiceSelect.value || '';
             saveSettings();
         }
+
+        updateVoiceWarning();
     }
 
     function waitForTranslationReady(callback) {
@@ -448,6 +483,7 @@
             + '    <label class="lf-label" for="lf-rate" style="margin-top:12px;">Velocidad</label>'
             + '    <input class="lf-range" id="lf-rate" type="range" min="0.7" max="1.2" step="0.05" value="' + String(state.settings.rate) + '">'
             + '    <span class="lf-range-output" id="lf-rate-output"></span>'
+            + '    <div class="lf-warning" id="lf-voice-warning" hidden></div>'
             + '  </div>'
             + '  <button type="button" class="lf-btn cerrar" data-action="close">Volver a la página</button>'
             + '</div>';
@@ -506,6 +542,7 @@
         state.voiceSelect = overlay.querySelector('#lf-voice');
         state.speedRange = overlay.querySelector('#lf-rate');
         state.speedOutput = overlay.querySelector('#lf-rate-output');
+        state.warningBox = overlay.querySelector('#lf-voice-warning');
 
         state.speedOutput.textContent = Number(state.settings.rate).toFixed(2) + 'x';
 
