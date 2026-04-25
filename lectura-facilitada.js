@@ -2,9 +2,20 @@
     'use strict';
 
     var STORAGE_KEY = 'almeria_lectura_facilitada_v1';
+    var AUTOOPEN_KEY = 'almeria_lectura_facilitada_open';
+    var LANGUAGE_OPTIONS = [
+        { code: 'es', label: 'Español', voicePrefix: 'es' },
+        { code: 'en', label: 'English', voicePrefix: 'en' },
+        { code: 'ar', label: 'العربية', voicePrefix: 'ar' },
+        { code: 'pl', label: 'Polski', voicePrefix: 'pl' },
+        { code: 'ru', label: 'Русский', voicePrefix: 'ru' },
+        { code: 'nl', label: 'Nederlands', voicePrefix: 'nl' },
+        { code: 'de', label: 'Deutsch', voicePrefix: 'de' }
+    ];
     var state = {
         overlay: null,
         content: null,
+        langSelect: null,
         voiceSelect: null,
         speedRange: null,
         speedOutput: null,
@@ -17,6 +28,54 @@
             voiceURI: ''
         }
     };
+
+    function readActiveLanguage() {
+        var match = document.cookie.match(/(?:^|;)\s*googtrans=\/es\/([a-z]{2})/);
+        return match ? match[1] : 'es';
+    }
+
+    function setGoogleTranslateCookie(value) {
+        var paths = ['/', location.pathname];
+        var domains = [location.hostname, '.' + location.hostname];
+
+        paths.forEach(function (path) {
+            document.cookie = 'googtrans=' + value + '; path=' + path + ';';
+            domains.forEach(function (domain) {
+                if (domain && domain !== '.') {
+                    document.cookie = 'googtrans=' + value + '; path=' + path + '; domain=' + domain + ';';
+                }
+            });
+        });
+    }
+
+    function clearGoogleTranslateCookie() {
+        var expiry = '; expires=Thu, 01 Jan 1970 00:00:00 UTC';
+        var paths = ['/', location.pathname];
+        var domains = [location.hostname, '.' + location.hostname];
+
+        paths.forEach(function (path) {
+            document.cookie = 'googtrans=' + expiry + '; path=' + path + ';';
+            domains.forEach(function (domain) {
+                if (domain && domain !== '.') {
+                    document.cookie = 'googtrans=' + expiry + '; path=' + path + '; domain=' + domain + ';';
+                }
+            });
+        });
+    }
+
+    function applyLanguage(lang) {
+        try {
+            localStorage.setItem(AUTOOPEN_KEY, '1');
+        } catch (e) {}
+
+        if (lang === 'es') {
+            clearGoogleTranslateCookie();
+        } else {
+            setGoogleTranslateCookie('/es/' + lang);
+        }
+
+        window.location.reload();
+    }
 
     function safeText(text) {
         return (text || '')
@@ -55,6 +114,14 @@
         try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state.settings));
         } catch (e) {}
+    }
+
+    function getVoiceLangPrefix() {
+        var current = readActiveLanguage();
+        var option = LANGUAGE_OPTIONS.find(function (item) {
+            return item.code === current;
+        });
+        return option ? option.voicePrefix : 'es';
     }
 
     function getPageTitle() {
@@ -227,7 +294,7 @@
         if (cardEl) cardEl.classList.add('en-lectura');
 
         var utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'es-ES';
+        utterance.lang = getVoiceLangPrefix();
         utterance.rate = Number(state.settings.rate || 0.95);
 
         if (state.settings.voiceURI) {
@@ -248,8 +315,11 @@
     function populateVoices() {
         if (!state.voiceSelect) return;
 
+        var langPrefix = getVoiceLangPrefix();
         state.voices = window.speechSynthesis.getVoices()
-            .filter(function (voice) { return /^es(-|_)/i.test(voice.lang) || /spanish/i.test(voice.name); });
+            .filter(function (voice) {
+                return new RegExp('^' + langPrefix + '(-|_)', 'i').test(voice.lang);
+            });
 
         state.voiceSelect.innerHTML = '';
 
@@ -317,6 +387,11 @@
             + '    </div>'
             + '  </div>'
             + '  <div class="lf-control-group">'
+            + '    <label class="lf-label" for="lf-language">Idioma de la página</label>'
+            + '    <select class="lf-select" id="lf-language"></select>'
+            + '    <p class="lf-note">Cambia el idioma de la web completa. La página se recargará y esta vista se abrirá de nuevo.</p>'
+            + '  </div>'
+            + '  <div class="lf-control-group">'
             + '    <label class="lf-label" for="lf-voice">Voz</label>'
             + '    <select class="lf-select" id="lf-voice"></select>'
             + '    <label class="lf-label" for="lf-rate" style="margin-top:12px;">Velocidad</label>'
@@ -376,11 +451,20 @@
 
         state.overlay = overlay;
         state.content = data;
+        state.langSelect = overlay.querySelector('#lf-language');
         state.voiceSelect = overlay.querySelector('#lf-voice');
         state.speedRange = overlay.querySelector('#lf-rate');
         state.speedOutput = overlay.querySelector('#lf-rate-output');
 
         state.speedOutput.textContent = Number(state.settings.rate).toFixed(2) + 'x';
+
+        LANGUAGE_OPTIONS.forEach(function (item) {
+            var option = document.createElement('option');
+            option.value = item.code;
+            option.textContent = item.label;
+            state.langSelect.appendChild(option);
+        });
+        state.langSelect.value = readActiveLanguage();
 
         populateVoices();
 
@@ -411,6 +495,10 @@
         state.voiceSelect.addEventListener('change', function () {
             state.settings.voiceURI = state.voiceSelect.value;
             saveSettings();
+        });
+
+        state.langSelect.addEventListener('change', function () {
+            applyLanguage(state.langSelect.value);
         });
 
         state.speedRange.addEventListener('input', function () {
@@ -482,6 +570,12 @@
         loadSettings();
         createTrigger();
         renderOverlay();
+        try {
+            if (localStorage.getItem(AUTOOPEN_KEY) === '1') {
+                localStorage.removeItem(AUTOOPEN_KEY);
+                openOverlay();
+            }
+        } catch (e) {}
     }
 
     document.addEventListener('DOMContentLoaded', init);
